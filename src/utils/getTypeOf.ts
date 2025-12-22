@@ -8,9 +8,6 @@ import {isNumber} from "../checks/isNumber.js";
  * Determines the data type of the given value and returns it as a string.
  * These can be primitive DataTypes, objects, or specific object DataTypes like "date", "regexp", etc.
  *
- * @private
- * @see     Use this function only in the {@link $type}-function.
- *
  * @author  Roland Milto
  * @version 2025-12-10
  *
