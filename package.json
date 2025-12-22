@@ -1,0 +1,57 @@
+{
+  "author": "Roland Milto (https://roland.milto.de/)",
+  "homepage": "https://roland.milto.de/projekte/type-check#strict",
+  "name": "@type-check/strict",
+  "version": "2025.12.22",
+  "license": "GPL-3.0-or-later",
+  "description": "@type-check/strict provides high-performance, security-focused runtime type checks following current 2026 best practices. Built for professional TypeScript, Node.js, and modern browser environments, this package delivers precise and efficient type-guard functions with active support and continuous development.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roland-milto/strict-type-checks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/roland-milto/strict-type-checks/issues"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist/",
+    "node_modules",
+    "tests/"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "typescript": "^5.9.3"
+  },
+  "keywords": [
+    "data validation",
+    "datatype validation",
+    "runtime type check",
+    "runtime type checking",
+    "runtime validation",
+    "testing",
+    "testings",
+    "type check",
+    "type-check",
+    "type checks",
+    "type-checks",
+    "type guard",
+    "type guards",
+    "typescript",
+    "validation",
+    "validators",
+    "value check",
+    "value validation"
+  ]
+}
