@@ -24,3 +24,27 @@ export function isStream(value: unknown): value is Stream | ReadableStream | Wri
     (typeof WritableStream !== 'undefined' &&
       value instanceof WritableStream)
 }
+
+/**
+ * Determines whether the given value is an array of Stream objects.
+ *
+ * @author  Roland Milto (https://roland.milto.de/)
+ * @version 2025-12-22
+ *
+ * @param   {unknown} array - The value to be checked.
+ *
+ * @returns {boolean}       - Returns `true` if the value is an array where all elements are Stream objects, otherwise `false`.
+ */
+export function areStreams(array: unknown): array is Stream[] {
+  if (!Array.isArray(array)) {
+    return false;
+  }
+
+  for (const item of array) {
+    if (!isStream(item)) {
+      return false;
+    }
+  }
+
+  return true;
+}

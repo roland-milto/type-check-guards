@@ -1,29 +1,28 @@
 // Import: Interfaces and DataTypes.
-import type {DataTypes} from "./checks/types.js";
 import type {TypeMethods} from "./interfaces.js";
 
 // Import: Self-created modules.
-import {isArray} from "./checks/isArray.js";
-import {isBigInt} from "./checks/isBigInt.js";
-import {isBoolean} from "./checks/isBoolean.js";
-import {isBuffer} from "./checks/isBuffer.js";
-import {isDate} from "./checks/isDate.js";
-import {isFinite} from "./checks/isFinite.js";
-import {isFunction} from "./checks/isFunction.js";
-import {isInteger} from "./checks/isInteger.js";
-import {isNull} from "./checks/isNull.js";
-import {isNullOrUndefined} from "./checks/isNullOrUndefined.js";
-import {isNumber} from "./checks/isNumber.js";
-import {isObject} from "./checks/isObject.js";
-import {isOfType} from "./checks/isOfType.js";
-import {isPlainObject} from "./checks/isPlainObject.js";
-import {isPromise} from "./checks/isPromise.js";
-import {isRegex} from "./checks/isRegex.js";
-import {isStream} from "./checks/isStream.js";
-import {isString} from "./checks/isString.js";
-import {isSymbol} from "./checks/isSymbol.js";
-import {isUndefined} from "./checks/isUndefined.js";
-import {isValidDate} from "./checks/isValidDate.js";
+import {areArrays, isArray} from "./checks/array.js";
+import {areBigInts, isBigInt} from "./checks/bigInt.js";
+import {areBooleans, isBoolean} from "./checks/boolean.js";
+import {areBuffers, isBuffer} from "./checks/buffer.js";
+import {areDates, isDate} from "./checks/date.js";
+import {areFinite, isFinite} from "./checks/finite.js";
+import {areFunctions, isFunction} from "./checks/function.js";
+import {areIntegers, isInteger} from "./checks/integer.js";
+import {areNull, isNull} from "./checks/null.js";
+import {areNullOrUndefined, isNullOrUndefined} from "./checks/nullOrUndefined.js";
+import {areNumbers, isNumber} from "./checks/number.js";
+import {areObjects, isObject} from "./checks/object.js";
+import {areOfType, isOfType} from "./checks/ofType.js";
+import {arePlainObjects, isPlainObject} from "./checks/plainObject.js";
+import {arePromises, isPromise} from "./checks/promise.js";
+import {areRegExes, isRegEx} from "./checks/regEx.js";
+import {areStreams, isStream} from "./checks/stream.js";
+import {areStrings, isString} from "./checks/string.js";
+import {areSymbols, isSymbol} from "./checks/symbol.js";
+import {areUndefined, isUndefined} from "./checks/undefined.js";
+import {areValidDates, isValidDate} from "./checks/validDate.js";
 import {getTypeOf} from "./utils/getTypeOf.js";
 
 /**
@@ -46,14 +45,37 @@ import {getTypeOf} from "./utils/getTypeOf.js";
  * * `isOfType`: Validates if the value matches a specified data type.
  * * `isPlainObject`: Returns a boolean whether the value is a plain object.
  * * `isPromise`: Returns a boolean whether the value is a promise.
- * * `isRegex`: Returns a boolean whether the value is a regular expression.
+ * * `isRegEx`: Returns a boolean whether the value is a regular expression.
  * * `isStream`: Returns a boolean whether the value is a stream.
  * * `isString`: Returns a boolean whether the value is a string.
  * * `isSymbol`: Returns a boolean whether the value is a symbol.
  * * `isUndefined`: Returns a boolean whether the value is undefined.
  * * `isValidDate`: Returns a boolean whether the value is a valid date.
  *
- * @author  Roland Milto
+ * Array methods:
+ * * `areArrays`: Returns a boolean whether all elements in the array are arrays.
+ * * `areBigInts`: Returns a boolean whether all elements in the array are BigInts.
+ * * `areBooleans`: Returns a boolean whether all elements in the array are booleans.
+ * * `areBuffers`: Returns a boolean whether all elements in the array are buffers.
+ * * `areDates`: Returns a boolean whether all elements in the array are dates.
+ * * `areFinite`: Returns a boolean whether all elements in the array are finite.
+ * * `areFunctions`: Returns a boolean whether all elements in the array are functions.
+ * * `areIntegers`: Returns a boolean whether all elements in the array are integers.
+ * * `areNull`: Returns a boolean whether all elements in the array are null.
+ * * `areNullOrUndefined`: Returns a boolean whether all elements in the array are null or undefined.
+ * * `areNumbers`: Returns a boolean whether all elements in the array are numbers.
+ * * `areObjects`: Returns a boolean whether all elements in the array are objects.
+ * * `areOfType`: Returns a boolean whether all elements in the array match the specified data type.
+ * * `arePlainObjects`: Returns a boolean whether all elements in the array are plain objects.
+ * * `arePromises`: Returns a boolean whether all elements in the array are promises.
+ * * `areRegExes`: Returns a boolean whether all elements in the array are regular expressions.
+ * * `areStreams`: Returns a boolean whether all elements in the array are streams.
+ * * `areStrings`: Returns a boolean whether all elements in the array are strings.
+ * * `areSymbols`: Returns a boolean whether all elements in the array are symbols.
+ * * `areUndefined`: Returns a boolean whether all elements in the array are undefined.
+ * * `areValidDates`: Returns a boolean whether all elements in the array are valid dates.
+ *
+ * @author  Roland Milto (https://roland.milto.de/)
  * @version 2025-12-22
  */
 export const type: Readonly<TypeMethods> = Object.freeze(
@@ -63,21 +85,21 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    *
    * @example
    * // Returns “string”:
-   * type.toString("Roland Milto");
+   * type.getTypeOf("Roland Milto");
    */
-  getTypeOf: (value: unknown): DataTypes => {
-    return getTypeOf(value);
-  },
+  getTypeOf,
 
   /**
    * @example
    * // Returns "true":
    * type.isArray([1, 2, 3]);
+   * type.areArrays([1, 2, 3], [true, false], ["Roland", "Milto"]);
    *
    * // Returns "false":
    * type.isArray(5);
    */
   isArray,
+  areArrays,
 
   /**
    * @example
@@ -88,6 +110,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isBigInt(123);
    */
   isBigInt,
+  areBigInts,
 
   /**
    * @example
@@ -100,6 +123,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isBoolean("true");
    */
   isBoolean,
+  areBooleans,
 
   /**
    * @example
@@ -110,6 +134,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isBuffer("abc");
    */
   isBuffer,
+  areBuffers,
 
   /**
    * @example
@@ -120,6 +145,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isDate("2025-12-22");
    */
   isDate,
+  areDates,
 
   /**
    * @example
@@ -130,6 +156,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isFinite(Infinity);
    */
   isFinite,
+  areFinite,
 
   /**
    * @example
@@ -140,6 +167,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isFunction(123);
    */
   isFunction,
+  areFunctions,
 
   /**
    * @example
@@ -150,6 +178,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isInteger(123.45);
    */
   isInteger,
+  areIntegers,
 
   /**
    * @example
@@ -160,6 +189,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isNull(undefined);
    */
   isNull,
+  areNull,
 
   /**
    * @example
@@ -171,6 +201,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isNullOrUndefined("Roland Milto");
    */
   isNullOrUndefined,
+  areNullOrUndefined,
 
   /**
    * @example
@@ -181,6 +212,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isNumber("2");
    */
   isNumber,
+  areNumbers,
 
   /**
    * @example
@@ -191,6 +223,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isObject(5);
    */
   isObject,
+  areObjects,
 
   /**
    * @example
@@ -201,6 +234,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isOfType(123, "string");
    */
   isOfType,
+  areOfType,
 
   /**
    * @example
@@ -211,6 +245,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isPlainObject(new Date());
    */
   isPlainObject,
+  arePlainObjects,
 
   /**
    * @example
@@ -221,16 +256,18 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isPromise(123);
    */
   isPromise,
+  arePromises,
 
   /**
    * @example
    * // Returns "true":
-   * type.isRegex(/abc/);
+   * type.isRegEx(/abc/);
    *
    * // Returns "false":
-   * type.isRegex("abc");
+   * type.isRegEx("abc");
    */
-  isRegex,
+  isRegEx,
+  areRegExes,
 
   /**
    * @example
@@ -241,6 +278,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isStream({});
    */
   isStream,
+  areStreams,
 
   /**
    * @example
@@ -251,6 +289,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isString(5);
    */
   isString,
+  areStrings,
 
   /**
    * @example
@@ -261,6 +300,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isSymbol("id");
    */
   isSymbol,
+  areSymbols,
 
   /**
    * @example
@@ -271,6 +311,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * type.isUndefined(null);
    */
   isUndefined,
+  areUndefined,
 
   /**
    * @example
@@ -280,29 +321,30 @@ export const type: Readonly<TypeMethods> = Object.freeze(
    * // Returns "false":
    * type.isValidDate(new Date("invalid"));
    */
-  isValidDate
+  isValidDate,
+  areValidDates
 });
 
-// Simple exports.
+// Single exports for tree shaking.
 export {getTypeOf} from './utils/getTypeOf.js';
-export {isArray} from './checks/isArray.js';
-export {isBigInt} from './checks/isBigInt.js';
-export {isBoolean} from './checks/isBoolean.js';
-export {isBuffer} from './checks/isBuffer.js';
-export {isDate} from './checks/isDate.js';
-export {isFinite} from './checks/isFinite.js';
-export {isFunction} from './checks/isFunction.js';
-export {isInteger} from './checks/isInteger.js';
-export {isNull} from './checks/isNull.js';
-export {isNullOrUndefined} from './checks/isNullOrUndefined.js';
-export {isNumber} from './checks/isNumber.js';
-export {isObject} from './checks/isObject.js';
-export {isOfType} from './checks/isOfType.js';
-export {isPromise} from './checks/isPromise.js';
-export {isPlainObject} from './checks/isPlainObject.js';
-export {isRegex} from './checks/isRegex.js';
-export {isStream} from './checks/isStream.js';
-export {isString} from './checks/isString.js';
-export {isSymbol} from './checks/isSymbol.js';
-export {isUndefined} from './checks/isUndefined.js';
-export {isValidDate} from './checks/isValidDate.js';
+export {areArrays, isArray} from './checks/array.js';
+export {areBigInts, isBigInt} from './checks/bigInt.js';
+export {areBooleans, isBoolean} from './checks/boolean.js';
+export {areBuffers, isBuffer} from './checks/buffer.js';
+export {areDates, isDate} from './checks/date.js';
+export {areFinite, isFinite} from './checks/finite.js';
+export {areFunctions, isFunction} from './checks/function.js';
+export {areIntegers, isInteger} from './checks/integer.js';
+export {areNull, isNull} from './checks/null.js';
+export {areNullOrUndefined, isNullOrUndefined} from './checks/nullOrUndefined.js';
+export {areNumbers, isNumber} from './checks/number.js';
+export {areObjects, isObject} from './checks/object.js';
+export {areOfType, isOfType} from './checks/ofType.js';
+export {arePromises, isPromise} from './checks/promise.js';
+export {arePlainObjects, isPlainObject} from './checks/plainObject.js';
+export {areRegExes, isRegEx} from './checks/regEx.js';
+export {areStreams, isStream} from './checks/stream.js';
+export {areStrings, isString} from './checks/string.js';
+export {areSymbols, isSymbol} from './checks/symbol.js';
+export {areUndefined, isUndefined} from './checks/undefined.js';
+export {areValidDates, isValidDate} from './checks/validDate.js';

@@ -4,9 +4,6 @@ import {DataTypes} from "./types.js";
 // Import: Self-created modules.
 import {getTypeOf} from "../utils//getTypeOf.js";
 
-// Alias.
-export const isType: (value: any, type: DataTypes) => boolean = isOfType;
-
 /**
  * Determines if the provided variable is of the specified data type.
  *
@@ -31,4 +28,29 @@ export function isOfType(value: unknown, type: DataTypes): boolean
 
   // Fallback to the robust check for complex types (array, date, regexp, object, etc.).
   return getTypeOf(value) === type;
+}
+
+/**
+ * Checks if all elements in the provided array are of the specified type.
+ *
+ * @author  Roland Milto
+ * @version 2025-12-22
+ *
+ * @param   {unknown[]} array - The array to be checked.
+ * @param   {DataTypes} type  - The data type to validate against each element in the array.
+ *
+ * @returns {boolean}         - `true` if all elements in the array are of the specified type, otherwise `false`.
+ */
+export function areOfType(array: unknown, type: DataTypes): boolean {
+  if (!Array.isArray(array)) {
+    return false;
+  }
+
+  for (const item of array) {
+    if (!isOfType(item, type)) {
+      return false;
+    }
+  }
+
+  return true;
 }

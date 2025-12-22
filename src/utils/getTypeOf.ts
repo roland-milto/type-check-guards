@@ -2,7 +2,7 @@
 import type {DataTypes} from "../checks/types.js";
 
 // Import: Self-created functions.
-import {isNumber} from "../checks/isNumber.js";
+import {isNumber} from "../checks/number.js";
 
 /**
  * Determines the data type of the given value and returns it as a string.
@@ -37,7 +37,7 @@ export function getTypeOf(value: unknown): DataTypes
 		return "array";
 	}
 
-	// Check primitives (bigint, boolean, function, string, symbol etc.).
+	// Check primitives (bigint, isBoolean, function, string, symbol etc.).
 	const type: string = typeof value;
 	if (type !== "object") {
 		return type;
