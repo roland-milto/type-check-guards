@@ -64,7 +64,7 @@ temporary/
 package-lock.json
 
 # Other (need to be published)
-# *.tsbuildinfo
+*.tsbuildinfo
 # *.map
 # Jenkinsfile
 # Makefile
