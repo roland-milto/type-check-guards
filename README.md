@@ -17,10 +17,10 @@ It exports an object containing all type-guard functions, while also offering tr
 import {type} from "@type-check/strict";
 
 function checkAccountDetails(options, callback) {
-	if (type.isPlainObject(options) === false)
+	if (!type.isPlainObject(options))
 		throw new TypeError("options must be a plain object");
 
-	if (type.isInteger(options.id) === false)
+	if (!type.isInteger(options.id))
 		throw new TypeError("options.id must be an integer");
 
 	if (type.isString(options.name))
@@ -29,8 +29,7 @@ function checkAccountDetails(options, callback) {
 	if (type.isString(options.email))
 		console.log("Contact email:", options.email ?? "No email given");
 
-	if (type.isBoolean(options.isManager) === false)
-		console.log("Is manager:", options.isManager ? "yes" : 'no');
+	console.log("Is manager:", options.isManager ? "yes" : 'no');
 
 	// Also arrays are supported:
 	if (type.areStrings(options.locations)) {
@@ -47,10 +46,10 @@ function checkAccountDetails(options, callback) {
 import {areStrings, isPlainObject, isInteger, isString, isBoolean} from "@type-check/strict";
 
 function checkAccountDetails(options, callback) {
-	if (isPlainObject(options) === false)
+	if (!isPlainObject(options))
 		throw new TypeError("options must be a plain object");
 
-	if (isInteger(options.id) === false)
+	if (!isInteger(options.id))
 		throw new TypeError("options.id must be an integer");
 
 	if (isString(options.name))
@@ -59,8 +58,7 @@ function checkAccountDetails(options, callback) {
 	if (isString(options.email))
 		console.log("Contact email:", options.email ?? "No email given");
 
-	if (isBoolean(options.isManager) === false)
-		console.log("Is manager:", options.isManager ? "yes" : "no");
+	console.log("Is manager:", options.isManager ? "yes" : "no");
 
 	// Also arrays are supported:
 	if (areStrings(options.locations)) {
