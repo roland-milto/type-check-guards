@@ -1,3 +1,4 @@
+# @type-check/strict
 isDate ist robuster:
 - Funktioniert auch über verschiedene Realms hinweg
 - Unabhängig von instanceof
