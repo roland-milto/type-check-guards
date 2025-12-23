@@ -1,6 +1,8 @@
+[Zu Deutsch wechseln](README.de.md)
+
 # @type-check/strict
 
-## What is `strict-type-check`?
+## What is `strict-type-checks`?
 
 [@type-check/strict](https://www.npmjs.com/package/@type-check/strict) provides high-performance, security-focused
 runtime type checks following current 2026 best practices written in TypeScript
@@ -11,7 +13,7 @@ type-guard functions with active support and continuous development.
 It exports an object containing all type-guard functions, while also offering tree-shakable exports for each function.
 **Also, types in arrays can be checked.**
 
-### Example with object-export
+### Example with the object-export:
 
 ```js
 import {type} from "@type-check/strict";
@@ -40,7 +42,7 @@ function checkAccountDetails(options, callback) {
 }
 ```
 
-### Example with tree-shakable functions
+### Example with single, tree-shakable functions:
 
 ```js
 import {areStrings, isPlainObject, isInteger, isString, isBoolean} from "@type-check/strict";
@@ -92,7 +94,7 @@ type.isInteger(1337);   // true
 // Or import the type-check functions individually:
 import {isInteger} from "@type-check/strict";
 
-type.isInteger(1337);   // true
+isInteger(1337);   // true
 ```
 
 ```js
@@ -179,7 +181,7 @@ Returns a string describing the type of the given value: `getTypeOf(value)`
 - areBooleans(array)
 - areBuffers(array)
 - areDates(array)
-- areFinites(array)
+- areFinite(array)
 - areFunctions(array)
 - areIntegers(array)
 - areNull(array)
@@ -189,7 +191,7 @@ Returns a string describing the type of the given value: `getTypeOf(value)`
 - areOfType(array, type)
 - arePlainObjects(array)
 - arePromises(array)
-- areRegExs(array)
+- areRegExes(array)
 - areStreams(array)
 - areStrings(array)
 - areSymbols(array)
