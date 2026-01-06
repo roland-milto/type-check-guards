@@ -77,16 +77,15 @@ function checkAccountDetails(options, callback) {
 
 ## Wie ist `@type-check/strict` zu nutzen?
 
-### Installation via command line
+### Installation über die Kommandozeile
 
 ```bash
 npm install @type-check/strict
 ```
 
-### Import
+### Importieren
 
-Verwenden Sie `@type-check/strict` als lokalen Import, sodass Sie es *jedes Mal* importieren müssen, wenn Sie es
-verwenden möchten:
+Verwenden Sie `@type-check/strict` als einen lokalen Import:
 
 ```js
 // Import des type-check Objekts:
@@ -156,51 +155,55 @@ Gibt eine Zeichenfolge zurück, die den Typ des angegebenen Werts beschreibt: `g
 
 ### Primitive (gibt einen booleschen Wert zurück)
 
-- isArray(value)
-- isBigInt(value)
-- isBoolean(value)
-- isBuffer(value)
-- isDate(value)
-- isFinite(value)
-- isFunction(value)
-- isInteger(value)
-- isNull(value)
-- isNullOrUndefined(value)
-- isNumber(value)
-- isObject(value)
-- isOfType(value, type)
-- isPlainObject(value)
-- isPromise(value)
-- isRegEx(value)
-- isStream(value)
-- isString(value)
-- isSymbol(value)
-- isUndefined(value)
-- isValidDate(value)
+- [isArray(value)](docs/german/isArray.de.md)
+- [isBigInt(value)](docs/german/isBigInt.de.md)
+- [isBoolean(value)](docs/german/isBoolean.de.md)
+- [isBuffer(value)](docs/german/isBuffer.de.md)
+- [isDate(value)](docs/german/isDate.de.md)
+- [isFinite(value)](docs/german/isFinite.de.md)
+- [isFloat(value)](docs/german/isFloat.de.md)
+- [isFunction(value)](docs/german/isFunction.de.md)
+- [isInteger(value)](docs/german/isInteger.de.md)
+- [isNull(value)](docs/german/isNull.de.md)
+- [isNullOrUndefined(value)](docs/german/isNullOrUndefined.de.md)
+- [isNumber(value)](docs/german/isNumber.de.md)
+- [isObject(value)](docs/german/isObject.de.md)
+- [isOfType(value, type)](docs/german/isOfType.de.md)
+- [isPlainObject(value)](docs/german/isPlainObject.de.md)
+- [isPrimitive(value)](docs/german/isPrimitive.de.md)
+- [isPromise(value)](docs/german/isPromise.de.md)
+- [isRegEx(value)](docs/german/isRegEx.de.md)
+- [isStream(value)](docs/german/isStream.de.md)
+- [isString(value)](docs/german/isString.de.md)
+- [isSymbol(value)](docs/german/isSymbol.de.md)
+- [isUndefined(value)](docs/german/isUndefined.de.md)
+- [isValidDate(value)](docs/german/isValidDate.de.md)
 
 ### Typen in Arrays (gibt einen booleschen Wert zurück)
 
-- areArrays(array)
-- areBigInts(array)
-- areBooleans(array)
-- areBuffers(array)
-- areDates(array)
-- areFinite(array)
-- areFunctions(array)
-- areIntegers(array)
-- areNull(array)
-- areNullOrUndefined(array)
-- areNumbers(array)
-- areObjects(array)
-- areOfType(array, type)
-- arePlainObjects(array)
-- arePromises(array)
-- areRegExes(array)
-- areStreams(array)
-- areStrings(array)
-- areSymbols(array)
-- areUndefined(array)
-- areValidDates(array)
+- [areArrays(array)](docs/german/areArrays.de.md)
+- [areBigInts(array)](docs/german/areBigInts.de.md)
+- [areBooleans(array)](docs/german/areBooleans.de.md)
+- [areBuffers(array)](docs/german/areBuffers.de.md)
+- [areDates(array)](docs/german/areDates.de.md)
+- [areFinite(array)](docs/german/areFinite.de.md)
+- [areFloats(array)](docs/german/areFloats.de.md)
+- [areFunctions(array)](docs/german/areFunctions.de.md)
+- [areIntegers(array)](docs/german/areIntegers.de.md)
+- [areNull(array)](docs/german/areNull.de.md)
+- [areNullOrUndefined(array)](docs/german/areNullOrUndefined.de.md)
+- [areNumbers(array)](docs/german/areNumbers.de.md)
+- [areObjects(array)](docs/german/areObjects.de.md)
+- [areOfType(array, type)](docs/german/areOfType.de.md)
+- [arePlainObjects(array)](docs/german/arePlainObjects.de.md)
+- [arePrimitives(array)](docs/german/arePrimitives.de.md)
+- [arePromises(array)](docs/german/arePromises.de.md)
+- [areRegExes(array)](docs/german/areRegExes.de.md)
+- [areStreams(array)](docs/german/areStreams.de.md)
+- [areStrings(array)](docs/german/areStrings.de.md)
+- [areSymbols(array)](docs/german/areSymbols.de.md)
+- [areUndefined(array)](docs/german/areUndefined.de.md)
+- [areValidDates(array)](docs/german/areValidDates.de.md)
 
 ---
 
