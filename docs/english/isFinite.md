@@ -30,7 +30,7 @@ In all other cases (e.g., `NaN`, `Infinity`, strings, or `null`), it returns `fa
 ## Usage
 
 ```ts
-import { isFinite } from "@type-check/strict";
+import {isFinite} from "@type-check/guards";
 
 isFinite(100);      // true
 isFinite(Infinity); // false

@@ -30,7 +30,7 @@ If even a single element fails the check, the result is `false`.
 ## Usage
 
 ```ts
-import { areIntegers } from "@type-check/strict";
+import {areIntegers} from "@type-check/guards";
 
 areIntegers([1, 2, 100]);    // true
 areIntegers([1, 2.5]);       // false

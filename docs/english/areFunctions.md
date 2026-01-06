@@ -26,7 +26,7 @@ If even a single element is not a function (e.g., a string or `undefined`), the 
 ## Usage
 
 ```ts
-import { areFunctions } from "@type-check/strict";
+import {areFunctions} from "@type-check/guards";
 
 const tasks = [() => 1, () => 2];
 areFunctions(tasks); // true

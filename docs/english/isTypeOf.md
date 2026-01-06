@@ -24,7 +24,7 @@ For complex types, an internal utility is used for exact determination.
 ## Usage
 
 ```ts
-import { isOfType } from "@type-check/strict";
+import {isOfType} from "@type-check/guards";
 
 isOfType("Roland Milto", "string"); // true
 isOfType([], "array");              // true

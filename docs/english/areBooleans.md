@@ -27,7 +27,7 @@ If even a single element is not a boolean (e.g., a number or a string), the resu
 ## Usage
 
 ```ts
-import { areBooleans } from "@type-check/strict";
+import {areBooleans} from "@type-check/guards";
 
 areBooleans([true, false]); // true
 areBooleans([true, 0]);     // false

@@ -25,7 +25,7 @@ Sobald ein einzelnes Element keine Funktion ist (z. B. ein String oder `undefine
 ## Verwendung
 
 ```ts
-import { areFunctions } from "@type-check/strict";
+import {areFunctions} from "@type-check/guards";
 
 const tasks = [() => 1, () => 2];
 areFunctions(tasks); // true

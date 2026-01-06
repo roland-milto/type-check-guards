@@ -27,7 +27,7 @@ In all other cases (including `undefined`, `0`, or `false`), it returns `false`.
 ## Usage
 
 ```ts
-import { isNull } from "@type-check/strict";
+import {isNull} from "@type-check/guards";
 
 isNull(null);      // true
 isNull(undefined); // false

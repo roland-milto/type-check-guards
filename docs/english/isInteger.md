@@ -32,7 +32,7 @@ In all other cases (e.g., strings, objects, NaN, infinity), it returns `false`.
 ## Usage
 
 ```ts
-import { isInteger } from "@type-checks/strict";
+import {isInteger} from "@type-check/guards";
 
 isInteger(42);       // true
 isInteger(42.5);     // false

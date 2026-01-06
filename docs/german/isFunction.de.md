@@ -29,7 +29,7 @@ In allen anderen Fällen wird `false` zurückgegeben.
 ## Verwendung
 
 ```ts
-import { isFunction } from "@type-check/strict";
+import {isFunction} from "@type-check/guards";
 
 isFunction(() => console.log("Hi")); // true
 isFunction("keine Funktion");        // false

@@ -28,7 +28,7 @@ In all other cases (e.g., plain objects, functions, or "thenables"), it returns 
 ## Usage
 
 ```ts
-import { isPromise } from "@type-check/strict";
+import {isPromise} from "@type-check/guards";
 
 isPromise(Promise.resolve(42)); // true
 isPromise("not a promise");     // false

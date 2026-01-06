@@ -28,7 +28,7 @@ In all other cases (e.g., numbers, objects, `null`, or `undefined`), it returns 
 ## Usage
 
 ```ts
-import { isString } from "@type-check/strict";
+import {isString} from "@type-check/guards";
 
 isString("Roland Milto"); // true
 isString(2026);           // false

@@ -1,10 +1,10 @@
 [Switch to English](README.md)
 
-# @type-check/strict
+# @type-check/guards
 
-## Was ist `strict-type-checks`?
+## Was sind `type-check-guards`?
 
-[@type-check/strict](https://www.npmjs.com/package/@type-check/strict) bietet leistungsstarke, sicherheitsorientierte
+[@type-check/guards](https://www.npmjs.com/package/@type-check/guards) bietet leistungsstarke, sicherheitsorientierte
 Laufzeit-Typüberprüfungen gemäß den aktuellen Best Practices für 2026, geschrieben in TypeScript
 von [Roland Milto](https://roland.milto.de/).
 Dieses Paket wurde für professionelle TypeScript-, Node.js- und moderne Browserumgebungen entwickelt und bietet präzise
@@ -18,7 +18,7 @@ jede Funktion.
 ### Beispiele mit dem Objekt-Export:
 
 ```js
-import {type} from "@type-check/strict";
+import {type} from "@type-check/guards";
 
 function checkAccountDetails(options, callback) {
 	if (!type.isPlainObject(options))
@@ -47,7 +47,7 @@ function checkAccountDetails(options, callback) {
 ### Beispiele für exportierbare, tree-shakable-fähige Funktionen:
 
 ```js
-import {areStrings, isPlainObject, isInteger, isString, isBoolean} from "@type-check/strict";
+import {areStrings, isPlainObject, isInteger, isString, isBoolean} from "@type-check/guards";
 
 function checkAccountDetails(options, callback) {
 	if (!isPlainObject(options))
@@ -75,54 +75,54 @@ function checkAccountDetails(options, callback) {
 
 ---
 
-## Wie ist `@type-check/strict` zu nutzen?
+## Wie ist `@type-check/guards` zu nutzen?
 
 ### Installation über die Kommandozeile
 
 ```bash
-npm install @type-check/strict
+npm install @type-check/guards
 ```
 
 ### Importieren
 
-Verwenden Sie `@type-check/strict` als einen lokalen Import:
+Verwenden Sie `@type-check/guards` als einen lokalen Import:
 
 ```js
 // Import des type-check Objekts:
-import {type} from "@type-check/strict";
+import {type} from "@type-check/guards";
 
 type.isInteger(1337);   // true
 
 // Oder als individueller Import einzelner Funktionen:
-import {isInteger} from "@type-check/strict";
+import {isInteger} from "@type-check/guards";
 
 isInteger(1337);   // true
 ```
 
 ```js
 // Or you may give it a shorter alias or name:
-import {type as types} from "@type-check/strict";
+import {type as types} from "@type-check/guards";
 
 types.areIntegers([42, 1337]);  // true
 ```
 
-Verwenden Sie `@type-check/strict` als globalen Import, sodass Sie es *nur einmal* in Ihr Projekt einbinden müssen:
+Verwenden Sie `@type-check/guards` als globalen Import, sodass Sie es *nur einmal* in Ihr Projekt einbinden müssen:
 
 ```js
-import '@type-check/strict/register-global';
+import '@type-check/guards/register-global';
 
 type.isPlainObject({}); // true
 ```
 
 ### package.json
 
-Stellen Sie sicher, dass Sie `@type-check/strict` in Ihre `package.json`-Abhängigkeiten aufnehmen und immer die neueste
+Stellen Sie sicher, dass Sie `@type-check/guards` in Ihre `package.json`-Abhängigkeiten aufnehmen und immer die neueste
 Version verwenden:
 
 ```json
 {
 	"dependencies": {
-		"@type-check/strict": "*"
+		"@type-check/guards": "*"
 	}
 }
 ```
@@ -134,7 +134,7 @@ Alle Methoden nehmen **ein Argument** entgegen und geben einen booleschen Wert z
 Das erste Argument ist *immer* der zu prüfende Wert, das zweite Argument ist der erwartete Typ.
 
 ```js
-import {areStrings, getTypeOf, isBigInt, isInteger, isOfType} from "@type-check/strict";
+import {areStrings, getTypeOf, isBigInt, isInteger, isOfType} from "@type-check/guards";
 
 console.log(getTypeOf(42)); // Zeichenkette 'number'
 

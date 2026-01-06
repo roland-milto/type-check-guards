@@ -25,7 +25,7 @@ Sobald ein einzelnes Element kein String ist (z. B. eine Zahl, ein Objekt oder `
 ## Verwendung
 
 ```ts
-import { areStrings } from "@type-check/strict";
+import {areStrings} from "@type-check/guards";
 
 areStrings(["Roland", "Milto"]); // true
 areStrings(["Code", 404]);       // false

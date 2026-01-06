@@ -30,7 +30,7 @@ In allen anderen Fällen (Primitive wie Strings, Zahlen, Booleans oder `null`) w
 ## Verwendung
 
 ```ts
-import { isObject } from "@type-check/strict";
+import {isObject} from "@type-check/guards";
 
 isObject({ a: 1 }); // true
 isObject(null);     // false

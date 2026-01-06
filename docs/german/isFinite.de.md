@@ -31,7 +31,7 @@ In allen anderen Fällen (z. B. `NaN`, `Infinity`, Strings oder `null`) wird `fa
 ## Verwendung
 
 ```ts
-import { isFinite } from "@type-check/strict";
+import {isFinite} from "@type-check/guards";
 
 isFinite(100);      // true
 isFinite(Infinity); // false

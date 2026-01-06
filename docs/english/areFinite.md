@@ -30,7 +30,7 @@ If even a single element is `NaN`, `Infinity`, or not a number type, the result 
 ## Usage
 
 ```ts
-import { areFinite } from "@type-check/strict";
+import {areFinite} from "@type-check/guards";
 
 areFinite([1, 2, 3]);       // true
 areFinite([1, Infinity]);    // false

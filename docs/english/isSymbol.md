@@ -28,7 +28,7 @@ In all other cases (e.g., strings, numbers, objects, or `null`), it returns `fal
 ## Usage
 
 ```ts
-import { isSymbol } from "@type-check/strict";
+import {isSymbol} from "@type-check/guards";
 
 isSymbol(Symbol("key")); // true
 isSymbol("key");        // false

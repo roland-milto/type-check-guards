@@ -27,7 +27,7 @@ Sobald ein Element `null` oder ein Primitiv (String, Nummer, Boolean) ist, wird 
 ## Verwendung
 
 ```ts
-import { areObjects } from "@type-check/strict";
+import {areObjects} from "@type-check/guards";
 
 areObjects([{}, { id: 1 }]); // true
 areObjects([{}, null]);      // false

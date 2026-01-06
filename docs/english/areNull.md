@@ -25,7 +25,7 @@ If even a single element is not `null` (e.g., `undefined` or an object), the res
 ## Usage
 
 ```ts
-import { areNull } from "@type-check/strict";
+import {areNull} from "@type-check/guards";
 
 areNull([null, null]); // true
 areNull([null, 1]);    // false

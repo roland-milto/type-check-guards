@@ -27,7 +27,7 @@ If even a single element is not a promise, the result is `false`.
 ## Usage
 
 ```ts
-import { arePromises } from "@type-check/strict";
+import {arePromises} from "@type-check/guards";
 
 const tasks = [Promise.resolve(1), Promise.resolve(2)];
 arePromises(tasks); // true

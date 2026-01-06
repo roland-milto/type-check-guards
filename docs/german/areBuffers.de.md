@@ -28,7 +28,7 @@ Ein leeres Array gibt ebenfalls `false` zurück.
 ## Verwendung
 
 ```ts
-import { areBuffers } from "@type-check/strict";
+import {areBuffers} from "@type-check/guards";
 
 areBuffers([Buffer.from("A"), Buffer.from("B")]); // true
 areBuffers([Buffer.from("A"), "B"]);              // false

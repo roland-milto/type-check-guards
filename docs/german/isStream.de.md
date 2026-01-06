@@ -30,7 +30,7 @@ In allen anderen Fällen (einfache Objekte, Strings, `null`) wird `false` zurüc
 ## Verwendung
 
 ```ts
-import { isStream } from "@type-check/strict";
+import {isStream} from "@type-check/guards";
 import fs from "node:fs";
 
 isStream(fs.createReadStream("test.txt")); // true

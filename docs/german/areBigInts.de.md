@@ -27,7 +27,7 @@ Sobald ein einzelnes Element kein `BigInt` ist (z. B. eine normale Zahl oder ein
 ## Verwendung
 
 ```ts
-import { areBigInts } from "@type-check/strict";
+import {areBigInts} from "@type-check/guards";
 
 areBigInts([10n, 20n]); // true
 areBigInts([10n, 20]);  // false

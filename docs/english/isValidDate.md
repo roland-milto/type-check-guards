@@ -28,7 +28,7 @@ In all other cases (invalid dates, strings, numbers, or `null`), it returns `fal
 ## Usage
 
 ```ts
-import {isValidDate} from "@type-check/strict";
+import {isValidDate} from "@type-check/guards";
 
 isValidDate(new Date());             // true
 isValidDate(new Date("invalid"));    // false

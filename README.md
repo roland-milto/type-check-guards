@@ -1,10 +1,10 @@
 [Zu Deutsch wechseln](README.de.md)
 
-# @type-check/strict
+# @type-check/guards
 
-## What is `strict-type-checks`?
+## What are `type-check-guardss`?
 
-[@type-check/strict](https://www.npmjs.com/package/@type-check/strict) provides high-performance, security-focused
+[@type-check/guards](https://www.npmjs.com/package/@type-check/guards) provides high-performance, security-focused
 runtime type checks following current 2026 best practices written in TypeScript
 by [Roland Milto](https://roland.milto.de/).
 Built for professional TypeScript, Node.js, and modern browser environments, this package delivers precise and efficient
@@ -16,7 +16,7 @@ It exports an object containing all type-guard functions, while also offering tr
 ### Example with the object-export:
 
 ```js
-import {type} from "@type-check/strict";
+import {type} from "@type-check/guards";
 
 function checkAccountDetails(options, callback) {
 	if (!type.isPlainObject(options))
@@ -45,7 +45,7 @@ function checkAccountDetails(options, callback) {
 ### Example with single, tree-shakable functions:
 
 ```js
-import {areStrings, isPlainObject, isInteger, isString, isBoolean} from "@type-check/strict";
+import {areStrings, isPlainObject, isInteger, isString, isBoolean} from "@type-check/guards";
 
 function checkAccountDetails(options, callback) {
 	if (!isPlainObject(options))
@@ -73,53 +73,53 @@ function checkAccountDetails(options, callback) {
 
 ---
 
-## How to use `@type-check/strict`?
+## How to use `@type-check/guards`?
 
 ### Installation via command line
 
 ```bash
-npm install @type-check/strict
+npm install @type-check/guards
 ```
 
 ### Import
 
-Use `@type-check/strict` as a local import:
+Use `@type-check/guards` as a local import:
 
 ```js
 // Import the type-check object:
-import {type} from "@type-check/strict";
+import {type} from "@type-check/guards";
 
 type.isInteger(1337);   // true
 
 // Or import the type-check functions individually:
-import {isInteger} from "@type-check/strict";
+import {isInteger} from "@type-check/guards";
 
 isInteger(1337);   // true
 ```
 
 ```js
 // Or you may give it a shorter alias or name:
-import {type as types} from "@type-check/strict";
+import {type as types} from "@type-check/guards";
 
 types.areIntegers([42, 1337]);  // true
 ```
 
-Use `@type-check/strict` as global import, so you need to include it *only once* in your project:
+Use `@type-check/guards` as global import, so you need to include it *only once* in your project:
 
 ```js
-import '@type-check/strict/register';
+import '@type-check/guards/register';
 
 type.isPlainObject({}); // true
 ```
 
 ### package.json
 
-Make sure to include `@type-check/strict` in your `package.json` dependencies, always using the latest version:
+Make sure to include `@type-check/guards` in your `package.json` dependencies, always using the latest version:
 
 ```json
 {
 	"dependencies": {
-		"@type-check/strict": "*"
+		"@type-check/guards": "*"
 	}
 }
 ```
@@ -131,7 +131,7 @@ All methods take **one argument** and return a boolean value, except the `isOfTy
 The first argument is *always* the value to check, the second argument is the expected type.
 
 ```js
-import {areStrings, getTypeOf, isBigInt, isInteger, isOfType} from "@type-check/strict";
+import {areStrings, getTypeOf, isBigInt, isInteger, isOfType} from "@type-check/guards";
 
 console.log(getTypeOf(42)); // String 'number'
 

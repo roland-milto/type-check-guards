@@ -29,7 +29,7 @@ Sobald ein einzelnes Element die Bedingung nicht erfüllt, ist das Ergebnis `fal
 ## Verwendung
 
 ```ts
-import {areIntegers} from "@type-check/strict";
+import {areIntegers} from "@type-check/guards";
 
 areIntegers([1, 2, 100]);    // true
 areIntegers([1, 2.5]);       // false

@@ -27,7 +27,7 @@ In allen anderen Fällen (z. B. Strings, die wie ein RegEx aussehen, Objekte ode
 ## Verwendung
 
 ```ts
-import { isRegEx } from "@type-check/strict";
+import {isRegEx} from "@type-check/guards";
 
 isRegEx(/[a-z]/);      // true
 isRegEx("/[a-z]/");    // false

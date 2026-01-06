@@ -29,7 +29,7 @@ Sobald ein einzelnes Element `NaN`, `Infinity` oder kein Zahlen-Typ ist, wird `f
 ## Verwendung
 
 ```ts
-import { areFinite } from "@type-check/strict";
+import {areFinite} from "@type-check/guards";
 
 areFinite([1, 2, 3]);       // true
 areFinite([1, Infinity]);    // false

@@ -27,7 +27,7 @@ In allen anderen Fällen (z. B. einfache Objekte, Funktionen oder "Thenables") w
 ## Verwendung
 
 ```ts
-import { isPromise } from "@type-check/strict";
+import {isPromise} from "@type-check/guards";
 
 isPromise(Promise.resolve(42)); // true
 isPromise("kein Promise");      // false

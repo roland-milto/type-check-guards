@@ -26,7 +26,7 @@ If even a single element has a different type (e.g., `null` or `0`), the result 
 ## Usage
 
 ```ts
-import { areUndefined } from "@type-check/strict";
+import {areUndefined} from "@type-check/guards";
 
 areUndefined([undefined, undefined]); // true
 areUndefined([undefined, null]);      // false

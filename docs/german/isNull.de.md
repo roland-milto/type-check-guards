@@ -26,7 +26,7 @@ In allen anderen Fällen (einschließlich `undefined`, `0` oder `false`) wird `f
 ## Verwendung
 
 ```ts
-import { isNull } from "@type-check/strict";
+import {isNull} from "@type-check/guards";
 
 isNull(null);      // true
 isNull(undefined); // false

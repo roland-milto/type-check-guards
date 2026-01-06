@@ -27,7 +27,7 @@ In all other cases (e.g., objects, strings, `null`, or `undefined`), it returns 
 ## Usage
 
 ```ts
-import { isArray } from "@type-check/strict";
+import {isArray} from "@type-check/guards";
 
 isArray([1, 2, 3]); // true
 isArray({});        // false

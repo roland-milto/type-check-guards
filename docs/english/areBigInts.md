@@ -28,7 +28,7 @@ If even a single element is not a `BigInt` (e.g., a standard number or a string)
 ## Usage
 
 ```ts
-import { areBigInts } from "@type-check/strict";
+import {areBigInts} from "@type-check/guards";
 
 areBigInts([10n, 20n]); // true
 areBigInts([10n, 20]);  // false

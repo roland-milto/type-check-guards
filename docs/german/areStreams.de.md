@@ -25,7 +25,7 @@ Sobald ein Element kein Stream ist (z. B. ein Puffer, ein String oder ein einfac
 ## Verwendung
 
 ```ts
-import { areStreams } from "@type-check/strict";
+import {areStreams} from "@type-check/guards";
 
 areStreams([stream1, stream2]); // true
 

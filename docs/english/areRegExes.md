@@ -26,7 +26,7 @@ If even a single element is not a regular expression (e.g., a string or `null`),
 ## Usage
 
 ```ts
-import {areRegExes} from "@type-check/strict";
+import {areRegExes} from "@type-check/guards";
 
 areRegExes([/[a-z]/, /[0-9]/]); // true
 areRegExes([/[a-z]/, ".*"]);    // false

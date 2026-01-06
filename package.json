@@ -1,16 +1,16 @@
 {
   "author": "Roland Milto (https://roland.milto.de/)",
-  "homepage": "https://roland.milto.de/projekte/type-check#strict",
-  "name": "@type-check/strict",
-  "version": "2025.12.22",
+  "homepage": "https://roland.milto.de/projekte/type-check#guards",
+  "name": "@type-check/guards",
+  "version": "2026.01.06",
   "license": "GPL-3.0-or-later",
-  "description": "@type-check/strict provides high-performance, security-focused runtime type checks following current 2026 best practices. Built for professional TypeScript, Node.js, and modern browser environments, this package delivers precise and efficient type-guard functions with active support and continuous development.",
+  "description": "@type-check/guards provides high-performance, security-focused runtime type checks following current 2026 best practices. Built for professional TypeScript, Node.js, and modern browser environments, this package delivers precise and efficient type-guard functions with active support and continuous development.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/roland-milto/strict-type-checks.git"
+    "url": "git+https://github.com/roland-milto/type-check-guards.git"
   },
   "bugs": {
-    "url": "https://github.com/roland-milto/strict-type-checks/issues"
+    "url": "https://github.com/roland-milto/type-check-guards/issues"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -34,8 +34,8 @@
     "build:ts": "tsc -p tsconfig.json",
     "build:copy": "cpx README.md dist/ && cpx LICENSE dist/",
     "build": "npm run build:ts && npm run build:copy",
-    "watch": "tsc -w -p tsconfig.json",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "watch": "tsc -w -p tsconfig.json"
   },
   "keywords": [
     "data validation",

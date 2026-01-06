@@ -31,7 +31,7 @@ In all other cases (plain objects, strings, `null`), it returns `false`.
 ## Usage
 
 ```ts
-import { isStream } from "@type-check/strict";
+import {isStream} from "@type-check/guards";
 import fs from "node:fs";
 
 isStream(fs.createReadStream("test.txt")); // true

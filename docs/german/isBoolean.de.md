@@ -29,7 +29,7 @@ In allen anderen Fällen (z. B. Zahlen, Strings oder `null`) wird `false` zurüc
 ## Verwendung
 
 ```ts
-import { isBoolean } from "@type-check/strict";
+import {isBoolean} from "@type-check/guards";
 
 isBoolean(true);    // true
 isBoolean(1);       // false

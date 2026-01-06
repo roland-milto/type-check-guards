@@ -28,7 +28,7 @@ In all other cases (e.g., standard numbers, strings, objects, or `null`), it ret
 ## Usage
 
 ```ts
-import { isBigInt } from "@type-check/strict";
+import {isBigInt} from "@type-check/guards";
 
 isBigInt(9007199254740991n); // true
 isBigInt(42);                // false

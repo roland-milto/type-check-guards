@@ -29,7 +29,7 @@ If even a single element is an integer, a string, or any other non-number type, 
 ## Usage
 
 ```ts
-import {areFloats} from "@type-check/strict";
+import {areFloats} from "@type-check/guards";
 
 areFloats([1.1, 0.99, -1.5]); // true
 areFloats([1.1, 2]);          // false

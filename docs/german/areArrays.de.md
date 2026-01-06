@@ -29,7 +29,7 @@ Sobald ein einzelnes Element kein Array ist, wird ebenfalls `false` zurückgegeb
 ## Verwendung
 
 ```ts
-import {areArrays} from "@type-check/strict";
+import {areArrays} from "@type-check/guards";
 
 areArrays([[1, 2], [3, 4]]); // true
 areArrays([1, 2, 3]);        // false

@@ -26,7 +26,7 @@ Sobald ein einzelnes Element kein Symbol ist (z. B. ein String oder eine Zahl), 
 ## Verwendung
 
 ```ts
-import {areSymbols} from "@type-check/strict";
+import {areSymbols} from "@type-check/guards";
 
 const keys = [Symbol("a"), Symbol("b")];
 areSymbols(keys); // true

@@ -28,7 +28,7 @@ In allen anderen Fällen (ungültige Daten, Strings, Zahlen oder `null`) wird `f
 ## Verwendung
 
 ```ts
-import { isValidDate } from "@type-check/strict";
+import {isValidDate} from "@type-check/guards";
 
 isValidDate(new Date());             // true
 isValidDate(new Date("invalid"));    // false

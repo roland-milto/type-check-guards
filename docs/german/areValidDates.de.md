@@ -27,7 +27,7 @@ zurückgegeben.
 ## Verwendung
 
 ```ts
-import { areValidDates } from "@type-check/strict";
+import {areValidDates} from "@type-check/guards";
 
 const dates = [new Date(), new Date("2025-12-22")];
 areValidDates(dates); // true

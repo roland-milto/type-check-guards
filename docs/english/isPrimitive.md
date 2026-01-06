@@ -30,7 +30,7 @@ This is useful for deep-cloning algorithms or serialization logic.
 ## Usage
 
 ```ts
-import {isPrimitive} from "@type-check/strict";
+import {isPrimitive} from "@type-check/guards";
 
 isPrimitive(42);      // true
 isPrimitive({a: 1}); // false

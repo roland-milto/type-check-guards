@@ -23,7 +23,7 @@ If even a single element does not match the type, or if the first parameter is n
 ## Usage
 
 ```ts
-import { areOfType } from "@type-check/strict";
+import {areOfType} from "@type-check/guards";
 
 areOfType(["ts", "js"], "string"); // true
 areOfType([1, "2"], "number");     // false

@@ -28,7 +28,7 @@ An empty array returns `false`.
 ## Usage
 
 ```ts
-import {arePrimitives} from "@type-check/strict";
+import {arePrimitives} from "@type-check/guards";
 
 arePrimitives([1, "two", false]); // true
 arePrimitives([1, {}]);            // false

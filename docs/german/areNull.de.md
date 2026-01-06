@@ -26,7 +26,7 @@ Sobald ein einzelnes Element nicht `null` ist (z. B. `undefined` oder ein Objekt
 ## Verwendung
 
 ```ts
-import { areNull } from "@type-check/strict";
+import {areNull} from "@type-check/guards";
 
 areNull([null, null]); // true
 areNull([null, 1]);    // false

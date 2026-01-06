@@ -28,7 +28,7 @@ Ganze Zahlen (z. B. `10` oder `10.0`) geben `false` zurück.
 ## Verwendung
 
 ```ts
-import {isFloat} from "@type-check/strict";
+import {isFloat} from "@type-check/guards";
 
 isFloat(1.5); // true
 isFloat(10);  // false

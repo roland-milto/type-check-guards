@@ -26,7 +26,7 @@ Sobald ein einzelnes Element kein regulärer Ausdruck ist (z. B. ein String oder
 ## Verwendung
 
 ```ts
-import { areRegExes } from "@type-check/strict";
+import {areRegExes} from "@type-check/guards";
 
 areRegExes([/[a-z]/, /[0-9]/]); // true
 areRegExes([/[a-z]/, ".*"]);    // false

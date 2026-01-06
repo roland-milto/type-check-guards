@@ -28,7 +28,7 @@ Ein leeres Array gibt ebenfalls `false` zurück.
 ## Verwendung
 
 ```ts
-import {areDates} from "@type-check/strict";
+import {areDates} from "@type-check/guards";
 
 areDates([new Date(), new Date()]); // true
 areDates([new Date(), "2026"]);     // false

@@ -27,7 +27,7 @@ In all other cases (e.g., `Uint8Array`, strings, or `null`), it returns `false`.
 ## Usage
 
 ```ts
-import { isBuffer } from "@type-check/strict";
+import {isBuffer} from "@type-check/guards";
 
 isBuffer(Buffer.from("Hello")); // true
 isBuffer("Hello");              // false

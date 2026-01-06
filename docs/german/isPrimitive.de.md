@@ -31,7 +31,7 @@ Dies ist nützlich für Deep-Clone-Algorithmen oder Serialisierungs-Logik.
 ## Verwendung
 
 ```ts
-import {isPrimitive} from "@type-check/strict";
+import {isPrimitive} from "@type-check/guards";
 
 isPrimitive(42);      // true
 isPrimitive({a: 1}); // false

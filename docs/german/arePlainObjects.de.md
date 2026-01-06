@@ -27,7 +27,7 @@ zurückgegeben.
 ## Verwendung
 
 ```ts
-import { arePlainObjects } from "@type-check/strict";
+import {arePlainObjects} from "@type-check/guards";
 
 arePlainObjects([{ x: 1 }, { y: 2 }]); // true
 arePlainObjects([{ x: 1 }, [1, 2]]);   // false

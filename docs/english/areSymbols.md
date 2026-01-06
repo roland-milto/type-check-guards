@@ -26,7 +26,7 @@ If even a single element is not a symbol (e.g., a string or a number), the resul
 ## Usage
 
 ```ts
-import { areSymbols } from "@type-check/strict";
+import {areSymbols} from "@type-check/guards";
 
 const keys = [Symbol("a"), Symbol("b")];
 areSymbols(keys); // true

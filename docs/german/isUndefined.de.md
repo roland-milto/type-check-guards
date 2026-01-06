@@ -27,7 +27,7 @@ In allen anderen Fällen (z. B. `null`, Zahlen, Strings oder Booleans) wird `fal
 ## Verwendung
 
 ```ts
-import { isUndefined } from "@type-check/strict";
+import {isUndefined} from "@type-check/guards";
 
 let x: unknown;
 isUndefined(x);         // true

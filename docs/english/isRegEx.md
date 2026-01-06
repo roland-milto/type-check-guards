@@ -27,7 +27,7 @@ In all other cases (e.g., strings that look like a regex, objects, or `null`), i
 ## Usage
 
 ```ts
-import { isRegEx } from "@type-check/strict";
+import {isRegEx} from "@type-check/guards";
 
 isRegEx(/[a-z]/);      // true
 isRegEx("/[a-z]/");    // false

@@ -28,7 +28,7 @@ Sobald ein Element eine Ganzzahl, ein String oder ein anderer Nicht-Zahlen-Typ i
 ## Verwendung
 
 ```ts
-import {areFloats} from "@type-check/strict";
+import {areFloats} from "@type-check/guards";
 
 areFloats([1.1, 0.99, -1.5]); // true
 areFloats([1.1, 2]);          // false

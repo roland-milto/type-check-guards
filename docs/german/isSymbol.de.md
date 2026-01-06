@@ -28,7 +28,7 @@ In allen anderen Fällen (z. B. Strings, Zahlen, Objekte oder `null`) wird `fals
 ## Verwendung
 
 ```ts
-import {isSymbol} from "@type-check/strict";
+import {isSymbol} from "@type-check/guards";
 
 isSymbol(Symbol("key")); // true
 isSymbol("key");        // false

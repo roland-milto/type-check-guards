@@ -28,7 +28,7 @@ Sobald ein einzelnes Element einen anderen Wert enthält (z. B. `0` oder `""`), 
 ## Verwendung
 
 ```ts
-import {areNullOrUndefined} from "@type-check/strict";
+import {areNullOrUndefined} from "@type-check/guards";
 
 areNullOrUndefined([null, undefined]); // true
 areNullOrUndefined([null, 1]);         // false

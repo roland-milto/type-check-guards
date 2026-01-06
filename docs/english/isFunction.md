@@ -29,7 +29,7 @@ This includes arrow functions, classes, and standard functions. In all other cas
 ## Usage
 
 ```ts
-import { isFunction } from "@type-check/strict";
+import {isFunction} from "@type-check/guards";
 
 isFunction(() => console.log("Hi")); // true
 isFunction("not a function");        // false

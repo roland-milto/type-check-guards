@@ -28,7 +28,7 @@ In allen anderen Fällen (z. B. Zahlen, Objekte, `null` oder `undefined`) wird `
 ## Verwendung
 
 ```ts
-import { isString } from "@type-check/strict";
+import {isString} from "@type-check/guards";
 
 isString("Roland Milto"); // true
 isString(2025);           // false

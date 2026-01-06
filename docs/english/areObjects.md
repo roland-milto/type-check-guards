@@ -28,7 +28,7 @@ If even a single element is `null` or a primitive (string, number, boolean), the
 ## Usage
 
 ```ts
-import { areObjects } from "@type-check/strict";
+import {areObjects} from "@type-check/guards";
 
 areObjects([{}, { id: 1 }]); // true
 areObjects([{}, null]);      // false

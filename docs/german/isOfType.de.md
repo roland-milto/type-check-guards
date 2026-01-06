@@ -24,7 +24,7 @@ Für komplexe Typen wird eine interne Hilfsfunktion zur exakten Bestimmung genut
 ## Verwendung
 
 ```ts
-import { isOfType } from "@type-check/strict";
+import {isOfType} from "@type-check/guards";
 
 isOfType("Roland Milto", "string"); // true
 isOfType([], "array");              // true

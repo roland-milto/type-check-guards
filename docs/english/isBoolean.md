@@ -29,7 +29,7 @@ In all other cases (e.g., numbers, strings, or `null`), it returns `false`.
 ## Usage
 
 ```ts
-import { isBoolean } from "@type-check/strict";
+import {isBoolean} from "@type-check/guards";
 
 isBoolean(true);    // true
 isBoolean(1);       // false

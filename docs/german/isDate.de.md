@@ -32,7 +32,7 @@ In allen anderen Fällen (z. B. Zeitstempel als Zahl, Datums-Strings oder `null`
 ## Verwendung
 
 ```ts
-import { isDate } from "@type-check/strict";
+import {isDate} from "@type-check/guards";
 
 isDate(new Date());    // true
 isDate("2026-01-01");  // false

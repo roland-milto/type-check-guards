@@ -30,7 +30,7 @@ aus, die oft zu Fehlern in Berechnungen führen.
 ## Verwendung
 
 ```ts
-import { isNumber } from "@type-checks/strict";
+import {isNumber} from "@type-check/guards";
 
 isNumber(123);          // true
 isNumber(NaN);          // false

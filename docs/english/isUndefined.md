@@ -27,7 +27,7 @@ In all other cases (e.g., `null`, numbers, strings, or booleans), it returns `fa
 ## Usage
 
 ```ts
-import {isUndefined} from "@type-check/strict";
+import {isUndefined} from "@type-check/guards";
 
 let x: unknown;
 isUndefined(x);         // true

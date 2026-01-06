@@ -25,7 +25,7 @@ If even a single element is not a string (e.g., a number, an object, or `null`),
 ## Usage
 
 ```ts
-import { areStrings } from "@type-check/strict";
+import {areStrings} from "@type-check/guards";
 
 areStrings(["Roland", "Milto"]);  // true
 areStrings(["Code", 404]);        // false

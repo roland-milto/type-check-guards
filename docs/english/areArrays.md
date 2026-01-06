@@ -28,7 +28,7 @@ If even a single element is not an array, the result is `false`.
 ## Usage
 
 ```ts
-import { areArrays } from "@type-check/strict";
+import {areArrays} from "@type-check/guards";
 
 areArrays([[1, 2], [3, 4]]); // true
 areArrays([1, 2, 3]);        // false

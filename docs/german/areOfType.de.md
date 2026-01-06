@@ -24,7 +24,7 @@ zurückgegeben.
 ## Verwendung
 
 ```ts
-import { areOfType } from "@type-check/strict";
+import {areOfType} from "@type-check/guards";
 
 areOfType(["ts", "js"], "string"); // true
 areOfType([1, "2"], "number");     // false

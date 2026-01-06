@@ -28,7 +28,7 @@ In all other cases (primitives like strings, numbers, booleans, or `null`), it r
 ## Usage
 
 ```ts
-import { isObject } from "@type-check/strict";
+import {isObject} from "@type-check/guards";
 
 isObject({ a: 1 }); // true
 isObject(null);     // false

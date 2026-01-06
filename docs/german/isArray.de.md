@@ -27,7 +27,7 @@ In allen anderen Fällen (z. B. Objekte, Strings, `null` oder `undefined`) wird 
 ## Verwendung
 
 ```ts
-import { isArray } from "@type-check/strict";
+import {isArray} from "@type-check/guards";
 
 isArray([1, 2, 3]); // true
 isArray({});        // false

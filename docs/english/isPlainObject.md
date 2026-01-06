@@ -28,7 +28,7 @@ This is particularly important when working with configuration files or JSON dat
 ## Usage
 
 ```ts
-import { isPlainObject } from "@type-check/strict";
+import {isPlainObject} from "@type-check/guards";
 
 isPlainObject({ name: "WebStorm" }); // true
 isPlainObject([1, 2, 3]);            // false

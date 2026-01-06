@@ -26,7 +26,7 @@ If even a single element is not a stream (e.g., a buffer, a string, or a plain o
 ## Usage
 
 ```ts
-import { areStreams } from "@type-check/strict";
+import {areStreams} from "@type-check/guards";
 import fs from "node:fs";
 
 const stream1 = fs.createReadStream("file1.txt");

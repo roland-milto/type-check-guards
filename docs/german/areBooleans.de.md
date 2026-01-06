@@ -26,7 +26,7 @@ Sobald ein einzelnes Element kein boolescher Wert ist (z. B. eine Zahl oder ein 
 ## Verwendung
 
 ```ts
-import { areBooleans } from "@type-check/strict";
+import {areBooleans} from "@type-check/guards";
 
 areBooleans([true, false]); // true
 areBooleans([true, 0]);     // false

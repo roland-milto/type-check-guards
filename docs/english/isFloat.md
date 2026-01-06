@@ -27,7 +27,7 @@ It is useful for precise calculations, coordinates, or scientific data where int
 ## Usage
 
 ```ts
-import {isFloat} from "@type-check/strict";
+import {isFloat} from "@type-check/guards";
 
 isFloat(1.5); // true
 isFloat(10);  // false

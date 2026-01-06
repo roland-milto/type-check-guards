@@ -29,7 +29,7 @@ If even a single element contains any other value (e.g., `0` or `""`), the resul
 ## Usage
 
 ```ts
-import { areNullOrUndefined } from "@type-check/strict";
+import {areNullOrUndefined} from "@type-check/guards";
 
 areNullOrUndefined([null, undefined]); // true
 areNullOrUndefined([null, 1]);         // false

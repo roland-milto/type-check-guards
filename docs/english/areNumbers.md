@@ -31,7 +31,7 @@ is `false`.
 ## Usage
 
 ```ts
-import {areNumbers} from "@type-check/strict";
+import {areNumbers} from "@type-check/guards";
 
 areNumbers([1.1, 2.2, 3.3]); // true
 areNumbers([1, NaN]);        // false

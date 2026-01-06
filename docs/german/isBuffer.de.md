@@ -27,7 +27,7 @@ In allen anderen Fällen (z. B. `Uint8Array`, Strings oder `null`) wird `false` 
 ## Verwendung
 
 ```ts
-import {isBuffer} from "@type-check/strict";
+import {isBuffer} from "@type-check/guards";
 
 isBuffer(Buffer.from("Hallo")); // true
 isBuffer("Hallo");              // false

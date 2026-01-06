@@ -32,7 +32,7 @@ In allen anderen Fällen (z. B. Strings, Objekte, NaN, Unendlichkeit) wird `fals
 ## Verwendung
 
 ```ts
-import { isInteger } from "@type-checks/strict";
+import {isInteger} from "@type-check/guards";
 
 isInteger(42);       // true
 isInteger(42.5);     // false

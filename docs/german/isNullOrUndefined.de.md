@@ -29,7 +29,7 @@ Für alle anderen Werte (einschließlich "falsy" Werten wie `0`, `false` oder `"
 ## Verwendung
 
 ```ts
-import { isNullOrUndefined } from "@type-check/strict";
+import {isNullOrUndefined} from "@type-check/guards";
 
 isNullOrUndefined(null);      // true
 isNullOrUndefined(undefined); // true

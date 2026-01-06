@@ -32,7 +32,7 @@ In all other cases (e.g., timestamps as numbers, date strings, or `null`), it re
 ## Usage
 
 ```ts
-import { isDate } from "@type-check/strict";
+import {isDate} from "@type-check/guards";
 
 isDate(new Date());    // true
 isDate("2026-01-01");  // false
