@@ -7,6 +7,13 @@
  * @param   {unknown} value - The value to be checked.
  *
  * @returns {boolean}       - A isBoolean value indicating whether the input is a `RegExp` object.
+ *
+ * @example
+ * // true
+ * isRegEx(/[a-z]/);
+ *
+ * // false
+ * isRegEx("/[a-z]/");
  */
 export function isRegEx(value: unknown): value is RegExp {
   return value instanceof RegExp;
@@ -16,15 +23,26 @@ export function isRegEx(value: unknown): value is RegExp {
  * Checks if the provided value is an array of regular expressions (RegExp).
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-06
  *
  * @param   {unknown} array - The value to be checked.
  *
  * @returns {boolean}       - Returns `true` if the value is an array where every element is a RegExp object,
  *                          otherwise returns `false`.
+ *
+ * @example
+ * // true
+ * areRegExes([/[a-z]/, /[0-9]/]);
+ *
+ * // false
+ * areRegExes([/[a-z]/, ".*"]);
  */
 export function areRegExes(array: unknown): array is RegExp[] {
   if (!Array.isArray(array)) {
+    return false;
+  }
+
+  if (array.length === 0) {
     return false;
   }
 

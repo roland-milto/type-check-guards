@@ -7,6 +7,16 @@
  * @param   {unknown} value - The value to be checked.
  *
  * @returns {boolean}       - Returns `true` if the value is an object and not null; otherwise, `false`.
+ *
+ * @example
+ * // true
+ * isObject({ a: 1 });
+ *
+ * // false
+ * isObject(null);
+ *
+ * // true
+ * isObject([]);
  */
 export function isObject(value: unknown): value is object {
   return typeof value === 'object' && value !== null;
@@ -16,14 +26,25 @@ export function isObject(value: unknown): value is object {
  * Determines whether the provided value is an array consisting entirely of objects.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-06
  *
  * @param   {unknown} array - The value to be checked.
  *
  * @returns {boolean}       - Returns `true` if the value is an array of objects, otherwise `false`.
+ *
+ * @example
+ * // true
+ * areObjects([{}, { id: 1 }]);
+ *
+ * // false
+ * areObjects([{}, null]);
  */
 export function areObjects(array: unknown): array is object[] {
   if (!Array.isArray(array)) {
+    return false;
+  }
+
+  if (array.length === 0) {
     return false;
   }
 

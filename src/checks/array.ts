@@ -7,6 +7,13 @@
  * @param   {any} value - The value to be checked.
  *
  * @returns {boolean}   - A boolean indicating whether the value is an array.
+ *
+ * @example
+ * // true
+ * isArray([1, 2, 3]);
+ *
+ * // false
+ * isArray({});
  */
 export function isArray(value: unknown): value is unknown[] {
   return Array.isArray(value);
@@ -17,14 +24,25 @@ export function isArray(value: unknown): value is unknown[] {
  * itself and each of its elements are arrays.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-06
  *
  * @param   {unknown} array - The value to be checked.
  *
  * @returns {boolean}       - Returns `true` if the value is a two-dimensional array, otherwise `false`.
+ *
+ * @example
+ * // true
+ * areArrays([[1, 2], [3, 4]]);
+ *
+ * // false
+ * areArrays([1, 2, 3]);
  */
 export function areArrays(array: unknown): array is unknown[][] {
   if (!isArray(array)) {
+    return false;
+  }
+
+  if (array.length === 0) {
     return false;
   }
 

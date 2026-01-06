@@ -14,6 +14,16 @@ import {getTypeOf} from "../utils//getTypeOf.js";
  * @param   {DataTypes} type  - The name of the data type to compare against.
  *
  * @returns {boolean}         - Does the variable's type match the specified data type?
+ *
+ * @example
+ * // true
+ * isOfType("Roland Milto", "string");
+ *
+ * // true
+ * isOfType([], "array");
+ *
+ * // false
+ * isOfType(null, "undefined");
  */
 export function isOfType(value: unknown, type: DataTypes): boolean
 {
@@ -34,15 +44,26 @@ export function isOfType(value: unknown, type: DataTypes): boolean
  * Checks if all elements in the provided array are of the specified type.
  *
  * @author  Roland Milto
- * @version 2025-12-22
+ * @version 2026-01-06
  *
  * @param   {unknown[]} array - The array to be checked.
  * @param   {DataTypes} type  - The data type to validate against each element in the array.
  *
  * @returns {boolean}         - `true` if all elements in the array are of the specified type, otherwise `false`.
+ *
+ * @example
+ * // true
+ * areOfType(["ts", "js"], "string");
+ *
+ * // false
+ * areOfType([1, "2"], "number");
  */
 export function areOfType(array: unknown, type: DataTypes): boolean {
   if (!Array.isArray(array)) {
+    return false;
+  }
+
+  if (array.length === 0) {
     return false;
   }
 
