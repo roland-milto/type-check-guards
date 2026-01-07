@@ -32,11 +32,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Markdown
-# *.md
-!README.md
-!README.*.md
-
 # OS files
 .DS_Store
 Thumbs.db
