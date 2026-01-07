@@ -14,6 +14,22 @@ import {isNumber} from "../checks/number.js";
  * @param   {any}     value - The value whose data type is to be determined.
  *
  * @returns {string}        - The string representation of the data type in lower case.
+ *
+ * @example
+ * // "string"
+ * getTypeOf("Roland Milto");
+ *
+ * // "nan"
+ * getTypeOf(NaN);
+ *
+ * // "null"
+ * getTypeOf(null);
+ *
+ * // "array"
+ * getTypeOf([1, 2]);
+ *
+ * // "date"
+ * getTypeOf(new Date());
  */
 export function getTypeOf(value: unknown): DataTypes
 {
@@ -27,7 +43,10 @@ export function getTypeOf(value: unknown): DataTypes
 		return "undefined";
 	}
 
-	// We have a smarter number-check.
+	// We have a smarter number-check. Do not(!) use isNaN for number type checking, because:
+	// isNaN(true); // false
+	// isNaN(null); // false
+	// isNaN(37); // false
 	if (typeof value === "number") {
 			return (isNumber(value)) ? "number" : "NaN";
 	}
@@ -47,7 +66,7 @@ export function getTypeOf(value: unknown): DataTypes
 	// The native toString returns formats like "[object Date]", "[object Error]".
 	const rawType: string = Object.prototype.toString.call(value);
 
-	// e. G.: [object Date] -> Date
+	// e. G.: [object Date] -> Date -> date
 	const specificType: string = rawType.slice(8, -1).toLowerCase();
 
 	// Returns e.g. "date", "regexp", "error", "promise".
