@@ -21,7 +21,9 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "jsdelivr": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "unpkg": "./dist/index.js"
     }
   },
   "engines": {
