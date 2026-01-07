@@ -1,81 +1,141 @@
 [Zu Deutsch wechseln](README.de.md)
 
-# @type-check/guards
+# [`@type-check/guards`](https://www.npmjs.com/package/@type-check/guards)
 
-## What are `type-check-guardss`?
+![typescript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)
+![npm version](https://img.shields.io/npm/v/@type-check/guards?color=blue)
+![node version](https://img.shields.io/node/v/@type-check/guards?color=blue)
+![esm supported](https://img.shields.io/badge/ESM-supported-brightgreen)
+![tree shaking](https://img.shields.io/badge/tree--shaking-supported-brightgreen)
 
-[@type-check/guards](https://www.npmjs.com/package/@type-check/guards) provides high-performance, security-focused
-runtime type checks following current 2026 best practices written in TypeScript
-by [Roland Milto](https://roland.milto.de/).
-Built for professional TypeScript, Node.js, and modern browser environments, this package delivers precise and efficient
-type-guard functions with active support and continuous development.
+## Table of Contents: Runtime Type Checks & Guards
 
-It exports an object containing all type-guard functions, while also offering tree-shakable exports for each function.
-**Also, types in arrays can be checked.**
+<details>
+  <summary><b>Click here to open the Table of Contents</b></summary>
 
-### Example with the object-export:
+<!-- toc -->
 
-```js
-import {type} from "@type-check/guards";
+- [What is @type-check/guards?](#what-is-type-checkguards)
+- [Why should I use @type-check/guards?](#why-should-i-use-type-checkguards)
+  * [Performance & Efficiency](#maximum-performance--resource-efficiency)
+  * [Runtime Safety](#runtime-safety--design-time-power)
+  * [Design-Time Testing](#excellent-for-design-time-testing)
+  * [API Consistency](#api-consistency)
+- [How to use @type-check/guards?](#how-to-use-type-checkguards)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+  * [Local Import](#local-import)
+  * [Global Import](#global-import)
+  * [package.json](#packagejson)
+  * [CDN (jsDelivr)](#cdn-jsdelivr)
+  * [Usage](#usage)
+  * [Examples](#examples)
+  * [Example with Object Export](#example-with-object-export)
+  * [Example with Tree-Shakable Functions](#example-with-tree-shakable-functions)
+- [API Reference / Methods](#methods)
+  * [Type Determination](#type-determination)
+  * [Primitive Checks](#primitives)
+  * [Array Validation](#types-in-arrays)
+- [@type-check Ecosystem](#the-type-check-ecosystem)
+- [Contributing & Support](#support)
 
-function checkAccountDetails(options, callback) {
-	if (!type.isPlainObject(options))
-		throw new TypeError("options must be a plain object");
+<!-- tocstop -->
 
-	if (!type.isInteger(options.id))
-		throw new TypeError("options.id must be an integer");
+</details>
 
-	if (type.isString(options.name))
-		console.log("Account name:", options.name ?? "No name given");
+## What is *@type-check/guards*?
 
-	if (type.isString(options.email))
-		console.log("Contact email:", options.email ?? "No email given");
+[@type-check/guards](https://www.npmjs.com/package/@type-check/guards) provides powerful, safety-oriented runtime type
+checks according to 2026 best practices, written in TypeScript by [Roland Milto](https://roland.milto.de/).
 
-	console.log("Is manager:", options.isManager ? "yes" : 'no');
+This package is designed for professional TypeScript, Node.js, and modern browser environments, offering precise and
+efficient type-checking functions with continuous development.
 
-	// Also arrays are supported:
-	if (type.areStrings(options.locations)) {
-		for (const location of options.locations) {
-			console.log("Location:", location);
-		}
-	}
+The module exports an object containing all type-checking functions while also providing tree-shakable exports for each
+function.
+**Additionally, types within arrays can be validated.**
+
+## Why should I use *@type-check/guards*?
+
+Unlike heavy frameworks like **Chai**, **Jest**, or **Vitest**, which are primarily designed for isolated testing
+environments, `@type-check/guards` was developed for maximum efficiency in **production (runtime)** and the highest
+precision during **design-time testing**.
+
+### Maximum Performance & Resource Efficiency
+
+- **Minimal Footprint:**
+  Through consistent **tree-shaking** and **zero dependencies**, the bundle size remains minimal. This saves memory (
+  RAM) and reduces loading times.
+
+
+- **CPU Optimization:**
+  The guards (such as `isOfType`) internally use "fast-path" shortcuts for primitive types. This avoids unnecessary
+  function calls and processing load, even with millions of validations per second.
+
+
+- **Simple Syntax:**
+  No more complex assertion chains. A clear, functional API (e.g., `isString(value)`) ensures more readable code and
+  faster development.
+
+### Runtime Safety & Design-Time Power
+
+This package protects the application during execution from corrupt data while offering enormous benefits during
+development:
+
+- **Strict Validation:**
+  JavaScript design flaws are natively corrected (e.g., `typeof null === 'object'` or `typeof NaN === 'number'`). The
+  guards check what you *mean*, not what JavaScript *claims*.
+
+
+- **Content Validation:**
+  While testing frameworks often only check *if* an array exists, functions like `areStrings` or `areIntegers`
+  efficiently validate the **entire content** – deep and secure.
+
+
+- **Intelligent Type Guards:**
+  Every function is a true TypeScript Type Guard. Once a check passes, TypeScript automatically recognizes the type in
+  the following code block. This replaces unsafe type casting (`as string`) with real logic.
+
+```ts
+// Without Guards:
+function process(value: unknown) {
+  if (typeof value === 'string') {
+    (value as string).toUpperCase(); // Manual casting often required
+  }
+}
+
+// With @type-check/guards:
+if (isString(value)) {
+  value.toUpperCase(); // TypeScript recognizes the type immediately
 }
 ```
 
-### Example with single, tree-shakable functions:
+### Excellent for Design-Time Testing
 
-```js
-import {areStrings, isPlainObject, isInteger, isString, isBoolean} from "@type-check/guards";
+Although optimized for runtime, `@type-check/guards` is the perfect addition to your test suites:
 
-function checkAccountDetails(options, callback) {
-	if (!isPlainObject(options))
-		throw new TypeError("options must be a plain object");
+- Use the same valid checking mechanisms in your unit tests as in your production logic.
+- No complex configuration of tests is required – the guards work everywhere: Node.js, browser, edge runtimes, or
+  serverless functions.
 
-	if (!isInteger(options.id))
-		throw new TypeError("options.id must be an integer");
+### API Consistency
 
-	if (isString(options.name))
-		console.log("Account name:", options.name ?? "No name given");
-
-	if (isString(options.email))
-		console.log("Contact email:", options.email ?? "No email given");
-
-	console.log("Is manager:", options.isManager ? "yes" : "no");
-
-	// Also arrays are supported:
-	if (areStrings(options.locations)) {
-		for (const location of options.locations) {
-			console.log("Location:", location);
-		}
-	}
-}
-```
+To minimize errors during comparisons, `@type-check/guards` follows a strict **lowercase strategy**.
+All strings returned by `getTypeOf`, as well as the type identifiers in `isOfType`, are consistently lowercase (e.g.,
+`"nan"` instead of `"NaN"`, `"date"` instead of `"Date"`).
 
 ---
 
-## How to use `@type-check/guards`?
+## How to use *@type-check/guards*?
 
-### Installation via command line
+### Prerequisites
+
+The package is designed as a native **ES module (ESM)** and supports all modern environments from **ES2020+** (Node.js
+16+, current browsers, and edge runtimes) to ensure maximum efficiency without unnecessary polyfills.
+
+### Installation
+
+To install `@type-check/guards`, use the following command in your terminal:
 
 ```bash
 npm install @type-check/guards
@@ -83,38 +143,46 @@ npm install @type-check/guards
 
 ### Import
 
-Use `@type-check/guards` as a local import:
+#### Local Import
 
-```js
-// Import the type-check object:
+Importing the type-check object:
+
+```ts
 import {type} from "@type-check/guards";
 
-type.isInteger(1337);   // true
+type.isInteger(42); // true
+```
 
-// Or import the type-check functions individually:
+Or as an individual import of specific functions (Tree-Shaking):
+
+```ts
 import {isInteger} from "@type-check/guards";
 
-isInteger(1337);   // true
+isInteger(1337); // true
 ```
 
-```js
-// Or you may give it a shorter alias or name:
-import {type as types} from "@type-check/guards";
+Using a different name or alias:
 
-types.areIntegers([42, 1337]);  // true
+```ts
+import {type as values} from "@type-check/guards";
+
+values.areIntegers([42, 1337]); // true
 ```
 
-Use `@type-check/guards` as global import, so you need to include it *only once* in your project:
+#### Global Import
 
-```js
-import '@type-check/guards/register';
+Use `@type-check/guards` as a global import (available as an object only), so you only need to include it *once* in your
+project:
+
+```ts
+import '@type-check/guards/register-global';
 
 type.isPlainObject({}); // true
 ```
 
 ### package.json
 
-Make sure to include `@type-check/guards` in your `package.json` dependencies, always using the latest version:
+Ensure that `@type-check/guards` is included in your `package.json` dependencies and always use the latest version:
 
 ```json
 {
@@ -124,16 +192,31 @@ Make sure to include `@type-check/guards` in your `package.json` dependencies, a
 }
 ```
 
+### CDN (jsDelivr)
+
+For rapid prototyping or direct browser usage (without a build step), you can load `@type-check/guards` via jsDelivr:
+
+```html
+
+<script type="module">
+  import {isInteger, areStrings} from 'https://cdn.jsdelivr.net/npm/@type-check/guards/dist/index.js';
+
+  console.log(isInteger(1337)); // true
+  console.log(areStrings(["TS", "JS"])); // true
+</script>
+```
+
 ### Usage
 
-All methods take **one argument** and return a boolean value, except the `isOfType`-Method, which takes **two arguments
-**.
-The first argument is *always* the value to check, the second argument is the expected type.
+All functions or methods take **one argument** and return a boolean value, except the functions or methods
+`isOfType`, `isOneOfType`, `areOfType`, and `areOneOfType`, which take **two arguments**.
+The first argument is *always* the value to be checked, the second argument is the expected type.
+For *__OneOfType* functions, the types must be provided in an array.
 
-```js
+```ts
 import {areStrings, getTypeOf, isBigInt, isInteger, isOfType} from "@type-check/guards";
 
-console.log(getTypeOf(42)); // String 'number'
+console.log(getTypeOf(42)); // string 'number'
 
 console.log(isOfType("Written by Roland Milto", "string")); // true
 
@@ -144,19 +227,109 @@ console.log(isBigInt(42));  // false
 console.log(areStrings(["Made", "by", "Roland", "Milto"])); // true
 ```
 
+### Examples
+
+#### Example Data
+
+```ts
+const user1 = {
+  id: 1337,
+  name: "Roland Milto",
+  email: "nospam@trash-mail.com",
+  isManager: true,
+  locations: [
+    "Berlin",
+    "Hamburg",
+    "Munich"
+  ]
+}
+```
+
+#### Example with Object Export:
+
+```ts
+import {type} from "@type-check/guards";
+
+function checkAccountDetails(options) {
+  if (!type.isPlainObject(options))
+    throw new TypeError("options must be a plain object");
+
+  if (!type.isInteger(options.id))
+    throw new TypeError("options.id must be an integer");
+
+  if (type.isString(options.name))
+    console.log("Account:", options.name ?? "No name provided");
+
+  if (type.isString(options.email))
+    console.log("Contact Email:", options.email ?? "No email provided");
+
+  console.log("Manager:", options.isManager ? "Yes" : "No");
+
+  // Also arrays are supported:
+  if (type.areStrings(options.locations)) {
+    for (const location of options.locations) {
+      console.log("Location:", location);
+    }
+  }
+}
+
+checkAccountDetails(user1);
+```
+
+### Example with Tree-Shakable Functions:
+
+```ts
+import {areStrings, isBoolean, isInteger, isPlainObject, isString} from "@type-check/guards";
+
+function checkAccountDetails(options) {
+  if (!isPlainObject(options))
+    throw new TypeError("options must be a plain object");
+
+  if (!isInteger(options.id))
+    throw new TypeError("options.id must be an integer");
+
+  if (isString(options.name))
+    console.log("Account:", options.name ?? "No name provided");
+
+  if (isString(options.email))
+    console.log("Contact Email:", options.email ?? "No email provided");
+
+  console.log("Manager:", options.isManager ? "Yes" : "No");
+
+  // Arrays are supported:
+  if (areStrings(options.locations)) {
+    for (const location of options.locations) {
+      console.log("Location:", location);
+    }
+  }
+}
+
+checkAccountDetails(user1);
+```
+
 ---
 
 ## Methods
 
-Returns a string describing the type of the given value: `getTypeOf(value)`
+All functions are designed to provide precise results and can be used either via the `type` object or as an individual
+import.
 
-### Primitives (returns boolean)
+### Type Determination
+
+[getTypeOf(value)](docs/english/getTypeOf.md) returns a string describing the type of the given value (always
+lowercase).
+
+### Primitives
+
+The return value is always a boolean.
 
 - [isArray(value)](docs/english/isArray.md)
 - [isBigInt(value)](docs/english/isBigInt.md)
 - [isBoolean(value)](docs/english/isBoolean.md)
 - [isBuffer(value)](docs/english/isBuffer.md)
 - [isDate(value)](docs/english/isDate.md)
+- [isFalse(value)](docs/english/isFalse.md)
+- [isFilledArray(value)](docs/english/isFilledArray.md)
 - [isFinite(value)](docs/english/isFinite.md)
 - [isFloat(value)](docs/english/isFloat.md)
 - [isFunction(value)](docs/english/isFunction.md)
@@ -166,6 +339,7 @@ Returns a string describing the type of the given value: `getTypeOf(value)`
 - [isNumber(value)](docs/english/isNumber.md)
 - [isObject(value)](docs/english/isObject.md)
 - [isOfType(value, type)](docs/english/isOfType.md)
+- [isOneOfType(value, types)](docs/english/isOneOfType.md)
 - [isPlainObject(value)](docs/english/isPlainObject.md)
 - [isPrimitive(value)](docs/english/isPrimitive.md)
 - [isPromise(value)](docs/english/isPromise.md)
@@ -173,16 +347,21 @@ Returns a string describing the type of the given value: `getTypeOf(value)`
 - [isStream(value)](docs/english/isStream.md)
 - [isString(value)](docs/english/isString.md)
 - [isSymbol(value)](docs/english/isSymbol.md)
+- [isTrue(value)](docs/english/isTrue.md)
 - [isUndefined(value)](docs/english/isUndefined.md)
 - [isValidDate(value)](docs/english/isValidDate.md)
 
-### Types in arrays (returns boolean)
+### Types in Arrays
+
+The return value is always a boolean.
 
 - [areArrays(array)](docs/english/areArrays.md)
 - [areBigInts(array)](docs/english/areBigInts.md)
 - [areBooleans(array)](docs/english/areBooleans.md)
 - [areBuffers(array)](docs/english/areBuffers.md)
 - [areDates(array)](docs/english/areDates.md)
+- [areFalse(array)](docs/english/areFalse.md)
+- [areFilledArrays(array)](docs/english/areFilledArrays.md)
 - [areFinite(array)](docs/english/areFinite.md)
 - [areFloats(array)](docs/english/areFloats.md)
 - [areFunctions(array)](docs/english/areFunctions.md)
@@ -192,6 +371,7 @@ Returns a string describing the type of the given value: `getTypeOf(value)`
 - [areNumbers(array)](docs/english/areNumbers.md)
 - [areObjects(array)](docs/english/areObjects.md)
 - [areOfType(array, type)](docs/english/areOfType.md)
+- [areOneOfType(array, types)](docs/english/areOneOfType.md)
 - [arePlainObjects(array)](docs/english/arePlainObjects.md)
 - [arePrimitives(array)](docs/english/arePrimitives.md)
 - [arePromises(array)](docs/english/arePromises.md)
@@ -199,12 +379,50 @@ Returns a string describing the type of the given value: `getTypeOf(value)`
 - [areStreams(array)](docs/english/areStreams.md)
 - [areStrings(array)](docs/english/areStrings.md)
 - [areSymbols(array)](docs/english/areSymbols.md)
+- [areTrue(array)](docs/english/areTrue.md)
 - [areUndefined(array)](docs/english/areUndefined.md)
 - [areValidDates(array)](docs/english/areValidDates.md)
 
 ---
 
-## Contributing
+## The *@type-check* Ecosystem
 
-If you would also like to contribute to the library, you are welcome to do so. You can find information about this in
-[CONTRIBUTING.md](CONTRIBUTING.md). You will be also mentioned in the [AUTHORS.md](AUTHORS.md).
+`@type-check/guards` forms the foundation of a modular ecosystem, designed to ensure type safety at every stage of your
+application. Due to the strict separation of modules, you only load the logic you actually need.
+
+### Available Modules:
+
+- **[@type-check/assertions](https://www.npmjs.com/package/@type-check/assertions)**:
+  Builds upon the guards and provides functions that immediately `throw` an error if validation fails. Perfect for clean
+  validation logic at the beginning of functions.
+
+  Special feature: The module provides **multilingual, configurable error messages** that can be used directly in your
+  application (e.g., for API responses or UI feedback). This eliminates the need to create your own error message texts.
+
+
+- **[@type-check/constraints](https://www.npmjs.com/package/@type-check/constraints)**:
+  Enables the definition of complex rules and conditions (e.g., minimum string length, value ranges for numbers) that go
+  beyond simple type checks.
+
+### Why strict separation?
+
+- **Optimal Performance:**
+  If you only need to check types, there is no need to load the code for complex assertions or constraints.
+  This keeps the bundle tiny (CPU and RAM efficient).
+
+
+- **Clear Responsibilities:**
+  Each module has a specific task. This leads to more maintainable code and prevents API overload.
+
+
+- **Maximum Flexibility:**
+  You decide how strict your application should be – from simple boolean checks to hard assertions that stop the program
+  flow upon errors.
+
+---
+
+## Support
+
+If you would also like to contribute to the library (e.g., translations), you are cordially invited to do so.
+Information can be found in [CONTRIBUTING.md](CONTRIBUTING.md).
+You will also be mentioned in the [AUTHORS.md](AUTHORS.md) file.
