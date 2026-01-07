@@ -2,12 +2,16 @@
   "author": "Roland Milto (https://roland.milto.de/)",
   "homepage": "https://roland.milto.de/projekte/type-check#guards",
   "name": "@type-check/guards",
-  "version": "2026.01.06",
+  "version": "2026.01.07",
   "license": "GPL-3.0-or-later",
   "description": "@type-check/guards provides high-performance, security-focused runtime type checks following current 2026 best practices. Built for professional TypeScript, Node.js, and modern browser environments, this package delivers precise and efficient type-guard functions with active support and continuous development.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/roland-milto/type-check-guards.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
     "url": "https://github.com/roland-milto/type-check-guards/issues"
@@ -32,7 +36,7 @@
   },
   "scripts": {
     "build:ts": "tsc -p tsconfig.json",
-    "build:copy": "cpx README.md dist/ && cpx LICENSE dist/",
+    "build:copy": "cpx README.md dist/ && cpx README.de.md dist/ && cpx LICENSE dist/",
     "build": "npm run build:ts && npm run build:copy",
     "prepublishOnly": "npm run build",
     "watch": "tsc -w -p tsconfig.json"
@@ -40,13 +44,19 @@
   "keywords": [
     "data validation",
     "datatype validation",
+    "design-time",
+    "design-time testing",
+    "runtime testing",
     "runtime type check",
     "runtime type checking",
     "runtime validation",
+    "TDD",
+    "test driven development",
     "testing",
     "testings",
     "type check",
     "type-check",
+    "type checking",
     "type checks",
     "type-checks",
     "type guard",
@@ -55,6 +65,9 @@
     "validation",
     "validators",
     "value check",
-    "value validation"
+    "value validation",
+    "chai alternative",
+    "jest alternative",
+    "vitest alternative"
   ]
 }
