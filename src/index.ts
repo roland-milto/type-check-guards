@@ -7,6 +7,8 @@ import {areBigInts, isBigInt} from "./checks/bigInt.js";
 import {areBooleans, isBoolean} from "./checks/boolean.js";
 import {areBuffers, isBuffer} from "./checks/buffer.js";
 import {areDates, isDate} from "./checks/date.js";
+import {areFalse, isFalse} from "./checks/false.js";
+import {areFilledArrays, isFilledArray} from "./checks/filledArray.js";
 import {areFinite, isFinite} from "./checks/finite.js";
 import {areFloats, isFloat} from "./checks/float.js";
 import {areFunctions, isFunction} from "./checks/function.js";
@@ -24,6 +26,7 @@ import {areRegExes, isRegEx} from "./checks/regEx.js";
 import {areStreams, isStream} from "./checks/stream.js";
 import {areStrings, isString} from "./checks/string.js";
 import {areSymbols, isSymbol} from "./checks/symbol.js";
+import {areTrue, isTrue} from "./checks/true.js";
 import {areUndefined, isUndefined} from "./checks/undefined.js";
 import {areValidDates, isValidDate} from "./checks/validDate.js";
 import {getTypeOf} from "./utils/getTypeOf.js";
@@ -90,64 +93,13 @@ import {getTypeOf} from "./utils/getTypeOf.js";
 export const type: Readonly<TypeMethods> = Object.freeze(
 {
   getTypeOf,
-  isArray,
-  areArrays,
-  isBigInt,
-  areBigInts,
-  isBoolean,
-  areBooleans,
-  isBuffer,
-  areBuffers,
-  isDate,
-  areDates,
-  isFinite,
-  areFinite,
-  isFloat,
-  areFloats,
-  isFunction,
-  areFunctions,
-  isInteger,
-  areIntegers,
-  isNull,
-  areNull,
-  isNullOrUndefined,
-  areNullOrUndefined,
-  isNumber,
-  areNumbers,
-  isObject,
-  areObjects,
-  isOfType,
-  areOfType,
-  isOneOfType,
-  areOneOfType,
-  isPlainObject,
-  arePlainObjects,
-  isPrimitive,
-  arePrimitives,
-  isPromise,
-  arePromises,
-  isRegEx,
-  areRegExes,
-  isStream,
-  areStreams,
-  isString,
-  areStrings,
-  isSymbol,
-  areSymbols,
-  isUndefined,
-  areUndefined,
-  isValidDate,
-  areValidDates
-});
-
-// Single exports for tree shaking.
-export {
-  getTypeOf,
   isArray, areArrays,
   isBigInt, areBigInts,
   isBoolean, areBooleans,
   isBuffer, areBuffers,
   isDate, areDates,
+  isFalse, areFalse,
+  isFilledArray, areFilledArrays,
   isFinite, areFinite,
   isFloat, areFloats,
   isFunction, areFunctions,
@@ -165,6 +117,39 @@ export {
   isStream, areStreams,
   isString, areStrings,
   isSymbol, areSymbols,
+  isTrue, areTrue,
+  isUndefined, areUndefined,
+  isValidDate, areValidDates
+});
+
+// Single exports for tree shaking.
+export {
+  getTypeOf,
+  isArray, areArrays,
+  isBigInt, areBigInts,
+  isBoolean, areBooleans,
+  isBuffer, areBuffers,
+  isDate, areDates,
+  isFalse, areFalse,
+  isFilledArray, areFilledArrays,
+  isFinite, areFinite,
+  isFloat, areFloats,
+  isFunction, areFunctions,
+  isInteger, areIntegers,
+  isNull, areNull,
+  isNullOrUndefined, areNullOrUndefined,
+  isNumber, areNumbers,
+  isObject, areObjects,
+  isOfType, areOfType,
+  isOneOfType, areOneOfType,
+  isPlainObject, arePlainObjects,
+  isPrimitive, arePrimitives,
+  isPromise, arePromises,
+  isRegEx, areRegExes,
+  isStream, areStreams,
+  isString, areStrings,
+  isSymbol, areSymbols,
+  isTrue, areTrue,
   isUndefined, areUndefined,
   isValidDate, areValidDates
 };
