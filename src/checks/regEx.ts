@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines whether the provided argument is a regular expression (RegExp) object.
  *
@@ -23,7 +26,7 @@ export function isRegEx(value: unknown): value is RegExp {
  * Checks if the provided value is an array of regular expressions (RegExp).
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -38,11 +41,7 @@ export function isRegEx(value: unknown): value is RegExp {
  * areRegExes([/[a-z]/, ".*"]);
  */
 export function areRegExes(array: unknown): array is RegExp[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

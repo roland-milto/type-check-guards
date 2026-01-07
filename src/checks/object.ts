@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines if the provided value is an object.
  *
@@ -26,7 +29,7 @@ export function isObject(value: unknown): value is object {
  * Determines whether the provided value is an array consisting entirely of objects.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -40,11 +43,7 @@ export function isObject(value: unknown): value is object {
  * areObjects([{}, null]);
  */
 export function areObjects(array: unknown): array is object[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

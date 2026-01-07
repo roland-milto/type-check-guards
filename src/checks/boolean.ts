@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Checks if the provided value is of the type boolean.
  *
@@ -26,7 +29,7 @@ export function isBoolean(value: unknown): value is boolean {
  * Checks if the given value is an array of boolean values.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -40,11 +43,7 @@ export function isBoolean(value: unknown): value is boolean {
  * areBooleans([true, 0]);
  */
 export function areBooleans(array: unknown): array is boolean[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

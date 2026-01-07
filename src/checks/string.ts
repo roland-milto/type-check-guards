@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines if the provided value is a string.
  *
@@ -23,7 +26,7 @@ export function isString(value: unknown): value is string {
  * Determines if the provided value is an array where all elements are strings.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -37,11 +40,7 @@ export function isString(value: unknown): value is string {
  * areStrings(["Code", 404]);
  */
 export function areStrings(array: unknown): array is string[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

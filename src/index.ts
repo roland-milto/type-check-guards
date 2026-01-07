@@ -16,6 +16,7 @@ import {areNullOrUndefined, isNullOrUndefined} from "./checks/nullOrUndefined.js
 import {areNumbers, isNumber} from "./checks/number.js";
 import {areObjects, isObject} from "./checks/object.js";
 import {areOfType, isOfType} from "./checks/ofType.js";
+import {areOneOfType, isOneOfType} from "./checks/oneOfType.js";
 import {arePlainObjects, isPlainObject} from "./checks/plainObject.js";
 import {arePrimitives, isPrimitive} from "./checks/primitive.js";
 import {arePromises, isPromise} from "./checks/promise.js";
@@ -46,6 +47,7 @@ import {getTypeOf} from "./utils/getTypeOf.js";
  * * `isNumber`: Returns a boolean whether the value is a number.
  * * `isObject`: Returns a boolean whether the value is an object.
  * * `isOfType`: Validates if the value matches a specified data type.
+ * * `isOneOfType`: Validates if the value matches at least one of the specified data types.
  * * `isPlainObject`: Returns a boolean whether the value is a plain object.
  * * `isPrimitive`: Returns a boolean whether the value is a primitive.
  * * `isPromise`: Returns a boolean whether the value is a promise.
@@ -71,6 +73,7 @@ import {getTypeOf} from "./utils/getTypeOf.js";
  * * `areNumbers`: Returns a boolean whether all elements in the array are numbers.
  * * `areObjects`: Returns a boolean whether all elements in the array are objects.
  * * `areOfType`: Returns a boolean whether all elements in the array match the specified data type.
+ * * `areOneOfType`: Returns a boolean whether all elements in the array match at least one of the specified data types.
  * * `arePlainObjects`: Returns a boolean whether all elements in the array are plain objects.
  * * `arePrimitives`: Returns a boolean whether all elements in the array are primitives.
  * * `arePromises`: Returns a boolean whether all elements in the array are promises.
@@ -115,6 +118,8 @@ export const type: Readonly<TypeMethods> = Object.freeze(
   areObjects,
   isOfType,
   areOfType,
+  isOneOfType,
+  areOneOfType,
   isPlainObject,
   arePlainObjects,
   isPrimitive,
@@ -136,27 +141,30 @@ export const type: Readonly<TypeMethods> = Object.freeze(
 });
 
 // Single exports for tree shaking.
-export {getTypeOf} from './utils/getTypeOf.js';
-export {areArrays, isArray} from './checks/array.js';
-export {areBigInts, isBigInt} from './checks/bigInt.js';
-export {areBooleans, isBoolean} from './checks/boolean.js';
-export {areBuffers, isBuffer} from './checks/buffer.js';
-export {areDates, isDate} from './checks/date.js';
-export {areFinite, isFinite} from './checks/finite.js';
-export {areFloats, isFloat} from './checks/float.js';
-export {areFunctions, isFunction} from './checks/function.js';
-export {areIntegers, isInteger} from './checks/integer.js';
-export {areNull, isNull} from './checks/null.js';
-export {areNullOrUndefined, isNullOrUndefined} from './checks/nullOrUndefined.js';
-export {areNumbers, isNumber} from './checks/number.js';
-export {areObjects, isObject} from './checks/object.js';
-export {areOfType, isOfType} from './checks/ofType.js';
-export {arePrimitives, isPrimitive} from './checks/primitive.js';
-export {arePromises, isPromise} from './checks/promise.js';
-export {arePlainObjects, isPlainObject} from './checks/plainObject.js';
-export {areRegExes, isRegEx} from './checks/regEx.js';
-export {areStreams, isStream} from './checks/stream.js';
-export {areStrings, isString} from './checks/string.js';
-export {areSymbols, isSymbol} from './checks/symbol.js';
-export {areUndefined, isUndefined} from './checks/undefined.js';
-export {areValidDates, isValidDate} from './checks/validDate.js';
+export {
+  getTypeOf,
+  isArray, areArrays,
+  isBigInt, areBigInts,
+  isBoolean, areBooleans,
+  isBuffer, areBuffers,
+  isDate, areDates,
+  isFinite, areFinite,
+  isFloat, areFloats,
+  isFunction, areFunctions,
+  isInteger, areIntegers,
+  isNull, areNull,
+  isNullOrUndefined, areNullOrUndefined,
+  isNumber, areNumbers,
+  isObject, areObjects,
+  isOfType, areOfType,
+  isOneOfType, areOneOfType,
+  isPlainObject, arePlainObjects,
+  isPrimitive, arePrimitives,
+  isPromise, arePromises,
+  isRegEx, areRegExes,
+  isStream, areStreams,
+  isString, areStrings,
+  isSymbol, areSymbols,
+  isUndefined, areUndefined,
+  isValidDate, areValidDates
+};

@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines whether the given argument is either .
  *
@@ -26,7 +29,7 @@ export function isNullOrUndefined(value: unknown): value is null | undefined {
  * Checks if all elements in the given array are either `null` or `undefined`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The input value to be checked, expected to be an array.
  *
@@ -40,11 +43,7 @@ export function isNullOrUndefined(value: unknown): value is null | undefined {
  * areNullOrUndefined([null, 1]);
  */
 export function areNullOrUndefined(array: unknown): array is (null | undefined)[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

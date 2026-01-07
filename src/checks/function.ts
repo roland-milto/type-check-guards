@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines if the given argument is a function.
  *
@@ -23,7 +26,7 @@ export function isFunction(value: unknown): value is (...args: unknown[]) => unk
  * Checks if the provided value is an array of functions.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to check.
  *
@@ -36,11 +39,7 @@ export function isFunction(value: unknown): value is (...args: unknown[]) => unk
  * areFunctions(tasks);
  */
 export function areFunctions(array: unknown): array is Function[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

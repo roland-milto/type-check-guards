@@ -1,8 +1,9 @@
-// Import: Interfaces and DataTypes.
+// Import: Interfaces and types.
 import {DataTypes} from "./types.js";
 
-// Import: Self-created modules.
+// Import: Self-created functions.
 import {getTypeOf} from "../utils//getTypeOf.js";
+import {isFilledArray} from "./filledArray.js";
 
 /**
  * Determines if the provided variable is of the specified data type.
@@ -44,7 +45,7 @@ export function isOfType(value: unknown, type: DataTypes): boolean
  * Checks if all elements in the provided array are of the specified type.
  *
  * @author  Roland Milto
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown[]} array - The array to be checked.
  * @param   {DataTypes} type  - The data type to validate against each element in the array.
@@ -59,11 +60,7 @@ export function isOfType(value: unknown, type: DataTypes): boolean
  * areOfType([1, "2"], "number");
  */
 export function areOfType(array: unknown, type: DataTypes): boolean {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

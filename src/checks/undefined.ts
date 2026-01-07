@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Checks if the provided argument is `undefined`.
  *
@@ -28,7 +31,7 @@ export function isUndefined(value: unknown): value is undefined {
  * Checks if the given value is an array where all elements are undefined.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -42,11 +45,7 @@ export function isUndefined(value: unknown): value is undefined {
  * areUndefined([undefined, null]);
  */
 export function areUndefined(array: unknown): array is undefined[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines whether the given argument is strictly equal to `null`.
  *
@@ -23,7 +26,7 @@ export function isNull(arg: unknown): arg is null {
  * Checks if the provided value is an array where all elements are `null`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to check.
  *
@@ -37,11 +40,7 @@ export function isNull(arg: unknown): arg is null {
  * areNull([null, 1]);
  */
 export function areNull(array: unknown): array is null[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

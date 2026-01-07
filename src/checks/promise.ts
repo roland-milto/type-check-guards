@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Checks if a given value is a `Promise`.
  *
@@ -23,7 +26,7 @@ export function isPromise(value: unknown): value is Promise<unknown> {
  * Checks if the provided value is an array of Promises.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to check.
  *
@@ -36,11 +39,7 @@ export function isPromise(value: unknown): value is Promise<unknown> {
  * arePromises(tasks);
  */
 export function arePromises(array: unknown): array is Promise<unknown>[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

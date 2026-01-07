@@ -1,5 +1,6 @@
 // Import: Self-created functions.
 import {isOfType} from "./ofType.js";
+import {isFilledArray} from "./filledArray.js";
 
 /**
  * Determines whether the provided value is a Date object.
@@ -26,7 +27,7 @@ export function isDate(value: unknown): value is Date {
  * Checks if the given value is an array where all elements are instances of Date.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -40,11 +41,7 @@ export function isDate(value: unknown): value is Date {
  * areDates([new Date(), "2026"]);
  */
 export function areDates(array: unknown): array is Date[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

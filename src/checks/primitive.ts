@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines whether the provided value is a primitive data type.
  *
@@ -29,7 +32,7 @@ export function isPrimitive(value: unknown): value is bigint | boolean | null | 
  * Checks if the provided value is an array consisting entirely of primitive data types.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -46,11 +49,7 @@ export function isPrimitive(value: unknown): value is bigint | boolean | null | 
  * arePrimitives([1, {}])
  */
 export function arePrimitives(array: unknown): array is (bigint | boolean | null | number | string | symbol | undefined)[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

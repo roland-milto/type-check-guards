@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Checks whether the provided value is a valid `Date` object.
  *
@@ -26,7 +29,7 @@ export function isValidDate(value: unknown): value is Date {
  * Determines if the provided value is an array of valid Date objects.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -39,11 +42,7 @@ export function isValidDate(value: unknown): value is Date {
  * areValidDates(dates);
  */
 export function areValidDates(array: unknown): array is Date[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

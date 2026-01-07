@@ -1,6 +1,9 @@
 // Import: Build-ins.
 import type {Stream} from 'node:stream';
 
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines if the given argument is either a Node.js Stream or a Web Stream.
  *
@@ -38,7 +41,7 @@ export function isStream(value: unknown): value is Stream | ReadableStream | Wri
  * Determines whether the given value is an array of Stream objects.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -54,11 +57,7 @@ export function isStream(value: unknown): value is Stream | ReadableStream | Wri
  * areStreams([stream1, stream2]);
  */
 export function areStreams(array: unknown): array is Stream[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

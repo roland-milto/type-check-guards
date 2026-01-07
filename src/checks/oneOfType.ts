@@ -1,8 +1,9 @@
-// Import: Interfaces and DataTypes.
+// Import: Interfaces and types.
 import type {DataTypes} from "./types.js";
 
-// Import: Self-created modules.
+// Import: Self-created functions.
 import {isOfType} from "./ofType.js";
+import {isFilledArray} from "./filledArray.js";
 
 /**
  * Checks if the provided value matches at least one of the specified data types.
@@ -51,11 +52,7 @@ export function isOneOfType(value: unknown, types: DataTypes[]): boolean {
  * areOneOfType(["ts", null], ["string", "number"])
  */
 export function areOneOfType(array: unknown, types: DataTypes[]): boolean {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

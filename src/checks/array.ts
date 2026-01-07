@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines whether the given value is an array.
  *
@@ -24,7 +27,7 @@ export function isArray(value: unknown): value is unknown[] {
  * itself and each of its elements are arrays.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -38,11 +41,7 @@ export function isArray(value: unknown): value is unknown[] {
  * areArrays([1, 2, 3]);
  */
 export function areArrays(array: unknown): array is unknown[][] {
-  if (!isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

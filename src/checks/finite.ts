@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines whether the provided value is a finite number.
  *
@@ -26,7 +29,7 @@ export function isFinite(value: unknown): value is number {
  * Determines whether the given value is an array of finite numbers.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to check.
  *
@@ -40,11 +43,7 @@ export function isFinite(value: unknown): value is number {
  * areFinite([1, Infinity]);
  */
 export function areFinite(array: unknown): array is number[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

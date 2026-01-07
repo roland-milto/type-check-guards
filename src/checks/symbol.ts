@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines whether the provided value is of the `symbol` type.
  *
@@ -23,7 +26,7 @@ export function isSymbol(value: unknown): value is symbol {
  * Checks if the given value is an array consisting only of symbols.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -36,11 +39,7 @@ export function isSymbol(value: unknown): value is symbol {
  * areSymbols(keys);
  */
 export function areSymbols(array: unknown): array is symbol[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 

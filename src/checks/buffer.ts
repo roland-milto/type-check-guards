@@ -1,3 +1,6 @@
+// Import: Self-created functions.
+import {isFilledArray} from "./filledArray.js";
+
 /**
  * Determines whether the given value is a Node.js-Buffer.
  *
@@ -23,7 +26,7 @@ export function isBuffer(value: unknown): value is Buffer {
  * Checks if the given value is an array consisting entirely of Buffer objects.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-07
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -37,11 +40,7 @@ export function isBuffer(value: unknown): value is Buffer {
  * areBuffers([Buffer.from("A"), "B"]);
  */
 export function areBuffers(array: unknown): array is Buffer[] {
-  if (!Array.isArray(array)) {
-    return false;
-  }
-
-  if (array.length === 0) {
+  if (!isFilledArray(array)) {
     return false;
   }
 
