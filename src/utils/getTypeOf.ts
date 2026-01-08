@@ -1,5 +1,5 @@
 // Import: Interfaces and DataTypes.
-import type {DataTypes} from "../checks/types.js";
+import type {DataType} from "../types/dataType.js";
 
 // Import: Self-created functions.
 import {isNumber} from "../checks/number.js";
@@ -31,7 +31,7 @@ import {isNumber} from "../checks/number.js";
  * // "date"
  * getTypeOf(new Date());
  */
-export function getTypeOf(value: unknown): DataTypes
+export function getTypeOf(value: unknown): DataType
 {
 	// Check strict null/undefined explicitly first (the fastest check).
 	// “null” is an object, so it has to be checked first.
@@ -48,7 +48,7 @@ export function getTypeOf(value: unknown): DataTypes
 	// isNaN(null); // false
 	// isNaN(37); // false
 	if (typeof value === "number") {
-			return (isNumber(value)) ? "number" : "NaN";
+		return (isNumber(value)) ? "number" : "nan";
 	}
 
 	// Arrays are objects in JS but usually handled as a specific type.
@@ -70,5 +70,5 @@ export function getTypeOf(value: unknown): DataTypes
 	const specificType: string = rawType.slice(8, -1).toLowerCase();
 
 	// Returns e.g. "date", "regexp", "error", "promise".
-	return specificType as DataTypes;
+	return specificType as DataType;
 }
