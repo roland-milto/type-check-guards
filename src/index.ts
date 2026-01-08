@@ -1,5 +1,5 @@
 // Import: Interfaces and DataTypes.
-import type {TypeMethods} from "./interfaces.js";
+import type {TypeGuards} from "./types/typeGuards.js";
 
 // Import: Self-created modules.
 import {areArrays, isArray} from "./checks/array.js";
@@ -90,7 +90,7 @@ import {getTypeOf} from "./utils/getTypeOf.js";
  * @author  Roland Milto (https://roland.milto.de/)
  * @version 2026-01-06
  */
-export const type: Readonly<TypeMethods> = Object.freeze(
+export const type: Readonly<TypeGuards> = Object.freeze(
 {
   getTypeOf,
   isArray, areArrays,
@@ -122,7 +122,7 @@ export const type: Readonly<TypeMethods> = Object.freeze(
   isValidDate, areValidDates
 });
 
-// Single exports for tree shaking.
+// Export: Type guards single exports for tree shaking.
 export {
   getTypeOf,
   isArray, areArrays,
@@ -153,3 +153,8 @@ export {
   isUndefined, areUndefined,
   isValidDate, areValidDates
 };
+
+// Export: Interfaces and types:
+export type {DataType} from "./types/dataType.js";
+export type {Primitive} from "./types/primitive.js";
+export type {NonPrimitives} from "./types/nonPrimitives.js";
