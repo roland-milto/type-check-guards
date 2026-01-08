@@ -1,18 +1,18 @@
 // Import: Interfaces and types.
-import {DataTypes} from "./types.js";
+import type {DataType} from "../types/dataType.js";
 
 // Import: Self-created functions.
-import {getTypeOf} from "../utils//getTypeOf.js";
+import {getTypeOf} from "../utils/getTypeOf.js";
 import {isFilledArray} from "./filledArray.js";
 
 /**
  * Determines if the provided variable is of the specified data type.
  *
  * @author  Roland Milto
- * @version 2025-12-10
+ * @version 2026-01-08
  *
- * @param   {any}       value - The variable to check.
- * @param   {DataTypes} type  - The name of the data type to compare against.
+ * @param   {unknown}  value  - The variable to check.
+ * @param   {DataType} type   - The name of the data type to compare against.
  *
  * @returns {boolean}         - Does the variable's type match the specified data type?
  *
@@ -26,7 +26,7 @@ import {isFilledArray} from "./filledArray.js";
  * // false
  * isOfType(null, "undefined");
  */
-export function isOfType(value: unknown, type: DataTypes): boolean
+export function isOfType(value: unknown, type: DataType): value is DataType
 {
   // Handle null and undefined explicitly (very fast).
   if (type === "undefined") return value === undefined;
@@ -48,7 +48,7 @@ export function isOfType(value: unknown, type: DataTypes): boolean
  * @version 2026-01-07
  *
  * @param   {unknown[]} array - The array to be checked.
- * @param   {DataTypes} type  - The data type to validate against each element in the array.
+ * @param   {DataType} type  - The data type to validate against each element in the array.
  *
  * @returns {boolean}         - `true` if all elements in the array are of the specified type, otherwise `false`.
  *
@@ -59,7 +59,7 @@ export function isOfType(value: unknown, type: DataTypes): boolean
  * // false
  * areOfType([1, "2"], "number");
  */
-export function areOfType(array: unknown, type: DataTypes): boolean {
+export function areOfType(array: unknown, type: DataType): array is DataType[] {
   if (!isFilledArray(array)) {
     return false;
   }
