@@ -9,6 +9,7 @@
 export type Primitive =
   | "bigint"
   | "boolean"
+  | "nan"
   | "null"
   | "number"
   | "string"
