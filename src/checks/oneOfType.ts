@@ -1,5 +1,5 @@
 // Import: Interfaces and types.
-import type {DataTypes} from "./types.js";
+import type {DataType} from "../types/dataType.js";
 
 // Import: Self-created functions.
 import {isOfType} from "./ofType.js";
@@ -12,7 +12,7 @@ import {isFilledArray} from "./filledArray.js";
  * @version 2026-01-07
  *
  * @param   {unknown}     value - The variable to check.
- * @param   {DataTypes[]} types - An array of data types to compare against.
+ * @param   {DataType[]} types - An array of data types to compare against.
  *
  * @returns {boolean}           - Returns `true` if the value's type matches any of the specified types, otherwise `false`.
  *
@@ -23,7 +23,7 @@ import {isFilledArray} from "./filledArray.js";
  * // false
  * isOneOfType(42, ["string", "boolean"])
  */
-export function isOneOfType(value: unknown, types: DataTypes[]): boolean {
+export function isOneOfType(value: unknown, types: DataType[]): boolean {
   for (const type of types) {
     if (isOfType(value, type)) {
       return true;
@@ -40,7 +40,7 @@ export function isOneOfType(value: unknown, types: DataTypes[]): boolean {
  * @version 2026-01-07
  *
  * @param   {unknown}     array - The array to be checked.
- * @param   {DataTypes[]} types - An array of allowed data types.
+ * @param   {DataType[]} types - An array of allowed data types.
  *
  * @returns {boolean}           - Returns `true` if all elements match at least one specified type, otherwise `false`.
  *
@@ -51,7 +51,7 @@ export function isOneOfType(value: unknown, types: DataTypes[]): boolean {
  * // false
  * areOneOfType(["ts", null], ["string", "number"])
  */
-export function areOneOfType(array: unknown, types: DataTypes[]): boolean {
+export function areOneOfType(array: unknown, types: DataType[]): boolean {
   if (!isFilledArray(array)) {
     return false;
   }
