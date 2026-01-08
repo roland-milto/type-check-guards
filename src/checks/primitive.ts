@@ -1,3 +1,6 @@
+// Import: Interfaces and types.
+import type {Primitive} from "../types/primitive.js";
+
 // Import: Self-created functions.
 import {isFilledArray} from "./filledArray.js";
 
@@ -21,7 +24,7 @@ import {isFilledArray} from "./filledArray.js";
  * // false
  * isPrimitive({})
  */
-export function isPrimitive(value: unknown): value is bigint | boolean | null | number | string | symbol | undefined {
+export function isPrimitive(value: unknown): value is Primitive {
   return (
     value === null ||
     (typeof value !== 'object' && typeof value !== 'function')
@@ -48,7 +51,7 @@ export function isPrimitive(value: unknown): value is bigint | boolean | null | 
  * // false
  * arePrimitives([1, {}])
  */
-export function arePrimitives(array: unknown): array is (bigint | boolean | null | number | string | symbol | undefined)[] {
+export function arePrimitives(array: unknown): array is Primitive[] {
   if (!isFilledArray(array)) {
     return false;
   }
