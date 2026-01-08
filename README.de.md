@@ -103,9 +103,9 @@ während der Entwicklung:
 ```ts
 // Ohne Guards:
 function process(value: unknown) {
-  if (typeof value === 'string') {
-    (value as string).toUpperCase(); // Manuelles Casting oft nötig
-  }
+ if (typeof value === 'string') {
+  (value as string).toUpperCase(); // Manuelles Casting oft nötig
+ }
 }
 
 // Mit @type-check/guards:
@@ -193,9 +193,9 @@ Version verwendet wird:
 
 ```json
 {
-	"dependencies": {
-		"@type-check/guards": "*"
-	}
+ "dependencies": {
+  "@type-check/guards": "*"
+ }
 }
 ```
 
@@ -207,10 +207,10 @@ Für eine schnelle Integration in Prototypen oder die direkte Verwendung im Brow
 ```html
 
 <script type="module">
-  import {isInteger, areStrings} from 'https://cdn.jsdelivr.net/npm/@type-check/guards/dist/index.js';
+ import {isInteger, areStrings} from 'https://cdn.jsdelivr.net/npm/@type-check/guards/dist/index.js';
 
-  console.log(isInteger(1337)); // true
-  console.log(areStrings(["TS", "JS"])); // true
+ console.log(isInteger(1337)); // true
+ console.log(areStrings(["TS", "JS"])); // true
 </script>
 ```
 

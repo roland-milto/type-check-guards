@@ -186,9 +186,9 @@ Ensure that `@type-check/guards` is included in your `package.json` dependencies
 
 ```json
 {
-	"dependencies": {
-		"@type-check/guards": "*"
-	}
+ "dependencies": {
+  "@type-check/guards": "*"
+ }
 }
 ```
 
@@ -199,10 +199,10 @@ For rapid prototyping or direct browser usage (without a build step), you can lo
 ```html
 
 <script type="module">
-  import {isInteger, areStrings} from 'https://cdn.jsdelivr.net/npm/@type-check/guards/dist/index.js';
+ import {isInteger, areStrings} from 'https://cdn.jsdelivr.net/npm/@type-check/guards/dist/index.js';
 
-  console.log(isInteger(1337)); // true
-  console.log(areStrings(["TS", "JS"])); // true
+ console.log(isInteger(1337)); // true
+ console.log(areStrings(["TS", "JS"])); // true
 </script>
 ```
 
