@@ -7,9 +7,9 @@ import {isFilledArray} from "./filledArray.js";
  * @author  Roland Milto (https://roland.milto.de/)
  * @version 2025-12-22
  *
- * @param   {any} value - The value to be checked.
+ * @param   {unknown} value - The value to be checked.
  *
- * @returns {boolean}   - A boolean indicating whether the value is an array.
+ * @returns {boolean}       - A boolean indicating whether the value is an array.
  *
  * @example
  * // true
@@ -27,7 +27,7 @@ export function isArray(value: unknown): value is unknown[] {
  * itself and each of its elements are arrays.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-08
  *
  * @param   {unknown} array - The value to be checked.
  *
@@ -46,7 +46,7 @@ export function areArrays(array: unknown): array is unknown[][] {
   }
 
   for (const item of array) {
-    if (!Array.isArray(item)) {
+    if (!isArray(item)) {
       return false;
     }
   }
