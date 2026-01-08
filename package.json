@@ -10,8 +10,7 @@
     "url": "git+https://github.com/roland-milto/type-check-guards.git"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "bugs": {
     "url": "https://github.com/roland-milto/type-check-guards/issues"
