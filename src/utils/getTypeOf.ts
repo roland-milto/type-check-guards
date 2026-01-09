@@ -2,7 +2,7 @@
 import type {DataType} from "../types/dataType.js";
 
 // Import: Self-created functions.
-import {isNumber} from "../checks/number.js";
+import {isNumber} from "../guards/number.js";
 
 /**
  * Determines the data type of the given value and returns it as a string.
