@@ -33,14 +33,15 @@ export interface TypeGuards
 	isDate(value: unknown): value is Date;
 	areDates(array: unknown): array is Date[];
 
+	/** Checks whether the given value is strictly equal to the expected value. */
+	isEqual<T>(value: unknown, expected: T): value is T;
+
 	/** Checks whether the given value is false. */
 	isFalse(value: unknown): value is false;
-
 	areFalse(array: unknown): array is false[];
 
 	/** Checks whether the given value is a filled array. */
 	isFilledArray(value: unknown): value is unknown[];
-
 	areFilledArrays(array: unknown): array is unknown[][];
 
 	/** Checks whether the given value is finite. */
@@ -49,7 +50,6 @@ export interface TypeGuards
 
 	/** Checks whether the given value is a float. */
 	isFloat(value: unknown): value is number;
-
 	areFloats(array: unknown): array is number[];
 
 	/** Checks whether the given value is a function. */
@@ -78,12 +78,10 @@ export interface TypeGuards
 
 	/** Checks whether the given value is of the specified type. */
 	isOfType(value: unknown, type: DataType): boolean;
-
 	areOfType(array: unknown, type: DataType): boolean;
 
 	/** Checks whether the given value is one of the specified types. */
 	isOneOfType(value: unknown, types: DataType[]): boolean;
-
 	areOneOfType(array: unknown, types: DataType[]): boolean;
 
 	/** Checks whether the given value is a plain object. */
@@ -92,7 +90,6 @@ export interface TypeGuards
 
 	/** Checks whether the given value is a primitive. */
 	isPrimitive(value: unknown): value is string | number | bigint | boolean | symbol | null | undefined;
-
 	arePrimitives(array: unknown): array is (string | number | bigint | boolean | symbol | null | undefined)[];
 
 	/** Checks whether the given value is a promise. */
@@ -117,7 +114,6 @@ export interface TypeGuards
 
 	/** Checks whether the given value is true. */
 	isTrue(value: unknown): value is true;
-
 	areTrue(array: unknown): array is true[];
 
 	/** Checks whether the given value is undefined. */

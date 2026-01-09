@@ -2,33 +2,34 @@
 import type {TypeGuards} from "./types/typeGuards.js";
 
 // Import: Self-created modules.
-import {areArrays, isArray} from "./checks/array.js";
-import {areBigInts, isBigInt} from "./checks/bigInt.js";
-import {areBooleans, isBoolean} from "./checks/boolean.js";
-import {areBuffers, isBuffer} from "./checks/buffer.js";
-import {areDates, isDate} from "./checks/date.js";
-import {areFalse, isFalse} from "./checks/false.js";
-import {areFilledArrays, isFilledArray} from "./checks/filledArray.js";
-import {areFinite, isFinite} from "./checks/finite.js";
-import {areFloats, isFloat} from "./checks/float.js";
-import {areFunctions, isFunction} from "./checks/function.js";
-import {areIntegers, isInteger} from "./checks/integer.js";
-import {areNull, isNull} from "./checks/null.js";
-import {areNullOrUndefined, isNullOrUndefined} from "./checks/nullOrUndefined.js";
-import {areNumbers, isNumber} from "./checks/number.js";
-import {areObjects, isObject} from "./checks/object.js";
-import {areOfType, isOfType} from "./checks/ofType.js";
-import {areOneOfType, isOneOfType} from "./checks/oneOfType.js";
-import {arePlainObjects, isPlainObject} from "./checks/plainObject.js";
-import {arePrimitives, isPrimitive} from "./checks/primitive.js";
-import {arePromises, isPromise} from "./checks/promise.js";
-import {areRegExes, isRegEx} from "./checks/regEx.js";
-import {areStreams, isStream} from "./checks/stream.js";
-import {areStrings, isString} from "./checks/string.js";
-import {areSymbols, isSymbol} from "./checks/symbol.js";
-import {areTrue, isTrue} from "./checks/true.js";
-import {areUndefined, isUndefined} from "./checks/undefined.js";
-import {areValidDates, isValidDate} from "./checks/validDate.js";
+import {areArrays, isArray} from "./guards/array.js";
+import {areBigInts, isBigInt} from "./guards/bigInt.js";
+import {areBooleans, isBoolean} from "./guards/boolean.js";
+import {areBuffers, isBuffer} from "./guards/buffer.js";
+import {areDates, isDate} from "./guards/date.js";
+import {isEqual} from "./guards/equal.js";
+import {areFalse, isFalse} from "./guards/false.js";
+import {areFilledArrays, isFilledArray} from "./guards/filledArray.js";
+import {areFinite, isFinite} from "./guards/finite.js";
+import {areFloats, isFloat} from "./guards/float.js";
+import {areFunctions, isFunction} from "./guards/function.js";
+import {areIntegers, isInteger} from "./guards/integer.js";
+import {areNull, isNull} from "./guards/null.js";
+import {areNullOrUndefined, isNullOrUndefined} from "./guards/nullOrUndefined.js";
+import {areNumbers, isNumber} from "./guards/number.js";
+import {areObjects, isObject} from "./guards/object.js";
+import {areOfType, isOfType} from "./guards/ofType.js";
+import {areOneOfType, isOneOfType} from "./guards/oneOfType.js";
+import {arePlainObjects, isPlainObject} from "./guards/plainObject.js";
+import {arePrimitives, isPrimitive} from "./guards/primitive.js";
+import {arePromises, isPromise} from "./guards/promise.js";
+import {areRegExes, isRegEx} from "./guards/regEx.js";
+import {areStreams, isStream} from "./guards/stream.js";
+import {areStrings, isString} from "./guards/string.js";
+import {areSymbols, isSymbol} from "./guards/symbol.js";
+import {areTrue, isTrue} from "./guards/true.js";
+import {areUndefined, isUndefined} from "./guards/undefined.js";
+import {areValidDates, isValidDate} from "./guards/validDate.js";
 import {getTypeOf} from "./utils/getTypeOf.js";
 
 /**
@@ -41,6 +42,7 @@ import {getTypeOf} from "./utils/getTypeOf.js";
  * * `isBoolean`: Returns a boolean whether the value is a boolean.
  * * `isBuffer`: Returns a boolean whether the value is a buffer.
  * * `isDate`: Returns a boolean whether the value is a date.
+ * * `isEqual`: Returns a boolean whether the values are equal.
  * * `isFinite`: Returns a boolean whether the value is finite.
  * * `isFloat`: Returns a boolean whether the value is a float.
  * * `isFunction`: Returns a boolean whether the value is a function.
@@ -98,6 +100,7 @@ export const type: Readonly<TypeGuards> = Object.freeze(
   isBoolean, areBooleans,
   isBuffer, areBuffers,
   isDate, areDates,
+  isEqual,
   isFalse, areFalse,
   isFilledArray, areFilledArrays,
   isFinite, areFinite,
@@ -130,6 +133,7 @@ export {
   isBoolean, areBooleans,
   isBuffer, areBuffers,
   isDate, areDates,
+  isEqual,
   isFalse, areFalse,
   isFilledArray, areFilledArrays,
   isFinite, areFinite,
