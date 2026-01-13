@@ -7,7 +7,7 @@
  * @version 2026-01-08
  */
 export type Primitive =
-  | "bigint"
+  | "bigInt"
   | "boolean"
   | "float"
   | "integer"
