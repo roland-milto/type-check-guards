@@ -1,6 +1,6 @@
 // Import: Interfaces and types.
 import {Primitive} from "./primitive.js";
-import {NonPrimitives} from "./nonPrimitives.js";
+import {NonPrimitive} from "./nonPrimitive.js";
 
 /**
  * Represents possible data types that can be encountered or used.
@@ -11,4 +11,4 @@ import {NonPrimitives} from "./nonPrimitives.js";
  * @author  Roland Milto (https://roland.milto.de/)
  * @version 2026-01-08
  */
-export type DataType = Primitive | NonPrimitives;
+export type DataType = Primitive | NonPrimitive;
