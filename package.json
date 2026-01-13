@@ -1,8 +1,11 @@
 {
   "author": "Roland Milto (https://roland.milto.de/)",
+  "contributors": [
+    "Roland Milto (https://roland.milto.de/)"
+  ],
   "homepage": "https://roland.milto.de/projekte/type-check#guards",
   "name": "@type-check/guards",
-  "version": "2026.01.07",
+  "version": "2026.01.13",
   "license": "GPL-3.0-or-later",
   "description": "@type-check/guards provides high-performance, security-focused runtime type checks following current 2026 best practices. Built for professional TypeScript, Node.js, and modern browser environments, this package delivers precise and efficient type-guard functions with active support and continuous development.",
   "repository": {
@@ -15,33 +18,50 @@
   "bugs": {
     "url": "https://github.com/roland-milto/type-check-guards/issues"
   },
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "jsdelivr": "./dist/index.js",
-      "types": "./dist/index.d.ts",
-      "unpkg": "./dist/index.js"
+      "default": "./dist/index.mjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "type": "module",
   "sideEffects": false,
   "devDependencies": {
     "@types/node": "^25.0.3",
     "cpx": "^1.5.0",
+    "tsdown": "^0.19.0-beta.5",
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "build:ts": "tsc -p tsconfig.json",
-    "build:copy": "cpx README.md dist/ && cpx README.de.md dist/ && cpx LICENSE dist/",
-    "build": "npm run build:ts && npm run build:copy",
-    "prepublishOnly": "npm run build",
-    "watch": "tsc -w -p tsconfig.json"
+    "build": "npm run build:cdn && npm run build:npm && npm run build:copy-markdown",
+    "build:cdn": "tsdown --name CDN --clean --dts false --sourcemap false --minify && node -e \"fs.copyFileSync('./dist/index.mjs', './dist/index.min.mjs')\"",
+    "build:npm": "tsdown --name NPM --dts true --sourcemap true --unbundle true --no-clean",
+    "watch": "tsdown --name DEV --unbundle true --no-clean --watch",
+    "build:typescript": "tsc -p tsconfig.json && npm run build:typescript && npm run build:copy-markdown",
+    "watch:typescript": "tsc -w -p tsconfig.json",
+    "build:copy-markdown": "cpx README.md dist/ && cpx README.de.md dist/ && cpx LICENSE dist/",
+    "prepublishOnly": "npm run build"
   },
+  "tsdown": {
+    "input": "src/index.ts",
+    "treeshake": false,
+    "external": [
+      "react",
+      "react-dom",
+      "vue",
+      "/^lodash/",
+      "/^@mui/"
+    ]
+  },
+  "jsdelivr": "./dist/index.min.mjs",
+  "unpkg": "./dist/index.min.mjs",
   "keywords": [
     "data validation",
     "datatype validation",
