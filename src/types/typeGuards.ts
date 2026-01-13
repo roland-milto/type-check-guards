@@ -6,7 +6,7 @@ import type {DataType} from "./dataType.js";
  * Interface for returning the `type` object methods.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-01-08
+ * @version 2025-01-13
  */
 export interface TypeGuards
 {
