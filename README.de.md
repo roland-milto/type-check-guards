@@ -37,7 +37,7 @@
   * [Primitive Checks](#primitive)
   * [Array Validierung](#typen-in-arrays)
 - [@type-check Ökosystem](#das-type-check-ökosystem)
-- [Mitwirken & Unterstützung](#unterstützung)
+- [Mitwirken & Unterstützung](#unterstützen-oder-fehler-melden)
 
 <!-- tocstop -->
 
@@ -124,10 +124,11 @@ Obwohl für die Runtime optimiert, ist `@type-check/guards` die perfekte Ergänz
 
 ### API-Konsistenz
 
-Um die Fehleranfälligkeit bei Vergleichen zu minimieren, folgt `@type-check/guards` einer strikten **Lowercase-Strategie
+Um die Fehleranfälligkeit bei Vergleichen zu minimieren, folgt `@type-check/guards` einer strikten **camelCase-Strategie
 **.
-Alle von `getTypeOf` zurückgegebenen Strings sowie die Typ-Bezeichner in `isOfType` sind konsequent kleingeschrieben (z.
-B. `"nan"` statt `"NaN"`, `"date"` statt `"Date"`).
+Alle von `getTypeOf` zurückgegebenen Strings sowie die Typ-Bezeichner in `isOfType` sind konsequent in *camelCase*
+geschrieben (z.
+B. `"nan"` statt `"NaN"`, `"bigInt"` statt `"BigInt"`).
 
 ---
 
@@ -207,7 +208,7 @@ Für eine schnelle Integration in Prototypen oder die direkte Verwendung im Brow
 ```html
 
 <script type="module">
- import {isInteger, areStrings} from 'https://cdn.jsdelivr.net/npm/@type-check/guards/dist/index.js';
+  import {isInteger, areStrings} from 'https://cdn.jsdelivr.net/npm/@type-check/guards/dist/index.min.mjs';
 
  console.log(isInteger(1337)); // true
  console.log(areStrings(["TS", "JS"])); // true
@@ -318,6 +319,29 @@ checkAccountDetails(user1);
 
 ---
 
+## Exportierte TypeScript-Typen
+
+Für eine nahtlose Integration in Deine TypeScript-Projekte exportiert `@type-check/guards` hilfreiche Union-Types. Diese
+kannst Du nutzen, um eigene Variablen zu typisieren oder um sicherzustellen, dass Deine Logik nur die von uns
+unterstützten Typ-Bezeichner verwendet.
+
+### Import der Typen
+
+```ts
+import type {DataType, Primitive, NonPrimitive, NumberType} from "@type-check/guards";
+```
+
+- **`DataType`**: Die zentrale Union aus `Primitive` und `NonPrimitive`. Sie umfasst alle Bezeichner, die auch von
+  `getTypeOf` zurückgegeben werden können.
+- **`Primitive`**: Beinhaltet alle einfachen Datentypen wie `"string"`, `"number"`, `"boolean"`, `"bigint"`, `"symbol"`,
+  `"integer"`, `"float"`, `"nan"`, `"null"` und `"undefined"`.
+- **`NonPrimitive`**: Umfasst komplexe Strukturen wie `"array"`, `"object"`, `"date"`, `"error"`, `"function"`, `"map"`,
+  `"set"`, `"promise"`, `"regexp"`, `"stream"`, `"buffer"`, `"weakmap"` und `"weakset"`.
+- **`NumberType`**: Eine spezialisierte Auswahl für numerische Klassifizierungen (`"number"`, `"integer"`, `"float"`,
+  `"bigInt"`).
+
+---
+
 ## Methoden
 
 Alle Funktionen sind darauf ausgelegt, präzise Ergebnisse zu liefern und können entweder über das `type`-Objekt oder als
@@ -326,7 +350,7 @@ Einzelimport genutzt werden.
 ### Typ-Ermittlung
 
 [getTypeOf(value)](docs/german/getTypeOf.de.md) gibt eine Zeichenfolge zurück, die den Typ des angegebenen Werts als
-Zeichenkette beschreibt (immer kleingeschrieben).
+Zeichenkette beschreibt (immer als camelCase).
 
 ### Primitive
 
@@ -337,28 +361,35 @@ Die Rückgabe ist immer ein boolescher Wert.
 - [isBoolean(value)](docs/german/isBoolean.de.md)
 - [isBuffer(value)](docs/german/isBuffer.de.md)
 - [isDate(value)](docs/german/isDate.de.md)
+- [isEqual(value, expected)](docs/german/isEqual.de.md)
+- [isError(value)](docs/german/isError.de.md)
 - [isFalse(value)](docs/german/isFalse.de.md)
 - [isFilledArray(value)](docs/german/isFilledArray.de.md)
 - [isFinite(value)](docs/german/isFinite.de.md)
 - [isFloat(value)](docs/german/isFloat.de.md)
 - [isFunction(value)](docs/german/isFunction.de.md)
 - [isInteger(value)](docs/german/isInteger.de.md)
+- [isMap(value)](docs/german/isMap.de.md)
+- [isNaN(value)](docs/german/isNaN.de.md)
 - [isNull(value)](docs/german/isNull.de.md)
 - [isNullOrUndefined(value)](docs/german/isNullOrUndefined.de.md)
 - [isNumber(value)](docs/german/isNumber.de.md)
 - [isObject(value)](docs/german/isObject.de.md)
 - [isOfType(value, type)](docs/german/isOfType.de.md)
-- [isOneOfType(value, types)](docs/german/isOneOfType.de.md)
+- [isOneOfType(value, types[])](docs/german/isOneOfType.de.md)
 - [isPlainObject(value)](docs/german/isPlainObject.de.md)
 - [isPrimitive(value)](docs/german/isPrimitive.de.md)
 - [isPromise(value)](docs/german/isPromise.de.md)
 - [isRegEx(value)](docs/german/isRegEx.de.md)
+- [isSet(value)](docs/german/isSet.de.md)
 - [isStream(value)](docs/german/isStream.de.md)
 - [isString(value)](docs/german/isString.de.md)
 - [isSymbol(value)](docs/german/isSymbol.de.md)
 - [isTrue(value)](docs/german/isTrue.de.md)
 - [isUndefined(value)](docs/german/isUndefined.de.md)
 - [isValidDate(value)](docs/german/isValidDate.de.md)
+- [isWeakMap(value)](docs/german/isWeakMap.de.md)
+- [isWeakSet(value)](docs/german/isWeakSet.de.md)
 
 ### Typen in Arrays
 
@@ -369,28 +400,35 @@ Die Rückgabe ist immer ein boolescher Wert.
 - [areBooleans(array)](docs/german/areBooleans.de.md)
 - [areBuffers(array)](docs/german/areBuffers.de.md)
 - [areDates(array)](docs/german/areDates.de.md)
+- [areEqual(value, expected)](docs/german/areEqual.de.md)
+- [areErrors(value)](docs/german/areErrors.de.md)
 - [areFalse(array)](docs/german/areFalse.de.md)
 - [areFilledArrays(array)](docs/german/areFilledArrays.de.md)
 - [areFinite(array)](docs/german/areFinite.de.md)
 - [areFloats(array)](docs/german/areFloats.de.md)
 - [areFunctions(array)](docs/german/areFunctions.de.md)
 - [areIntegers(array)](docs/german/areIntegers.de.md)
+- [areMaps(array)](docs/german/areMaps.de.md)
+- [areNaNs(array)](docs/german/areNaNs.de.md)
 - [areNull(array)](docs/german/areNull.de.md)
 - [areNullOrUndefined(array)](docs/german/areNullOrUndefined.de.md)
 - [areNumbers(array)](docs/german/areNumbers.de.md)
 - [areObjects(array)](docs/german/areObjects.de.md)
 - [areOfType(array, type)](docs/german/areOfType.de.md)
-- [areOneOfType(array, types)](docs/german/areOneOfType.de.md)
+- [areOneOfType(array, types[])](docs/german/areOneOfType.de.md)
 - [arePlainObjects(array)](docs/german/arePlainObjects.de.md)
 - [arePrimitives(array)](docs/german/arePrimitives.de.md)
 - [arePromises(array)](docs/german/arePromises.de.md)
 - [areRegExes(array)](docs/german/areRegExes.de.md)
+- [areSets(array)](docs/german/areSets.de.md)
 - [areStreams(array)](docs/german/areStreams.de.md)
 - [areStrings(array)](docs/german/areStrings.de.md)
 - [areSymbols(array)](docs/german/areSymbols.de.md)
 - [areTrue(array)](docs/german/areTrue.de.md)
 - [areUndefined(array)](docs/german/areUndefined.de.md)
 - [areValidDates(array)](docs/german/areValidDates.de.md)
+- [areWeakMaps(array)](docs/german/areWeakMaps.de.md)
+- [areWeakSets(array)](docs/german/areWeakSets.de.md)
 
 ---
 
@@ -432,8 +470,12 @@ Durch die strikte Trennung der Module lädst Du nur die Logik, die Du tatsächli
 
 ---
 
-## Unterstützung
+## Unterstützen oder Fehler melden
 
 Wenn Du ebenfalls einen Beitrag zur Bibliothek leisten möchtest (z. B. Übersetzungen), bist Du herzlich dazu eingeladen.
 Informationen dazu findest Du unter [CONTRIBUTING.md](CONTRIBUTING.md).
 Du wirst auch in der Datei [AUTHORS.md](AUTHORS.md) erwähnt.
+
+Bei Fehlern oder Ideen zu sinnvollen Erweiterungen, kannst Du Dich direkt
+auf [GitHub](https://github.com/roland-milto/type-check-guards/issues) beteiligen.
+
