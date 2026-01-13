@@ -31,7 +31,7 @@ import {isNumber} from "../guards/number.js";
  * // "date"
  * getTypeOf(new Date());
  */
-export function getTypeOf(value: unknown): DataType
+export function getTypeOf(value: unknown): DataType | string
 {
 	// Check strict null/undefined explicitly first (the fastest check).
 	// “null” is an object, so it has to be checked first.
