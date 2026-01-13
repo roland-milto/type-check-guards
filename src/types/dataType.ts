@@ -1,6 +1,6 @@
 // Import: Interfaces and types.
-import {Primitive} from "./primitive.js";
-import {NonPrimitive} from "./nonPrimitive.js";
+import type {Primitive} from "./primitive.js";
+import type {NonPrimitive} from "./nonPrimitive.js";
 
 /**
  * Represents possible data types that can be encountered or used.
