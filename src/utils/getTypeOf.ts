@@ -43,7 +43,7 @@ export function getTypeOf(value: unknown): DataType | string
 		return "undefined";
 	}
 
-	// We have a smarter number-check. Do not(!) use isNaN for number type checking, because:
+	// We have a smarter number-check. Do not(!) use JavaScripts isNaN for number type checking, because:
 	// isNaN(true); // false
 	// isNaN(null); // false
 	// isNaN(37); // false
@@ -56,7 +56,7 @@ export function getTypeOf(value: unknown): DataType | string
 		return "array";
 	}
 
-	// Check primitives (bigint, isBoolean, function, string, symbol etc.).
+	// Check primitives (bigint, boolean, function, string, symbol etc.).
 	const type: string = typeof value;
 	if (type !== "object") {
 		return type;
@@ -66,9 +66,12 @@ export function getTypeOf(value: unknown): DataType | string
 	// The native toString returns formats like "[object Date]", "[object Error]".
 	const rawType: string = Object.prototype.toString.call(value);
 
-	// e. G.: [object Date] -> Date -> date
-	const specificType: string = rawType.slice(8, -1).toLowerCase();
+	// Extracts the type name, e.g., "[object BigInt]" -> "BigInt".
+	const typeName: string = rawType.slice(8, -1);
 
-	// Returns e.g. "date", "regexp", "error", "promise".
+	// Lowercases only the first character: "BigInt" -> "bigInt", "Date" -> "date".
+	const specificType: string = typeName.charAt(0).toLowerCase() + typeName.slice(1);
+
+	// Returns e.g. "bigInt", "date", "regExp", "error", "promise", "weakMap", "weakSet".
 	return specificType as DataType;
 }
