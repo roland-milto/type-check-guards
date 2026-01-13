@@ -3,15 +3,14 @@
  * and types in JavaScript.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-01-08
+ * @version 2026-01-13
  */
-export type NonPrimitives =
+export type NonPrimitive =
   | "array"
   | "buffer"
   | "date"
   | "error"
   | "function"
-  | "generator"
   | "object"
   | "map"
   | "promise"
