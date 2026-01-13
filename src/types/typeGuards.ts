@@ -11,7 +11,7 @@ import type {DataType} from "./dataType.js";
 export interface TypeGuards
 {
 	/** Converts the type of the given value to a string. */
-	getTypeOf(value: unknown): DataType;
+	getTypeOf(value: unknown): DataType | string;
 
 	/** Checks whether the given value is an array. */
 	isArray(value: unknown): value is Array<unknown>;
@@ -36,6 +36,13 @@ export interface TypeGuards
 	/** Checks whether the given value is strictly equal to the expected value. */
 	isEqual<T>(value: unknown, expected: T): value is T;
 
+	areEqual<T>(array: unknown, expected: T): array is T[];
+
+	/** Checks whether the given value is an error. */
+	isError(value: unknown): value is Error;
+
+	areErrors(array: unknown): array is Error[];
+
 	/** Checks whether the given value is false. */
 	isFalse(value: unknown): value is false;
 	areFalse(array: unknown): array is false[];
@@ -59,6 +66,16 @@ export interface TypeGuards
 	/** Checks whether the given value is an integer. */
 	isInteger(value: unknown): value is number;
 	areIntegers(array: unknown): array is number[];
+
+	/** Checks whether the given value is a map. */
+	isMap(value: unknown): value is Map<unknown, unknown>;
+
+	areMaps(array: unknown): array is Map<unknown, unknown>[];
+
+	/** Checks whether the given value is NaN. */
+	isNaN(value: unknown): value is number;
+
+	areNaNs(array: unknown): array is number[];
 
 	/** Checks whether the given value is null. */
 	isNull(value: unknown): value is null;
@@ -100,6 +117,11 @@ export interface TypeGuards
 	isRegEx(value: unknown): value is RegExp;
 	areRegExes(array: unknown): array is RegExp[];
 
+	/** Checks whether the given value is a set. */
+	isSet(value: unknown): value is Set<unknown>;
+
+	areSets(array: unknown): array is Set<unknown>[];
+
 	/** Checks whether the given value is a stream. */
 	isStream(value: unknown): value is Stream | ReadableStream | WritableStream;
 	areStreams(array: unknown): array is Stream[];
@@ -123,4 +145,14 @@ export interface TypeGuards
 	/** Checks whether the given value is a valid date. */
 	isValidDate(value: unknown): value is Date;
 	areValidDates(array: unknown): array is Date[];
+
+	/** Checks whether the given value is a valid WeakMap. */
+	isWeakMap(value: unknown): value is WeakMap<object, unknown>;
+
+	areWeakMaps(array: unknown): array is WeakMap<object, unknown>[];
+
+	/** Checks whether the given value is a valid WeakSet. */
+	isWeakSet(value: unknown): value is WeakSet<object>;
+
+	areWeakSets(array: unknown): array is WeakSet<object>[];
 }
