@@ -2,11 +2,11 @@
 
 # [`@type-check/guards`](https://www.npmjs.com/package/@type-check/guards)
 
-![typescript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)
-![npm version](https://img.shields.io/npm/v/@type-check/guards?color=blue)
-![node version](https://img.shields.io/node/v/@type-check/guards?color=blue)
-![esm supported](https://img.shields.io/badge/ESM-supported-brightgreen)
-![tree shaking](https://img.shields.io/badge/tree--shaking-supported-brightgreen)
+![NPM version](https://img.shields.io/npm/v/@type-check/guards?color=blue)
+![Typescript project](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)
+![Browser supported](https://img.shields.io/badge/Browser-supported-brightgreen)
+![ESM supported](https://img.shields.io/badge/ESM-supported-brightgreen)
+![Tree shaking](https://img.shields.io/badge/Tree--shaking-supported-brightgreen)
 
 ## Inhaltsverzeichnis: Runtime Type Checks & Guards
 
