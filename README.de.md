@@ -126,8 +126,8 @@ Obwohl für die Runtime optimiert, ist `@type-check/guards` die perfekte Ergänz
 
 ### API-Konsistenz
 
-Um die Fehleranfälligkeit bei Vergleichen zu minimieren, folgt `@type-check/guards` einer strikten **camelCase-Strategie
-**.
+Um die Fehleranfälligkeit bei Vergleichen zu minimieren,
+folgt `@type-check/guards` einer strikten **camelCase-Strategie**.
 Alle von `getTypeOf` zurückgegebenen Strings sowie die Typ-Bezeichner in `isOfType` sind konsequent in *camelCase*
 geschrieben (z. B. `"nan"` statt `"NaN"`, `"bigInt"` statt `"BigInt"`).
 
