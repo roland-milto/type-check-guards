@@ -13,10 +13,9 @@
 <details>
   <summary><b>Hier klicken, um das Inhaltsverzeichnis zu öffnen</b></summary>
 
-<!-- toc -->
-
 - [Was ist @type-check/guards?](#was-ist-type-checkguards)
 - [Warum sollte ich @type-check/guards verwenden?](#warum-sollte-ich-type-checkguards-verwenden)
+  * [Browsersupport](#browsersupport)
   * [Performance & Effizienz](#maximale-performance--ressourceneffizienz)
   * [Runtime Safety](#runtime-safety--design-time-power)
   * [Design-Time Testing](#hervorragend-für-design-time-testing)
@@ -24,22 +23,21 @@
 - [Wie ist @type-check/guards zu nutzen?](#wie-ist-type-checkguards-zu-nutzen)
   * [Voraussetzungen](#voraussetzungen)
   * [Installation](#installation)
-  * [Lokaler Import](#lokaler-import)
-  * [Globaler Import](#globaler-import)
   * [package.json](#packagejson)
-  * [CDN (jsDelivr)](#cdn-jsdelivr)
+  * [tsconfig.json](#tsconfigjson)
+  * [Import](#import)
+    - [Lokaler Import (Node.js)](#lokaler-import)
+    - [Globaler Import (Node.js)](#globaler-import)
+    - [Browser Import & CDN (jsDelivr)](#browser-import)
   * [Verwendung](#verwendung)
   * [Beispiele](#beispiele)
   * [Beispiel mit Objekt-Export](#beispiel-mit-dem-objekt-export)
   * [Beispiel mit Tree-Shakable Funktionen](#beispiel-tree-shakable-fähige-funktionen)
-- [API-Referenz / Methoden](#methoden)
+- [Funktionen / Methoden](#funktionen--methoden)
   * [Typ-Ermittlung](#typ-ermittlung)
-  * [Primitive Checks](#primitive)
-  * [Array Validierung](#typen-in-arrays)
+  * [Typprüfungen](#typprüfungen)
 - [@type-check Ökosystem](#das-type-check-ökosystem)
 - [Mitwirken & Unterstützung](#unterstützen-oder-fehler-melden)
-
-<!-- tocstop -->
 
 </details>
 
@@ -61,8 +59,12 @@ jede einzelne Funktion.
 
 Im Gegensatz zu schwerfälligen Frameworks wie **Chai**, **Jest** oder **Vitest**, die primär für isolierte
 Testumgebungen konzipiert sind,
-wurde `@type-check/guards` für maximale Effizienz im **Produktionseinsatz (Runtime)** und höchste Präzision im *
-*Design-Time Testing** entwickelt.
+wurde `@type-check/guards` für maximale Effizienz im **Produktionseinsatz (Runtime)** und höchste Präzision im
+**Design-Time Testing** entwickelt.
+
+### Browsersupport
+
+> `@type-check/guards` unterstützt alle modernen Browser, einschließlich Chrome, Edge, Firefox, Opera und Safari.
 
 ### Maximale Performance & Ressourceneffizienz
 
@@ -127,18 +129,16 @@ Obwohl für die Runtime optimiert, ist `@type-check/guards` die perfekte Ergänz
 Um die Fehleranfälligkeit bei Vergleichen zu minimieren, folgt `@type-check/guards` einer strikten **camelCase-Strategie
 **.
 Alle von `getTypeOf` zurückgegebenen Strings sowie die Typ-Bezeichner in `isOfType` sind konsequent in *camelCase*
-geschrieben (z.
-B. `"nan"` statt `"NaN"`, `"bigInt"` statt `"BigInt"`).
+geschrieben (z. B. `"nan"` statt `"NaN"`, `"bigInt"` statt `"BigInt"`).
 
----
+<br>
 
 ## Wie ist *@type-check/guards* zu nutzen?
 
 ### Voraussetzungen
 
 Das Paket ist als natives **ES-Modul (ESM)** konzipiert und unterstützt alle modernen Umgebungen ab **ES2020+** (Node.js
-16+, aktuelle Browser sowie Edge-Runtimes),
-um maximale Effizienz ohne unnötige Polyfills zu gewährleisten.
+18+, aktuelle Browser sowie Edge-Runtimes), um maximale Effizienz ohne unnötige Polyfills zu gewährleisten.
 
 ### Installation
 
@@ -146,6 +146,33 @@ Um `@type-check/guards` zu installieren, verwende den folgenden Befehl in der Ko
 
 ```bash
 npm install @type-check/guards
+```
+
+### package.json
+
+Stelle sicher, dass `@type-check/guards` in Deine `package.json`-Abhängigkeiten aufgenommen ist und immer die neueste
+Version verwendet wird:
+
+```json
+{
+	"dependencies": {
+		"@type-check/guards": "*"
+	}
+}
+```
+
+### tsconfig.json
+
+Da `@type-check/guards` als ESM-Modul exportiert wird, ist es erforderlich,
+die Option `moduleResolution` in der `tsconfig.json`-Datei anzupassen,
+um Fehlermeldungen durch den TypeScript-Compiler zu vermeiden:
+
+```json
+{
+	"compilerOptions": {
+		"moduleResolution": "NodeNext"
+	}
+}
 ```
 
 ### Import
@@ -187,26 +214,15 @@ import '@type-check/guards/register-global';
 type.isPlainObject({}); // true
 ```
 
-### package.json
+### Browser Import
 
-Stelle sicher, dass `@type-check/guards` in Deine `package.json`-Abhängigkeiten aufgenommen und immer die neueste
-Version verwendet wird:
-
-```json
-{
- "dependencies": {
-  "@type-check/guards": "*"
- }
-}
-```
-
-### CDN (jsDelivr)
+Wenn das Bundle lokal gehostet werden soll, findet sich das minifizierte Bundle unter `dist/index.min.mjs` im
+Paketverzeichnis.
 
 Für eine schnelle Integration in Prototypen oder die direkte Verwendung im Browser (ohne Build-Schritt) kann
-`@type-check/guards` über jsDelivr geladen werden:
+`@type-check/guards` über das Content Delivery Network (CDN) **jsDelivr** oder **unpkg** geladen werden:
 
 ```html
-
 <script type="module">
   import {isInteger, areStrings} from 'https://cdn.jsdelivr.net/npm/@type-check/guards/dist/index.min.mjs';
 
@@ -215,11 +231,14 @@ Für eine schnelle Integration in Prototypen oder die direkte Verwendung im Brow
 </script>
 ```
 
+> Für **unpkg** nutze diese URL: https://unpkg.com/@type-check/guards/dist/index.min.mjs
+
 ### Verwendung
 
 Alle Funktionen bzw. Methoden nehmen **ein Argument** entgegen und geben einen booleschen Wert zurück, mit Ausnahme der
-Funktionen bzw. Methoden
-`isOfType`, `isOneOfType`, `areOfType` und `areOneOfType`, die **zwei Argumente** entgegennehmen.
+Funktionen bzw. Methoden `isEqual`, `isOfType`, `isOneOfType`, `areEqual`, `areOfType` und `areOneOfType`,
+die **zwei Argumente** entgegennehmen.
+
 Das erste Argument ist *immer* der zu prüfende Wert, das zweite Argument ist der erwartete Typ.
 Bei *__OneOfType* müssen die Typen in einem Array angegeben werden.
 
@@ -317,7 +336,7 @@ function checkAccountDetails(options) {
 checkAccountDetails(user1);
 ```
 
----
+<br>
 
 ## Exportierte TypeScript-Typen
 
@@ -333,16 +352,22 @@ import type {DataType, Primitive, NonPrimitive, NumberType} from "@type-check/gu
 
 - **`DataType`**: Die zentrale Union aus `Primitive` und `NonPrimitive`. Sie umfasst alle Bezeichner, die auch von
   `getTypeOf` zurückgegeben werden können.
-- **`Primitive`**: Beinhaltet alle einfachen Datentypen wie `"string"`, `"number"`, `"boolean"`, `"bigint"`, `"symbol"`,
-  `"integer"`, `"float"`, `"nan"`, `"null"` und `"undefined"`.
-- **`NonPrimitive`**: Umfasst komplexe Strukturen wie `"array"`, `"object"`, `"date"`, `"error"`, `"function"`, `"map"`,
-  `"set"`, `"promise"`, `"regexp"`, `"stream"`, `"buffer"`, `"weakmap"` und `"weakset"`.
-- **`NumberType`**: Eine spezialisierte Auswahl für numerische Klassifizierungen (`"number"`, `"integer"`, `"float"`,
-  `"bigInt"`).
 
----
 
-## Methoden
+- **`Primitive`**: Beinhaltet alle einfachen Datentypen wie `string`, `number`, `boolean`, `bigInt`, `symbol`,
+  `integer`, `float`, `nan`, `null` und `undefined`.
+
+
+- **`NonPrimitive`**: Umfasst komplexe Strukturen wie `array`, `object`, `date`, `error`, `function`, `map`,
+  `set`, `promise`, `regExp`, `stream`, `buffer`, `weakMap` und `weakSet`.
+
+
+- **`NumberType`**: Eine spezialisierte Auswahl für numerische Klassifizierungen (`number`, `integer`, `float`,
+  `bigInt`).
+
+<br>
+
+## Funktionen / Methoden
 
 Alle Funktionen sind darauf ausgelegt, präzise Ergebnisse zu liefern und können entweder über das `type`-Objekt oder als
 Einzelimport genutzt werden.
@@ -352,85 +377,50 @@ Einzelimport genutzt werden.
 [getTypeOf(value)](docs/german/getTypeOf.de.md) gibt eine Zeichenfolge zurück, die den Typ des angegebenen Werts als
 Zeichenkette beschreibt (immer als camelCase).
 
-### Primitive
+### Typprüfungen
 
-Die Rückgabe ist immer ein boolescher Wert.
+Alle Methoden geben einen booleschen Wert zurück.
+Die Spalte **Einzelwertprüfung** prüft einen individuellen Wert, während die Spalte **Array-Elemente überprüfen** prüft,
+ob jedes Element im übergebenen Array die Bedingung erfüllt.
 
-- [isArray(value)](docs/german/isArray.de.md)
-- [isBigInt(value)](docs/german/isBigInt.de.md)
-- [isBoolean(value)](docs/german/isBoolean.de.md)
-- [isBuffer(value)](docs/german/isBuffer.de.md)
-- [isDate(value)](docs/german/isDate.de.md)
-- [isEqual(value, expected)](docs/german/isEqual.de.md)
-- [isError(value)](docs/german/isError.de.md)
-- [isFalse(value)](docs/german/isFalse.de.md)
-- [isFilledArray(value)](docs/german/isFilledArray.de.md)
-- [isFinite(value)](docs/german/isFinite.de.md)
-- [isFloat(value)](docs/german/isFloat.de.md)
-- [isFunction(value)](docs/german/isFunction.de.md)
-- [isInteger(value)](docs/german/isInteger.de.md)
-- [isMap(value)](docs/german/isMap.de.md)
-- [isNaN(value)](docs/german/isNaN.de.md)
-- [isNull(value)](docs/german/isNull.de.md)
-- [isNullOrUndefined(value)](docs/german/isNullOrUndefined.de.md)
-- [isNumber(value)](docs/german/isNumber.de.md)
-- [isObject(value)](docs/german/isObject.de.md)
-- [isOfType(value, type)](docs/german/isOfType.de.md)
-- [isOneOfType(value, types[])](docs/german/isOneOfType.de.md)
-- [isPlainObject(value)](docs/german/isPlainObject.de.md)
-- [isPrimitive(value)](docs/german/isPrimitive.de.md)
-- [isPromise(value)](docs/german/isPromise.de.md)
-- [isRegEx(value)](docs/german/isRegEx.de.md)
-- [isSet(value)](docs/german/isSet.de.md)
-- [isStream(value)](docs/german/isStream.de.md)
-- [isString(value)](docs/german/isString.de.md)
-- [isSymbol(value)](docs/german/isSymbol.de.md)
-- [isTrue(value)](docs/german/isTrue.de.md)
-- [isUndefined(value)](docs/german/isUndefined.de.md)
-- [isValidDate(value)](docs/german/isValidDate.de.md)
-- [isWeakMap(value)](docs/german/isWeakMap.de.md)
-- [isWeakSet(value)](docs/german/isWeakSet.de.md)
+| Einzelwertprüfung                                               | Array-Elemente überprüfen                                         | Beschreibung                                            |
+|:----------------------------------------------------------------|:------------------------------------------------------------------|:--------------------------------------------------------|
+| [isArray(value)](docs/german/isArray.de.md)                     | [areArrays(array)](docs/german/areArrays.de.md)                   | Prüft, ob Wert(e) Arrays sind                           |
+| [isBigInt(value)](docs/german/isBigInt.de.md)                   | [areBigInts(array)](docs/german/areBigInts.de.md)                 | Prüft, ob Wert(e) BigInts sind                          |
+| [isBoolean(value)](docs/german/isBoolean.de.md)                 | [areBooleans(array)](docs/german/areBooleans.de.md)               | Prüft, ob Wert(e) Booleans sind                         |
+| [isBuffer(value)](docs/german/isBuffer.de.md)                   | [areBuffers(array)](docs/german/areBuffers.de.md)                 | Prüft, ob Wert(e) Node.js-Buffer sind                   |
+| [isDate(value)](docs/german/isDate.de.md)                       | [areDates(array)](docs/german/areDates.de.md)                     | Prüft, ob Wert(e) Date-Objekte sind                     |
+| [isEqual(value, expected)](docs/german/isEqual.de.md)           | [areEqual(value, expected)](docs/german/areEqual.de.md)           | Prüft auf Gleichheit                                    |
+| [isError(value)](docs/german/isError.de.md)                     | [areErrors(value)](docs/german/areErrors.de.md)                   | Prüft, ob Wert(e) Error-Objekte sind                    |
+| [isFalse(value)](docs/german/isFalse.de.md)                     | [areFalse(array)](docs/german/areFalse.de.md)                     | Prüft, ob Wert(e) strikt `false` sind                   |
+| [isFilledArray(value)](docs/german/isFilledArray.de.md)         | [areFilledArrays(array)](docs/german/areFilledArrays.de.md)       | Prüft, ob Wert(e) nicht-leere Arrays sind               |
+| [isFinite(value)](docs/german/isFinite.de.md)                   | [areFinite(array)](docs/german/areFinite.de.md)                   | Prüft, ob Wert(e) endliche Zahlen sind                  |
+| [isFloat(value)](docs/german/isFloat.de.md)                     | [areFloats(array)](docs/german/areFloats.de.md)                   | Prüft, ob Wert(e) Gleitkommazahlen sind                 |
+| [isFunction(value)](docs/german/isFunction.de.md)               | [areFunctions(array)](docs/german/areFunctions.de.md)             | Prüft, ob Wert(e) Funktionen sind                       |
+| [isInteger(value)](docs/german/isInteger.de.md)                 | [areIntegers(array)](docs/german/areIntegers.de.md)               | Prüft, ob Wert(e) Ganzzahlen sind                       |
+| [isMap(value)](docs/german/isMap.de.md)                         | [areMaps(array)](docs/german/areMaps.de.md)                       | Prüft, ob Wert(e) Map-Objekte sind                      |
+| [isNaN(value)](docs/german/isNaN.de.md)                         | [areNaNs(array)](docs/german/areNaNs.de.md)                       | Prüft, ob Wert(e) spezifisch `NaN` sind                 |
+| [isNull(value)](docs/german/isNull.de.md)                       | [areNull(array)](docs/german/areNull.de.md)                       | Prüft, ob Wert(e) `null` sind                           |
+| [isNullOrUndefined(value)](docs/german/isNullOrUndefined.de.md) | [areNullOrUndefined(array)](docs/german/areNullOrUndefined.de.md) | Prüft auf Null- oder Undefined-Werte                    |
+| [isNumber(value)](docs/german/isNumber.de.md)                   | [areNumbers(array)](docs/german/areNumbers.de.md)                 | Prüft, ob Wert(e) Zahlen sind                           |
+| [isObject(value)](docs/german/isObject.de.md)                   | [areObjects(array)](docs/german/areObjects.de.md)                 | Prüft, ob Wert(e) Objekte sind                          |
+| [isOfType(value, type)](docs/german/isOfType.de.md)             | [areOfType(array, type)](docs/german/areOfType.de.md)             | Prüft gegen einen spezifischen Typ                      |
+| [isOneOfType(value, types[])](docs/german/isOneOfType.de.md)    | [areOneOfType(array, types[])](docs/german/areOneOfType.de.md)    | Prüft gegen mehrere Typen                               |
+| [isPlainObject(value)](docs/german/isPlainObject.de.md)         | [arePlainObjects(array)](docs/german/arePlainObjects.de.md)       | Prüft, ob Wert(e) einfache Objekte (Plain Objects) sind |
+| [isPrimitive(value)](docs/german/isPrimitive.de.md)             | [arePrimitives(array)](docs/german/arePrimitives.de.md)           | Prüft, ob Wert(e) primitive Typen sind                  |
+| [isPromise(value)](docs/german/isPromise.de.md)                 | [arePromises(array)](docs/german/arePromises.de.md)               | Prüft, ob Wert(e) Promises sind                         |
+| [isRegEx(value)](docs/german/isRegEx.de.md)                     | [areRegExes(array)](docs/german/areRegExes.de.md)                 | Prüft, ob Wert(e) reguläre Ausdrücke sind               |
+| [isSet(value)](docs/german/isSet.de.md)                         | [areSets(array)](docs/german/areSets.de.md)                       | Prüft, ob Wert(e) Set-Objekte sind                      |
+| [isStream(value)](docs/german/isStream.de.md)                   | [areStreams(array)](docs/german/areStreams.de.md)                 | Prüft, ob Wert(e) Streams sind                          |
+| [isString(value)](docs/german/isString.de.md)                   | [areStrings(array)](docs/german/areStrings.de.md)                 | Prüft, ob Wert(e) Zeichenketten sind                    |
+| [isSymbol(value)](docs/german/isSymbol.de.md)                   | [areSymbols(array)](docs/german/areSymbols.de.md)                 | Prüft, ob Wert(e) Symbole sind                          |
+| [isTrue(value)](docs/german/isTrue.de.md)                       | [areTrue(array)](docs/german/areTrue.de.md)                       | Prüft, ob Wert(e) strikt `true` sind                    |
+| [isUndefined(value)](docs/german/isUndefined.de.md)             | [areUndefined(array)](docs/german/areUndefined.de.md)             | Prüft, ob Wert(e) `undefined` sind                      |
+| [isValidDate(value)](docs/german/isValidDate.de.md)             | [areValidDates(array)](docs/german/areValidDates.de.md)           | Prüft auf gültige Date-Objekte                          |
+| [isWeakMap(value)](docs/german/isWeakMap.de.md)                 | [areWeakMaps(array)](docs/german/areWeakMaps.de.md)               | Prüft, ob Wert(e) WeakMaps sind                         |
+| [isWeakSet(value)](docs/german/isWeakSet.de.md)                 | [areWeakSets(array)](docs/german/areWeakSets.de.md)               | Prüft, ob Wert(e) WeakSets sind                         |
 
-### Typen in Arrays
-
-Die Rückgabe ist immer ein boolescher Wert.
-
-- [areArrays(array)](docs/german/areArrays.de.md)
-- [areBigInts(array)](docs/german/areBigInts.de.md)
-- [areBooleans(array)](docs/german/areBooleans.de.md)
-- [areBuffers(array)](docs/german/areBuffers.de.md)
-- [areDates(array)](docs/german/areDates.de.md)
-- [areEqual(value, expected)](docs/german/areEqual.de.md)
-- [areErrors(value)](docs/german/areErrors.de.md)
-- [areFalse(array)](docs/german/areFalse.de.md)
-- [areFilledArrays(array)](docs/german/areFilledArrays.de.md)
-- [areFinite(array)](docs/german/areFinite.de.md)
-- [areFloats(array)](docs/german/areFloats.de.md)
-- [areFunctions(array)](docs/german/areFunctions.de.md)
-- [areIntegers(array)](docs/german/areIntegers.de.md)
-- [areMaps(array)](docs/german/areMaps.de.md)
-- [areNaNs(array)](docs/german/areNaNs.de.md)
-- [areNull(array)](docs/german/areNull.de.md)
-- [areNullOrUndefined(array)](docs/german/areNullOrUndefined.de.md)
-- [areNumbers(array)](docs/german/areNumbers.de.md)
-- [areObjects(array)](docs/german/areObjects.de.md)
-- [areOfType(array, type)](docs/german/areOfType.de.md)
-- [areOneOfType(array, types[])](docs/german/areOneOfType.de.md)
-- [arePlainObjects(array)](docs/german/arePlainObjects.de.md)
-- [arePrimitives(array)](docs/german/arePrimitives.de.md)
-- [arePromises(array)](docs/german/arePromises.de.md)
-- [areRegExes(array)](docs/german/areRegExes.de.md)
-- [areSets(array)](docs/german/areSets.de.md)
-- [areStreams(array)](docs/german/areStreams.de.md)
-- [areStrings(array)](docs/german/areStrings.de.md)
-- [areSymbols(array)](docs/german/areSymbols.de.md)
-- [areTrue(array)](docs/german/areTrue.de.md)
-- [areUndefined(array)](docs/german/areUndefined.de.md)
-- [areValidDates(array)](docs/german/areValidDates.de.md)
-- [areWeakMaps(array)](docs/german/areWeakMaps.de.md)
-- [areWeakSets(array)](docs/german/areWeakSets.de.md)
-
----
+<br>
 
 ## Das *@type-check* Ökosystem
 
@@ -445,8 +435,8 @@ Durch die strikte Trennung der Module lädst Du nur die Logik, die Du tatsächli
   fehlschlägt.
   Ideal für saubere Validierungslogik am Anfang von Funktionen.
 
-  Das Besondere: Das Modul liefert **mehrsprachige, konfigurierbare Fehlermeldungen** mit, die direkt in der Anwendung (
-  z. B. für API-Antworten oder UI-Feedback) genutzt werden können.
+  Das Besondere: Das Modul liefert **mehrsprachige, konfigurierbare Fehlermeldungen** mit,
+  die direkt in der Anwendung (z. B. für API-Antworten oder UI-Feedback) genutzt werden können.
 
 
 - **[@type-check/constraints](https://www.npmjs.com/package/@type-check/constraints)**:
@@ -468,7 +458,7 @@ Durch die strikte Trennung der Module lädst Du nur die Logik, die Du tatsächli
   Du entscheidest selbst, wie strikt Deine Anwendung sein soll – von einfachen booleschen Prüfungen bis hin zu harten
   Assertionen, die den Programmfluss bei Fehlern stoppen.
 
----
+<br>
 
 ## Unterstützen oder Fehler melden
 
@@ -476,6 +466,6 @@ Wenn Du ebenfalls einen Beitrag zur Bibliothek leisten möchtest (z. B. Überset
 Informationen dazu findest Du unter [CONTRIBUTING.md](CONTRIBUTING.md).
 Du wirst auch in der Datei [AUTHORS.md](AUTHORS.md) erwähnt.
 
-Bei Fehlern oder Ideen zu sinnvollen Erweiterungen, kannst Du Dich direkt
+Bei Fehlern oder Ideen zu sinnvollen Erweiterungen kannst Du Dich direkt
 auf [GitHub](https://github.com/roland-milto/type-check-guards/issues) beteiligen.
 
