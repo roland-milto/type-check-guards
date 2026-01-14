@@ -362,8 +362,8 @@ import type {DataType, Primitive, NonPrimitive, NumberType} from "@type-check/gu
   `set`, `promise`, `regExp`, `stream`, `buffer`, `weakMap` und `weakSet`.
 
 
-- **`NumberType`**: Eine spezialisierte Auswahl für numerische Klassifizierungen (`number`, `integer`, `float`,
-  `bigInt`).
+- **`NumericType`**: Eine spezialisierte Auswahl für numerische Klassifizierungen (`bigInt`, `binary`, `decimal`,
+  `float`, `hexadecimal`, `integer`, `number` und `octal`).
 
 <br>
 
