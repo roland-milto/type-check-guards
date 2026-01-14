@@ -436,11 +436,12 @@ Durch die strikte Trennung der Module lädst Du nur die Logik, die Du tatsächli
   Ideal für saubere Validierungslogik am Anfang von Funktionen.
 
   Das Besondere: Das Modul liefert **mehrsprachige, konfigurierbare Fehlermeldungen** mit,
-  die direkt in der Anwendung (z. B. für API-Antworten oder UI-Feedback) genutzt werden können.
+  die direkt in der Anwendung (z.&nbsp;B. für API-Antworten oder UI-Feedback) genutzt werden können.
 
 
 - **[@type-check/constraints](https://www.npmjs.com/package/@type-check/constraints)**:
-  Ermöglicht die Definition komplexer Regeln und Bedingungen (z. B. Mindestlänge von Strings, Wertebereiche von Zahlen),
+  Ermöglicht die Definition komplexer Regeln und Bedingungen (z.&nbsp;B. Mindestlänge von Strings, Wertebereiche von
+  Zahlen),
   die über einfache Typ-Prüfungen hinausgehen.
 
 ### Warum die strikte Trennung?
@@ -462,7 +463,8 @@ Durch die strikte Trennung der Module lädst Du nur die Logik, die Du tatsächli
 
 ## Unterstützen oder Fehler melden
 
-Wenn Du ebenfalls einen Beitrag zur Bibliothek leisten möchtest (z. B. Übersetzungen), bist Du herzlich dazu eingeladen.
+Wenn Du ebenfalls einen Beitrag zur Bibliothek leisten möchtest (z.&nbsp;B. Übersetzungen), bist Du herzlich dazu
+eingeladen.
 Informationen dazu findest Du unter [CONTRIBUTING.md](CONTRIBUTING.md).
 Du wirst auch in der Datei [AUTHORS.md](AUTHORS.md) erwähnt.
 
