@@ -192,5 +192,5 @@ export {
 // Export: Interfaces and types:
 export type {DataType} from "./types/dataType.js";
 export type {Primitive} from "./types/primitive.js";
-export type {NumberType} from "./types/numberType.js";
+export type {NumericType} from "./types/numericType.js";
 export type {NonPrimitive} from "./types/nonPrimitive.js";
