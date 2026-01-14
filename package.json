@@ -5,7 +5,7 @@
   ],
   "homepage": "https://roland.milto.de/projekte/type-check#guards",
   "name": "@type-check/guards",
-  "version": "2026.01.13",
+  "version": "2026.1.13",
   "license": "GPL-3.0-or-later",
   "description": "@type-check/guards provides high-performance, security-focused runtime type checks following current 2026 best practices. Built for professional TypeScript, Node.js, and modern browser environments, this package delivers precise and efficient type-guard functions with active support and continuous development.",
   "repository": {
