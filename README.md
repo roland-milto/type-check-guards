@@ -3,7 +3,7 @@
 # [`@type-check/guards`](https://www.npmjs.com/package/@type-check/guards)
 
 ![NPM version](https://img.shields.io/npm/v/@type-check/guards?color=blue)
-![Typescript project](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)
+![Typescript project](https://img.shields.io/badge/Typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)
 ![Browser supported](https://img.shields.io/badge/Browser-supported-brightgreen)
 ![ESM supported](https://img.shields.io/badge/ESM-supported-brightgreen)
 ![Tree shaking](https://img.shields.io/badge/Tree--shaking-supported-brightgreen)
@@ -208,6 +208,18 @@ import '@type-check/guards/register-global';
 type.isPlainObject({}); // true
 ```
 
+If your IDE does not automatically recognize the types, you can manually register them in `tsconfig.json`:
+
+```json
+{
+	"compilerOptions": {
+		"types": [
+			"@type-check/guards/register-global"
+		]
+	}
+}
+```
+
 ### Browser import
 
 If the bundle is to be hosted locally, the minified bundle can be found at `dist/index.min.mjs` in the package
@@ -375,42 +387,42 @@ All methods return a boolean value.
 The "Single Value Check" column checks an individual value,
 while the "Array Elements Check" column checks if every element in the provided array satisfies the condition.
 
-| Single Value Check                                            | Array Elements Check                                            | Description                                   |
-|:--------------------------------------------------------------|:----------------------------------------------------------------|:----------------------------------------------|
-| [isArray(value)](docs/english/isArray.md)                     | [areArrays(array)](docs/english/areArrays.md)                   | Checks if value(s) are Arrays                 |
-| [isBigInt(value)](docs/english/isBigInt.md)                   | [areBigInts(array)](docs/english/areBigInts.md)                 | Checks if value(s) are BigInts                |
-| [isBoolean(value)](docs/english/isBoolean.md)                 | [areBooleans(array)](docs/english/areBooleans.md)               | Checks if value(s) are Booleans               |
-| [isBuffer(value)](docs/english/isBuffer.md)                   | [areBuffers(array)](docs/english/areBuffers.md)                 | Checks if value(s) are Node.js Buffers        |
-| [isDate(value)](docs/english/isDate.md)                       | [areDates(array)](docs/english/areDates.md)                     | Checks if value(s) are Date objects           |
-| [isEqual(value, expected)](docs/english/isEqual.md)           | [areEqual(value, expected)](docs/english/areEqual.md)           | Checks for equality                           |
-| [isError(value)](docs/english/isError.md)                     | [areErrors(value)](docs/english/areErrors.md)                   | Checks if value(s) are Error objects          |
-| [isFalse(value)](docs/english/isFalse.md)                     | [areFalse(array)](docs/english/areFalse.md)                     | Checks if value(s) are strictly `false`       |
-| [isFilledArray(value)](docs/english/isFilledArray.md)         | [areFilledArrays(array)](docs/english/areFilledArrays.md)       | Checks if value(s) are non-empty Arrays       |
-| [isFinite(value)](docs/english/isFinite.md)                   | [areFinite(array)](docs/english/areFinite.md)                   | Checks if value(s) are finite numbers         |
-| [isFloat(value)](docs/english/isFloat.md)                     | [areFloats(array)](docs/english/areFloats.md)                   | Checks if value(s) are floating point numbers |
-| [isFunction(value)](docs/english/isFunction.md)               | [areFunctions(array)](docs/english/areFunctions.md)             | Checks if value(s) are Functions              |
-| [isInteger(value)](docs/english/isInteger.md)                 | [areIntegers(array)](docs/english/areIntegers.md)               | Checks if value(s) are Integers               |
-| [isMap(value)](docs/english/isMap.md)                         | [areMaps(array)](docs/english/areMaps.md)                       | Checks if value(s) are Map objects            |
-| [isNaN(value)](docs/english/isNaN.md)                         | [areNaNs(array)](docs/english/areNaNs.md)                       | Checks if value(s) are specifically `NaN`     |
-| [isNull(value)](docs/english/isNull.md)                       | [areNull(array)](docs/english/areNull.md)                       | Checks if value(s) are `null`                 |
-| [isNullOrUndefined(value)](docs/english/isNullOrUndefined.md) | [areNullOrUndefined(array)](docs/english/areNullOrUndefined.md) | Checks for nullish values                     |
-| [isNumber(value)](docs/english/isNumber.md)                   | [areNumbers(array)](docs/english/areNumbers.md)                 | Checks if value(s) are Numbers                |
-| [isObject(value)](docs/english/isObject.md)                   | [areObjects(array)](docs/english/areObjects.md)                 | Checks if value(s) are Objects                |
-| [isOfType(value, type)](docs/english/isOfType.md)             | [areOfType(array, type)](docs/english/areOfType.md)             | Checks against a specific type                |
-| [isOneOfType(value, types[])](docs/english/isOneOfType.md)    | [areOneOfType(array, types[])](docs/english/areOneOfType.md)    | Checks against multiple types                 |
-| [isPlainObject(value)](docs/english/isPlainObject.md)         | [arePlainObjects(array)](docs/english/arePlainObjects.md)       | Checks if value(s) are Plain Objects          |
-| [isPrimitive(value)](docs/english/isPrimitive.md)             | [arePrimitives(array)](docs/english/arePrimitives.md)           | Checks if value(s) are primitive types        |
-| [isPromise(value)](docs/english/isPromise.md)                 | [arePromises(array)](docs/english/arePromises.md)               | Checks if value(s) are Promises               |
-| [isRegEx(value)](docs/english/isRegEx.md)                     | [areRegExes(array)](docs/english/areRegExes.md)                 | Checks if value(s) are Regular Expressions    |
-| [isSet(value)](docs/english/isSet.md)                         | [areSets(array)](docs/english/areSets.md)                       | Checks if value(s) are Set objects            |
-| [isStream(value)](docs/english/isStream.md)                   | [areStreams(array)](docs/english/areStreams.md)                 | Checks if value(s) are Streams                |
-| [isString(value)](docs/english/isString.md)                   | [areStrings(array)](docs/english/areStrings.md)                 | Checks if value(s) are Strings                |
-| [isSymbol(value)](docs/english/isSymbol.md)                   | [areSymbols(array)](docs/english/areSymbols.md)                 | Checks if value(s) are Symbols                |
-| [isTrue(value)](docs/english/isTrue.md)                       | [areTrue(array)](docs/english/areTrue.md)                       | Checks if value(s) are strictly `true`        |
-| [isUndefined(value)](docs/english/isUndefined.md)             | [areUndefined(array)](docs/english/areUndefined.md)             | Checks if value(s) are `undefined`            |
-| [isValidDate(value)](docs/english/isValidDate.md)             | [areValidDates(array)](docs/english/areValidDates.md)           | Checks for valid Date objects                 |
-| [isWeakMap(value)](docs/english/isWeakMap.md)                 | [areWeakMaps(array)](docs/english/areWeakMaps.md)               | Checks if value(s) are WeakMaps               |
-| [isWeakSet(value)](docs/english/isWeakSet.md)                 | [areWeakSets(array)](docs/english/areWeakSets.md)               | Checks if value(s) are WeakSets               |
+| Single Value Check                                            | Array Elements Check                                            |
+|---------------------------------------------------------------|-----------------------------------------------------------------|
+| [isArray(value)](docs/english/isArray.md)                     | [areArrays(array)](docs/english/areArrays.md)                   |
+| [isBigInt(value)](docs/english/isBigInt.md)                   | [areBigInts(array)](docs/english/areBigInts.md)                 |
+| [isBoolean(value)](docs/english/isBoolean.md)                 | [areBooleans(array)](docs/english/areBooleans.md)               |
+| [isBuffer(value)](docs/english/isBuffer.md)                   | [areBuffers(array)](docs/english/areBuffers.md)                 |
+| [isDate(value)](docs/english/isDate.md)                       | [areDates(array)](docs/english/areDates.md)                     |
+| [isEqual(value, expected)](docs/english/isEqual.md)           | [areEqual(value, expected)](docs/english/areEqual.md)           |
+| [isError(value)](docs/english/isError.md)                     | [areErrors(value)](docs/english/areErrors.md)                   |
+| [isFalse(value)](docs/english/isFalse.md)                     | [areFalse(array)](docs/english/areFalse.md)                     |
+| [isFilledArray(value)](docs/english/isFilledArray.md)         | [areFilledArrays(array)](docs/english/areFilledArrays.md)       |
+| [isFinite(value)](docs/english/isFinite.md)                   | [areFinite(array)](docs/english/areFinite.md)                   |
+| [isFloat(value)](docs/english/isFloat.md)                     | [areFloats(array)](docs/english/areFloats.md)                   |
+| [isFunction(value)](docs/english/isFunction.md)               | [areFunctions(array)](docs/english/areFunctions.md)             |
+| [isInteger(value)](docs/english/isInteger.md)                 | [areIntegers(array)](docs/english/areIntegers.md)               |
+| [isMap(value)](docs/english/isMap.md)                         | [areMaps(array)](docs/english/areMaps.md)                       |
+| [isNaN(value)](docs/english/isNaN.md)                         | [areNaNs(array)](docs/english/areNaNs.md)                       |
+| [isNull(value)](docs/english/isNull.md)                       | [areNull(array)](docs/english/areNull.md)                       |
+| [isNullOrUndefined(value)](docs/english/isNullOrUndefined.md) | [areNullOrUndefined(array)](docs/english/areNullOrUndefined.md) |
+| [isNumber(value)](docs/english/isNumber.md)                   | [areNumbers(array)](docs/english/areNumbers.md)                 |
+| [isObject(value)](docs/english/isObject.md)                   | [areObjects(array)](docs/english/areObjects.md)                 |
+| [isOfType(value, type)](docs/english/isOfType.md)             | [areOfType(array, type)](docs/english/areOfType.md)             |
+| [isOneOfType(value, types[])](docs/english/isOneOfType.md)    | [areOneOfType(array, types[])](docs/english/areOneOfType.md)    |
+| [isPlainObject(value)](docs/english/isPlainObject.md)         | [arePlainObjects(array)](docs/english/arePlainObjects.md)       |
+| [isPrimitive(value)](docs/english/isPrimitive.md)             | [arePrimitives(array)](docs/english/arePrimitives.md)           |
+| [isPromise(value)](docs/english/isPromise.md)                 | [arePromises(array)](docs/english/arePromises.md)               |
+| [isRegEx(value)](docs/english/isRegEx.md)                     | [areRegExes(array)](docs/english/areRegExes.md)                 |
+| [isSet(value)](docs/english/isSet.md)                         | [areSets(array)](docs/english/areSets.md)                       |
+| [isStream(value)](docs/english/isStream.md)                   | [areStreams(array)](docs/english/areStreams.md)                 |
+| [isString(value)](docs/english/isString.md)                   | [areStrings(array)](docs/english/areStrings.md)                 |
+| [isSymbol(value)](docs/english/isSymbol.md)                   | [areSymbols(array)](docs/english/areSymbols.md)                 |
+| [isTrue(value)](docs/english/isTrue.md)                       | [areTrue(array)](docs/english/areTrue.md)                       |
+| [isUndefined(value)](docs/english/isUndefined.md)             | [areUndefined(array)](docs/english/areUndefined.md)             |
+| [isValidDate(value)](docs/english/isValidDate.md)             | [areValidDates(array)](docs/english/areValidDates.md)           |
+| [isWeakMap(value)](docs/english/isWeakMap.md)                 | [areWeakMaps(array)](docs/english/areWeakMaps.md)               |
+| [isWeakSet(value)](docs/english/isWeakSet.md)                 | [areWeakSets(array)](docs/english/areWeakSets.md)               |
 
 <br>
 
