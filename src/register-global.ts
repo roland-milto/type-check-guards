@@ -2,4 +2,4 @@
 import {type} from './index.js';
 
 // Make the assertion object globally available.
-(globalThis as any).type = type;
+globalThis.type = type;
