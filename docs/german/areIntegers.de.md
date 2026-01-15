@@ -1,6 +1,6 @@
 # areIntegers
 
-Prüft, ob alle Werte in einem Array ganze Zahlen (Integers) sind.
+Prüft, ob alle Werte in einem Array sichere ganze Zahlen (isSafeInteger Prüfung) sind.
 
 ## Wofür wird `areIntegers` verwendet?
 

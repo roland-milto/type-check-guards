@@ -1,6 +1,6 @@
 # isInteger
 
-Prüft, ob ein Wert eine ganze Zahl (Integer) ist.
+Prüft, ob ein Wert eine sichere ganze Zahl (isSafeInteger Prüfung) ist.
 
 ## Verwendung
 

@@ -1,6 +1,6 @@
 # areIntegers
 
-Checks if all values within an array are integers.
+Checks if all values within an array are safe integers (isSafeInteger check).
 
 ## Use Case
 

@@ -1,6 +1,6 @@
 # isInteger
 
-Checks if a value is an integer.
+Checks if a value is a safe integer (isSafeInteger check).
 
 ## Use Case
 
