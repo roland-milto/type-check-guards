@@ -25,9 +25,10 @@
   * [Installation](#installation)
   * [package.json](#packagejson)
   * [tsconfig.json](#tsconfigjson)
-  * [Local import (Node.js)](#local-import)
-  * [Global import (Node.js)](#global-import)
-  * [Browser import & CDN (jsDelivr)](#browser-import)
+  * [Import](#import)
+    - [Local import (Node.js)](#local-import)
+    - [Global import (Node.js)](#global-import)
+    - [Browser import & CDN (jsDelivr)](#browser-import)
   * [Usage](#usage)
   * [Examples](#examples)
   * [Example with Object Export](#example-with-object-export)
@@ -199,13 +200,13 @@ values.areIntegers([42, 1337]); // true
 
 #### Global import
 
-Use `@type-check/guards` as a global import (available as an object only), so you only need to include it *once* in your
+Use `@type-check/guards` as a global import for all functions, so you only need to include the libary *once* in your
 project:
 
 ```ts
 import '@type-check/guards/register-global';
 
-type.isPlainObject({}); // true
+isPlainObject({}); // true
 ```
 
 If your IDE does not automatically recognize the types, you can manually register them in `tsconfig.json`:

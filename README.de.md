@@ -205,13 +205,13 @@ values.areIntegers([42, 1337]); // true
 
 #### Globaler Import
 
-Verwende `@type-check/guards` als globalen Import (nur als Objekt verfügbar), sodass Du es *nur einmal* in Deinem
+Verwende `@type-check/guards` als globalen Import für alle Funktionen, sodass Du die Bibliothek *nur einmal* in Deinem
 Projekt einbinden musst:
 
 ```ts
 import '@type-check/guards/register-global';
 
-type.isPlainObject({}); // true
+isPlainObject({}); // true
 ```
 
 Falls Deine IDE nicht automatisch die Typen erkennt, kannst Du in der `tsconfig.json` die Typen manuell registrieren:
