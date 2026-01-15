@@ -1,5 +1,11 @@
 // Import: Self-created assertion function.
-import {type} from './index.js';
+import * as guards from './index.js';
 
-// Make the assertion object globally available.
-globalThis.type = type;
+/**
+ * Registriert alle Type-Guards global.
+ */
+for (const [name, func] of Object.entries(guards)) {
+  if (typeof func === 'function') {
+    (globalThis as any)[name] = func;
+  }
+}
