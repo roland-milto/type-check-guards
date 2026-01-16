@@ -8,6 +8,14 @@
 ![ESM supported](https://img.shields.io/badge/ESM-supported-brightgreen)
 ![Tree shaking](https://img.shields.io/badge/Tree--shaking-supported-brightgreen)
 
+Sehr einfach zu nutzen (Ein Beispiel):
+
+```ts
+import {isFloat} from "@type-check/guards";
+
+isFloat(1337); // false
+```
+
 ## Inhaltsverzeichnis: Runtime Type Checks & Guards
 
 <details>
@@ -26,13 +34,14 @@
   * [package.json](#packagejson)
   * [tsconfig.json](#tsconfigjson)
   * [Import](#import)
-    - [Lokaler Import (Node.js)](#lokaler-import)
-    - [Globaler Import (Node.js)](#globaler-import)
+    - [Lokaler Funktionen-Import (Node.js)](#lokaler-funktionen-import)
+    - [Lokaler Objekt-Import](#lokaler-objekt-import)
+    - [Globaler Funktionen-Import (Node.js)](#globaler-funktionen-import)
     - [Browser Import & CDN (jsDelivr)](#browser-import)
   * [Verwendung](#verwendung)
   * [Beispiele](#beispiele)
+  * [Beispiel mit tree-shakable-fähigen Funktionen](#beispiel-mit-tree-shakable-fähigen-funktionen)
   * [Beispiel mit Objekt-Export](#beispiel-mit-dem-objekt-export)
-  * [Beispiel mit Tree-Shakable Funktionen](#beispiel-tree-shakable-fähige-funktionen)
 - [Funktionen / Methoden](#funktionen--methoden)
   * [Typ-Ermittlung](#typ-ermittlung)
   * [Typprüfungen](#typprüfungen)
@@ -51,8 +60,7 @@ Dieses Paket wurde für professionelle TypeScript-, Node.js- und moderne Browser
 und effiziente Typüberprüfungsfunktionen mit kontinuierlicher Weiterentwicklung.
 
 Das Modul exportiert ein Objekt, welches alle Typüberprüfungsfunktionen enthält, und bietet gleichzeitig
-Tree-Shaking-Exporte für
-jede einzelne Funktion.
+**Tree-Shaking-Exporte** für jede einzelne Funktion.
 **Außerdem können Typen auch in Arrays überprüft werden.**
 
 ## Warum sollte ich *@type-check/guards* verwenden?
@@ -177,17 +185,9 @@ um Fehlermeldungen durch den TypeScript-Compiler zu vermeiden:
 
 ### Import
 
-#### Lokaler Import
+#### Lokaler Funktionen-Import
 
-Import des type-check Objekts:
-
-```ts
-import {type} from "@type-check/guards";
-
-type.isInteger(42); // true
-```
-
-Oder als individueller Import einzelner Funktionen (Tree-Shaking):
+Individueller Import einzelner Funktionen (Tree-Shaking):
 
 ```ts
 import {isInteger} from "@type-check/guards";
@@ -195,15 +195,25 @@ import {isInteger} from "@type-check/guards";
 isInteger(1337); // true
 ```
 
+#### Lokaler Objekt-Import
+
+Import des type-check Objekts:
+
+```ts
+import {type} from "@type-check/guards/as-object";
+
+type.isInteger(42); // true
+```
+
 Verwendung eines anderen Namens:
 
 ```ts
-import {type as values} from "@type-check/guards";
+import {type as values} from "@type-check/guards/as-object";
 
 values.areIntegers([42, 1337]); // true
 ```
 
-#### Globaler Import
+#### Globaler Funktionen-Import
 
 Verwende `@type-check/guards` als globalen Import für alle Funktionen, sodass Du die Bibliothek *nur einmal* in Deinem
 Projekt einbinden musst:
@@ -236,9 +246,9 @@ Für eine schnelle Integration in Prototypen oder die direkte Verwendung im Brow
 
 ```html
 <script type="module">
-  import {isInteger, areStrings} from 'https://cdn.jsdelivr.net/npm/@type-check/guards/dist/index.min.mjs';
+  import {isFloat, areStrings} from 'https://cdn.jsdelivr.net/npm/@type-check/guards/dist/index.min.mjs';
 
- console.log(isInteger(1337)); // true
+  console.log(isFloat(1337)); // false
  console.log(areStrings(["TS", "JS"])); // true
 </script>
 ```
@@ -286,6 +296,37 @@ const user1 = {
 }
 ```
 
+### Beispiel mit tree-shakable-fähigen Funktionen:
+
+```ts
+import {areStrings, isBoolean, isInteger, isPlainObject, isString} from "@type-check/guards";
+
+function checkAccountDetails(options) {
+  if (!isPlainObject(options))
+    throw new TypeError("options muss ein einfaches Objekt sein");
+
+  if (!isInteger(options.id))
+    throw new TypeError("options.id muss eine Ganzzahl sein");
+
+  if (isString(options.name))
+    console.log("Account:", options.name ?? "Kein Name angegeben");
+
+  if (isString(options.email))
+    console.log("Kontakt E-Mail:", options.email ?? "Keine E-Mail angegeben");
+
+  console.log("Manager:", options.isManager ? "Ja" : "Nein");
+
+  // Arrays werden unterstützt:
+  if (areStrings(options.locations)) {
+    for (const location of options.locations) {
+      console.log("Standort:", location);
+    }
+  }
+}
+
+checkAccountDetails(user1);
+```
+
 #### Beispiel mit dem Objekt-Export:
 
 ```ts
@@ -308,37 +349,6 @@ function checkAccountDetails(options) {
 
   // Also arrays are supported:
   if (type.areStrings(options.locations)) {
-    for (const location of options.locations) {
-      console.log("Standort:", location);
-    }
-  }
-}
-
-checkAccountDetails(user1);
-```
-
-### Beispiel tree-shakable-fähige Funktionen:
-
-```ts
-import {areStrings, isBoolean, isInteger, isPlainObject, isString} from "@type-check/guards";
-
-function checkAccountDetails(options) {
-  if (!isPlainObject(options))
-    throw new TypeError("options muss ein einfaches Objekt sein");
-
-  if (!isInteger(options.id))
-    throw new TypeError("options.id muss eine Ganzzahl sein");
-
-  if (isString(options.name))
-    console.log("Account:", options.name ?? "Kein Name angegeben");
-
-  if (isString(options.email))
-    console.log("Kontakt E-Mail:", options.email ?? "Keine E-Mail angegeben");
-
-  console.log("Manager:", options.isManager ? "Ja" : "Nein");
-
-  // Arrays werden unterstützt:
-  if (areStrings(options.locations)) {
     for (const location of options.locations) {
       console.log("Standort:", location);
     }
@@ -395,42 +405,42 @@ Alle Methoden geben einen booleschen Wert zurück.
 Die Spalte **Einzelwertprüfung** prüft einen individuellen Wert, während die Spalte **Array-Elemente überprüfen** prüft,
 ob jedes Element im übergebenen Array die Bedingung erfüllt.
 
-| Einzelwertprüfung                                               | Array-Elemente überprüfen                                         |
-|-----------------------------------------------------------------|-------------------------------------------------------------------|
-| [isArray(value)](docs/german/isArray.de.md)                     | [areArrays(array)](docs/german/areArrays.de.md)                   |
-| [isBigInt(value)](docs/german/isBigInt.de.md)                   | [areBigInts(array)](docs/german/areBigInts.de.md)                 |
-| [isBoolean(value)](docs/german/isBoolean.de.md)                 | [areBooleans(array)](docs/german/areBooleans.de.md)               |
-| [isBuffer(value)](docs/german/isBuffer.de.md)                   | [areBuffers(array)](docs/german/areBuffers.de.md)                 |
-| [isDate(value)](docs/german/isDate.de.md)                       | [areDates(array)](docs/german/areDates.de.md)                     |
-| [isEqual(value, expected)](docs/german/isEqual.de.md)           | [areEqual(value, expected)](docs/german/areEqual.de.md)           |
-| [isError(value)](docs/german/isError.de.md)                     | [areErrors(value)](docs/german/areErrors.de.md)                   |
-| [isFalse(value)](docs/german/isFalse.de.md)                     | [areFalse(array)](docs/german/areFalse.de.md)                     |
-| [isFilledArray(value)](docs/german/isFilledArray.de.md)         | [areFilledArrays(array)](docs/german/areFilledArrays.de.md)       |
-| [isFinite(value)](docs/german/isFinite.de.md)                   | [areFinite(array)](docs/german/areFinite.de.md)                   |
-| [isFloat(value)](docs/german/isFloat.de.md)                     | [areFloats(array)](docs/german/areFloats.de.md)                   |
-| [isFunction(value)](docs/german/isFunction.de.md)               | [areFunctions(array)](docs/german/areFunctions.de.md)             |
-| [isInteger(value)](docs/german/isInteger.de.md)                 | [areIntegers(array)](docs/german/areIntegers.de.md)               |
-| [isMap(value)](docs/german/isMap.de.md)                         | [areMaps(array)](docs/german/areMaps.de.md)                       |
-| [isNaN(value)](docs/german/isNaN.de.md)                         | [areNaNs(array)](docs/german/areNaNs.de.md)                       |
-| [isNull(value)](docs/german/isNull.de.md)                       | [areNull(array)](docs/german/areNull.de.md)                       |
+|                        Einzelwertprüfung                        |                     Array-Elemente überprüfen                     |
+|:---------------------------------------------------------------:|:-----------------------------------------------------------------:|
+|           [isArray(value)](docs/german/isArray.de.md)           |          [areArrays(array)](docs/german/areArrays.de.md)          |
+|          [isBigInt(value)](docs/german/isBigInt.de.md)          |         [areBigInts(array)](docs/german/areBigInts.de.md)         |
+|         [isBoolean(value)](docs/german/isBoolean.de.md)         |        [areBooleans(array)](docs/german/areBooleans.de.md)        |
+|          [isBuffer(value)](docs/german/isBuffer.de.md)          |         [areBuffers(array)](docs/german/areBuffers.de.md)         |
+|            [isDate(value)](docs/german/isDate.de.md)            |           [areDates(array)](docs/german/areDates.de.md)           |
+|      [isEqual(value, expected)](docs/german/isEqual.de.md)      |      [areEqual(value, expected)](docs/german/areEqual.de.md)      |
+|           [isError(value)](docs/german/isError.de.md)           |          [areErrors(value)](docs/german/areErrors.de.md)          |
+|           [isFalse(value)](docs/german/isFalse.de.md)           |           [areFalse(array)](docs/german/areFalse.de.md)           |
+|     [isFilledArray(value)](docs/german/isFilledArray.de.md)     |    [areFilledArrays(array)](docs/german/areFilledArrays.de.md)    |
+|          [isFinite(value)](docs/german/isFinite.de.md)          |          [areFinite(array)](docs/german/areFinite.de.md)          |
+|           [isFloat(value)](docs/german/isFloat.de.md)           |          [areFloats(array)](docs/german/areFloats.de.md)          |
+|        [isFunction(value)](docs/german/isFunction.de.md)        |       [areFunctions(array)](docs/german/areFunctions.de.md)       |
+|         [isInteger(value)](docs/german/isInteger.de.md)         |        [areIntegers(array)](docs/german/areIntegers.de.md)        |
+|             [isMap(value)](docs/german/isMap.de.md)             |            [areMaps(array)](docs/german/areMaps.de.md)            |
+|             [isNaN(value)](docs/german/isNaN.de.md)             |            [areNaNs(array)](docs/german/areNaNs.de.md)            |
+|            [isNull(value)](docs/german/isNull.de.md)            |            [areNull(array)](docs/german/areNull.de.md)            |
 | [isNullOrUndefined(value)](docs/german/isNullOrUndefined.de.md) | [areNullOrUndefined(array)](docs/german/areNullOrUndefined.de.md) |
-| [isNumber(value)](docs/german/isNumber.de.md)                   | [areNumbers(array)](docs/german/areNumbers.de.md)                 |
-| [isObject(value)](docs/german/isObject.de.md)                   | [areObjects(array)](docs/german/areObjects.de.md)                 |
-| [isOfType(value, type)](docs/german/isOfType.de.md)             | [areOfType(array, type)](docs/german/areOfType.de.md)             |
-| [isOneOfType(value, types[])](docs/german/isOneOfType.de.md)    | [areOneOfType(array, types[])](docs/german/areOneOfType.de.md)    |
-| [isPlainObject(value)](docs/german/isPlainObject.de.md)         | [arePlainObjects(array)](docs/german/arePlainObjects.de.md)       |
-| [isPrimitive(value)](docs/german/isPrimitive.de.md)             | [arePrimitives(array)](docs/german/arePrimitives.de.md)           |
-| [isPromise(value)](docs/german/isPromise.de.md)                 | [arePromises(array)](docs/german/arePromises.de.md)               |
-| [isRegEx(value)](docs/german/isRegEx.de.md)                     | [areRegExes(array)](docs/german/areRegExes.de.md)                 |
-| [isSet(value)](docs/german/isSet.de.md)                         | [areSets(array)](docs/german/areSets.de.md)                       |
-| [isStream(value)](docs/german/isStream.de.md)                   | [areStreams(array)](docs/german/areStreams.de.md)                 |
-| [isString(value)](docs/german/isString.de.md)                   | [areStrings(array)](docs/german/areStrings.de.md)                 |
-| [isSymbol(value)](docs/german/isSymbol.de.md)                   | [areSymbols(array)](docs/german/areSymbols.de.md)                 |
-| [isTrue(value)](docs/german/isTrue.de.md)                       | [areTrue(array)](docs/german/areTrue.de.md)                       |
-| [isUndefined(value)](docs/german/isUndefined.de.md)             | [areUndefined(array)](docs/german/areUndefined.de.md)             |
-| [isValidDate(value)](docs/german/isValidDate.de.md)             | [areValidDates(array)](docs/german/areValidDates.de.md)           |
-| [isWeakMap(value)](docs/german/isWeakMap.de.md)                 | [areWeakMaps(array)](docs/german/areWeakMaps.de.md)               |
-| [isWeakSet(value)](docs/german/isWeakSet.de.md)                 | [areWeakSets(array)](docs/german/areWeakSets.de.md)               |
+|          [isNumber(value)](docs/german/isNumber.de.md)          |         [areNumbers(array)](docs/german/areNumbers.de.md)         |
+|          [isObject(value)](docs/german/isObject.de.md)          |         [areObjects(array)](docs/german/areObjects.de.md)         |
+|       [isOfType(value, type)](docs/german/isOfType.de.md)       |       [areOfType(array, type)](docs/german/areOfType.de.md)       |
+|  [isOneOfType(value, types[])](docs/german/isOneOfType.de.md)   |  [areOneOfType(array, types[])](docs/german/areOneOfType.de.md)   |
+|     [isPlainObject(value)](docs/german/isPlainObject.de.md)     |    [arePlainObjects(array)](docs/german/arePlainObjects.de.md)    |
+|       [isPrimitive(value)](docs/german/isPrimitive.de.md)       |      [arePrimitives(array)](docs/german/arePrimitives.de.md)      |
+|         [isPromise(value)](docs/german/isPromise.de.md)         |        [arePromises(array)](docs/german/arePromises.de.md)        |
+|           [isRegEx(value)](docs/german/isRegEx.de.md)           |         [areRegExes(array)](docs/german/areRegExes.de.md)         |
+|             [isSet(value)](docs/german/isSet.de.md)             |            [areSets(array)](docs/german/areSets.de.md)            |
+|          [isStream(value)](docs/german/isStream.de.md)          |         [areStreams(array)](docs/german/areStreams.de.md)         |
+|          [isString(value)](docs/german/isString.de.md)          |         [areStrings(array)](docs/german/areStrings.de.md)         |
+|          [isSymbol(value)](docs/german/isSymbol.de.md)          |         [areSymbols(array)](docs/german/areSymbols.de.md)         |
+|            [isTrue(value)](docs/german/isTrue.de.md)            |            [areTrue(array)](docs/german/areTrue.de.md)            |
+|       [isUndefined(value)](docs/german/isUndefined.de.md)       |       [areUndefined(array)](docs/german/areUndefined.de.md)       |
+|       [isValidDate(value)](docs/german/isValidDate.de.md)       |      [areValidDates(array)](docs/german/areValidDates.de.md)      |
+|         [isWeakMap(value)](docs/german/isWeakMap.de.md)         |        [areWeakMaps(array)](docs/german/areWeakMaps.de.md)        |
+|         [isWeakSet(value)](docs/german/isWeakSet.de.md)         |        [areWeakSets(array)](docs/german/areWeakSets.de.md)        |
 
 <br>
 
