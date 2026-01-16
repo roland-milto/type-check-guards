@@ -17,6 +17,8 @@ This repository uses GitHub pull requests for code review.
 * Create a file `TYPEGUARD_NAME.md` in the `docs` folder under `english` and a file `TYPEGUARD_NAME.de.md` under
   `deutsch`.
   Follow the scheme of the other Markdown files.
+* Add the type guard in `readme.md` and `readme.de.md` under **Functions / Methods** and reference it to the Markdown
+  file of the respective language created in the `docs` folder.
 * Run `npm run build` to test and validate the changes.
 
 ## Deutsche Anleitung
@@ -34,4 +36,6 @@ This repository uses GitHub pull requests for code review.
 * Erstelle im Ordner `docs` unter `english` eine Datei `TYPEGUARD_NAME.md` und unter `deutsch` eine Datei
   `TYPEGUARD_NAME.de.md` hinzu.
   Halte dich an das Schema der anderen Markdown-Dateien.
+* Füge den Type Guard in der `readme.md` und in der `readme.de.md` unter dem Punkt **Funktionen / Methoden** hinzu und
+  referenzier diesen auf die im Ordner `docs` erstellte Markdown-Datei der jeweiligen Sprache.
 * Führe `npm run build` aus, um die Änderungen zu testen und zu validieren.
