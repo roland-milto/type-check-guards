@@ -50,6 +50,8 @@ isFloat(1337); // false
 
 </details>
 
+<br>
+
 ## Was ist *@type-check/guards*?
 
 [@type-check/guards](https://www.npmjs.com/package/@type-check/guards) bietet leistungsstarke, sicherheitsorientierte
@@ -62,6 +64,8 @@ und effiziente Typüberprüfungsfunktionen mit kontinuierlicher Weiterentwicklun
 Das Modul exportiert ein Objekt, welches alle Typüberprüfungsfunktionen enthält, und bietet gleichzeitig
 **Tree-Shaking-Exporte** für jede einzelne Funktion.
 **Außerdem können Typen auch in Arrays überprüft werden.**
+
+<br>
 
 ## Warum sollte ich *@type-check/guards* verwenden?
 
@@ -111,14 +115,14 @@ während der Entwicklung:
   Das ersetzt unsicheres Type-Casting (`as string`) durch echte Logik.
 
 ```ts
-// Ohne Guards:
+// Ohne Type Guards:
 function process(value: unknown) {
  if (typeof value === 'string') {
   (value as string).toUpperCase(); // Manuelles Casting oft nötig
  }
 }
 
-// Mit @type-check/guards:
+// Mit Type guards:
 if (isString(value)) {
   value.toUpperCase(); // TypeScript erkennt den Typ sofort
 }

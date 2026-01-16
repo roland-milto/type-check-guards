@@ -70,6 +70,7 @@
   "jsdelivr": "./dist/index.min.js",
   "unpkg": "./dist/index.min.js",
   "keywords": [
+    "content validation",
     "data validation",
     "datatype validation",
     "design-time",
@@ -79,6 +80,7 @@
     "runtime type check",
     "runtime type checking",
     "runtime validation",
+    "strict validation",
     "TDD",
     "test driven development",
     "testing",

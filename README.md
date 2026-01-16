@@ -51,6 +51,8 @@ isFloat(1337); // false
 
 </details>
 
+<br>
+
 ## What is *@type-check/guards*?
 
 [@type-check/guards](https://www.npmjs.com/package/@type-check/guards) provides powerful, safety-oriented runtime type
@@ -62,6 +64,8 @@ efficient type-checking functions with continuous development.
 The module exports an object containing all type-checking functions while also providing **tree-shakable** exports for
 each function.
 **Additionally, types within arrays can be validated.**
+
+<br>
 
 ## Why should I use *@type-check/guards*?
 
@@ -94,29 +98,29 @@ precision during **design-time testing**.
 This package protects the application during execution from corrupt data while offering enormous benefits during
 development:
 
-- **Strict Validation:**
+- **Strict validation:**
   JavaScript design flaws are natively corrected (e.g., `typeof null === 'object'` or `typeof NaN === 'number'`). The
   guards check what you *mean*, not what JavaScript *claims*.
 
 
-- **Content Validation:**
+- **Content validation:**
   While testing frameworks often only check *if* an array exists, functions like `areStrings` or `areIntegers`
   efficiently validate the **entire content** – deep and secure.
 
 
-- **Intelligent Type Guards:**
+- **Intelligent type guards:**
   Every function is a true TypeScript Type Guard. Once a check passes, TypeScript automatically recognizes the type in
   the following code block. This replaces unsafe type casting (`as string`) with real logic.
 
 ```ts
-// Without Guards:
+// Without type guards:
 function process(value: unknown) {
   if (typeof value === 'string') {
     (value as string).toUpperCase(); // Manual casting often required
   }
 }
 
-// With @type-check/guards:
+// With type guards:
 if (isString(value)) {
   value.toUpperCase(); // TypeScript recognizes the type immediately
 }
