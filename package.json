@@ -5,7 +5,7 @@
   ],
   "homepage": "https://roland.milto.de/projekte/type-check#guards",
   "name": "@type-check/guards",
-  "version": "2026.1.15",
+  "version": "2026.1.16-beta.0",
   "license": "GPL-3.0-or-later",
   "description": "@type-check/guards provides high-performance, security-focused runtime type checks following current 2026 best practices. Built for professional TypeScript, Node.js, and modern browser environments, this package delivers precise and efficient type-guard functions with active support and continuous development.",
   "repository": {
@@ -24,12 +24,14 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs"
+      "default": "./dist/index.mjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     },
     "./register-global": {
-      "types": "./dist/types/global.d.ts",
-      "import": "./dist/register-global.mjs"
+      "default": "./dist/register-global.mjs",
+      "import": "./dist/register-global.mjs",
+      "types": "./dist/types/global.d.ts"
     }
   },
   "engines": {
@@ -44,9 +46,10 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "build": "npm run build:cdn && npm run build:npm",
+    "build": "npm run build:cdn && npm run build:index && npm run build:global",
     "build:cdn": "tsdown --name CDN --clean --dts false --sourcemap false --minify && node -e \"fs.copyFileSync('./dist/index.mjs', './dist/index.min.mjs')\"",
-    "build:npm": "tsdown src/register-global.ts --name NPM --dts true --sourcemap true --unbundle true --no-clean",
+    "build:index": "tsdown --name INDEX --dts true --sourcemap true --unbundle true --no-clean",
+    "build:global": "tsdown src/register-global.ts --name GLOBAL --dts true --sourcemap true --unbundle true --no-clean",
     "watch": "tsdown --name DEV --unbundle true --no-clean --watch",
     "prepublishOnly": "npm run build"
   },
@@ -67,6 +70,7 @@
     "datatype validation",
     "design-time",
     "design-time testing",
+    "guards",
     "runtime testing",
     "runtime type check",
     "runtime type checking",
@@ -78,11 +82,17 @@
     "type check",
     "type-check",
     "type checking",
+    "type-checking",
     "type checks",
     "type-checks",
     "type guard",
     "type guards",
+    "type safety",
+    "type-safety",
+    "types",
     "typescript",
+    "utility types",
+    "utility-types",
     "validation",
     "validators",
     "value check",
