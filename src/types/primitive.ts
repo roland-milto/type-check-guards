@@ -4,10 +4,10 @@
  * This type can be used to define or validate values that represent the names of these data DataTypes.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-08
+ * @version 2026-01-16
  */
 export type Primitive =
-  | "bigInt"
+  | "bigint"
   | "boolean"
   | "float"
   | "integer"
@@ -16,4 +16,5 @@ export type Primitive =
   | "number"
   | "string"
   | "symbol"
-  | "undefined";
+  | "undefined"
+  ;
