@@ -8,6 +8,12 @@ import type * as guards from '../index.mjs';
  * Do NOT change `var` to `const` or `let` here!
  */
 declare global {
+  // Types
+  type DataType = guards.DataType;
+  type NonPrimitive = guards.NonPrimitive;
+  type NumericType = guards.NumericType;
+  type Primitive = guards.Primitive;
+
   // Utility
   var getTypeOf: typeof guards.getTypeOf;
 
