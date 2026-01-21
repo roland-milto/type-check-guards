@@ -42,10 +42,16 @@ isFloat(1337); // false
   * [Beispiele](#beispiele)
   * [Beispiel mit tree-shakable-fähigen Funktionen](#beispiel-mit-tree-shakable-fähigen-funktionen)
   * [Beispiel mit Objekt-Export](#beispiel-mit-dem-objekt-export)
+- [Exportierte TypeScript-Typen](#exportierte-typescript-typen)
 - [Funktionen / Methoden](#funktionen--methoden)
   * [Typ-Ermittlung](#typ-ermittlung)
   * [Typprüfungen](#typprüfungen)
-- [@type-check Ökosystem](#das-type-check-ökosystem)
+    - [Basis- und primitive Typen](#basis--und-primitive-typen)
+    - [Nummerische Prüfungen](#numerische-prüfungen)
+    - [Objekte und Kollektionen](#objekte-und-kollektionen)
+    - [Spezialisierte Instanzen und Logik](#spezialisierte-instanzen-und-logik)
+- [**@type-check** Ökosystem](#das-type-check-ökosystem)
+- [**@js-augment** Ökosystem](#das-js-augment-ökosystem)
 - [Mitwirken & Unterstützung](#unterstützen-oder-fehler-melden)
 
 </details>
@@ -140,8 +146,8 @@ Obwohl für die Runtime optimiert, ist `@type-check/guards` die perfekte Ergänz
 
 Um die Fehleranfälligkeit bei Vergleichen zu minimieren,
 folgt `@type-check/guards` einer strikten **camelCase-Strategie**.
-Alle von `getTypeOf` zurückgegebenen Strings sowie die Typ-Bezeichner in `isOfType` sind konsequent in *camelCase*
-geschrieben (z. B. `"nan"` statt `"NaN"`, `"bigInt"` statt `"BigInt"`).
+Alle von `getTypeOf` zurückgegebenen Strings sowie die Typ-Bezeichner in `isOfType` sind konsequent in *lowercase*
+geschrieben (z. B. `"nan"` statt `"NaN"`, `"bigint"` statt `"BigInt"`).
 
 <br>
 
@@ -405,46 +411,66 @@ Zeichenkette beschreibt (immer als camelCase).
 
 ### Typprüfungen
 
-Alle Methoden geben einen booleschen Wert zurück.
-Die Spalte **Einzelwertprüfung** prüft einen individuellen Wert, während die Spalte **Array-Elemente überprüfen** prüft,
-ob jedes Element im übergebenen Array die Bedingung erfüllt.
+Alle Methoden geben einen booleschen Wert zurück. Die Spalte **Einzelwertprüfung** prüft einen individuellen Wert,
+während die Spalte **Array-Elemente überprüfen** prüft, ob jedes Element im übergebenen Array die Bedingung erfüllt.
 
-|                        Einzelwertprüfung                        |                     Array-Elemente überprüfen                     |
-|:---------------------------------------------------------------:|:-----------------------------------------------------------------:|
-|           [isArray(value)](docs/german/isArray.de.md)           |          [areArrays(array)](docs/german/areArrays.de.md)          |
-|          [isBigInt(value)](docs/german/isBigInt.de.md)          |         [areBigInts(array)](docs/german/areBigInts.de.md)         |
-|         [isBoolean(value)](docs/german/isBoolean.de.md)         |        [areBooleans(array)](docs/german/areBooleans.de.md)        |
-|          [isBuffer(value)](docs/german/isBuffer.de.md)          |         [areBuffers(array)](docs/german/areBuffers.de.md)         |
-|            [isDate(value)](docs/german/isDate.de.md)            |           [areDates(array)](docs/german/areDates.de.md)           |
-|      [isEqual(value, expected)](docs/german/isEqual.de.md)      |      [areEqual(value, expected)](docs/german/areEqual.de.md)      |
-|           [isError(value)](docs/german/isError.de.md)           |          [areErrors(value)](docs/german/areErrors.de.md)          |
-|           [isFalse(value)](docs/german/isFalse.de.md)           |           [areFalse(array)](docs/german/areFalse.de.md)           |
-|     [isFilledArray(value)](docs/german/isFilledArray.de.md)     |    [areFilledArrays(array)](docs/german/areFilledArrays.de.md)    |
-|          [isFinite(value)](docs/german/isFinite.de.md)          |          [areFinite(array)](docs/german/areFinite.de.md)          |
-|           [isFloat(value)](docs/german/isFloat.de.md)           |          [areFloats(array)](docs/german/areFloats.de.md)          |
-|        [isFunction(value)](docs/german/isFunction.de.md)        |       [areFunctions(array)](docs/german/areFunctions.de.md)       |
-|         [isInteger(value)](docs/german/isInteger.de.md)         |        [areIntegers(array)](docs/german/areIntegers.de.md)        |
-|             [isMap(value)](docs/german/isMap.de.md)             |            [areMaps(array)](docs/german/areMaps.de.md)            |
-|             [isNaN(value)](docs/german/isNaN.de.md)             |            [areNaNs(array)](docs/german/areNaNs.de.md)            |
-|            [isNull(value)](docs/german/isNull.de.md)            |            [areNull(array)](docs/german/areNull.de.md)            |
-| [isNullOrUndefined(value)](docs/german/isNullOrUndefined.de.md) | [areNullOrUndefined(array)](docs/german/areNullOrUndefined.de.md) |
-|          [isNumber(value)](docs/german/isNumber.de.md)          |         [areNumbers(array)](docs/german/areNumbers.de.md)         |
-|          [isObject(value)](docs/german/isObject.de.md)          |         [areObjects(array)](docs/german/areObjects.de.md)         |
-|       [isOfType(value, type)](docs/german/isOfType.de.md)       |       [areOfType(array, type)](docs/german/areOfType.de.md)       |
-|  [isOneOfType(value, types[])](docs/german/isOneOfType.de.md)   |  [areOneOfType(array, types[])](docs/german/areOneOfType.de.md)   |
-|     [isPlainObject(value)](docs/german/isPlainObject.de.md)     |    [arePlainObjects(array)](docs/german/arePlainObjects.de.md)    |
-|       [isPrimitive(value)](docs/german/isPrimitive.de.md)       |      [arePrimitives(array)](docs/german/arePrimitives.de.md)      |
-|         [isPromise(value)](docs/german/isPromise.de.md)         |        [arePromises(array)](docs/german/arePromises.de.md)        |
-|           [isRegEx(value)](docs/german/isRegEx.de.md)           |         [areRegExes(array)](docs/german/areRegExes.de.md)         |
-|             [isSet(value)](docs/german/isSet.de.md)             |            [areSets(array)](docs/german/areSets.de.md)            |
-|          [isStream(value)](docs/german/isStream.de.md)          |         [areStreams(array)](docs/german/areStreams.de.md)         |
-|          [isString(value)](docs/german/isString.de.md)          |         [areStrings(array)](docs/german/areStrings.de.md)         |
-|          [isSymbol(value)](docs/german/isSymbol.de.md)          |         [areSymbols(array)](docs/german/areSymbols.de.md)         |
-|            [isTrue(value)](docs/german/isTrue.de.md)            |            [areTrue(array)](docs/german/areTrue.de.md)            |
-|       [isUndefined(value)](docs/german/isUndefined.de.md)       |       [areUndefined(array)](docs/german/areUndefined.de.md)       |
-|       [isValidDate(value)](docs/german/isValidDate.de.md)       |      [areValidDates(array)](docs/german/areValidDates.de.md)      |
-|         [isWeakMap(value)](docs/german/isWeakMap.de.md)         |        [areWeakMaps(array)](docs/german/areWeakMaps.de.md)        |
-|         [isWeakSet(value)](docs/german/isWeakSet.de.md)         |        [areWeakSets(array)](docs/german/areWeakSets.de.md)        |
+#### Basis- und primitive Typen
+
+| Einzelwertprüfung                                               | Array-Elemente überprüfen                                         | Beschreibung                       |
+|:----------------------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------|
+| [isBoolean(value)](docs/german/isBoolean.de.md)                 | [areBooleans(array)](docs/german/areBooleans.de.md)               | Prüft auf `boolean`.               |
+| [isFalse(value)](docs/german/isFalse.de.md)                     | [areFalse(array)](docs/german/areFalse.de.md)                     | Prüft auf strikt `false`.          |
+| [isNull(value)](docs/german/isNull.de.md)                       | [areNull(array)](docs/german/areNull.de.md)                       | Prüft auf `null`.                  |
+| [isNullOrUndefined(value)](docs/german/isNullOrUndefined.de.md) | [areNullOrUndefined(array)](docs/german/areNullOrUndefined.de.md) | Prüft auf `null` oder `undefined`. |
+| [isPrimitive(value)](docs/german/isPrimitive.de.md)             | [arePrimitives(array)](docs/german/arePrimitives.de.md)           | Prüft auf primitiven Typ.          |
+| [isString(value)](docs/german/isString.de.md)                   | [areStrings(array)](docs/german/areStrings.de.md)                 | Prüft auf `string`.                |
+| [isSymbol(value)](docs/german/isSymbol.de.md)                   | [areSymbols(array)](docs/german/areSymbols.de.md)                 | Prüft auf `symbol`.                |
+| [isTrue(value)](docs/german/isTrue.de.md)                       | [areTrue(array)](docs/german/areTrue.de.md)                       | Prüft auf strikt `true`.           |
+| [isUndefined(value)](docs/german/isUndefined.de.md)             | [areUndefined(array)](docs/german/areUndefined.de.md)             | Prüft auf `undefined`.             |
+
+#### Numerische Prüfungen
+
+| Einzelwertprüfung                                       | Array-Elemente überprüfen                                   | Beschreibung                                                |
+|:--------------------------------------------------------|:------------------------------------------------------------|:------------------------------------------------------------|
+| [isBigInt(value)](docs/german/isBigInt.de.md)           | [areBigInts(array)](docs/german/areBigInts.de.md)           | Prüft auf `bigint`.                                         |
+| [isBinary(value)](docs/german/isBinary.de.md)           | [areBinaries(array)](docs/german/areBinaries.de.md)         | Prüft auf binäre Notation (String, optional mit `0b`/`0B`). |
+| [isDecimal(value)](docs/german/isDecimal.de.md)         | [areDecimals(array)](docs/german/areDecimals.de.md)         | Prüft auf Dezimalzahl als String.                           |
+| [isFinite(value)](docs/german/isFinite.de.md)           | [areFinite(array)](docs/german/areFinite.de.md)             | Prüft auf endliche Zahl.                                    |
+| [isFloat(value)](docs/german/isFloat.de.md)             | [areFloats(array)](docs/german/areFloats.de.md)             | Prüft auf Gleitkommazahl (nicht Integer).                   |
+| [isHexadecimal(value)](docs/german/isHexadecimal.de.md) | [areHexadecimals(array)](docs/german/areHexadecimals.de.md) | Prüft auf hexadezimale Notation (String mit `0x`/`0X`).     |
+| [isInteger(value)](docs/german/isInteger.de.md)         | [areIntegers(array)](docs/german/areIntegers.de.md)         | Prüft auf ganze Zahl.                                       |
+| [isNaN(value)](docs/german/isNaN.de.md)                 | [areNaNs(array)](docs/german/areNaNs.de.md)                 | Prüft auf `NaN`.                                            |
+| [isNumber(value)](docs/german/isNumber.de.md)           | [areNumbers(array)](docs/german/areNumbers.de.md)           | Prüft auf `number`.                                         |
+| [isOctal(value)](docs/german/isOctal.de.md)             | [areOctals(array)](docs/german/areOctals.de.md)             | Prüft auf oktale Notation (String mit `0o`/`0O`).           |
+
+#### Objekte und Kollektionen
+
+| Einzelwertprüfung                                       | Array-Elemente überprüfen                                   | Beschreibung                            |
+|:--------------------------------------------------------|:------------------------------------------------------------|:----------------------------------------|
+| [isArray(value)](docs/german/isArray.de.md)             | [areArrays(array)](docs/german/areArrays.de.md)             | Prüft auf Array.                        |
+| [isFilledArray(value)](docs/german/isFilledArray.de.md) | [areFilledArrays(array)](docs/german/areFilledArrays.de.md) | Prüft auf nicht-leeres Array.           |
+| [isMap(value)](docs/german/isMap.de.md)                 | [areMaps(array)](docs/german/areMaps.de.md)                 | Prüft auf `Map`.                        |
+| [isObject(value)](docs/german/isObject.de.md)           | [areObjects(array)](docs/german/areObjects.de.md)           | Prüft auf Objekt.                       |
+| [isPlainObject(value)](docs/german/isPlainObject.de.md) | [arePlainObjects(array)](docs/german/arePlainObjects.de.md) | Prüft auf Plain Object (Objektliteral). |
+| [isSet(value)](docs/german/isSet.de.md)                 | [areSets(array)](docs/german/areSets.de.md)                 | Prüft auf `Set`.                        |
+| [isWeakMap(value)](docs/german/isWeakMap.de.md)         | [areWeakMaps(array)](docs/german/areWeakMaps.de.md)         | Prüft auf `WeakMap`.                    |
+| [isWeakSet(value)](docs/german/isWeakSet.de.md)         | [areWeakSets(array)](docs/german/areWeakSets.de.md)         | Prüft auf `WeakSet`.                    |
+
+#### Spezialisierte Instanzen und Logik
+
+| Einzelwertprüfung                                          | Array-Elemente überprüfen                                    | Beschreibung                         |
+|:-----------------------------------------------------------|:-------------------------------------------------------------|:-------------------------------------|
+| [isBuffer(value)](docs/german/isBuffer.de.md)              | [areBuffers(array)](docs/german/areBuffers.de.md)            | Prüft auf Node.js `Buffer`.          |
+| [isDate(value)](docs/german/isDate.de.md)                  | [areDates(array)](docs/german/areDates.de.md)                | Prüft auf `Date`-Instanz.            |
+| [isEqual(value, expected)](docs/german/isEqual.de.md)      | [areEqual(value, expected)](docs/german/areEqual.de.md)      | Prüft auf Gleichheit zu `expected`.  |
+| [isError(value)](docs/german/isError.de.md)                | [areErrors(array)](docs/german/areErrors.de.md)              | Prüft auf `Error`-Objekt.            |
+| [isFunction(value)](docs/german/isFunction.de.md)          | [areFunctions(array)](docs/german/areFunctions.de.md)        | Prüft auf Funktion.                  |
+| [isOfType(value, type)](docs/german/isOfType.de.md)        | [areOfType(array, type)](docs/german/areOfType.de.md)        | Prüft auf gegebenen Typ.             |
+| [isOneOfType(value, types)](docs/german/isOneOfType.de.md) | [areOneOfType(array, types)](docs/german/areOneOfType.de.md) | Prüft auf einen der gegebenen Typen. |
+| [isPromise(value)](docs/german/isPromise.de.md)            | [arePromises(array)](docs/german/arePromises.de.md)          | Prüft auf `Promise`.                 |
+| [isRegEx(value)](docs/german/isRegEx.de.md)                | [areRegExes(array)](docs/german/areRegExes.de.md)            | Prüft auf `RegExp`.                  |
+| [isStream(value)](docs/german/isStream.de.md)              | [areStreams(array)](docs/german/areStreams.de.md)            | Prüft auf Stream.                    |
+| [isValidDate(value)](docs/german/isValidDate.de.md)        | [areValidDates(array)](docs/german/areValidDates.de.md)      | Prüft, ob `Date` gültig ist.         |
 
 <br>
 
@@ -484,6 +510,22 @@ Durch die strikte Trennung der Module lädst Du nur die Logik, die Du tatsächli
 - **Flexibilität:**
   Du entscheidest selbst, wie strikt Deine Anwendung sein soll – von einfachen booleschen Prüfungen bis hin zu harten
   Assertionen, die den Programmfluss bei Fehlern stoppen.
+
+<br>
+
+## Das *@js-augment* Ökosystem
+
+`@js-augment` ist als Erweiterung von `@type-check/guards` gedacht, die einzelne Typen noch detaillierter prüft.
+
+Bibliotheken, die auf `@type-check/guards` im Namespace `@js-augment` basieren:
+
+* [@js-augment/array](https://github.com/roland-milto/js-augment-array)
+* [@js-augment/bigint](https://github.com/roland-milto/js-augment-bigint)
+* [@js-augment/bigints](https://github.com/roland-milto/js-augment-bigints)
+* [@js-augment/number](https://github.com/roland-milto/js-augment-number)
+* [@js-augment/numbers](https://github.com/roland-milto/js-augment-numbers)
+* [@js-augment/object](https://github.com/roland-milto/js-augment-object)
+* [@js-augment/string](https://github.com/roland-milto/js-augment-string)
 
 <br>
 

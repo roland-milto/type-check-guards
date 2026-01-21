@@ -45,8 +45,13 @@ isFloat(1337); // false
 - [Exported TypeScript types](#exported-typescript-types)
 - [Functions / Methods](#functions--methods)
   * [Type determination](#type-determination)
-  * [Type validations](#type-validations)
-- [@type-check ecosystem](#the-type-check-ecosystem)
+  * [Type checks](#type-checks)
+    - [Basic and primitive types](#basic-and-primitive-types)
+    - [Numeric checks](#numeric-checks)
+    - [Objects and collections](#objects-and-collections)
+    - [Specialized instances and logic](#specialized-instances-and-logic)
+- [**@type-check** ecosystem](#the-type-check-ecosystem)
+- [**@js-augment** ecosystem](#the-js-augment-ecosystem)
 - [Contributing & Support](#support-or-report-an-error)
 
 </details>
@@ -137,8 +142,8 @@ Although optimized for runtime, `@type-check/guards` is the perfect addition to 
 ### API consistency
 
 To minimize errors during comparisons, `@type-check/guards` follows a strict **camelCase strategy**.
-All strings returned by `getTypeOf`, as well as the type identifiers in `isOfType`, are consistently *camelCase* (e.g.,
-`"nan"` instead of `"NaN"`, `"bigInt"` instead of `"BigInt"`).
+All strings returned by `getTypeOf`, as well as the type identifiers in `isOfType`, are consistently *lowercase* (e.g.,
+`"nan"` instead of `"NaN"`, `"bigint"` instead of `"BigInt"`).
 
 <br>
 
@@ -385,6 +390,7 @@ import type {DataType, Primitive, NonPrimitive, NumberType} from "@type-check/gu
 - **`NumericType`**: A specialized selection for numerical classifications (`bigInt`, `binary`, `decimal`, `float`,
   `hexadecimal`, `integer`, `number`, and `octal`).
 
+
 <br>
 
 ## Functions / Methods
@@ -397,48 +403,68 @@ import.
 [getTypeOf(value)](docs/english/getTypeOf.md) returns a string describing the type of the given value (always
 camelCase).
 
-### Type validations
+### Type checks
 
-All methods return a boolean value.
-The "Single Value Check" column checks an individual value,
-while the "Array Elements Check" column checks if every element in the provided array satisfies the condition.
+All methods return a boolean value. The **Single Value Check** column validates an individual value, while the **Check
+Array Elements** column ensures that every element in the provided array meets the condition.
 
-|                      Single Value Check                       |                      Array Elements Check                       |
-|:-------------------------------------------------------------:|:---------------------------------------------------------------:|
-|           [isArray(value)](docs/english/isArray.md)           |          [areArrays(array)](docs/english/areArrays.md)          |
-|          [isBigInt(value)](docs/english/isBigInt.md)          |         [areBigInts(array)](docs/english/areBigInts.md)         |
-|         [isBoolean(value)](docs/english/isBoolean.md)         |        [areBooleans(array)](docs/english/areBooleans.md)        |
-|          [isBuffer(value)](docs/english/isBuffer.md)          |         [areBuffers(array)](docs/english/areBuffers.md)         |
-|            [isDate(value)](docs/english/isDate.md)            |           [areDates(array)](docs/english/areDates.md)           |
-|      [isEqual(value, expected)](docs/english/isEqual.md)      |      [areEqual(value, expected)](docs/english/areEqual.md)      |
-|           [isError(value)](docs/english/isError.md)           |          [areErrors(value)](docs/english/areErrors.md)          |
-|           [isFalse(value)](docs/english/isFalse.md)           |           [areFalse(array)](docs/english/areFalse.md)           |
-|     [isFilledArray(value)](docs/english/isFilledArray.md)     |    [areFilledArrays(array)](docs/english/areFilledArrays.md)    |
-|          [isFinite(value)](docs/english/isFinite.md)          |          [areFinite(array)](docs/english/areFinite.md)          |
-|           [isFloat(value)](docs/english/isFloat.md)           |          [areFloats(array)](docs/english/areFloats.md)          |
-|        [isFunction(value)](docs/english/isFunction.md)        |       [areFunctions(array)](docs/english/areFunctions.md)       |
-|         [isInteger(value)](docs/english/isInteger.md)         |        [areIntegers(array)](docs/english/areIntegers.md)        |
-|             [isMap(value)](docs/english/isMap.md)             |            [areMaps(array)](docs/english/areMaps.md)            |
-|             [isNaN(value)](docs/english/isNaN.md)             |            [areNaNs(array)](docs/english/areNaNs.md)            |
-|            [isNull(value)](docs/english/isNull.md)            |            [areNull(array)](docs/english/areNull.md)            |
-| [isNullOrUndefined(value)](docs/english/isNullOrUndefined.md) | [areNullOrUndefined(array)](docs/english/areNullOrUndefined.md) |
-|          [isNumber(value)](docs/english/isNumber.md)          |         [areNumbers(array)](docs/english/areNumbers.md)         |
-|          [isObject(value)](docs/english/isObject.md)          |         [areObjects(array)](docs/english/areObjects.md)         |
-|       [isOfType(value, type)](docs/english/isOfType.md)       |       [areOfType(array, type)](docs/english/areOfType.md)       |
-|  [isOneOfType(value, types[])](docs/english/isOneOfType.md)   |  [areOneOfType(array, types[])](docs/english/areOneOfType.md)   |
-|     [isPlainObject(value)](docs/english/isPlainObject.md)     |    [arePlainObjects(array)](docs/english/arePlainObjects.md)    |
-|       [isPrimitive(value)](docs/english/isPrimitive.md)       |      [arePrimitives(array)](docs/english/arePrimitives.md)      |
-|         [isPromise(value)](docs/english/isPromise.md)         |        [arePromises(array)](docs/english/arePromises.md)        |
-|           [isRegEx(value)](docs/english/isRegEx.md)           |         [areRegExes(array)](docs/english/areRegExes.md)         |
-|             [isSet(value)](docs/english/isSet.md)             |            [areSets(array)](docs/english/areSets.md)            |
-|          [isStream(value)](docs/english/isStream.md)          |         [areStreams(array)](docs/english/areStreams.md)         |
-|          [isString(value)](docs/english/isString.md)          |         [areStrings(array)](docs/english/areStrings.md)         |
-|          [isSymbol(value)](docs/english/isSymbol.md)          |         [areSymbols(array)](docs/english/areSymbols.md)         |
-|            [isTrue(value)](docs/english/isTrue.md)            |            [areTrue(array)](docs/english/areTrue.md)            |
-|       [isUndefined(value)](docs/english/isUndefined.md)       |       [areUndefined(array)](docs/english/areUndefined.md)       |
-|       [isValidDate(value)](docs/english/isValidDate.md)       |      [areValidDates(array)](docs/english/areValidDates.md)      |
-|         [isWeakMap(value)](docs/english/isWeakMap.md)         |        [areWeakMaps(array)](docs/english/areWeakMaps.md)        |
-|         [isWeakSet(value)](docs/english/isWeakSet.md)         |        [areWeakSets(array)](docs/english/areWeakSets.md)        |
+#### Basic and primitive types
+
+| Single Value Check                                            | Check Array Elements                                            | Description                       |
+|:--------------------------------------------------------------|:----------------------------------------------------------------|:----------------------------------|
+| [isBoolean(value)](docs/english/isBoolean.md)                 | [areBooleans(array)](docs/english/areBooleans.md)               | Checks for `boolean`.             |
+| [isFalse(value)](docs/english/isFalse.md)                     | [areFalse(array)](docs/english/areFalse.md)                     | Checks for strictly `false`.      |
+| [isNull(value)](docs/english/isNull.md)                       | [areNull(array)](docs/english/areNull.md)                       | Checks for `null`.                |
+| [isNullOrUndefined(value)](docs/english/isNullOrUndefined.md) | [areNullOrUndefined(array)](docs/english/areNullOrUndefined.md) | Checks for `null` or `undefined`. |
+| [isPrimitive(value)](docs/english/isPrimitive.md)             | [arePrimitives(array)](docs/english/arePrimitives.md)           | Checks for primitive type.        |
+| [isString(value)](docs/english/isString.md)                   | [areStrings(array)](docs/english/areStrings.md)                 | Checks for `string`.              |
+| [isSymbol(value)](docs/english/isSymbol.md)                   | [areSymbols(array)](docs/english/areSymbols.md)                 | Checks for `symbol`.              |
+| [isTrue(value)](docs/english/isTrue.md)                       | [areTrue(array)](docs/english/areTrue.md)                       | Checks for strictly `true`.       |
+| [isUndefined(value)](docs/english/isUndefined.md)             | [areUndefined(array)](docs/english/areUndefined.md)             | Checks for `undefined`.           |
+
+#### Numeric checks
+
+| Single Value Check                                    | Check Array Elements                                      | Description                                              |
+|:------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------|
+| [isBigInt(value)](docs/english/isBigInt.md)           | [areBigInts(array)](docs/english/areBigInts.md)           | Checks for `bigint`.                                     |
+| [isBinary(value)](docs/english/isBinary.md)           | [areBinaries(array)](docs/english/areBinaries.md)         | Checks for binary notation (string, optional `0b`/`0B`). |
+| [isDecimal(value)](docs/english/isDecimal.md)         | [areDecimals(array)](docs/english/areDecimals.md)         | Checks for decimal number as string.                     |
+| [isFinite(value)](docs/english/isFinite.md)           | [areFinite(array)](docs/english/areFinite.md)             | Checks for finite number.                                |
+| [isFloat(value)](docs/english/isFloat.md)             | [areFloats(array)](docs/english/areFloats.md)             | Checks for floating-point (non-integer).                 |
+| [isHexadecimal(value)](docs/english/isHexadecimal.md) | [areHexadecimals(array)](docs/english/areHexadecimals.md) | Checks for hexadecimal notation (string with `0x`/`0X`). |
+| [isInteger(value)](docs/english/isInteger.md)         | [areIntegers(array)](docs/english/areIntegers.md)         | Checks for integer.                                      |
+| [isNaN(value)](docs/english/isNaN.md)                 | [areNaNs(array)](docs/english/areNaNs.md)                 | Checks for `NaN`.                                        |
+| [isNumber(value)](docs/english/isNumber.md)           | [areNumbers(array)](docs/english/areNumbers.md)           | Checks for `number`.                                     |
+| [isOctal(value)](docs/english/isOctal.md)             | [areOctals(array)](docs/english/areOctals.md)             | Checks for octal notation (string with `0o`/`0O`).       |
+
+#### Objects and collections
+
+| Single Value Check                                    | Check Array Elements                                      | Description                               |
+|:------------------------------------------------------|:----------------------------------------------------------|:------------------------------------------|
+| [isArray(value)](docs/english/isArray.md)             | [areArrays(array)](docs/english/areArrays.md)             | Checks for array.                         |
+| [isFilledArray(value)](docs/english/isFilledArray.md) | [areFilledArrays(array)](docs/english/areFilledArrays.md) | Checks for non-empty array.               |
+| [isMap(value)](docs/english/isMap.md)                 | [areMaps(array)](docs/english/areMaps.md)                 | Checks for `Map`.                         |
+| [isObject(value)](docs/english/isObject.md)           | [areObjects(array)](docs/english/areObjects.md)           | Checks for object.                        |
+| [isPlainObject(value)](docs/english/isPlainObject.md) | [arePlainObjects(array)](docs/english/arePlainObjects.md) | Checks for plain object (object literal). |
+| [isSet(value)](docs/english/isSet.md)                 | [areSets(array)](docs/english/areSets.md)                 | Checks for `Set`.                         |
+| [isWeakMap(value)](docs/english/isWeakMap.md)         | [areWeakMaps(array)](docs/english/areWeakMaps.md)         | Checks for `WeakMap`.                     |
+| [isWeakSet(value)](docs/english/isWeakSet.md)         | [areWeakSets(array)](docs/english/areWeakSets.md)         | Checks for `WeakSet`.                     |
+
+#### Specialized instances and logic
+
+| Single Value Check                                       | Check Array Elements                                       | Description                        |
+|:---------------------------------------------------------|:-----------------------------------------------------------|:-----------------------------------|
+| [isBuffer(value)](docs/english/isBuffer.md)              | [areBuffers(array)](docs/english/areBuffers.md)            | Checks for Node.js `Buffer`.       |
+| [isDate(value)](docs/english/isDate.md)                  | [areDates(array)](docs/english/areDates.md)                | Checks for `Date` instance.        |
+| [isEqual(value, expected)](docs/english/isEqual.md)      | [areEqual(value, expected)](docs/english/areEqual.md)      | Checks for equality to `expected`. |
+| [isError(value)](docs/english/isError.md)                | [areErrors(array)](docs/english/areErrors.md)              | Checks for `Error` object.         |
+| [isFunction(value)](docs/english/isFunction.md)          | [areFunctions(array)](docs/english/areFunctions.md)        | Checks for function.               |
+| [isOfType(value, type)](docs/english/isOfType.md)        | [areOfType(array, type)](docs/english/areOfType.md)        | Checks for the given type.         |
+| [isOneOfType(value, types)](docs/english/isOneOfType.md) | [areOneOfType(array, types)](docs/english/areOneOfType.md) | Checks for any of the given types. |
+| [isPromise(value)](docs/english/isPromise.md)            | [arePromises(array)](docs/english/arePromises.md)          | Checks for `Promise`.              |
+| [isRegEx(value)](docs/english/isRegEx.md)                | [areRegExes(array)](docs/english/areRegExes.md)            | Checks for `RegExp`.               |
+| [isStream(value)](docs/english/isStream.md)              | [areStreams(array)](docs/english/areStreams.md)            | Checks for stream.                 |
+| [isValidDate(value)](docs/english/isValidDate.md)        | [areValidDates(array)](docs/english/areValidDates.md)      | Checks whether `Date` is valid.    |
 
 <br>
 
@@ -475,6 +501,22 @@ application. Due to the strict separation of modules, you only load the logic yo
 - **Maximum flexibility:**
   You decide how strict your application should be – from simple boolean checks to hard assertions that stop the program
   flow upon errors.
+
+<br>
+
+## The *@js-augment* ecosystem
+
+`@js-augment` is intended as an extension of `@type-check/guards`, which checks individual types in even greater detail.
+
+Libraries based on `@type-check/guards` in the `@js-augment` namespace:
+
+* [@js-augment/array](https://github.com/roland-milto/js-augment-array)
+* [@js-augment/bigint](https://github.com/roland-milto/js-augment-bigint)
+* [@js-augment/bigints](https://github.com/roland-milto/js-augment-bigints)
+* [@js-augment/number](https://github.com/roland-milto/js-augment-number)
+* [@js-augment/numbers](https://github.com/roland-milto/js-augment-numbers)
+* [@js-augment/object](https://github.com/roland-milto/js-augment-object)
+* [@js-augment/string](https://github.com/roland-milto/js-augment-string)
 
 <br>
 
