@@ -15,14 +15,17 @@ import * as guards from "./index.js";
  * * `getTypeOf`: Converts the value's type to its string representation.
  * * `isArray`: Returns a boolean whether the value is an array.
  * * `isBigInt`: Returns a boolean whether the value is a BigInt.
+ * * `isBinary`: Returns a boolean whether the value is a binary.
  * * `isBoolean`: Returns a boolean whether the value is a boolean.
  * * `isBuffer`: Returns a boolean whether the value is a buffer.
  * * `isDate`: Returns a boolean whether the value is a date.
+ * * `isDecimal`: Returns a boolean whether the value is a decimal.
  * * `isEqual`: Returns a boolean whether the values are equal.
  * * `isError`: Returns a boolean whether the value is an error.
  * * `isFinite`: Returns a boolean whether the value is finite.
  * * `isFloat`: Returns a boolean whether the value is a float.
  * * `isFunction`: Returns a boolean whether the value is a function.
+ * * `isHexadecimal`: Returns a boolean whether the value is a hexadecimal.
  * * `isInteger`: Returns a boolean whether the value is an integer.
  * * `isMap`: Returns a boolean whether the value is a map.
  * * `isNaN`: Returns a boolean whether the value is NaN.
@@ -30,6 +33,7 @@ import * as guards from "./index.js";
  * * `isNullOrUndefined`: Returns a boolean whether the value is null or undefined.
  * * `isNumber`: Returns a boolean whether the value is a number.
  * * `isObject`: Returns a boolean whether the value is an object.
+ * * `isOctal`: Returns a boolean whether the value is an octal.
  * * `isOfType`: Validates if the value matches a specified data type.
  * * `isOneOfType`: Validates if the value matches at least one of the specified data types.
  * * `isPlainObject`: Returns a boolean whether the value is a plain object.
@@ -48,14 +52,17 @@ import * as guards from "./index.js";
  * Array methods:
  * * `areArrays`: Returns a boolean whether all elements in the array are arrays.
  * * `areBigInts`: Returns a boolean whether all elements in the array are BigInts.
+ * * `areBinaries`: Returns a boolean whether all elements in the array are binaries.
  * * `areBooleans`: Returns a boolean whether all elements in the array are booleans.
  * * `areBuffers`: Returns a boolean whether all elements in the array are buffers.
  * * `areDates`: Returns a boolean whether all elements in the array are dates.
+ * * `areDecimals`: Returns a boolean whether all elements in the array are decimals.
  * * `areEqual`: Returns a boolean whether all elements in the array are equal.
  * * `areErrors`: Returns a boolean whether all elements in the array are errors.
  * * `areFinite`: Returns a boolean whether all elements in the array are finite.
  * * `areFloats`: Returns a boolean whether all elements in the array are floats.
  * * `areFunctions`: Returns a boolean whether all elements in the array are functions.
+ * * `areHexadecimals`: Returns a boolean whether all elements in the array are hexadecimals.
  * * `areIntegers`: Returns a boolean whether all elements in the array are integers.
  * * `areMaps`: Returns a boolean whether all elements in the array are maps.
  * * `areNaNs`: Returns a boolean whether all elements in the array are NaNs.
@@ -63,6 +70,7 @@ import * as guards from "./index.js";
  * * `areNullOrUndefined`: Returns a boolean whether all elements in the array are null or undefined.
  * * `areNumbers`: Returns a boolean whether all elements in the array are numbers.
  * * `areObjects`: Returns a boolean whether all elements in the array are objects.
+ * * `areOctals`: Returns a boolean whether all elements in the array are octal.
  * * `areOfType`: Returns a boolean whether all elements in the array match the specified data type.
  * * `areOneOfType`: Returns a boolean whether all elements in the array match at least one of the specified data types.
  * * `arePlainObjects`: Returns a boolean whether all elements in the array are plain objects.
@@ -79,7 +87,7 @@ import * as guards from "./index.js";
  * * `areWeakSets`: Returns a boolean whether all elements in the array are weak sets.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-16
+ * @version 2026-01-21
  */
 export const type: Readonly<TypeGuards> = Object.freeze({
   ...guards

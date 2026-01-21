@@ -6,6 +6,9 @@ import * as guards from './index.js';
  *
  * **IMPORTANT:**
  * Do NOT change `var` to `const` or `let` here!
+ *
+ * @author  Roland Milto (https://roland.milto.de/)
+ * @version 2026-01-21
  */
 declare global {
   // Types
@@ -22,12 +25,16 @@ declare global {
   var areArrays: typeof guards.areArrays;
   var isBigInt: typeof guards.isBigInt;
   var areBigInts: typeof guards.areBigInts;
+  var isBinary: typeof guards.isBinary;
+  var areBinaries: typeof guards.areBinaries;
   var isBoolean: typeof guards.isBoolean;
   var areBooleans: typeof guards.areBooleans;
   var isBuffer: typeof guards.isBuffer;
   var areBuffers: typeof guards.areBuffers;
   var isDate: typeof guards.isDate;
   var areDates: typeof guards.areDates;
+  var isDecimal: typeof guards.isDecimal;
+  var areDecimals: typeof guards.areDecimals;
   var isEqual: typeof guards.isEqual;
   var areEqual: typeof guards.areEqual;
   var isError: typeof guards.isError;
@@ -43,6 +50,8 @@ declare global {
   var areFloats: typeof guards.areFloats;
   var isFunction: typeof guards.isFunction;
   var areFunctions: typeof guards.areFunctions;
+  var isHexadecimal: typeof guards.isHexadecimal;
+  var areHexadecimals: typeof guards.areHexadecimals;
   var isInteger: typeof guards.isInteger;
   var areIntegers: typeof guards.areIntegers;
   var isMap: typeof guards.isMap;
@@ -58,6 +67,8 @@ declare global {
   var areNumbers: typeof guards.areNumbers;
   var isObject: typeof guards.isObject;
   var areObjects: typeof guards.areObjects;
+  var isOctal: typeof guards.isOctal;
+  var areOctals: typeof guards.areOctals;
   var isOfType: typeof guards.isOfType;
   var areOfType: typeof guards.areOfType;
   var isOneOfType: typeof guards.isOneOfType;
@@ -92,6 +103,9 @@ declare global {
 
 /**
  * Registers all type guards globally.
+ *
+ * @author  Roland Milto (https://roland.milto.de/)
+ * @version 2026-01-21
  */
 for (const [name, func] of Object.entries(guards)) {
   if (typeof func === 'function') {
