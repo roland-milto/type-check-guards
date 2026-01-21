@@ -2,21 +2,30 @@
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Checks if the given value is of type `BigInt`.
+ * Checks if the given value is of type `bigint`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
  * @version 2025-12-22
  *
- * @param   {any} value - The value to check.
+ * @param   {unknown} value - The value to check.
  *
- * @returns {boolean}   - Returns `true` if the value is a `BigInt`, otherwise `false`.
+ * @returns {boolean}       - Returns `true` if the value is a `bigint`, otherwise `false`.
  *
  * @example
  * // true
- * isBigInt(9007199254740991n);
+ * isBigInt(10n);
  *
- * // false
- * isBigInt(42);
+ * // false (regular numbers are not big integers)
+ * isBigInt(10);
+ *
+ * // false (lenient behavior for non-bigint types)
+ * isBigInt("10");
+ *
+ * // If you use the object 'BigInt': import from "@js-augment/bigint/register-global.mjs";
+ * BigInt.isBigInt(value);
+ *
+ * // If you use the object 'Number': import from "@js-augment/number/register-global.mjs";
+ * Number.isBigInt(value);
  */
 export function isBigInt(value: unknown): value is bigint {
   return typeof value === 'bigint';
@@ -36,8 +45,11 @@ export function isBigInt(value: unknown): value is bigint {
  * // true
  * areBigInts([10n, 20n]);
  *
- * // false
+ * // false (regular numbers are not big integers)
  * areBigInts([10n, 20]);
+ *
+ * // false (lenient behavior for non-bigint types)
+ * isBigInt(["42", 1337]);
  */
 export function areBigInts(array: unknown): array is bigint[] {
   if (!isFilledArray(array)) {
