@@ -1,4 +1,4 @@
-// Import: Self-created assertion function.
+// Import: local assertion function.
 import * as guards from './index.js';
 
 /**
@@ -8,14 +8,22 @@ import * as guards from './index.js';
  * Do NOT change `var` to `const` or `let` here!
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-21
+ * @version 2026-01-26
  */
 declare global {
   // Types
   type DataType = guards.DataType;
-  type NonPrimitive = guards.NonPrimitive;
+  type DataTypeAsString = guards.DataTypeAsString;
+  type DataTypeOf<K extends DataTypeAsString> = guards.DataTypeOf<K>;
+  type NonPrimitiveType = guards.NonPrimitiveType;
+  type NonPrimitiveTypeAsString = guards.NonPrimitiveTypeAsString;
+  type NonPrimitiveTypeOf<K extends NonPrimitiveTypeAsString> = guards.NonPrimitiveTypeOf<K>;
   type NumericType = guards.NumericType;
-  type Primitive = guards.Primitive;
+  type NumericTypeAsString = guards.NumericTypeAsString;
+  type NumericTypeOf<K extends NumericTypeAsString> = guards.NumericTypeOf<K>;
+  type PrimitiveType = guards.PrimitiveType;
+  type PrimitiveTypeAsString = guards.PrimitiveTypeAsString;
+  type PrimitiveTypeOf<K extends PrimitiveTypeAsString> = guards.PrimitiveTypeOf<K>;
 
   // Utility
   var getTypeOf: typeof guards.getTypeOf;
@@ -50,8 +58,12 @@ declare global {
   var areFloats: typeof guards.areFloats;
   var isFunction: typeof guards.isFunction;
   var areFunctions: typeof guards.areFunctions;
+  var isJson: typeof guards.isJson;
+  var areJsons: typeof guards.areJson;
   var isHexadecimal: typeof guards.isHexadecimal;
   var areHexadecimals: typeof guards.areHexadecimals;
+  var isIndexFound: typeof guards.isIndexFound;
+  var areIndexesFound: typeof guards.areIndexesFound;
   var isInteger: typeof guards.isInteger;
   var areIntegers: typeof guards.areIntegers;
   var isMap: typeof guards.isMap;
@@ -80,6 +92,7 @@ declare global {
   var isPromise: typeof guards.isPromise;
   var arePromises: typeof guards.arePromises;
   var isRegEx: typeof guards.isRegEx;
+  var isRegExp: typeof guards.isRegExp;
   var areRegExes: typeof guards.areRegExes;
   var isSet: typeof guards.isSet;
   var areSets: typeof guards.areSets;

@@ -1,4 +1,4 @@
-// Import: Interfaces and DataTypes.
+// Import: interfaces and types.
 import type {TypeGuards} from "./types/typeGuards.js";
 
 // Import: All exported guards and utilities from the main entry point.
@@ -26,7 +26,9 @@ import * as guards from "./index.js";
  * * `isFloat`: Returns a boolean whether the value is a float.
  * * `isFunction`: Returns a boolean whether the value is a function.
  * * `isHexadecimal`: Returns a boolean whether the value is a hexadecimal.
+ * * `isIndexFound`: Returns a boolean whether the value is a valid index.
  * * `isInteger`: Returns a boolean whether the value is an integer.
+ * * `isJson`: Returns a boolean whether the value is a valid JSON string.
  * * `isMap`: Returns a boolean whether the value is a map.
  * * `isNaN`: Returns a boolean whether the value is NaN.
  * * `isNull`: Returns a boolean whether the value is null.
@@ -39,7 +41,7 @@ import * as guards from "./index.js";
  * * `isPlainObject`: Returns a boolean whether the value is a plain object.
  * * `isPrimitive`: Returns a boolean whether the value is a primitive.
  * * `isPromise`: Returns a boolean whether the value is a promise.
- * * `isRegEx`: Returns a boolean whether the value is a regular expression.
+ * * `isRegEx`: Returns a boolean whether the value is a regular expression (alias `isRegExp`).
  * * `isSet`: Returns a boolean whether the value is a set.
  * * `isStream`: Returns a boolean whether the value is a stream.
  * * `isString`: Returns a boolean whether the value is a string.
@@ -63,7 +65,9 @@ import * as guards from "./index.js";
  * * `areFloats`: Returns a boolean whether all elements in the array are floats.
  * * `areFunctions`: Returns a boolean whether all elements in the array are functions.
  * * `areHexadecimals`: Returns a boolean whether all elements in the array are hexadecimals.
+ * * `areIndexesFound`: Returns a boolean whether all elements in the array are valid indexes.
  * * `areIntegers`: Returns a boolean whether all elements in the array are integers.
+ * * `areJson`: Returns a boolean whether all elements in the array are valid JSON strings.
  * * `areMaps`: Returns a boolean whether all elements in the array are maps.
  * * `areNaNs`: Returns a boolean whether all elements in the array are NaNs.
  * * `areNull`: Returns a boolean whether all elements in the array are null.
@@ -91,4 +95,4 @@ import * as guards from "./index.js";
  */
 export const type: Readonly<TypeGuards> = Object.freeze({
   ...guards
-}) as Readonly<TypeGuards>;
+}) satisfies Readonly<TypeGuards>;

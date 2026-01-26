@@ -4,7 +4,7 @@
  * @author      Roland Milto (https://roland.milto.de/)
  */
 
-// Export: Self-created functions.
+// Export: local functions.
 export {getTypeOf} from "./utils/getTypeOf.js";
 export {areArrays, isArray} from "./guards/array.js";
 export {areBigInts, isBigInt} from "./guards/bigInt.js";
@@ -21,7 +21,9 @@ export {areFinite, isFinite} from "./guards/finite.js";
 export {areFloats, isFloat} from "./guards/float.js";
 export {areFunctions, isFunction} from "./guards/function.js";
 export {areHexadecimals, isHexadecimal} from "./guards/hexadecimal.js";
+export {areIndexesFound, isIndexFound} from "./guards/indexFound.js";
 export {areIntegers, isInteger} from "./guards/integer.js";
+export {areJson, isJson} from "./guards/json.js";
 export {areMaps, isMap} from "./guards/map.js";
 export {areNaNs, isNaN} from "./guards/nan.js";
 export {areNull, isNull} from "./guards/null.js";
@@ -34,7 +36,7 @@ export {areOneOfType, isOneOfType} from "./guards/oneOfType.js";
 export {arePlainObjects, isPlainObject} from "./guards/plainObject.js";
 export {arePrimitives, isPrimitive} from "./guards/primitive.js";
 export {arePromises, isPromise} from "./guards/promise.js";
-export {areRegExes, isRegEx} from "./guards/regExp.js";
+export {areRegExes, isRegEx, isRegExp} from "./guards/regExp.js";
 export {areSets, isSet} from "./guards/set.js";
 export {areStreams, isStream} from "./guards/stream.js";
 export {areStrings, isString} from "./guards/string.js";
@@ -46,7 +48,7 @@ export {areWeakMaps, isWeakMap} from "./guards/weakMap.js";
 export {areWeakSets, isWeakSet} from "./guards/weakSet.js";
 
 // Export: Interfaces and types:
-export type {DataType} from "./types/dataType.js";
-export type {Primitive} from "./types/primitive.js";
-export type {NumericType} from "./types/numericType.js";
-export type {NonPrimitive} from "./types/nonPrimitive.js";
+export type {DataType, DataTypeAsString, DataTypeOf} from "./types/dataType.js";
+export type {PrimitiveType, PrimitiveTypeAsString, PrimitiveTypeOf} from "./types/primitive.js";
+export type {NumericType, NumericTypeAsString, NumericTypeOf} from "./types/numericType.js";
+export type {NonPrimitiveType, NonPrimitiveTypeAsString, NonPrimitiveTypeOf} from "./types/nonPrimitive.js";
