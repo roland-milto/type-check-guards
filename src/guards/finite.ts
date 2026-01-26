@@ -1,48 +1,58 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines whether the provided value is a finite number.
+ * Determines if the provided `value` is a finite `number` using the built-in `Number.isFinite` method.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
  * @param   {unknown} value - The value to check for finiteness.
  *
- * @returns {boolean}       - Returns `true` if the value is a finite number; otherwise, `false`.
+ * @returns {boolean}       - `true` if `value` is a finite `number`, otherwise `false`.
  *
  * @example
  * // true
- * isFinite(100);
+ * isFinite(123);
  *
- * // false
+ * // true
+ * isFinite(-123.45);
+ *
+ * // false (input is not a number)
+ * isFinite('123');
+ *
+ * // false (input is not a number)
  * isFinite(Infinity);
  *
- * // false
- * isFinite("100");
+ * // false (input is not a number)
+ * isFinite(NaN);
  */
-export function isFinite(value: unknown): value is number {
+function isFinite(value: unknown): value is number {
   return Number.isFinite(value);
 }
 
 /**
- * Determines whether the given value is an array of finite numbers.
+ * Determines if all elements in an array are finite numbers.
+ * The function first checks if the array is non-empty, then iteratively checks each element for finiteness.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to check.
+ * @param   {unknown[]} array - The array to be checked for finiteness of all its elements.
  *
- * @returns {boolean}       - Returns `true` if the value is an array where all elements are finite numbers, otherwise `false`.
+ * @returns {boolean}         - `true` if the array is non-empty and all elements are finite numbers; `false` otherwise.
  *
  * @example
  * // true
  * areFinite([1, 2, 3]);
  *
- * // false
- * areFinite([1, Infinity]);
+ * // false (contains non-finite number)
+ * areFinite([1, Infinity, 3]);
+ *
+ * // false (input is not a number)
+ * areFinite([true, false, null]);
  */
-export function areFinite(array: unknown): array is number[] {
+function areFinite(array: unknown[]): array is number[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -55,3 +65,6 @@ export function areFinite(array: unknown): array is number[] {
 
   return true;
 }
+
+// Exports.
+export {isFinite, areFinite};

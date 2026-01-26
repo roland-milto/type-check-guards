@@ -1,15 +1,15 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines whether the given argument is strictly equal to `null`.
+ * Determines whether the provided `value` is `null`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
- * @param   {unknown} arg - The value to be checked.
+ * @param   {unknown} value - The value to check for `null`.
  *
- * @returns {boolean}     - Returns `true` if the argument is `null`; otherwise, returns `false`.
+ * @returns {boolean}       - `true` if `value` is `null`, otherwise `false`.
  *
  * @example
  * // true
@@ -17,29 +17,44 @@ import {isFilledArray} from "./filledArray.js";
  *
  * // false
  * isNull(undefined);
+ *
+ * // false
+ * isNull(0);
+ *
+ * // false
+ * isNull("");
+ *
+ * // false
+ * isNull({});
  */
-export function isNull(arg: unknown): arg is null {
-  return arg === null;
+function isNull(value: unknown): value is null {
+  return value === null;
 }
 
 /**
- * Checks if the provided value is an array where all elements are `null`.
+ * Checks whether all elements in the given `array` are `null`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to check.
+ * @param   {unknown[]} array - The input array to check for `null` elements.
  *
- * @returns {boolean}       - Returns `true` if the value is an array where all elements are `null`, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements in the array are `null`, `false` otherwise.
  *
  * @example
  * // true
  * areNull([null, null]);
  *
  * // false
- * areNull([null, 1]);
+ * areNull([null, 1, null]);
+ *
+ * // false
+ * areNull(123);
+ *
+ * // false
+ * areNull([]);
  */
-export function areNull(array: unknown): array is null[] {
+function areNull(array: unknown[]): array is null[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -52,3 +67,6 @@ export function areNull(array: unknown): array is null[] {
 
   return true;
 }
+
+// Export.
+export {isNull, areNull};

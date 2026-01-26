@@ -1,29 +1,35 @@
-// Import: Interfaces and types.
-import type {DataType} from "../types/dataType.js";
+// Import: interfaces and types.
+import type {DataTypeAsString, DataTypeOf} from "../types/dataType.js";
 
-// Import: Self-created functions.
+// Import: local functions.
 import {isOfType} from "./ofType.js";
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Checks if the provided value matches at least one of the specified data types.
+ * Determines if a given `value` matches one of the specified `types`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown}     value - The variable to check.
- * @param   {DataType[]} types - An array of data types to compare against.
+ * @param   {unknown}            value - The value to be checked against the specified types.
+ * @param   {DataTypeAsString[]} types - An array of type strings representing the potential types of the value.
  *
- * @returns {boolean}           - Returns `true` if the value's type matches any of the specified types, otherwise `false`.
+ * @returns {boolean}                  - `true` if the value matches one of the specified types; otherwise, `false`.
  *
  * @example
  * // true
- * isOneOfType("Roland", ["string", "number"])
+ * isOneOfType(3, ['number']);
  *
- * // false
- * isOneOfType(42, ["string", "boolean"])
+ * // true
+ * isOneOfType('hello', ['string']);
+ *
+ * // false (input is not of type 'boolean')
+ * isOneOfType(3, ['boolean']);
+ *
+ * // false (input is not of type 'array')
+ * isOneOfType('world', ['array']);
  */
-export function isOneOfType(value: unknown, types: DataType[]): boolean {
+function isOneOfType<const TTypes extends readonly DataTypeAsString[]>(value: unknown, types: TTypes): value is DataTypeOf<TTypes[number]> {
   for (const type of types) {
     if (isOfType(value, type)) {
       return true;
@@ -34,25 +40,37 @@ export function isOneOfType(value: unknown, types: DataType[]): boolean {
 }
 
 /**
- * Checks if every element in the provided array matches at least one of the specified data types.
+ * Determines if all elements in an `array` are of one of the specified types in the `types` array.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown}     array - The array to be checked.
- * @param   {DataType[]} types - An array of allowed data types.
+ * @param   {unknown[]}           array - An array of elements to verify against the provided types.
+ * @param   {DataTypeAsString[]}  types - An array of strings representing the data types to check against.
  *
- * @returns {boolean}           - Returns `true` if all elements match at least one specified type, otherwise `false`.
+ * @returns {boolean}                   - `true` if every element in the `array` is of one of the specified `types`, otherwise `false`.
  *
  * @example
  * // true
- * areOneOfType(["ts", 42], ["string", "number"])
+ * areOneOfType([1, 2, 3], ["number"]);
  *
- * // false
- * areOneOfType(["ts", null], ["string", "number"])
+ * // true
+ * areOneOfType(["a", "b", "c"], ["string"]);
+ *
+ * // true
+ * areOneOfType([1, "a", true], ["number", "string", "boolean"]);
+ *
+ * // false (array is empty)
+ * areOneOfType([], ["number"]);
+ *
+ * // false (one element is not a string or number)
+ * areOneOfType([1, "a", {}], ["number", "string"]);
+ *
+ * // false (types array is empty)
+ * areOneOfType([1, "a", {}], []);
  */
-export function areOneOfType(array: unknown, types: DataType[]): boolean {
-  if (!isFilledArray(array)) {
+function areOneOfType<const TTypes extends readonly DataTypeAsString[]>(array: unknown[], types: TTypes): array is Array<DataTypeOf<TTypes[number]>> {
+  if (!isFilledArray(array) || !isFilledArray(types)) {
     return false;
   }
 
@@ -64,3 +82,6 @@ export function areOneOfType(array: unknown, types: DataType[]): boolean {
 
   return true;
 }
+
+// Exports.
+export {isOneOfType, areOneOfType};

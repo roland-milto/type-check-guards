@@ -1,31 +1,60 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Checks if the provided value is an instance of `WeakSet`.
+ * Determines whether the given `value` is a `WeakSet` of objects.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-13
+ * @version 2026-01-26
  *
- * @param   {unknown} value             - The value to be checked.
+ * @param   {unknown} value - The value to be checked.
  *
- * @returns {value is WeakSet<object>}  - Returns `true` if the value is a WeakSet, otherwise `false`.
+ * @returns {boolean}       - `true` if `value` is a `WeakSet` of objects, `false` otherwise.
+ *
+ * @example
+ * // true
+ * console.log(isWeakSet(new WeakSet()));
+ *
+ * // false (input is not a WeakSet)
+ * console.log(isWeakSet(new Set()));
+ *
+ * // false (input is not a WeakSet)
+ * console.log(isWeakSet([]));
+ *
+ * // false (input is not a WeakSet)
+ * console.log(isWeakSet({}));
  */
-export function isWeakSet(value: unknown): value is WeakSet<object> {
+function isWeakSet(value: unknown): value is WeakSet<object> {
   return value instanceof WeakSet;
 }
 
 /**
- * Checks if the given value is a non-empty array where all elements are WeakSets.
+ * Determines if the provided array consists entirely of `WeakSet` objects.
+ * The function validates each item in the input to ensure it is a `WeakSet`.
  *
- * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-13
+ * @autor   Roland Milto (https://roland.milto.de/)
+ * @version 2026-01-26
  *
- * @param   {unknown} array               - The value to be checked.
+ * @param   {unknown[]} array - The array to be checked for `WeakSet` objects.
  *
- * @returns {value is WeakSet<object>[]}  - Returns `true` if the value is a filled array and all its elements are WeakSets, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements in the array are `WeakSet` objects; otherwise, `false`.
+ *
+ * @throws  {TypeError}       - If the input is not an array or is null.
+ *
+ * @example
+ * // true
+ * areWeakSets([new WeakSet(), new WeakSet()])
+ *
+ * // false (contains a non-WeakSet element)
+ * areWeakSets([new WeakSet(), {}])
+ *
+ * // false (empty array)
+ * areWeakSets([])
+ *
+ * // false (input is not an array)
+ * areWeakSets(null)
  */
-export function areWeakSets(array: unknown): array is WeakSet<object>[] {
+function areWeakSets(array: unknown[]): array is WeakSet<object>[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -38,3 +67,6 @@ export function areWeakSets(array: unknown): array is WeakSet<object>[] {
 
   return true;
 }
+
+// Exports.
+export {isWeakSet, areWeakSets};

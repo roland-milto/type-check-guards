@@ -1,48 +1,64 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines if the provided value is an object.
+ * Determines whether a given `value` is an `object`.
+ * A `null` value will result in `false` as it is not considered an object.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to be checked.
+ * @param   {unknown} value - The value to be checked for being an `object`.
  *
- * @returns {boolean}       - Returns `true` if the value is an object and not null; otherwise, `false`.
+ * @returns {boolean}       - `true` if `value` is an `object` and not `null`, otherwise `false`.
  *
  * @example
  * // true
- * isObject({ a: 1 });
- *
- * // false
- * isObject(null);
+ * isObject({});
  *
  * // true
- * isObject([]);
+ * isObject({a: 1});
+ *
+ * // true
+ * isObject(new Date());
+ *
+ * // false (input is null)
+ * isObject(null);
+ *
+ * // false (input is not an object)
+ * isObject(42);
+ *
+ * // false (input is a string)
+ * isObject("Hello");
  */
-export function isObject(value: unknown): value is object {
+function isObject(value: unknown): value is object {
   return typeof value === 'object' && value !== null;
 }
 
 /**
- * Determines whether the provided value is an array consisting entirely of objects.
+ * The `areObjects` function checks whether each element in the provided array is an object.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to be checked for object elements.
  *
- * @returns {boolean}       - Returns `true` if the value is an array of objects, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements are objects; otherwise `false`.
  *
  * @example
  * // true
- * areObjects([{}, { id: 1 }]);
+ * areObjects([{}, {a: 1}, new Date()]);
  *
- * // false
- * areObjects([{}, null]);
+ * // false (contains a non-object)
+ * areObjects([{}, 42, {a: 1}]);
+ *
+ * // false (input is not a filled array)
+ * areObjects([]);
+ *
+ * // false (contains a non-object)
+ * areObjects([new Map(), new Set(), 'string']);
  */
-export function areObjects(array: unknown): array is object[] {
+function areObjects(array: unknown[]): array is object[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -55,3 +71,6 @@ export function areObjects(array: unknown): array is object[] {
 
   return true;
 }
+
+// Exports.
+export {isObject, areObjects};

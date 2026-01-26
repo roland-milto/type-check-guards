@@ -1,45 +1,56 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines whether the given value is a Node.js-Buffer.
+ * Determines if a given value is a `Buffer` object by checking its type.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to check.
+ * @param   {unknown} value - The value to be tested.
  *
- * @returns {boolean}       - `true` if the value is a Buffer, otherwise `false`.
+ * @returns {boolean}       - `true` if the value is a `Buffer`; otherwise `false`.
  *
  * @example
- * // true
- * isBuffer(Buffer.from("Hallo"));
  *
- * // false
- * isBuffer("Hallo");
+ * // true
+ * isBuffer(Buffer.from('hello'));
+ *
+ * // false (input is not a Buffer)
+ * isBuffer('hello');
+ *
+ * // false (input is not a Buffer)
+ * isBuffer({});
+ *
+ * // false (input is not a Buffer)
+ * isBuffer(null);
  */
-export function isBuffer(value: unknown): value is Buffer {
+function isBuffer(value: unknown): value is Buffer {
   return typeof Buffer !== 'undefined' && Buffer.isBuffer(value);
 }
 
 /**
- * Checks if the given value is an array consisting entirely of Buffer objects.
+ * Determines if all elements in the given array are instances of `Buffer`.
+ * This function first checks if the array is a non-empty filled array and then verifies each element.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to be checked for buffer instances.
  *
- * @returns {boolean}       - Returns `true` if the value is an array of Buffer objects, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements are `Buffer` instances; otherwise, `false`.
  *
  * @example
  * // true
- * areBuffers([Buffer.from("A"), Buffer.from("B")]);
+ * areBuffers([Buffer.from('test'), Buffer.from('123')]);
  *
- * // false
- * areBuffers([Buffer.from("A"), "B"]);
+ * // false (array contains a number)
+ * areBuffers([Buffer.from('test'), 42]);
+ *
+ * // false (not a filled array)
+ * areBuffers([]);
  */
-export function areBuffers(array: unknown): array is Buffer[] {
+function areBuffers(array: unknown[]): array is Buffer[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -52,3 +63,6 @@ export function areBuffers(array: unknown): array is Buffer[] {
 
   return true;
 }
+
+// Exports.
+export {isBuffer, areBuffers};

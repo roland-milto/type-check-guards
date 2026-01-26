@@ -1,29 +1,38 @@
-// Import: Build-ins.
+// Import: build-ins.
 import type {Stream} from 'node:stream';
 
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines if the given argument is either a Node.js Stream or a Web Stream.
+ * Determines whether the given `value` is a stream object,
+ * which can be an instance of `Stream`, `ReadableStream`, or `WritableStream`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
  * @param   {unknown} value - The value to be checked.
  *
- * @returns {boolean}       - Returns `true` if the argument is a stream, otherwise `false`.
+ * @returns {boolean}       - `true` if the `value` is a stream object, otherwise `false`.
  *
  * @example
  * import fs from "node:fs";
  *
- * // true
- * isStream(fs.createReadStream("test.txt"));
+ * const stream1 = fs.createReadStream("file1.txt");
  *
- * // false
+ * // true
+ * isStream(stream1);
+ *
+ * // false (input is not a stream)
  * isStream({});
+ *
+ * // false (input is `null`)
+ * isStream(null);
+ *
+ * // false (input is a string)
+ * isStream('notAStream');
  */
-export function isStream(value: unknown): value is Stream | ReadableStream | WritableStream
+function isStream(value: unknown): value is Stream | ReadableStream | WritableStream
 {
   return (value != null &&
           typeof value === 'object' &&
@@ -38,14 +47,15 @@ export function isStream(value: unknown): value is Stream | ReadableStream | Wri
 }
 
 /**
- * Determines whether the given value is an array of Stream objects.
+ * Determines if all items in an `array` are `Stream` objects.
+ * Returns `true` if the `array` is filled and every element is a Stream, otherwise returns `false`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to be checked for Stream objects.
  *
- * @returns {boolean}       - Returns `true` if the value is an array where all elements are Stream objects, otherwise `false`.
+ * @returns {boolean}         - `true` if all items in the `array` are `Stream` objects, `false` otherwise.
  *
  * @example
  * import fs from "node:fs";
@@ -55,8 +65,17 @@ export function isStream(value: unknown): value is Stream | ReadableStream | Wri
  *
  * // true
  * areStreams([stream1, stream2]);
+ *
+ * // true
+ * areStreams([new Stream(), new Stream()]);
+ *
+ * // false (the array is not filled with Stream objects)
+ * areStreams([new Stream(), {}]);
+ *
+ * // false (input is not an array)
+ * areStreams("not an array");
  */
-export function areStreams(array: unknown): array is Stream[] {
+function areStreams(array: unknown[]): array is Array<Stream | ReadableStream | WritableStream> {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -69,3 +88,6 @@ export function areStreams(array: unknown): array is Stream[] {
 
   return true;
 }
+
+// Exports.
+export {isStream, areStreams};

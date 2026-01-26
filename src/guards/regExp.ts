@@ -1,24 +1,37 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines whether the provided argument is a regular expression (RegExp) object.
+ * Determines if the provided `value` is an instance of `RegExp`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
  * @param   {unknown} value - The value to be checked.
  *
- * @returns {boolean}       - A isBoolean value indicating whether the input is a `RegExp` object.
+ * @returns {boolean}       - `true` if the `value` is a `RegExp`, otherwise `false`.
  *
  * @example
  * // true
- * isRegEx(/[a-z]/);
+ * console.log(isRegEx(/abc/));
  *
- * // false
- * isRegEx("/[a-z]/");
+ * // true
+ * console.log(isRegEx(new RegExp('abc')));
+ *
+ * // false (input is not a RegExp)
+ * console.log(isRegEx('abc'));
+ *
+ * // false (input is not a RegExp)
+ * console.log(isRegEx({}));
+ *
+ * // false (input is not a RegExp)
+ * console.log(isRegEx(123));
  */
-export function isRegEx(value: unknown): value is RegExp {
+function isRegEx(value: unknown): value is RegExp {
+  return value instanceof RegExp;
+}
+
+function isRegExp(value: unknown): value is RegExp {
   return value instanceof RegExp;
 }
 
@@ -40,7 +53,7 @@ export function isRegEx(value: unknown): value is RegExp {
  * // false
  * areRegExes([/[a-z]/, ".*"]);
  */
-export function areRegExes(array: unknown): array is RegExp[] {
+function areRegExes(array: unknown[]): array is RegExp[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -53,3 +66,6 @@ export function areRegExes(array: unknown): array is RegExp[] {
 
   return true;
 }
+
+// Exports.
+export {isRegEx, isRegExp, areRegExes};

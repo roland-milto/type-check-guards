@@ -1,65 +1,77 @@
-// Import: Interfaces and types.
-import type {DataType} from "../types/dataType.js";
+// Import: interfaces and types.
+import type {DataTypeAsString} from "../types/dataType.js";
 
-// Import: Self-created functions.
+// Import: local functions.
 import {getTypeOf} from "../utils/getTypeOf.js";
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines if the provided variable is of the specified data type.
+ * Determines if a given `value` is of the specified `type`.
+ * Uses both, direct `typeof` checks and a fallback for complex types.
  *
- * @author  Roland Milto
- * @version 2026-01-08
+ * @author  Roland Milto (https://roland.milto.de/)
+ * @version 2026-01-26
  *
- * @param   {unknown}  value  - The variable to check.
- * @param   {DataType} type   - The name of the data type to compare against.
+ * @template T - extends DataTypeAsString
+ * @param   {unknown} value - The value to test against the `type`.
+ * @param   {T}       type  - The string representation of the type to check against.
  *
- * @returns {boolean}         - Does the variable's type match the specified data type?
+ * @returns {boolean}       - `true` if `value` is of the specified `type`; otherwise, `false`.
  *
  * @example
  * // true
- * isOfType("Roland Milto", "string");
+ * isOfType(123, "number");
  *
  * // true
- * isOfType([], "array");
+ * isOfType("hello", "string");
  *
- * // false
- * isOfType(null, "undefined");
+ * // true
+ * isOfType(null, "null");
+ *
+ * // false (input is not a boolean)
+ * isOfType(123, "boolean");
+ *
+ * // false (input is not a symbol)
+ * isOfType({}, "symbol");
  */
-export function isOfType(value: unknown, type: DataType): value is DataType
+function isOfType<T extends DataTypeAsString>(value: unknown, type: T): value is DataTypeOf<T>
 {
   // Handle null and undefined explicitly (very fast).
   if (type === "undefined") return value === undefined;
   if (type === "null") return value === null;
 
   // This avoids the overhead of function calls inside `getTypeOf` for common cases.
-  if (type === "bigint" || type === "boolean" || type === "function" || type === "string" || type === "symbol") {
+  if (type === "bigint" || type === "boolean" || type === "function" || type === "number" || type === "string" || type === "symbol") {
     return typeof value === type;
   }
 
-  // Fallback to the robust check for complex types (array, date, regexp, object, etc.).
+  // Fallback to the robust check for complex types (array, date, float, regexp, object, etc.).
   return getTypeOf(value) === type;
 }
 
 /**
- * Checks if all elements in the provided array are of the specified type.
+ * Checks whether all elements in the given `array` are of the specified `type`.
  *
- * @author  Roland Milto
- * @version 2026-01-07
+ * @author  Roland Milto (https://roland.milto.de/)
+ * @version 2026-01-26
  *
- * @param   {unknown[]} array - The array to be checked.
- * @param   {DataType} type  - The data type to validate against each element in the array.
+ * @template T - extends DataTypeAsString
+ * @param   {unknown[]}                   array - The array to check.
+ * @param   {T extends DataTypeAsString}  type  - The type to check against each element in the array.
  *
- * @returns {boolean}         - `true` if all elements in the array are of the specified type, otherwise `false`.
+ * @returns {array is Array<DataTypeOf<T>>}     - `true` if all elements are of the specified type, `false` otherwise.
  *
  * @example
  * // true
- * areOfType(["ts", "js"], "string");
+ * areOfType([1, 2, 3], 'number');
  *
- * // false
- * areOfType([1, "2"], "number");
+ * // true
+ * areOfType(['a', 'b', 'c'], 'string');
+ *
+ * // false (not all elements are numbers)
+ * areOfType([1, '2', 3], 'number');
  */
-export function areOfType(array: unknown, type: DataType): array is DataType[] {
+function areOfType<T extends DataTypeAsString>(array: unknown[], type: T): array is Array<DataTypeOf<T>> {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -72,3 +84,6 @@ export function areOfType(array: unknown, type: DataType): array is DataType[] {
 
   return true;
 }
+
+// Exports.
+export {isOfType, areOfType};

@@ -1,31 +1,57 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Checks if the provided value is an instance of `Set`.
+ * Determines whether a given value is a `Set`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-13
+ * @version 2026-01-26
  *
- * @param   {unknown}               value - The value to be checked.
+ * @param   {unknown} value - The value to check.
  *
- * @returns {value is Set<unknown>}       - Returns `true` if the value is a Set, otherwise `false`.
+ * @returns {boolean}       - `true` if the value is a `Set`, otherwise `false`.
+ *
+ * @example
+ * // true
+ * isSet(new Set());
+ *
+ * // true
+ * isSet(new Set([1, 2, 3]));
+ *
+ * // false (input is an array)
+ * isSet([1, 2, 3]);
+ *
+ * // false (input is an object)
+ * isSet({ key: 'value' });
+ *
+ * // false (input is a string)
+ * isSet('Set');
  */
-export function isSet(value: unknown): value is Set<unknown> {
+function isSet(value: unknown): value is Set<unknown> {
   return value instanceof Set;
 }
 
 /**
- * Checks if the given value is an array where all elements are Sets.
+ * Determines if all elements within the provided array are `Set` instances.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-13
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to be checked for `Set` instances.
  *
- * @returns {value is Set<unknown>[]} - Returns `true` if the value is an array and all its elements are Sets, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements are `Set` instances, `false` otherwise.
+ *
+ * @example
+ * // true
+ * areSets([new Set(), new Set([1, 2]), new Set()]);
+ *
+ * // false (contains a non-Set element)
+ * areSets([new Set(), {}, new Set([1, 2])]);
+ *
+ * // false (the array is empty)
+ * areSets([]);
  */
-export function areSets(array: unknown): array is Set<unknown>[] {
+function areSets(array: unknown[]): array is Set<unknown>[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -38,3 +64,6 @@ export function areSets(array: unknown): array is Set<unknown>[] {
 
   return true;
 }
+
+// Exports.
+export {isSet, areSets};

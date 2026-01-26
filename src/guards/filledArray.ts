@@ -1,48 +1,61 @@
 /**
- * Determines whether the provided value is a non-empty array.
+ * Checks if the provided `value` is a non-empty array.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to check.
+ * @param   {unknown[]} value - The value to check if it is a non-empty array.
  *
- * @returns {boolean}       - Returns `true` if the value is an array with at least one element, otherwise `false`.
+ * @returns {boolean}         - `true` if `value` is a non-empty array, otherwise `false`.
  *
  * @example
  * // true
- * isFilledArray([1])
+ * isFilledArray([1, 2, 3]);
  *
- * // false
- * isFilledArray([])
+ * // true
+ * isFilledArray(['a']);
  *
- * // false
- * isFilledArray(42)
+ * // false (not an array)
+ * isFilledArray('not an array');
+ *
+ * // false (empty array)
+ * isFilledArray([]);
  */
-export function isFilledArray(value: unknown): value is unknown[] {
+function isFilledArray(value: unknown): value is readonly unknown[] {
   return Array.isArray(value) && value.length > 0;
 }
 
 /**
- * Checks if the provided value is an array where every element is a non-empty array.
+ * Checks if a two-dimensional array and all of its subarrays are non-empty.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[][]} array - The two-dimensional array to check.
  *
- * @returns {boolean}       - Returns `true` if the value is an array of non-empty arrays, otherwise `false`.
+ * @returns {boolean}           - `true` if both the main array and all subarrays are filled; otherwise `false`.
  *
  * @example
+ *
  * // true
- * areFilledArrays([[1], ["a"]])
+ * areFilledArrays([[1]]);
+ *
+ * // true
+ * areFilledArrays([['a', 'b'], [1, 2, 3]]);
+ *
+ * // true
+ * areFilledArrays([[{}, []], ['string']]);
  *
  * // false
- * areFilledArrays([[1], []])
+ * areFilledArrays([[]]);
  *
  * // false
- * areFilledArrays([])
+ * areFilledArrays([[], [1, 2, 3]]);
+ *
+ * // false
+ * areFilledArrays([]);
  */
-export function areFilledArrays(array: unknown): array is unknown[][] {
+function areFilledArrays(array: readonly unknown[]): array is Array<unknown>[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -55,3 +68,6 @@ export function areFilledArrays(array: unknown): array is unknown[][] {
 
   return true;
 }
+
+// Exports.
+export {isFilledArray, areFilledArrays};

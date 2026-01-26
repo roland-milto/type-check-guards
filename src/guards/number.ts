@@ -1,55 +1,67 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines whether the provided argument is a valid number.
- * NaN is considered not as a valid number.
+ * Determines if a given value is a valid number by checking its type and ensuring it's neither `NaN` nor infinite.
+ * This function is useful for validating numerical input in different contexts.
  *
- @author  Roland Milto (https://roland.milto.de/)
- @version 2025-12-22
+ * @author  Roland Milto (https://roland.milto.de/)
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to be checked.
+ * @param   {unknown} value - The value to check.
  *
- * @returns {boolean}       - A isBoolean indicating whether the given argument is a finite number and not NaN.
+ * @returns {boolean}       - `true` if the value is a valid number; `false` otherwise.
  *
  * @example
  * // true
- * isNumber(123);
+ * isNumber(42);
  *
- * // false
+ * // true
+ * isNumber(3.14);
+ *
+ * // true
+ * isNumber(-7);
+ *
+ * // false (input is not a number)
+ * isNumber('42');
+ *
+ * // false (input is NaN)
  * isNumber(NaN);
  *
- * // false
+ * // false (input is infinite)
  * isNumber(Infinity);
- *
- * // false
- * isNumber("123");
  */
-export function isNumber(value: unknown): value is number {
+function isNumber(value: unknown): value is number {
   return typeof value === 'number' && !Number.isNaN(value) && Number.isFinite(value);
 }
 
 /**
- * Checks if the given value is an array of numbers.
+ * Checks if all elements in a given array are numbers.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to check.
+ * @param   {unknown[]} array - The array to be checked for number elements.
  *
- * @returns {boolean}       - Returns `true` if the value is an array of numbers, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements are numbers, otherwise `false`.
  *
  * @example
  * // true
- * areNumbers([1.1, 2.2, 3.3]);
+ * areNumbers([1, 2, 3]);
  *
- * // false
- * areNumbers([1, NaN]);
+ * // true
+ * areNumbers([10.5, -3, 0]);
  *
- * // false
- * areNumbers([1, "2"]);
+ * // false (input is not a number)
+ * areNumbers([1, "two", 3]);
+ *
+ * // false (input is not a number)
+ * areNumbers([]);
+ *
+ * // false (input is not a number)
+ * areNumbers([undefined]);
  */
-export function areNumbers(array: unknown): array is number[] {
+function areNumbers(array: unknown[]): array is number[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -62,3 +74,6 @@ export function areNumbers(array: unknown): array is number[] {
 
   return true;
 }
+
+// Exports.
+export {isNumber, areNumbers};

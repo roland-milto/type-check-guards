@@ -1,46 +1,54 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isOfType} from "./ofType.js";
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines whether the provided value is a Date object.
+ * Determines if the provided `value` is of type `Date`.
+ * This function checks if the given input strictly matches the `Date` type.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to check.
+ * @param   {unknown} value - The value to be checked for `Date` type.
  *
- * @returns {value is Date} - `true` if the value is a `Date` object, otherwise `false`.
+ * @returns {boolean}       - `true` if the `value` is a `Date`, otherwise `false`.
  *
  * @example
  * // true
- * isDate(new Date());
+ * const result1 = isDate(new Date());
  *
- * // false
- * isDate("2026-01-01");
+ * // false (input is a string)
+ * const result2 = isDate("1990-08-18");
+ *
+ * // false (input is an object)
+ * const result3 = isDate({ year: 1990 });
  */
-export function isDate(value: unknown): value is Date {
+function isDate(value: unknown): value is Date {
   return isOfType(value, "date");
 }
 
 /**
- * Checks if the given value is an array where all elements are instances of Date.
+ * Determines if the given array consists solely of `Date` objects.
+ * The function checks if the array is filled and subsequently verifies each element to confirm that it is a `Date` object.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to be checked for `Date` objects.
  *
- * @returns {boolean}       - Returns `true` if the value is an array of Date instances, otherwise `false`.
+ * @returns {boolean}         - `true` if every element in the array is a `Date` object, otherwise `false`.
  *
  * @example
  * // true
- * areDates([new Date(), new Date()]);
+ * areDates([new Date(), new Date('2021-01-01')]);
  *
- * // false
- * areDates([new Date(), "2026"]);
+ * // false (array is empty)
+ * areDates([]);
+ *
+ * // false (contains non-date objects)
+ * areDates([new Date(), 'not a date']);
  */
-export function areDates(array: unknown): array is Date[] {
+function areDates(array: unknown[]): array is Date[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -53,3 +61,6 @@ export function areDates(array: unknown): array is Date[] {
 
   return true;
 }
+
+// Exports.
+export {isDate, areDates};

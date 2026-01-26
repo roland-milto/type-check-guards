@@ -1,4 +1,4 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 import {isString} from "./string.js";
 
@@ -6,32 +6,39 @@ import {isString} from "./string.js";
 const DECIMAL_LITERAL_REGEX = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/;
 
 /**
- * Checks whether the provided value is a decimal number in string representation.
+ * Determines whether a given value is a decimal string representation, ensuring no leading or trailing whitespace
+ * and validating it against a predefined regex pattern.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-21
+ * @version 2026-01-26
  *
- * @param   {unknown} value   - The value to be checked.
+ * @param   {unknown} value - The value to check for a decimal string format.
  *
- * @returns {value is string} - Returns `true` if the value is a decimal string, otherwise `false`.
+ * @returns {boolean}       - `true` if the value is a valid decimal string, otherwise `false`.
  *
  * @example
- * // true
- * isDecimal("123.45");
- *
- * // true (negative and signed)
- * isDecimal("-123.45");
- *
- * // true (shorthand notation)
- * isDecimal(".5");
- *
- * // false (lenient behavior for non-string types)
- * isDecimal(123.45);
- *
  * // If you use the object 'Number': import from "@js-augment/number/register-global.mjs";
  * Number.isDecimal(value);
+ *
+ * // true
+ * isDecimal("123.45")
+ *
+ * // true
+ * isDecimal("0.99")
+ *
+ * // true
+ * isDecimal("-42.0")
+ *
+ * // false (value is not a string)
+ * isDecimal(123.45)
+ *
+ * // false (leading whitespace)
+ * isDecimal(" 123.45")
+ *
+ * // false (trailing whitespace)
+ * isDecimal("123.45 ")
  */
-export function isDecimal(value: unknown): value is string {
+function isDecimal(value: unknown): value is string {
   if (!isString(value)) {
     return false;
   }
@@ -48,26 +55,30 @@ export function isDecimal(value: unknown): value is string {
 }
 
 /**
- * Determines if the given value is an array of valid decimal strings.
+ * Checks whether all elements in an array are decimal numbers.
+ * The `areDecimals` function also verifies that the array is filled.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-21
+ * @version 2026-01-26
  *
- * @param   {unknown} array     - The value to be checked.
+ * @param   {unknown[]} array - The array to be checked.
  *
- * @returns {array is string[]} - Returns `true` if the value is a non-empty array of decimal strings, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements are decimals and the array is filled; `false` otherwise.
  *
  * @example
+ * // If you use the object 'Numbers': import from "@js-augment/numbers/register-global.mjs";
+ * Numbers.areDecimals(value);
+ *
  * // true
- * areDecimals(["123.45", "-0.5", ".123"]);
+ * areDecimals(['1.0', '2.5', '3.14']);
  *
- * // false (contains an invalid decimal string)
- * areDecimals(["123.45", "12a.5"]);
+ * // false (input is not a decimal)
+ * areDecimals(['1.0', 'abc', '3.14']);
  *
- * // false (empty array or not an array)
+ * // false (input is not a filled array)
  * areDecimals([]);
  */
-export function areDecimals(array: unknown): array is string[] {
+function areDecimals(array: unknown[]): array is string[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -80,3 +91,6 @@ export function areDecimals(array: unknown): array is string[] {
 
   return true;
 }
+
+// Export.
+export {isDecimal, areDecimals};

@@ -1,11 +1,11 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
  * Determines whether the provided value is of the `symbol` type.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
  * @param   {unknown} value - The value to be checked.
  *
@@ -18,27 +18,31 @@ import {isFilledArray} from "./filledArray.js";
  * // false
  * isSymbol("key");
  */
-export function isSymbol(value: unknown): value is symbol {
+function isSymbol(value: unknown): value is symbol {
   return typeof value === 'symbol';
 }
 
 /**
- * Checks if the given value is an array consisting only of symbols.
+ * Checks if all elements in the given array are symbols.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to be checked for symbol elements.
  *
- * @returns {boolean}       - Returns `true` if the value is an array of symbols, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements in the array are symbols, otherwise `false`.
  *
  * @example
- * const keys = [Symbol("a"), Symbol("b")];
- *
  * // true
- * areSymbols(keys);
+ * areSymbols([Symbol('a'), Symbol('b'), Symbol('c')]);
+ *
+ * // false (input is not an array with only symbols)
+ * areSymbols(['a', 'b', 'c']);
+ *
+ * // false (one element is not a symbol)
+ * areSymbols([Symbol('a'), 'b', Symbol('c')]);
  */
-export function areSymbols(array: unknown): array is symbol[] {
+function areSymbols(array: unknown[]): array is symbol[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -51,3 +55,6 @@ export function areSymbols(array: unknown): array is symbol[] {
 
   return true;
 }
+
+// Exports.
+export {isSymbol, areSymbols};

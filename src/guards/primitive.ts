@@ -1,30 +1,37 @@
-// Import: Interfaces and types.
-import type {Primitive} from "../types/primitive.js";
+// Import: interfaces and types.
+import type {PrimitiveType} from "../types/primitive.js";
 
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines whether the provided value is a primitive data type.
+ * Determines whether the given `value` is a primitive type.
+ * A primitive type includes `null`, `undefined`, `boolean`, `number`, `string`, `bigint`, `symbol`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to check.
+ * @param   {unknown} value - The value to check for primitive type.
  *
- * @returns {boolean}       - Returns `true` if the value is a primitive, otherwise `false`.
+ * @returns {boolean}       - `true` if the `value` is a primitive, otherwise `false`.
  *
  * @example
  * // true
- * isPrimitive(42)
+ * isPrimitive(null);
  *
  * // true
- * isPrimitive("text")
+ * isPrimitive(42);
  *
- * // false
- * isPrimitive({})
+ * // true
+ * isPrimitive('hello');
+ *
+ * // false (input is an object)
+ * isPrimitive({});
+ *
+ * // false (input is a function)
+ * isPrimitive(function() {});
  */
-export function isPrimitive(value: unknown): value is Primitive {
+function isPrimitive(value: unknown): value is PrimitiveType {
   return (
     value === null ||
     (typeof value !== 'object' && typeof value !== 'function')
@@ -32,26 +39,26 @@ export function isPrimitive(value: unknown): value is Primitive {
 }
 
 /**
- * Checks if the provided value is an array consisting entirely of primitive data types.
+ * Evaluates whether all elements within the given array are primitive types.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to be checked for elements of primitive type.
  *
- * @returns {boolean}       - Returns `true` if the value is an array of primitives, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements are primitive types, otherwise `false`.
  *
  * @example
  * // true
- * arePrimitives([1, "a", true])
+ * arePrimitives([1, 'string', true]);
  *
  * // true
- * arePrimitives([null, undefined])
+ * arePrimitives([null, undefined, Symbol()]);
  *
- * // false
- * arePrimitives([1, {}])
+ * // false (contains an object)
+ * arePrimitives([1, {}, false]);
  */
-export function arePrimitives(array: unknown): array is Primitive[] {
+function arePrimitives(array: unknown[]): array is PrimitiveType[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -64,3 +71,6 @@ export function arePrimitives(array: unknown): array is Primitive[] {
 
   return true;
 }
+
+// Exports.
+export {isPrimitive, arePrimitives};

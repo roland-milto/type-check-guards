@@ -1,45 +1,61 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines if the provided value is a string.
+ * Determines whether a given value is a string.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to be checked.
+ * @param   {unknown} value - The value to be tested for string type.
  *
- * @returns {boolean}       - `true` if the value is a string, otherwise `false`.
+ * @returns {boolean}       - `true` if the `value` is a string; otherwise, `false`.
  *
  * @example
  * // true
- * isString("Roland Milto");
+ * isString("Hello World");
  *
- * // false
- * isString(2026);
+ * // true
+ * isString("");
+ *
+ * // false (input is not a string)
+ * isString(123);
+ *
+ * // false (input is not a string)
+ * isString({ key: "value" });
+ *
+ * // false (input is not a string)
+ * isString(null);
  */
-export function isString(value: unknown): value is string {
+function isString(value: unknown): value is string {
   return typeof value === 'string';
 }
 
 /**
- * Determines if the provided value is an array where all elements are strings.
+ * The `areStrings` function checks if all elements in the given array are strings.
+ * It returns `true` only if every item in the array is a string and the array is not empty.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to check, containing elements of unknown types.
  *
- * @returns {boolean}       - `true` if the value is an array of strings, otherwise `false`.
+ * @returns {boolean}         - `true` if every element in the array is a string and the array is filled; otherwise, `false`.
  *
  * @example
  * // true
- * areStrings(["Roland", "Milto"]);
+ * areStrings(["hello", "world"]);
  *
- * // false
- * areStrings(["Code", 404]);
+ * // false (contains a non-string item)
+ * areStrings(["hello", 42]);
+ *
+ * // false (empty array)
+ * areStrings([]);
+ *
+ * // false (contains a non-string item)
+ * areStrings([{}, "text"]);
  */
-export function areStrings(array: unknown): array is string[] {
+function areStrings(array: unknown[]): array is string[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -52,3 +68,6 @@ export function areStrings(array: unknown): array is string[] {
 
   return true;
 }
+
+// Exports.
+export {isString, areStrings};

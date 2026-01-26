@@ -1,44 +1,61 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines if the given argument is a function.
+ * Determines if a given value is a function. The `isFunction` method checks the type of the input value.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to test.
+ * @param   {unknown}  value - The value to check.
  *
- * @returns {boolean}       - A boolean indicating whether the argument is a function.
+ * @returns {boolean}        - `true` if the value is a function; otherwise `false`.
  *
  * @example
  * // true
- * isFunction(() => console.log("Hi"));
+ * isFunction(function() {});
  *
- * // false
- * isFunction("keine Funktion");
+ * // true
+ * isFunction(() => {});
+ *
+ * // true
+ * isFunction(async function() {});
+ *
+ * // false (input is not a function)
+ * isFunction(42);
+ *
+ * // false (input is not a function)
+ * isFunction('string');
+ *
+ * // false (input is not a function)
+ * isFunction({});
  */
-export function isFunction(value: unknown): value is (...args: unknown[]) => unknown {
+function isFunction(value: unknown): value is (...args: unknown[]) => unknown {
   return typeof value === 'function';
 }
 
 /**
- * Checks if the provided value is an array of functions.
+ * Determines whether all elements in an array are functions.
+ * The `areFunctions` function checks if the provided `array` is filled and then verifies each item to ensure it is a function.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to check.
+ * @param   {unknown[]} array - The array to be checked for function elements.
  *
- * @returns {boolean}       - `true` if the value is an array of functions, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements in `array` are functions, otherwise `false`.
  *
  * @example
- * const tasks = [() => 1, () => 2];
- *
  * // true
- * areFunctions(tasks);
+ * areFunctions([function() {}, () => {}, Math.sin]);
+ *
+ * // false (contains number)
+ * areFunctions([function() {}, 42, Math.cos]);
+ *
+ * // false (empty array)
+ * areFunctions([]);
  */
-export function areFunctions(array: unknown): array is Function[] {
+function areFunctions(array: unknown[]): array is Function[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -51,3 +68,6 @@ export function areFunctions(array: unknown): array is Function[] {
 
   return true;
 }
+
+// Exports.
+export {isFunction, areFunctions};

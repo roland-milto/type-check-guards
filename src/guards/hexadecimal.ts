@@ -1,4 +1,4 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 import {isString} from "./string.js";
 
@@ -9,13 +9,19 @@ const HEX_LITERAL_REGEX = /^[+-]?0[xX][0-9a-fA-F]+$/;
  * Checks if the given value is a hexadecimal string.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-15
+ * @version 2026-01-26
  *
- * @param   {unknown} value   - The value to be checked.
+ * @param   {unknown} value - The value to be checked.
  *
- * @returns {value is string} - Returns `true` if the value is a hexadecimal string, otherwise `false`.
+ * @returns {boolean}       - Returns `true` if the value is a hexadecimal string, otherwise `false`.
  *
  * @example
+ * // If you use the object 'BigInt': import from "@js-augment/bigint/register-global.mjs";
+ * BigInt.isHexadecimal(value);
+ *
+ * // If you use the object 'Number': import from "@js-augment/number/register-global.mjs";
+ * Number.isHexadecimal(value);
+ *
  * // true (with prefix)
  * isHexadecimal("0x1A2B");
  *
@@ -27,14 +33,8 @@ const HEX_LITERAL_REGEX = /^[+-]?0[xX][0-9a-fA-F]+$/;
  *
  * // false (lenient behavior for non-string types)
  * isHexadecimal(0x1A2B);
- *
- * // If you use the object 'BigInt': import from "@js-augment/bigint/register-global.mjs";
- * BigInt.isHexadecimal(value);
- *
- * // If you use the object 'Number': import from "@js-augment/number/register-global.mjs";
- * Number.isHexadecimal(value);
  */
-export function isHexadecimal(value: unknown): value is string {
+function isHexadecimal(value: unknown): value is string {
   if (!isString(value)) {
     return false;
   }
@@ -51,26 +51,35 @@ export function isHexadecimal(value: unknown): value is string {
 }
 
 /**
- * Determines if the given value is an array of valid hexadecimal strings.
+ * The `areHexadecimals` function checks whether all elements in the given array are valid hexadecimal strings.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-21
+ * @version 2026-01-26
  *
- * @param   {unknown} array     - The value to be checked.
+ * @param   {unknown[]} array - The array to be checked for hexadecimal string elements.
  *
- * @returns {array is string[]} - Returns `true` if the value is a non-empty array of hexadecimal strings, otherwise `false`.
+ * @returns {boolean}         - `true` if every element in the array is a hexadecimal string, otherwise `false`.
  *
  * @example
+ * // If you use the object 'BigInts': import from "@js-augment/bigints/register-global.mjs";
+ * BigInts.areHexadecimals(value);
+ *
+ * // If you use the object 'Numbers': import from "@js-augment/numbers/register-global.mjs";
+ * Numbers.areHexadecimals(value);
+ *
  * // true
- * areHexadecimals(["0x1A2B", "-0Xff"]);
+ * areHexadecimals(['1A', '3F', 'B2']);
  *
- * // false (contains an invalid hexadecimal string)
- * areHexadecimals(["0x1A2B", "0xG1"]);
+ * // false (non-hexadecimal string presents)
+ * areHexadecimals(['1A', '3G', 'B2']);
  *
- * // false (empty array or not an array)
+ * // false (contains a non-string element)
+ * areHexadecimals([10, '3F', 'B2']);
+ *
+ * // false (an empty array is not valid)
  * areHexadecimals([]);
  */
-export function areHexadecimals(array: unknown): array is string[] {
+function areHexadecimals(array: unknown[]): array is string[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -83,3 +92,6 @@ export function areHexadecimals(array: unknown): array is string[] {
 
   return true;
 }
+
+// Export.
+export {isHexadecimal, areHexadecimals};

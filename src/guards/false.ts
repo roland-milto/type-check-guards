@@ -1,51 +1,54 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines whether the provided value is strictly equal to `false`.
+ * Checks if the provided value is strictly equal to the boolean literal `false`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to check.
+ * @param   {unknown}  value  - The value to be checked.
  *
- * @returns {boolean}       - Returns `true` if the value is strictly `false`, otherwise `false`.
+ * @returns {boolean}         - `true` if the value is `false`; otherwise, `false`.
  *
  * @example
  * // true
- * isFalse(false)
+ * console.log(isFalse(false));
  *
- * // false
- * isFalse(0)
+ * // false (input is not strictly false)
+ * console.log(isFalse(true));
  *
- * // false
- * isFalse("")
+ * // false (input is not strictly false)
+ * console.log(isFalse(0));
+ *
+ * // false (input is not strictly false)
+ * console.log(isFalse("false"));
  */
-export function isFalse(value: unknown): value is false {
+function isFalse(value: unknown): value is false {
   return value === false;
 }
 
 /**
- * Checks if the provided value is an array where every element is strictly `false`.
+ * Checks whether all elements in the provided array are strictly the boolean `false`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to check, containing elements of any type.
  *
- * @returns {boolean}       - Returns `true` if the value is an array of `false` values, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements are `false`; `false` otherwise.
  *
  * @example
  * // true
- * areFalse([false, false])
+ * areFalse([false, false, false]);
  *
- * // false
- * areFalse([false, true])
+ * // false (contains `true`)
+ * areFalse([false, true, false]);
  *
- * // false
- * areFalse([])
+ * // false (contains a string)
+ * areFalse([false, "false", false]);
  */
-export function areFalse(array: unknown): array is false[] {
+function areFalse(array: unknown[]): array is false[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -58,3 +61,6 @@ export function areFalse(array: unknown): array is false[] {
 
   return true;
 }
+
+// Exports.
+export {isFalse, areFalse};

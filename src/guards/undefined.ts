@@ -1,11 +1,11 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
  * Checks if the provided argument is `undefined`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
  * @param   {unknown} value - The value to be checked.
  *
@@ -23,28 +23,32 @@ import {isFilledArray} from "./filledArray.js";
  * // false
  * isUndefined(null);
  */
-export function isUndefined(value: unknown): value is undefined {
+function isUndefined(value: unknown): value is undefined {
   return typeof value === 'undefined';
 }
 
 /**
- * Checks if the given value is an array where all elements are undefined.
+ * Determines whether all elements in a given array are `undefined`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to check for `undefined` elements.
  *
- * @returns {boolean}       - Returns `true` if the value is an array and all its elements are undefined, otherwise `false`.
+ * @returns {boolean}         - `true` if every element in the array is `undefined`, `false` otherwise.
  *
  * @example
+ *
  * // true
  * areUndefined([undefined, undefined]);
  *
- * // false
+ * // false (contains a non-undefined value)
  * areUndefined([undefined, null]);
+ *
+ * // false (not all elements are undefined)
+ * areUndefined([undefined, 0, undefined]);
  */
-export function areUndefined(array: unknown): array is undefined[] {
+function areUndefined(array: unknown[]): array is undefined[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -57,3 +61,6 @@ export function areUndefined(array: unknown): array is undefined[] {
 
   return true;
 }
+
+// Exports.
+export {isUndefined, areUndefined};

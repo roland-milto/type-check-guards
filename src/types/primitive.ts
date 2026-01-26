@@ -1,20 +1,29 @@
 /**
- * Represents a union of string corresponding to JavaScript's primitive and structural data DataTypes.
+ * The `_Primitive` type defines basic primitive data types in JavaScript,
+ * including some refined types such as `float`, `integer`, and `nan`.
  *
- * This type can be used to define or validate values that represent the names of these data DataTypes.
+ * This type serves as a comprehensive mapping for JavaScript's primitive values and variations thereof.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-16
+ * @version 2026-01-26
  */
-export type Primitive =
-  | "bigint"
-  | "boolean"
-  | "float"
-  | "integer"
-  | "nan"
-  | "null"
-  | "number"
-  | "string"
-  | "symbol"
-  | "undefined"
-  ;
+type _Primitive =
+  {
+    bigint: bigint;
+    boolean: boolean;
+    null: null;
+    number: number;
+    string: string;
+    symbol: symbol;
+    undefined: undefined;
+
+    // Refinements.
+    float: number;
+    integer: number;
+    nan: number;
+  }
+
+// Export types.
+export type PrimitiveTypeAsString = keyof _Primitive;
+export type PrimitiveType = _Primitive[PrimitiveTypeAsString];
+export type PrimitiveTypeOf<K extends PrimitiveTypeAsString> = _Primitive[K]; // PrimitiveTypeOf<"float"> is number

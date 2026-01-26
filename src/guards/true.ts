@@ -1,11 +1,11 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
  * Determines whether the provided value is strictly equal to `true`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
  * @param   {unknown} value - The value to check.
  *
@@ -21,31 +21,34 @@ import {isFilledArray} from "./filledArray.js";
  * // false
  * isTrue("true")
  */
-export function isTrue(value: unknown): value is true {
+function isTrue(value: unknown): value is true {
   return value === true;
 }
 
 /**
- * Checks if the provided value is an array where every element is strictly `true`.
- *
+ * Determines if every element in an array is the boolean `true`.
+
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
+
+ * @param   {unknown[]} array - The array to check for all `true` values.
  *
- * @param   {unknown} array - The value to be checked.
- *
- * @returns {boolean}       - Returns `true` if the value is an array of `true` values, otherwise `false`.
- *
+ * @returns {boolean}         - `true` if all elements are `true`; otherwise, `false`.
+
  * @example
  * // true
- * areTrue([true, true])
+ * console.log(areTrue([true, true, true]));
  *
- * // false
- * areTrue([true, false])
+ * // false (contains a false)
+ * console.log(areTrue([true, false, true]));
  *
- * // false
- * areTrue([])
+ * // false (empty array)
+ * console.log(areTrue([]));
+ *
+ * // false (contains a non-boolean)
+ * console.log(areTrue([true, "string", true]));
  */
-export function areTrue(array: unknown): array is true[] {
+function areTrue(array: unknown[]): array is true[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -58,3 +61,6 @@ export function areTrue(array: unknown): array is true[] {
 
   return true;
 }
+
+// Exports.
+export {isTrue, areTrue};

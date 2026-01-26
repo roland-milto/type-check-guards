@@ -1,41 +1,58 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Checks if the given value is a safe integer (maximum 9.007.199.254.740.991).
+ * Determines if the given `value` is a safe integer number.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to check.
+ * @param   {unknown} value - The value to check for integer status.
  *
- * @returns {boolean}       - Returns `true` if the value is a safe integer, otherwise `false`.
+ * @returns {boolean}       - `true` if `value` is a safe integer, otherwise `false`.
  *
- *  @example
- *  isInteger(5) // true
- *  isInteger(5.1) // false
- *  isInteger("5") // false
+ * @example
+ * // true
+ * isInteger(5);
+ *
+ * // true
+ * isInteger(-100);
+ *
+ * // false (input is a string)
+ * isInteger("5");
+ *
+ * // false (input is a float)
+ * isInteger(5.5);
+ *
+ * // false (input is not a safe integer)
+ * isInteger(null);
  */
-export function isInteger(value: unknown): value is number {
+function isInteger(value: unknown): value is number {
   return typeof value === 'number' && Number.isSafeInteger(value);
 }
 
 /**
- * Checks if the provided value is an array of safe integers.
+ * Determines if all elements in the given array are integers.
+ * The function returns `true` if every element is an integer, and `false` otherwise.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to check for integer elements.
  *
- * @returns {boolean}       - Returns `true` if the value is an array where all elements are safe integers, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements are integers, `false` otherwise.
  *
  * @example
- * isInteger([5, 1337]) // true
- * isInteger([3.14, 5.1]) // false
- * isInteger(["5", 5]) // false
+ * // true
+ * areIntegers([1, 2, 3]);
+ *
+ * // true
+ * areIntegers([0, -10, 42]);
+ *
+ * // false (contains a noninteger string)
+ * areIntegers([1, 2, '3']);
  */
-export function areIntegers(array: unknown): array is number[] {
+function areIntegers(array: unknown[]): array is number[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -48,3 +65,6 @@ export function areIntegers(array: unknown): array is number[] {
 
   return true;
 }
+
+// Exports.
+export {isInteger, areIntegers};

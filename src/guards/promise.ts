@@ -1,44 +1,58 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Checks if a given value is a `Promise`.
+ * Determines whether a given value is a `Promise`.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to check.
+ * @param   {unknown} value - The value to be checked.
  *
- * @returns {boolean}       - Indicates whether the value is a `Promise`.
+ * @returns {boolean}       - `true` if the value is a `Promise`, otherwise `false`.
  *
  * @example
  * // true
- * isPromise(Promise.resolve(42));
+ * isPromise(new Promise((resolve, reject) => {}));
  *
- * // false
- * isPromise("kein Promise");
+ * // true
+ * const promise = Promise.resolve();
+ * isPromise(promise);
+ *
+ * // false (input is not a Promise)
+ * isPromise({ then: function() {} });
+ *
+ * // false (input is not a Promise)
+ * isPromise(123);
+ *
+ * // false (input is not a Promise)
+ * isPromise(null);
  */
-export function isPromise(value: unknown): value is Promise<unknown> {
+function isPromise(value: unknown): value is Promise<unknown> {
   return value instanceof Promise;
 }
 
 /**
- * Checks if the provided value is an array of Promises.
+ * Determines whether all elements in an array are `Promise` instances.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to check.
+ * @param   {unknown[]} array - The array to check for Promise instances.
  *
- * @returns {boolean}       - Returns `true` if the value is an array of Promises, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements are `Promise` instances, otherwise `false`.
  *
  * @example
- * const tasks = [Promise.resolve(1), Promise.resolve(2)];
- *
  * // true
- * arePromises(tasks);
+ * arePromises([Promise.resolve(1), new Promise(() => {})]);
+ *
+ * // false (input is not a promise)
+ * arePromises([Promise.resolve(1), 123]);
+ *
+ * // false (the array is not filled)
+ * arePromises([]);
  */
-export function arePromises(array: unknown): array is Promise<unknown>[] {
+function arePromises(array: unknown[]): array is Promise<unknown>[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -51,3 +65,6 @@ export function arePromises(array: unknown): array is Promise<unknown>[] {
 
   return true;
 }
+
+// Exports.
+export {isPromise, arePromises};

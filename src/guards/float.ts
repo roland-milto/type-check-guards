@@ -1,55 +1,65 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines whether the provided value is a floating-point number (decimal).
+ * Determines if the provided `value` is a floating-point number.
+ * A floating-point number is a number that is not an integer and is finite.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-06
+ * @version 2026-01-26
  *
- * @param   {unknown} value - The value to check for being a float.
+ * @param   {unknown} value - The value to be checked if it is a floating-point number.
  *
- * @returns {boolean}       - Returns `true` if the value is a finite float, otherwise `false`.
+ * @returns {boolean}       - `true` if the `value` is a floating-point number, `false` otherwise.
  *
  * @example
  * // true
- * isFloat(3.14)
+ * isFloat(3.14);
  *
- * // false
- * isFloat(10)
+ * // true
+ * isFloat(-0.1);
  *
- * // false
- * isFloat("3.14")
+ * // true
+ * isFloat(1e-7);
+ *
+ * // false (input is an integer)
+ * isFloat(42);
+ *
+ * // false (input is not a number)
+ * isFloat("3.14");
+ *
+ * // false (input is NaN, not finite)
+ * isFloat(NaN);
  */
-export function isFloat(value: unknown): value is number {
-  return (
-    typeof value === 'number' &&
-    Number.isFinite(value) &&
-    !Number.isInteger(value)
-  );
+function isFloat(value: unknown): value is number {
+  return typeof value === 'number' && !Number.isInteger(value) && Number.isFinite(value);
 }
 
 /**
- * Checks if the provided value is an array of floating-point numbers.
+ * Determines if all elements in the given array are floats.
+ * The `areFloats` function checks each item in the array to verify if it is a float.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-07
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[]} array - The array to check for float elements.
  *
- * @returns {boolean}       - Returns `true` if the value is an array where all elements are floats, otherwise `false`.
+ * @returns {boolean}         - `true` if all elements are floats, `false` otherwise.
  *
  * @example
  * // true
- * areFloats([1.1, 2.2, 3.3])
+ * areFloats([3.14, 2.71, 1.0]);
  *
- * // false
- * areFloats([1.5, 2.0])
+ * // false (input contains an integer)
+ * areFloats([3.14, 2]);
  *
- * // false
- * areFloats([])
+ * // false (input contains a string)
+ * areFloats([3.14, '2.71']);
+ *
+ * // false (input is not a filled array)
+ * areFloats([]);
  */
-export function areFloats(array: unknown): array is number[] {
+function areFloats(array: unknown[]): array is number[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -62,3 +72,6 @@ export function areFloats(array: unknown): array is number[] {
 
   return true;
 }
+
+// Exports.
+export {isFloat, areFloats};

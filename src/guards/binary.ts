@@ -1,4 +1,4 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 import {isString} from "./string.js";
 
@@ -10,13 +10,19 @@ const BINARY_LITERAL_REGEX = /^(?:0[bB])?[01]+$/;
  * A binary string is a string optionally prefixed with `0b` or `0B`, followed by binary digits.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-21
+ * @version 2026-01-26
  *
- * @param   {unknown} value   - The value to be checked.
+ * @param   {unknown} value - The value to be checked.
  *
- * @returns {value is string} - Returns `true` if the value is a binary string, otherwise `false`.
+ * @returns {boolean}       - Returns `true` if the value is a binary string, otherwise `false`.
  *
  * @example
+ * // If you use the object 'BigInt': import from "@js-augment/bigint/register-global.mjs";
+ * BigInt.isBinary(value);
+ *
+ * // If you use the object 'Number': import from "@js-augment/number/register-global.mjs";
+ * Number.isBinary(value);
+ *
  * // true (with prefix)
  * isBinary("0b1010");
  *
@@ -28,14 +34,8 @@ const BINARY_LITERAL_REGEX = /^(?:0[bB])?[01]+$/;
  *
  * // false (lenient behavior for non-string types)
  * isBinary(0b1010);
- *
- * // If you use the object 'BigInt': import from "@js-augment/bigint/register-global.mjs";
- * BigInt.isBinary(value);
- *
- * // If you use the object 'Number': import from "@js-augment/number/register-global.mjs";
- * Number.isBinary(value);
  */
-export function isBinary(value: unknown): value is string {
+function isBinary(value: unknown): value is string {
   if (!isString(value) || value.length === 0) {
     return false;
   }
@@ -55,13 +55,19 @@ export function isBinary(value: unknown): value is string {
  * Determines if the given value is an array of valid binary strings.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-21
+ * @version 2026-01-26
  *
- * @param   {unknown} array     - The value to be checked.
+ * @param   {unknown[]} array - The value to be checked.
  *
- * @returns {array is string[]} - Returns `true` if the value is a non-empty array of binary strings, otherwise `false`.
+ * @returns {boolean}         - Returns `true` if the value is a non-empty array of binary strings, otherwise `false`.
  *
  * @example
+ * // If you use the object 'BigInts': import from "@js-augment/bigints/register-global.mjs";
+ * BigInts.areBinaries(array);
+ *
+ * // If you use the object 'Numbers': import from "@js-augment/numbers/register-global.mjs";
+ * Number.areBinaries(array);
+ *
  * // true
  * areBinaries(["0b1010", "1101"]);
  *
@@ -71,7 +77,7 @@ export function isBinary(value: unknown): value is string {
  * // false (empty array or not an array)
  * areBinaries([]);
  */
-export function areBinaries(array: unknown): array is string[] {
+function areBinaries(array: unknown[]): array is string[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -84,3 +90,6 @@ export function areBinaries(array: unknown): array is string[] {
 
   return true;
 }
+
+// Exports.
+export {isBinary, areBinaries};

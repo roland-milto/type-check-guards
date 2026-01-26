@@ -1,46 +1,63 @@
-// Import: Self-created functions.
+// Import: local functions.
 import {isFilledArray} from "./filledArray.js";
 
 /**
- * Determines whether the given value is an array.
+ * Determines if the provided value is an array using the `Array.isArray` method.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-12-22
+ * @version 2026-01-26
  *
  * @param   {unknown} value - The value to be checked.
  *
- * @returns {boolean}       - A boolean indicating whether the value is an array.
+ * @returns {boolean}       - `true` if the value is an array, `false` otherwise.
  *
  * @example
+ * // true
+ * isArray([]);
+ *
  * // true
  * isArray([1, 2, 3]);
  *
  * // false
  * isArray({});
+ *
+ * // false
+ * isArray('string');
+ *
+ * // false
+ * isArray(123);
  */
-export function isArray(value: unknown): value is unknown[] {
+function isArray(value: unknown): value is Array<unknown> {
   return Array.isArray(value);
 }
 
 /**
- * Checks if the given value is a two-dimensional array, where both the value
- * itself and each of its elements are arrays.
+ * Determines if the given input is a two-dimensional array where each element is an array.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-08
+ * @version 2026-01-26
  *
- * @param   {unknown} array - The value to be checked.
+ * @param   {unknown[][]} array - The input to be checked.
  *
- * @returns {boolean}       - Returns `true` if the value is a two-dimensional array, otherwise `false`.
+ * @returns {boolean}           - `true` if the input is a two-dimensional array with arrays as elements, `false` otherwise.
  *
  * @example
  * // true
  * areArrays([[1, 2], [3, 4]]);
  *
+ * // true
+ * areArrays([['a'], ['b', 'c']]);
+ *
  * // false
- * areArrays([1, 2, 3]);
+ * areArrays([1, [2, 3]]);
+ *
+ * // false
+ * areArrays([[1, 2], 'not an array']);
+ *
+ * // false
+ * areArrays('not an array');
  */
-export function areArrays(array: unknown): array is unknown[][] {
+function areArrays(array: unknown[][]): array is Array<unknown>[] {
   if (!isFilledArray(array)) {
     return false;
   }
@@ -53,3 +70,6 @@ export function areArrays(array: unknown): array is unknown[][] {
 
   return true;
 }
+
+// Exports.
+export {isArray, areArrays};
