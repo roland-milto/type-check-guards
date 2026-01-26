@@ -1,37 +1,42 @@
 // Import: Interfaces and DataTypes.
-import type {DataType} from "../types/dataType.js";
+import type {DataTypeAsString} from "../types/dataType.js";
 
-// Import: Self-created functions.
-import {isNumber} from "../guards/number.js";
+// Import: local functions.
+import {isBinary} from "../guards/binary.js";
+import {isDecimal} from "../guards/decimal.js";
+import {isFloat} from "../guards/float.js";
+import {isHexadecimal} from "../guards/hexadecimal.js";
+import {isInteger} from "../guards/integer.js";
+import {isOctal} from "../guards/octal.js";
 
 /**
- * Determines the data type of the given value and returns it as a string.
- * These can be primitive DataTypes, objects, or specific object DataTypes like "date", "regexp", etc.
+ * Returns the data type of the given `value` as a string, detailing specific numeric and object types.
+ * For a certain number of types or specific objects, it provides more granulated type information like "integer", "float", "date", or "array".
  *
- * @author  Roland Milto
- * @version 2025-12-10
+ * @author  Roland Milto (https://roland.milto.de/)
+ * @version 2026-01-26
  *
- * @param   {any}     value - The value whose data type is to be determined.
+ * @param   {unknown} value             - The value for which to determine the data type.
  *
- * @returns {string}        - The string representation of the data type in lower case.
+ * @returns {DataTypeAsString | string} - The string representation of the data type.
  *
  * @example
+ * // "integer"
+ * getTypeOf(42);
+ *
  * // "string"
  * getTypeOf("Roland Milto");
- *
- * // "nan"
- * getTypeOf(NaN);
  *
  * // "null"
  * getTypeOf(null);
  *
- * // "array"
- * getTypeOf([1, 2]);
+ * // "float"
+ * getTypeOf(3.14);
  *
- * // "date"
- * getTypeOf(new Date());
+ * // "decimal"
+ * getTypeOf("3.14");
  */
-export function getTypeOf(value: unknown): DataType | string
+function getTypeOf(value: unknown): DataTypeAsString | string
 {
 	// Check strict null/undefined explicitly first (the fastest check).
 	// “null” is an object, so it has to be checked first.
@@ -43,12 +48,49 @@ export function getTypeOf(value: unknown): DataType | string
 		return "undefined";
 	}
 
-	// We have a smarter number-check. Do not(!) use JavaScripts isNaN for number type checking, because:
-	// isNaN(true); // false
-	// isNaN(null); // false
-	// isNaN(37); // false
+	// We have a smarter number-check with subtypes.
 	if (typeof value === "number") {
-		return (isNumber(value)) ? "number" : "nan";
+		/**
+		 * Do not(!) use JavaScripts isNaN for number type checking, because:
+		 * isNaN(true); // false
+		 * isNaN(null); // false
+		 * isNaN(37); // false
+		 */
+		if (isNaN(value)) {
+			return "nan";
+		}
+
+		if (isInteger(value)) {
+			return "integer";
+		}
+
+		if (isFloat(value)) {
+			return "float";
+		}
+
+		return "number";
+	}
+
+	// Some numbers can only be strings.
+	if (typeof value === "string") {
+		if (isBinary(value)) {
+			return "binary";
+		}
+
+		if (isDecimal(value)) {
+			return "decimal";
+		}
+
+		if (isHexadecimal(value)) {
+			return "hexadecimal";
+		}
+
+		if (isOctal(value)) {
+			return "octal";
+		}
+
+		// Not a number, so it must be a string.
+		return "string";
 	}
 
 	// Arrays are objects in JS but usually handled as a specific type.
@@ -56,7 +98,7 @@ export function getTypeOf(value: unknown): DataType | string
 		return "array";
 	}
 
-	// Check primitives (bigint, boolean, function, string, symbol etc.).
+	// Check primitives (bigint, boolean, function, symbol etc.).
 	const type: string = typeof value;
 	if (type !== "object") {
 		return type;
@@ -73,5 +115,7 @@ export function getTypeOf(value: unknown): DataType | string
 	const specificType: string = typeName.charAt(0).toLowerCase() + typeName.slice(1);
 
 	// Returns e.g. "bigInt", "date", "regExp", "error", "promise", "weakMap", "weakSet".
-	return specificType as DataType;
+	return specificType as DataTypeAsString;
 }
+
+export {getTypeOf};

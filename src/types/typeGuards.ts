@@ -1,21 +1,23 @@
-// Import: Interfaces and types.
+// Import: interfaces and types.
 import type {Stream} from 'node:stream';
-import type {DataType} from "./dataType.js";
+import type {PrimitiveType} from "./primitive.js";
+import type {DataTypeAsString, DataTypeOf} from "./dataType.js";
 
 /**
  * Interface for returning the `type` object methods.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2025-01-13
+ * @version 2026-01-26
  */
 export interface TypeGuards
 {
 	/** Converts the type of the given value to a string. */
-	getTypeOf(value: unknown): DataType | string;
+	getTypeOf(value: unknown): DataTypeAsString | string;
 
 	/** Checks whether the given value is an array. */
 	isArray(value: unknown): value is Array<unknown>;
-	areArrays(array: unknown): array is Array<unknown>[];
+
+	areArrays(array: unknown[]): array is Array<unknown>[];
 
 	/** Checks whether the given value is a bigint. */
 	isBigInt(value: unknown): value is bigint;
@@ -35,12 +37,10 @@ export interface TypeGuards
 
 	/** Checks whether the given value is strictly equal to the expected value. */
 	isEqual<T>(value: unknown, expected: T): value is T;
-
 	areEqual<T>(array: unknown, expected: T): array is T[];
 
 	/** Checks whether the given value is an error. */
 	isError(value: unknown): value is Error;
-
 	areErrors(array: unknown): array is Error[];
 
 	/** Checks whether the given value is false. */
@@ -48,8 +48,9 @@ export interface TypeGuards
 	areFalse(array: unknown): array is false[];
 
 	/** Checks whether the given value is a filled array. */
-	isFilledArray(value: unknown): value is unknown[];
-	areFilledArrays(array: unknown): array is unknown[][];
+	isFilledArray(value: readonly unknown[]): value is readonly unknown[];
+
+	areFilledArrays(array: readonly unknown[][]): array is readonly unknown[][];
 
 	/** Checks whether the given value is finite. */
 	isFinite(value: unknown): value is number;
@@ -63,18 +64,26 @@ export interface TypeGuards
 	isFunction(value: unknown): value is Function;
 	areFunctions(array: unknown): array is Function[];
 
+	/** Checks whether the given index is valid. */
+	isIndexFound(index: number): index is number;
+
+	areIndexesFound(array: number[]): array is number[];
+
 	/** Checks whether the given value is an integer. */
 	isInteger(value: unknown): value is number;
 	areIntegers(array: unknown): array is number[];
 
+	/** Checks whether the given value is a JSON string. */
+	isJson(value: unknown): value is string;
+
+	areJson(array: unknown): array is string[];
+
 	/** Checks whether the given value is a map. */
 	isMap(value: unknown): value is Map<unknown, unknown>;
-
 	areMaps(array: unknown): array is Map<unknown, unknown>[];
 
 	/** Checks whether the given value is NaN. */
 	isNaN(value: unknown): value is number;
-
 	areNaNs(array: unknown): array is number[];
 
 	/** Checks whether the given value is null. */
@@ -94,20 +103,23 @@ export interface TypeGuards
 	areObjects(array: unknown): array is object[];
 
 	/** Checks whether the given value is of the specified type. */
-	isOfType(value: unknown, type: DataType): boolean;
-	areOfType(array: unknown, type: DataType): boolean;
+	isOfType<T extends DataTypeAsString>(value: unknown, type: T): value is DataTypeOf<T>;
+
+	areOfType<T extends DataTypeAsString>(array: unknown[], type: T): array is Array<DataTypeOf<T>>;
 
 	/** Checks whether the given value is one of the specified types. */
-	isOneOfType(value: unknown, types: DataType[]): boolean;
-	areOneOfType(array: unknown, types: DataType[]): boolean;
+	isOneOfType<const TTypes extends readonly DataTypeAsString[]>(value: unknown, types: TTypes): value is DataTypeOf<TTypes[number]>;
+
+	areOneOfType<const TTypes extends readonly DataTypeAsString[]>(array: unknown[], types: TTypes): array is Array<DataTypeOf<TTypes[number]>>;
 
 	/** Checks whether the given value is a plain object. */
 	isPlainObject(value: unknown): value is object;
 	arePlainObjects(array: unknown): array is object[];
 
 	/** Checks whether the given value is a primitive. */
-	isPrimitive(value: unknown): value is string | number | bigint | boolean | symbol | null | undefined;
-	arePrimitives(array: unknown): array is (string | number | bigint | boolean | symbol | null | undefined)[];
+	isPrimitive(value: unknown): value is PrimitiveType;
+
+	arePrimitives(array: unknown): array is PrimitiveType[];
 
 	/** Checks whether the given value is a promise. */
 	isPromise(value: unknown): value is Promise<unknown>;
@@ -115,16 +127,18 @@ export interface TypeGuards
 
 	/** Checks whether the given value is a regular expression. */
 	isRegEx(value: unknown): value is RegExp;
+
+	isRegExp(value: unknown): value is RegExp;
 	areRegExes(array: unknown): array is RegExp[];
 
 	/** Checks whether the given value is a set. */
 	isSet(value: unknown): value is Set<unknown>;
-
 	areSets(array: unknown): array is Set<unknown>[];
 
 	/** Checks whether the given value is a stream. */
 	isStream(value: unknown): value is Stream | ReadableStream | WritableStream;
-	areStreams(array: unknown): array is Stream[];
+
+	areStreams(array: unknown): array is Array<Stream | ReadableStream | WritableStream>;
 
 	/** Checks whether the given value is a string. */
 	isString(value: unknown): value is string;
@@ -148,11 +162,9 @@ export interface TypeGuards
 
 	/** Checks whether the given value is a valid WeakMap. */
 	isWeakMap(value: unknown): value is WeakMap<object, unknown>;
-
 	areWeakMaps(array: unknown): array is WeakMap<object, unknown>[];
 
 	/** Checks whether the given value is a valid WeakSet. */
 	isWeakSet(value: unknown): value is WeakSet<object>;
-
 	areWeakSets(array: unknown): array is WeakSet<object>[];
 }
