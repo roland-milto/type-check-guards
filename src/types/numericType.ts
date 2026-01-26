@@ -1,5 +1,5 @@
 /**
- * A union type representing different classifications of numerical data types.
+ * A mapping representing different classifications of numerical data types.
  *
  * - "bigint": Represents a numeric type for arbitrarily large integers.
  * - "binary" for binary numeral systems (base-2)
@@ -12,16 +12,22 @@
  * - "octal": Represents a numeric type for octal numeral systems (base-8)
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-15
+ * @version 2026-01-26
  */
-export type NumericType =
-  | "bigint"
-  | "binary"
-  | "decimal"
-  | "float"
-  | "hexadecimal"
-  | "integer"
-  | "nan"
-  | "number"
-  | "octal"
-  ;
+type _NumericType =
+  {
+    bigint: number;
+    binary: number;
+    decimal: number;
+    float: number;
+    hexadecimal: number;
+    integer: number;
+    nan: number;
+    number: number;
+    octal: number;
+  }
+
+// Export types.
+export type NumericTypeAsString = keyof _NumericType;
+export type NumericType = _NumericType[NumericTypeAsString];
+export type NumericTypeOf<K extends NumericTypeAsString> = _NumericType[K]; // NumericTypeOf<"float"> is number
