@@ -7,7 +7,7 @@ import {isFilledArray} from "./filledArray.js";
  * @author  Roland Milto (https://roland.milto.de/)
  * @version 2026-01-26
  *
- * @param   {unknown} value - The value to be tested for string type.
+ * @param   {unknown} value - The value to be tested whether it is a string.
  *
  * @returns {boolean}       - `true` if the `value` is a string; otherwise, `false`.
  *
