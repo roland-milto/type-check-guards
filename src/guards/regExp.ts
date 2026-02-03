@@ -31,10 +31,6 @@ function isRegEx(value: unknown): value is RegExp {
   return value instanceof RegExp;
 }
 
-function isRegExp(value: unknown): value is RegExp {
-  return value instanceof RegExp;
-}
-
 /**
  * Checks if the provided value is an array of regular expressions (RegExp).
  *
@@ -68,4 +64,4 @@ function areRegExes(array: unknown[]): array is RegExp[] {
 }
 
 // Exports.
-export {isRegEx, isRegExp, areRegExes};
+export {isRegEx, isRegEx as isRegExp, areRegExes};
