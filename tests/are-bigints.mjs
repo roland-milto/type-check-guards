@@ -5,6 +5,7 @@ import {Documentation} from "dist";
 await new Documentation()
 	.fromSource("../dist/guards/bigInt.mjs")
 	.forFunctions("areBigInts")
+	.alias("areBigIntegers")
 	.attachAsMethodTo("Type")
 	.renameMethodTo(null)
 	.withParameters({

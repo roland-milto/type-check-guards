@@ -5,6 +5,7 @@ import {Documentation} from "dist";
 await new Documentation()
 	.fromSource("../dist/guards/nullOrUndefined.mjs")
 	.forFunctions("areNullOrUndefined")
+	.alias("areNils")
 	.attachAsMethodTo("Type")
 	.renameMethodTo(null)
 	.withParameters({

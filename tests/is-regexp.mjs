@@ -5,6 +5,7 @@ import {Documentation} from "dist";
 await new Documentation()
 	.fromSource("../dist/guards/regExp.mjs")
 	.forFunctions("isRegEx")
+	.alias("isRegExp")
 	.attachAsMethodTo("Type")
 	.renameMethodTo(null)
 	.withParameters({

@@ -5,6 +5,7 @@ import {Documentation} from "dist";
 await new Documentation()
 	.fromSource("../dist/guards/boolean.mjs")
 	.forFunctions("isBoolean")
+	.alias("isBool")
 	.attachAsMethodTo("Type")
 	.renameMethodTo(null)
 	.withParameters({
