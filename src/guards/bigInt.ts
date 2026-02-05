@@ -66,4 +66,4 @@ function areBigInts(array: unknown[]): array is bigint[] {
 }
 
 // Export.
-export {isBigInt, areBigInts};
+export {isBigInt, isBigInt as isBigInteger, areBigInts, areBigInts as areBigIntegers};

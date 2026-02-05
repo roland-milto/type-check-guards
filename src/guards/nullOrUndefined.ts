@@ -66,4 +66,4 @@ function areNullOrUndefined(array: unknown[]): array is (null | undefined)[] {
 }
 
 // Exports.
-export {isNullOrUndefined, areNullOrUndefined};
+export {isNullOrUndefined, isNullOrUndefined as isNil, areNullOrUndefined, areNullOrUndefined as areNils};

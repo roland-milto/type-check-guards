@@ -56,7 +56,6 @@ function isBoolean(value: unknown): value is boolean {
  *
  * // false (contains a string)
  * areBooleans([true, 'false']);
- *
  */
 function areBooleans(array: unknown[]): array is boolean[] {
   if (!isFilledArray(array)) {
@@ -73,4 +72,4 @@ function areBooleans(array: unknown[]): array is boolean[] {
 }
 
 // Exports.
-export {isBoolean, areBooleans};
+export {isBoolean, isBoolean as isBool, areBooleans, areBooleans as areBools};
