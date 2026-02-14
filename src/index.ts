@@ -7,12 +7,15 @@
 // Export: local functions.
 export {getTypeOf} from "./utils/getTypeOf.js";
 export {areArrays, isArray} from "./guards/array.js";
-export {areBigInts, isBigInt} from "./guards/bigInt.js";
+export {areBigIntegers, areBigInts, isBigInteger, isBigInt} from "./guards/bigInt.js";
 export {areBinaries, isBinary} from "./guards/binary.js";
-export {areBooleans, isBoolean} from "./guards/boolean.js";
+export {areBooleans, areBools, isBoolean, isBool} from "./guards/boolean.js";
 export {areBuffers, isBuffer} from "./guards/buffer.js";
 export {areDates, isDate} from "./guards/date.js";
 export {areDecimals, isDecimal} from "./guards/decimal.js";
+export {areEnumerationObjects, areEnumObjects, isEnumerationObject, isEnumObject} from "./guards/enumObject.js";
+export {areEnumerations, areEnums, isEnumeration, isEnum} from "./guards/enumeration.js";
+export {areEmpty, isEmpty} from "./guards/empty.js";
 export {areEqual, isEqual} from "./guards/equal.js";
 export {areErrors, isError} from "./guards/error.js";
 export {areFalse, isFalse} from "./guards/false.js";
@@ -27,8 +30,9 @@ export {areJson, isJson} from "./guards/json.js";
 export {areMaps, isMap} from "./guards/map.js";
 export {areNaNs, isNaN} from "./guards/nan.js";
 export {areNull, isNull} from "./guards/null.js";
-export {areNullOrUndefined, isNullOrUndefined} from "./guards/nullOrUndefined.js";
+export {areNullOrUndefined, areNils, isNullOrUndefined, isNil} from "./guards/nullOrUndefined.js";
 export {areNumbers, isNumber} from "./guards/number.js";
+export {areNumerics, isNumeric} from "./guards/numeric.js";
 export {areObjects, isObject} from "./guards/object.js";
 export {areOctals, isOctal} from "./guards/octal.js";
 export {areOfType, isOfType} from "./guards/ofType.js";
