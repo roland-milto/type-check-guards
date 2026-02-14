@@ -8,7 +8,7 @@ import * as guards from './index.js';
  * Do NOT change `var` to `const` or `let` here!
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-26
+ * @version 2026-02-05
  */
 declare global {
   // Types
@@ -33,8 +33,12 @@ declare global {
   var areArrays: typeof guards.areArrays;
   var isBigInt: typeof guards.isBigInt;
   var areBigInts: typeof guards.areBigInts;
+  var isBigInteger: typeof guards.isBigInt;
+  var areBigIntegers: typeof guards.areBigInts;
   var isBinary: typeof guards.isBinary;
   var areBinaries: typeof guards.areBinaries;
+  var isBool: typeof guards.isBoolean;
+  var areBools: typeof guards.areBooleans;
   var isBoolean: typeof guards.isBoolean;
   var areBooleans: typeof guards.areBooleans;
   var isBuffer: typeof guards.isBuffer;
@@ -43,6 +47,16 @@ declare global {
   var areDates: typeof guards.areDates;
   var isDecimal: typeof guards.isDecimal;
   var areDecimals: typeof guards.areDecimals;
+  var isEmpty: typeof guards.isEmpty;
+  var areEmpty: typeof guards.areEmpty;
+  var isEnum: typeof guards.isEnumeration;
+  var areEnums: typeof guards.areEnumerations;
+  var isEnumeration: typeof guards.isEnumeration;
+  var areEnumerations: typeof guards.areEnumerations;
+  var isEnumObject: typeof guards.isEnumObject;
+  var areEnumObjects: typeof guards.areEnumObjects;
+  var isEnumerationObject: typeof guards.isEnumerationObject;
+  var areEnumerationObjects: typeof guards.areEnumerationObjects;
   var isEqual: typeof guards.isEqual;
   var areEqual: typeof guards.areEqual;
   var isError: typeof guards.isError;
@@ -71,12 +85,16 @@ declare global {
   /** @ts-ignore - Overwrites the global isNaN */
   var isNaN: typeof guards.isNaN;
   var areNaNs: typeof guards.areNaNs;
+  var isNil: typeof guards.isNullOrUndefined;
+  var areNils: typeof guards.areNullOrUndefined;
   var isNull: typeof guards.isNull;
   var areNull: typeof guards.areNull;
   var isNullOrUndefined: typeof guards.isNullOrUndefined;
   var areNullOrUndefined: typeof guards.areNullOrUndefined;
   var isNumber: typeof guards.isNumber;
   var areNumbers: typeof guards.areNumbers;
+  var isNumeric: typeof guards.isNumeric;
+  var areNumerics: typeof guards.areNumerics;
   var isObject: typeof guards.isObject;
   var areObjects: typeof guards.areObjects;
   var isOctal: typeof guards.isOctal;
@@ -92,7 +110,7 @@ declare global {
   var isPromise: typeof guards.isPromise;
   var arePromises: typeof guards.arePromises;
   var isRegEx: typeof guards.isRegEx;
-  var isRegExp: typeof guards.isRegExp;
+  var isRegExp: typeof guards.isRegEx;
   var areRegExes: typeof guards.areRegExes;
   var isSet: typeof guards.isSet;
   var areSets: typeof guards.areSets;
