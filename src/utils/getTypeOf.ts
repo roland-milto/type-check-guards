@@ -1,4 +1,4 @@
-// Import: Interfaces and DataTypes.
+// Import: interfaces and types.
 import type {DataTypeAsString} from "../types/dataType.js";
 
 // Import: local functions.
@@ -104,18 +104,27 @@ function getTypeOf(value: unknown): DataTypeAsString | string
 		return type;
 	}
 
+	// Enumerations. // @todo implement
+	/*
+	if (isEnumeration(value)) {
+		return "enum";
+	}
+
+	if (isEnumerationObject(value)) {
+		return "enumobject";
+	}
+	 */
+
 	// Handle specific objects (Date, RegExp, Error, Map, Set, Promise, etc.).
 	// The native toString returns formats like "[object Date]", "[object Error]".
 	const rawType: string = Object.prototype.toString.call(value);
 
-	// Extracts the type name, e.g., "[object BigInt]" -> "BigInt".
-	const typeName: string = rawType.slice(8, -1);
+	// Extracts the type name and changes to lower case, e.g., "[object BigInt]" -> "BigInt" -> "bigint".
+	const typeName: string = rawType.slice(8, -1).toLowerCase();
 
-	// Lowercases only the first character: "BigInt" -> "bigInt", "Date" -> "date".
-	const specificType: string = typeName.charAt(0).toLowerCase() + typeName.slice(1);
-
-	// Returns e.g. "bigInt", "date", "regExp", "error", "promise", "weakMap", "weakSet".
-	return specificType as DataTypeAsString;
+	// Returns e.g. "bigint", "date", "regexp", "error", "promise", "weakmap", "weakset".
+	return typeName as DataTypeAsString;
 }
 
+// Export.
 export {getTypeOf};
