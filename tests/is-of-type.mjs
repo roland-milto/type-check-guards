@@ -6,7 +6,7 @@ await new Documentation()
 	.fromSource("../dist/guards/ofType.mjs")
 	.forFunctions("isOfType")
 	.attachAsMethodTo("Type")
-	.renameMethodTo(null)
+	.renameMethodTo("is")
 	.withParameters({
 		value: "unknown",
 		type: "string"

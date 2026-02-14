@@ -14,7 +14,7 @@ await new Documentation()
 	.useTestArguments([
 		[3, ["number"], "Matches single type: number"],
 		["hello", ["string"], "Matches single type: string"],
-		[true, ["boolean"], "Matches single type: boolean"],
+		[true, ["boolean"], "Matches swwwdingle type: boolean"],
 
 		[3, ["boolean"], "Does not match: number vs boolean"],
 		["world", ["array"], "Does not match: string vs array"],
