@@ -48,7 +48,7 @@ function isNullOrUndefined(value: unknown): value is null | undefined {
  * // false (contains a string)
  * const hasString = areNullOrUndefined([null, undefined, 'string']);
  *
- * // false (array is empty)
+ * // false (the array is empty)
  * const emptyArray = areNullOrUndefined([]);
  */
 function areNullOrUndefined(array: unknown[]): array is (null | undefined)[] {
