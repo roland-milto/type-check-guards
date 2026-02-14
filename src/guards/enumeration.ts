@@ -1,5 +1,6 @@
 // Import: Interfaces and types.
 import type {EnumLike} from "../types/enumLike.js";
+
 // Import: local functions.
 import {isNumber} from "./number.js";
 import {isString} from "./string.js";
@@ -11,14 +12,14 @@ type EnumMode = "both" | "numeric" | "strings";
 /**
  * The `isEnum` function generates a type guard to validate if a given token belongs to the specified enumeration.
  * It supports filtering between numeric, string, or both types of enum values using an optional mode.
-
+ *
  * @author  Roland Milto (https://roland.milto.de/)
  * @version 2026-01-29
-
+ *
  * @param   {Enumeration} enumeration - The enum to check against.
  * @param   {EnumMode}    [option]    - An optional mode to filter "numeric", "strings", or "both" enum values.
  * @returns {Function}                - A type guard function validating if a token belongs to the enum.
-
+ *
  * @example
  * // Enum declaration
  * enum Color {
@@ -32,16 +33,16 @@ type EnumMode = "both" | "numeric" | "strings";
  * const isValidColorBoth = isEnum(Color, "both");
  *
  * // Examples with "numeric" mode
- * isValidColorNumeric(1);   // true
+ * isValidColorNumeric(1); // true
  * isValidColorNumeric("1"); // false (strings are excluded in numeric mode)
  *
  * // Examples with "strings" mode
- * isValidColorString(1);    // false (numbers are excluded in strings mode)
- * isValidColorString("Red");// true
+ * isValidColorString(1); // false (numbers are excluded in strings mode)
+ * isValidColorString("Red"); // true
  *
  * // Examples with "both" mode
- * isValidColorBoth(1);      // true
- * isValidColorBoth("Red");  // true
+ * isValidColorBoth(1); // true
+ * isValidColorBoth("Red"); // true
  */
 function isEnum<Enumeration extends EnumLike>(enumeration: Enumeration, option?: EnumMode): (token: unknown) => token is Enumeration[keyof Enumeration] {
   const mode: EnumMode =
