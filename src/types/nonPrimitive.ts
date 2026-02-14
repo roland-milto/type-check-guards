@@ -1,3 +1,6 @@
+// Import: interfaces and types.
+import type {EnumLike} from "./enumLike.js";
+
 /**
  * The `_NonPrimitive` type defines a structured collection of non-primitive data types including arrays,
  * buffers, dates, errors, functions, objects, maps, promises, regexes, sets, streams, weak maps, and weak sets.
@@ -5,13 +8,15 @@
  * It represents various data handling structures used in JavaScript and Node.js environments.
  *
  * @author  Roland Milto (https://roland.milto.de/)
- * @version 2026-01-26
+ * @version 2026-02-05
  */
 type _NonPrimitive =
   {
     array: unknown[];
     buffer: Buffer;
     date: Date;
+      // enum: Enumeration; // @todo implement
+      enumobject: EnumLike;
     error: Error;
     function: (...args: unknown[]) => unknown;
     object: Record<PropertyKey, unknown>;
