@@ -31,7 +31,7 @@ type NumericTypeAsString = (typeof NUMERIC_TYPE_STRINGS)[number];
  * @author  Roland Milto (https://roland.milto.de/)
  * @version 2026-01-29
  */
-type _NumericType = Record<NumericTypeAsString, number>;
+type _NumericType = Record<NumericTypeAsString, number>; // @todo bigint ist kein number. Das muss behandelt werden.
 
 /**
  * The `NumericType` type represents a mapping from string representations of numeric types to their corresponding
