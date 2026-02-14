@@ -14,12 +14,15 @@ import * as guards from "./index.js";
  * Methods:
  * * `getTypeOf`: Converts the value's type to its string representation.
  * * `isArray`: Returns a boolean whether the value is an array.
- * * `isBigInt`: Returns a boolean whether the value is a BigInt.
+ * * `isBigInt`: Returns a boolean whether the value is a BigInt. Alias: `isBigInteger`.
  * * `isBinary`: Returns a boolean whether the value is a binary.
- * * `isBoolean`: Returns a boolean whether the value is a boolean.
+ * * `isBoolean`: Returns a boolean whether the value is a boolean. Alias: `isBool`.
  * * `isBuffer`: Returns a boolean whether the value is a buffer.
  * * `isDate`: Returns a boolean whether the value is a date.
  * * `isDecimal`: Returns a boolean whether the value is a decimal.
+ * * `isEmpty`: Returns a boolean whether the value is empty.
+ * * `isEnumeration`: Returns a boolean whether the value is an enumeration. Alias: `isEnum`.
+ * * `isEnumerationObject`: Returns a boolean whether the value is an enumeration object. Alias: `isEnumObject`.
  * * `isEqual`: Returns a boolean whether the values are equal.
  * * `isError`: Returns a boolean whether the value is an error.
  * * `isFinite`: Returns a boolean whether the value is finite.
@@ -32,16 +35,17 @@ import * as guards from "./index.js";
  * * `isMap`: Returns a boolean whether the value is a map.
  * * `isNaN`: Returns a boolean whether the value is NaN.
  * * `isNull`: Returns a boolean whether the value is null.
- * * `isNullOrUndefined`: Returns a boolean whether the value is null or undefined.
+ * * `isNullOrUndefined`: Returns a boolean whether the value is null or undefined. Alias: `isNil`.
  * * `isNumber`: Returns a boolean whether the value is a number.
+ * * `isNumeric`: Returns a boolean whether the value is a numeric value.
  * * `isObject`: Returns a boolean whether the value is an object.
- * * `isOctal`: Returns a boolean whether the value is an octal.
+ * * `isOctal`: Returns a boolean whether the value is an octal number.
  * * `isOfType`: Validates if the value matches a specified data type.
  * * `isOneOfType`: Validates if the value matches at least one of the specified data types.
  * * `isPlainObject`: Returns a boolean whether the value is a plain object.
  * * `isPrimitive`: Returns a boolean whether the value is a primitive.
  * * `isPromise`: Returns a boolean whether the value is a promise.
- * * `isRegEx`: Returns a boolean whether the value is a regular expression (alias `isRegExp`).
+ * * `isRegEx`: Returns a boolean whether the value is a regular expression. Alias: `isRegExp`.
  * * `isSet`: Returns a boolean whether the value is a set.
  * * `isStream`: Returns a boolean whether the value is a stream.
  * * `isString`: Returns a boolean whether the value is a string.
@@ -53,12 +57,15 @@ import * as guards from "./index.js";
  *
  * Array methods:
  * * `areArrays`: Returns a boolean whether all elements in the array are arrays.
- * * `areBigInts`: Returns a boolean whether all elements in the array are BigInts.
+ * * `areBigInts`: Returns a boolean whether all elements in the array are BigInts. Alias: `areBigIntegers`.
  * * `areBinaries`: Returns a boolean whether all elements in the array are binaries.
- * * `areBooleans`: Returns a boolean whether all elements in the array are booleans.
+ * * `areBooleans`: Returns a boolean whether all elements in the array are booleans. Alias: `areBools`.
  * * `areBuffers`: Returns a boolean whether all elements in the array are buffers.
  * * `areDates`: Returns a boolean whether all elements in the array are dates.
  * * `areDecimals`: Returns a boolean whether all elements in the array are decimals.
+ * * `areEmpty`: Returns a boolean whether all elements in the array are empty.
+ * * `areEnumerations`: Returns a boolean whether all elements in the array are enumerations. Alias: `areEnums`.
+ * * `areEnumerationObjects`: Returns a boolean whether all elements in the array are enumeration objects. Alias: `areEnumObjects`.
  * * `areEqual`: Returns a boolean whether all elements in the array are equal.
  * * `areErrors`: Returns a boolean whether all elements in the array are errors.
  * * `areFinite`: Returns a boolean whether all elements in the array are finite.
@@ -71,10 +78,11 @@ import * as guards from "./index.js";
  * * `areMaps`: Returns a boolean whether all elements in the array are maps.
  * * `areNaNs`: Returns a boolean whether all elements in the array are NaNs.
  * * `areNull`: Returns a boolean whether all elements in the array are null.
- * * `areNullOrUndefined`: Returns a boolean whether all elements in the array are null or undefined.
+ * * `areNullOrUndefined`: Returns a boolean whether all elements in the array are null or undefined. Alias: `areNils`.
  * * `areNumbers`: Returns a boolean whether all elements in the array are numbers.
+ * * `areNumeric`: Returns a boolean whether all elements in the array are numeric values.
  * * `areObjects`: Returns a boolean whether all elements in the array are objects.
- * * `areOctals`: Returns a boolean whether all elements in the array are octal.
+ * * `areOctals`: Returns a boolean whether all elements in the array are octal numbers.
  * * `areOfType`: Returns a boolean whether all elements in the array match the specified data type.
  * * `areOneOfType`: Returns a boolean whether all elements in the array match at least one of the specified data types.
  * * `arePlainObjects`: Returns a boolean whether all elements in the array are plain objects.
