@@ -400,7 +400,7 @@ import.
 
 ### Type determination
 
-[getTypeOf(value)](docs/english/getTypeOf.md) returns a string describing the type of the given value (always
+[getTypeOf(value)](docs/eng/getTypeOf.md) returns a string describing the type of the given value (always
 camelCase).
 
 ### Type checks
@@ -410,61 +410,65 @@ Array Elements** column ensures that every element in the provided array meets t
 
 #### Basic and primitive types
 
-| Single Value Check                                            | Check Array Elements                                            | Description                       |
-|:--------------------------------------------------------------|:----------------------------------------------------------------|:----------------------------------|
-| [isBoolean(value)](docs/english/isBoolean.md)                 | [areBooleans(array)](docs/english/areBooleans.md)               | Checks for `boolean`.             |
-| [isFalse(value)](docs/english/isFalse.md)                     | [areFalse(array)](docs/english/areFalse.md)                     | Checks for strictly `false`.      |
-| [isNull(value)](docs/english/isNull.md)                       | [areNull(array)](docs/english/areNull.md)                       | Checks for `null`.                |
-| [isNullOrUndefined(value)](docs/english/isNullOrUndefined.md) | [areNullOrUndefined(array)](docs/english/areNullOrUndefined.md) | Checks for `null` or `undefined`. |
-| [isPrimitive(value)](docs/english/isPrimitive.md)             | [arePrimitives(array)](docs/english/arePrimitives.md)           | Checks for primitive type.        |
-| [isString(value)](docs/english/isString.md)                   | [areStrings(array)](docs/english/areStrings.md)                 | Checks for `string`.              |
-| [isSymbol(value)](docs/english/isSymbol.md)                   | [areSymbols(array)](docs/english/areSymbols.md)                 | Checks for `symbol`.              |
-| [isTrue(value)](docs/english/isTrue.md)                       | [areTrue(array)](docs/english/areTrue.md)                       | Checks for strictly `true`.       |
-| [isUndefined(value)](docs/english/isUndefined.md)             | [areUndefined(array)](docs/english/areUndefined.md)             | Checks for `undefined`.           |
+| Single Value Check                                        | Check Array Elements                                        | Description                       |
+|:----------------------------------------------------------|:------------------------------------------------------------|:----------------------------------|
+| [isBoolean(value)](docs/eng/isBoolean.md)                 | [areBooleans(array)](docs/eng/areBooleans.md)               | Checks for `boolean`.             |
+| [isFalse(value)](docs/eng/isFalse.md)                     | [areFalse(array)](docs/eng/areFalse.md)                     | Checks for strictly `false`.      |
+| [isNull(value)](docs/eng/isNull.md)                       | [areNull(array)](docs/eng/areNull.md)                       | Checks for `null`.                |
+| [isNullOrUndefined(value)](docs/eng/isNullOrUndefined.md) | [areNullOrUndefined(array)](docs/eng/areNullOrUndefined.md) | Checks for `null` or `undefined`. |
+| [isPrimitive(value)](docs/eng/isPrimitive.md)             | [arePrimitives(array)](docs/eng/arePrimitives.md)           | Checks for primitive type.        |
+| [isString(value)](docs/eng/isString.md)                   | [areStrings(array)](docs/eng/areStrings.md)                 | Checks for `string`.              |
+| [isSymbol(value)](docs/eng/isSymbol.md)                   | [areSymbols(array)](docs/eng/areSymbols.md)                 | Checks for `symbol`.              |
+| [isTrue(value)](docs/eng/isTrue.md)                       | [areTrue(array)](docs/eng/areTrue.md)                       | Checks for strictly `true`.       |
+| [isUndefined(value)](docs/eng/isUndefined.md)             | [areUndefined(array)](docs/eng/areUndefined.md)             | Checks for `undefined`.           |
 
 #### Numeric checks
 
-| Single Value Check                                    | Check Array Elements                                      | Description                                              |
-|:------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------|
-| [isBigInt(value)](docs/english/isBigInt.md)           | [areBigInts(array)](docs/english/areBigInts.md)           | Checks for `bigint`.                                     |
-| [isBinary(value)](docs/english/isBinary.md)           | [areBinaries(array)](docs/english/areBinaries.md)         | Checks for binary notation (string, optional `0b`/`0B`). |
-| [isDecimal(value)](docs/english/isDecimal.md)         | [areDecimals(array)](docs/english/areDecimals.md)         | Checks for decimal number as string.                     |
-| [isFinite(value)](docs/english/isFinite.md)           | [areFinite(array)](docs/english/areFinite.md)             | Checks for finite number.                                |
-| [isFloat(value)](docs/english/isFloat.md)             | [areFloats(array)](docs/english/areFloats.md)             | Checks for floating-point (non-integer).                 |
-| [isHexadecimal(value)](docs/english/isHexadecimal.md) | [areHexadecimals(array)](docs/english/areHexadecimals.md) | Checks for hexadecimal notation (string with `0x`/`0X`). |
-| [isInteger(value)](docs/english/isInteger.md)         | [areIntegers(array)](docs/english/areIntegers.md)         | Checks for integer.                                      |
-| [isNaN(value)](docs/english/isNaN.md)                 | [areNaNs(array)](docs/english/areNaNs.md)                 | Checks for `NaN`.                                        |
-| [isNumber(value)](docs/english/isNumber.md)           | [areNumbers(array)](docs/english/areNumbers.md)           | Checks for `number`.                                     |
-| [isOctal(value)](docs/english/isOctal.md)             | [areOctals(array)](docs/english/areOctals.md)             | Checks for octal notation (string with `0o`/`0O`).       |
+| Single Value Check                                | Check Array Elements                                  | Description                                              |
+|:--------------------------------------------------|:------------------------------------------------------|:---------------------------------------------------------|
+| [isBigInt(value)](docs/eng/isBigInt.md)           | [areBigInts(array)](docs/eng/areBigInts.md)           | Checks for `bigint`.                                     |
+| [isBinary(value)](docs/eng/isBinary.md)           | [areBinaries(array)](docs/eng/areBinaries.md)         | Checks for binary notation (string, optional `0b`/`0B`). |
+| [isDecimal(value)](docs/eng/isDecimal.md)         | [areDecimals(array)](docs/eng/areDecimals.md)         | Checks for decimal number as string.                     |
+| [isFinite(value)](docs/eng/isFinite.md)           | [areFinite(array)](docs/eng/areFinite.md)             | Checks for finite number.                                |
+| [isFloat(value)](docs/eng/isFloat.md)             | [areFloats(array)](docs/eng/areFloats.md)             | Checks for floating-point (non-integer).                 |
+| [isHexadecimal(value)](docs/eng/isHexadecimal.md) | [areHexadecimals(array)](docs/eng/areHexadecimals.md) | Checks for hexadecimal notation (string with `0x`/`0X`). |
+| [isInteger(value)](docs/eng/isInteger.md)         | [areIntegers(array)](docs/eng/areIntegers.md)         | Checks for integer.                                      |
+| [isNaN(value)](docs/eng/isNaN.md)                 | [areNaNs(array)](docs/eng/areNaNs.md)                 | Checks for `NaN`.                                        |
+| [isNumber(value)](docs/eng/isNumber.md)           | [areNumbers(array)](docs/eng/areNumbers.md)           | Checks for `number`.                                     |
+| [isNumeric](docs/eng/isNumeric.md)                | [areNumerics(array)](docs/eng/areNumerics.md)         | Checks for numeric values e.g. `float`, `octal` etc.     |
+| [isOctal(value)](docs/eng/isOctal.md)             | [areOctals(array)](docs/eng/areOctals.md)             | Checks for octal notation (string with `0o`/`0O`).       |
 
 #### Objects and collections
 
-| Single Value Check                                    | Check Array Elements                                      | Description                               |
-|:------------------------------------------------------|:----------------------------------------------------------|:------------------------------------------|
-| [isArray(value)](docs/english/isArray.md)             | [areArrays(array)](docs/english/areArrays.md)             | Checks for array.                         |
-| [isFilledArray(value)](docs/english/isFilledArray.md) | [areFilledArrays(array)](docs/english/areFilledArrays.md) | Checks for non-empty array.               |
-| [isMap(value)](docs/english/isMap.md)                 | [areMaps(array)](docs/english/areMaps.md)                 | Checks for `Map`.                         |
-| [isObject(value)](docs/english/isObject.md)           | [areObjects(array)](docs/english/areObjects.md)           | Checks for object.                        |
-| [isPlainObject(value)](docs/english/isPlainObject.md) | [arePlainObjects(array)](docs/english/arePlainObjects.md) | Checks for plain object (object literal). |
-| [isSet(value)](docs/english/isSet.md)                 | [areSets(array)](docs/english/areSets.md)                 | Checks for `Set`.                         |
-| [isWeakMap(value)](docs/english/isWeakMap.md)         | [areWeakMaps(array)](docs/english/areWeakMaps.md)         | Checks for `WeakMap`.                     |
-| [isWeakSet(value)](docs/english/isWeakSet.md)         | [areWeakSets(array)](docs/english/areWeakSets.md)         | Checks for `WeakSet`.                     |
+| Single Value Check                                            | Check Array Elements                                              | Description                               |
+|:--------------------------------------------------------------|:------------------------------------------------------------------|:------------------------------------------|
+| [isArray(value)](docs/eng/isArray.md)                         | [areArrays(array)](docs/eng/areArrays.md)                         | Checks for array.                         |
+| [isEnumeration(value, option)](docs/eng/isEnumeration.md)     | [areEnumerations(array, option)](docs/eng/areEnumerations.md)     | Checks if it is an `enum` value.          |
+| [isEnumerationObject(value)](docs/eng/isEnumerationObject.md) | [areEnumerationObjects(array)](docs/eng/areEnumerationObjects.md) | Checks if it is an `enum` object.         |
+| [isFilledArray(value)](docs/eng/isFilledArray.md)             | [areFilledArrays(array)](docs/eng/areFilledArrays.md)             | Checks for non-empty array.               |
+| [isMap(value)](docs/eng/isMap.md)                             | [areMaps(array)](docs/eng/areMaps.md)                             | Checks for `Map`.                         |
+| [isObject(value)](docs/eng/isObject.md)                       | [areObjects(array)](docs/eng/areObjects.md)                       | Checks for object.                        |
+| [isPlainObject(value)](docs/eng/isPlainObject.md)             | [arePlainObjects(array)](docs/eng/arePlainObjects.md)             | Checks for plain object (object literal). |
+| [isSet(value)](docs/eng/isSet.md)                             | [areSets(array)](docs/eng/areSets.md)                             | Checks for `Set`.                         |
+| [isWeakMap(value)](docs/eng/isWeakMap.md)                     | [areWeakMaps(array)](docs/eng/areWeakMaps.md)                     | Checks for `WeakMap`.                     |
+| [isWeakSet(value)](docs/eng/isWeakSet.md)                     | [areWeakSets(array)](docs/eng/areWeakSets.md)                     | Checks for `WeakSet`.                     |
 
 #### Specialized instances and logic
 
-| Single Value Check                                       | Check Array Elements                                       | Description                        |
-|:---------------------------------------------------------|:-----------------------------------------------------------|:-----------------------------------|
-| [isBuffer(value)](docs/english/isBuffer.md)              | [areBuffers(array)](docs/english/areBuffers.md)            | Checks for Node.js `Buffer`.       |
-| [isDate(value)](docs/english/isDate.md)                  | [areDates(array)](docs/english/areDates.md)                | Checks for `Date` instance.        |
-| [isEqual(value, expected)](docs/english/isEqual.md)      | [areEqual(value, expected)](docs/english/areEqual.md)      | Checks for equality to `expected`. |
-| [isError(value)](docs/english/isError.md)                | [areErrors(array)](docs/english/areErrors.md)              | Checks for `Error` object.         |
-| [isFunction(value)](docs/english/isFunction.md)          | [areFunctions(array)](docs/english/areFunctions.md)        | Checks for function.               |
-| [isOfType(value, type)](docs/english/isOfType.md)        | [areOfType(array, type)](docs/english/areOfType.md)        | Checks for the given type.         |
-| [isOneOfType(value, types)](docs/english/isOneOfType.md) | [areOneOfType(array, types)](docs/english/areOneOfType.md) | Checks for any of the given types. |
-| [isPromise(value)](docs/english/isPromise.md)            | [arePromises(array)](docs/english/arePromises.md)          | Checks for `Promise`.              |
-| [isRegEx(value)](docs/english/isRegEx.md)                | [areRegExes(array)](docs/english/areRegExes.md)            | Checks for `RegExp`.               |
-| [isStream(value)](docs/english/isStream.md)              | [areStreams(array)](docs/english/areStreams.md)            | Checks for stream.                 |
-| [isValidDate(value)](docs/english/isValidDate.md)        | [areValidDates(array)](docs/english/areValidDates.md)      | Checks whether `Date` is valid.    |
+| Single Value Check                                   | Check Array Elements                                   | Description                        |
+|:-----------------------------------------------------|:-------------------------------------------------------|:-----------------------------------|
+| [isBuffer(value)](docs/eng/isBuffer.md)              | [areBuffers(array)](docs/eng/areBuffers.md)            | Checks for Node.js `Buffer`.       |
+| [isDate(value)](docs/eng/isDate.md)                  | [areDates(array)](docs/eng/areDates.md)                | Checks for `Date` instance.        |
+| [isEmpty(value)](docs/eng/isEmpty.md)                | [areEmpty(array)](docs/eng/areEmpty.md)                | Checks for empty values.           |
+| [isEqual(value, expected)](docs/eng/isEqual.md)      | [areEqual(value, expected)](docs/eng/areEqual.md)      | Checks for equality to `expected`. |
+| [isError(value)](docs/eng/isError.md)                | [areErrors(array)](docs/eng/areErrors.md)              | Checks for `Error` object.         |
+| [isFunction(value)](docs/eng/isFunction.md)          | [areFunctions(array)](docs/eng/areFunctions.md)        | Checks for function.               |
+| [isOfType(value, type)](docs/eng/isOfType.md)        | [areOfType(array, type)](docs/eng/areOfType.md)        | Checks for the given type.         |
+| [isOneOfType(value, types)](docs/eng/isOneOfType.md) | [areOneOfType(array, types)](docs/eng/areOneOfType.md) | Checks for any of the given types. |
+| [isPromise(value)](docs/eng/isPromise.md)            | [arePromises(array)](docs/eng/arePromises.md)          | Checks for `Promise`.              |
+| [isRegEx(value)](docs/eng/isRegEx.md)                | [areRegExes(array)](docs/eng/areRegExes.md)            | Checks for `RegExp`.               |
+| [isStream(value)](docs/eng/isStream.md)              | [areStreams(array)](docs/eng/areStreams.md)            | Checks for stream.                 |
+| [isValidDate(value)](docs/eng/isValidDate.md)        | [areValidDates(array)](docs/eng/areValidDates.md)      | Checks whether `Date` is valid.    |
 
 <br>
 
