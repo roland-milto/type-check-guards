@@ -14,9 +14,7 @@ This repository uses GitHub pull requests for code review.
   Make sure that the alphabetical and thematic order is correct.
 * Add the new function to the comments in the file `src/as-global.ts`.
   Two comments are necessary here: one for the single check and one for the array check.
-* Create a file `TYPEGUARD_NAME.md` in the `docs` folder under `english` and a file `TYPEGUARD_NAME.de.md` under
-  `deutsch`.
-  Follow the scheme of the other Markdown files.
+* Create the documentation with the `markdown-documentation-generator`. See in directory `tests`, how it is done.
 * Add the type guard in `readme.md` and `readme.de.md` under **Functions / Methods** and reference it to the Markdown
   file of the respective language created in the `docs` folder.
 * Run `npm run build` to test and validate the changes.
@@ -33,9 +31,8 @@ This repository uses GitHub pull requests for code review.
   Achte dabei auf die korrekte alphabetische, und thematische Reihenfolge.
 * Füge in der Datei `src/as-global.ts` in den Kommentaren die neue Funktion hinzu.
   Hier sind zwei Kommentare notwendig: einmal für die Einzelprüfung und einmal für die Array-Prüfung.
-* Erstelle im Ordner `docs` unter `english` eine Datei `TYPEGUARD_NAME.md` und unter `deutsch` eine Datei
-  `TYPEGUARD_NAME.de.md` hinzu.
-  Halte dich an das Schema der anderen Markdown-Dateien.
+* Erstelle die Dokumentation mit dem `markdown-documentation-generator`. Siehe in directory `tests`, wie es gemacht
+  wird.
 * Füge den Type Guard in der `readme.md` und in der `readme.de.md` unter dem Punkt **Funktionen / Methoden** hinzu und
   referenzier diesen auf die im Ordner `docs` erstellte Markdown-Datei der jeweiligen Sprache.
 * Führe `npm run build` aus, um die Änderungen zu testen und zu validieren.
