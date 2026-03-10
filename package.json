@@ -54,7 +54,7 @@
   "scripts": {
     "build": "npm run build:cdn && npm run build:npm",
     "build:cdn": "tsdown --name CDN --clean --dts false --sourcemap false --minify && node -e \"fs.copyFileSync('./dist/index.mjs', './dist/index.min.mjs')\"",
-    "build:npm": "tsdown src/index.ts src/as-object.ts src/register-global-object.ts --name NPM --dts true --sourcemap true --unbundle true --no-clean",
+    "build:npm": "tsdown src/index.ts src/register-local-object.ts src/register-global-object.ts --name NPM --dts true --sourcemap true --unbundle true --no-clean",
     "watch": "tsdown --name DEV --unbundle true --no-clean --watch",
     "prepublishOnly": "npm run build"
   },
