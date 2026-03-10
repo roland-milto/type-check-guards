@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Provides a simple, reliable runtime check for the `bigint` primitive type.",
+		"Helps narrow `unknown` values before performing BigInt-only operations.",
+		"Avoids false positives: regular numbers, strings, and other types return `false`."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check."
+	},
+	"shortDescription": "`isBigInt` checks whether a given value is of type `bigint`, returning `true` for BigInt primitives and `false` otherwise.",
+	"typeScriptFunctionUsageExample": "import { isBigInt } from \"@type-check/guards\";\n\nconst input: unknown = 10n;\n\nif (isBigInt(input)) {\n  const doubled = input * 2n;\n  console.log(doubled);\n} else {\n  console.log(\"Not a bigint\");\n}\n\nconsole.log(isBigInt(10n)); // true\nconsole.log(isBigInt(10));  // false\nconsole.log(isBigInt(\"10\")); // false",
+	"typeScriptHint": "Use `isBigInt` to narrow `unknown` to `bigint` before doing BigInt arithmetic (e.g., `+`, `*`) which requires BigInt operands.",
+	"typeScriptObjectUsageExample": "import \"@js-augment/bigint/register-global.mjs\";\n\nconst value: unknown = 10n;\n\nconsole.log(BigInt.isBigInt(value)); // true",
+	"useCase": "Validate and narrow values coming from untyped sources (e.g., JSON parsing, user input, external APIs) before performing BigInt-specific calculations or storing them in BigInt-only fields."
+}

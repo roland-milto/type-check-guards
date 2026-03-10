@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when every element is `null` or `undefined`.",
+		"Returns `false` for empty arrays, helping distinguish “no data” from “all missing values”.",
+		"Works with `unknown[]`, making it safe to use before narrowing types."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check."
+	},
+	"shortDescription": "Checks whether all elements in the given array are `null` or `undefined`.",
+	"typeScriptFunctionUsageExample": "import { areNullOrUndefined } from \"@type-check/guards\";\n\nconst allMissing = areNullOrUndefined([null, undefined, null]);\n// allMissing === true\n\nconst containsValue = areNullOrUndefined([null, \"value\", undefined]);\n// containsValue === false\n\nconst empty = areNullOrUndefined([]);\n// empty === false",
+	"typeScriptHint": "Use `areNullOrUndefined` when you need to verify that an array contains only missing values (`null`/`undefined`). Note that it returns `false` for an empty array.",
+	"useCase": "Validate that a list of optional fields contains no actual values (only `null`/`undefined`) before deciding to skip processing or to show a “no values provided” state."
+}

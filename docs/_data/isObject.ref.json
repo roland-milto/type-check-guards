@@ -1,0 +1,16 @@
+{
+	"advantages": [
+		"Returns `true` only for non-`null` values whose `typeof` is `\"object\"`.",
+		"Prevents the common JavaScript pitfall where `null` would otherwise be treated as an object.",
+		"It works for plain objects and built-in object instances (e.g., `Date`, `RegExp`).",
+		"Simple, fast runtime check suitable for defensive programming and input validation."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked for being an `object`."
+	},
+	"shortDescription": "Determines whether a given `value` is an `object` (excluding `null`).",
+	"typeScriptFunctionUsageExample": "import { isObject } from \"@type-check/guards\";\n\nconst input: unknown = { a: 1 };\n\nif (isObject(input)) {\n  // input is a non-null object at runtime\n  console.log(\"Object detected\");\n} else {\n  console.log(\"Not an object\");\n}\n",
+	"typeScriptHint": "`isObject` is a runtime guard that returns a boolean; it does not narrow to a specific object shape. Combine it with additional checks (e.g., property existence) when you need stronger typing.",
+	"typeScriptObjectUsageExample": "import { isObject } from \"@type-check/guards\";\n\ntype User = { id: number; name: string };\n\nfunction isUser(value: unknown): value is User {\n  if (!isObject(value)) return false;\n  const v = value as Record<string, unknown>;\n  return typeof v.id === \"number\" && typeof v.name === \"string\";\n}\n\nconst data: unknown = { id: 1, name: \"Ada\" };\n\nif (isUser(data)) {\n  console.log(data.id, data.name);\n}\n",
+	"useCase": "Use `isObject` to validate unknown inputs (e.g., parsed JSON, API responses, event payloads) before accessing properties, ensuring the value is an object and not `null`."
+}

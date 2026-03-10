@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Uses the built-in `Number.isFinite` for a reliable finiteness check.",
+		"Returns `true` only for finite numbers; returns `false` for `NaN`, `Infinity`, and non-number inputs.",
+		"Simple, side-effect-free predicate suitable for validation and guarding logic."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check for finiteness."
+	},
+	"shortDescription": "Determines whether a given `value` is a finite `number`.",
+	"typeScriptFunctionUsageExample": "import { isFinite } from \"@type-check/guards\";\n\nconst inputs: unknown[] = [123, -123.45, \"123\", Infinity, NaN, null, undefined];\n\nconst finiteNumbers = inputs.filter(isFinite);\n// finiteNumbers is: [123, -123.45]\n\nconst value: unknown = 42;\nif (isFinite(value)) {\n  // value is a finite number here\n  const doubled = value * 2;\n  console.log(doubled);\n}",
+	"typeScriptHint": "`isFinite` returns `true` only for finite numbers; it returns `false` for `NaN`, `Infinity`, and any non-number value.",
+	"useCase": "Use `isFinite` to validate unknown input (e.g., from JSON, forms, or APIs) before performing numeric calculations, ensuring the value is a real, finite number."
+}

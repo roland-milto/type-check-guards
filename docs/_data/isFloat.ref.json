@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only for finite, non-integer numbers (excludes integers, `NaN`, `Infinity`, and `-Infinity`).",
+		"Works with any input type (`unknown`) and safely narrows by checking `typeof value === \"number\"`.",
+		"Uses built-in numeric guards (`Number.isInteger`, `Number.isFinite`) for predictable behavior."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked if it is a floating-point number."
+	},
+	"shortDescription": "`isFloat` determines whether a given `value` is a finite floating-point number (a `number` that is not an integer).",
+	"typeScriptFunctionUsageExample": "import { isFloat } from \"@type-check/guards\";\n\nconst inputs: unknown[] = [3.14, -0.1, 1e-7, 42, \"3.14\", NaN, Infinity];\n\nfor (const value of inputs) {\n  if (isFloat(value)) {\n    // value is a number at runtime; it is finite and not an integer\n    const rounded = value.toFixed(2);\n    console.log(\"float:\", value, \"rounded:\", rounded);\n  } else {\n    console.log(\"not a float:\", value);\n  }\n}",
+	"typeScriptHint": "Use `isFloat` when you need to accept only finite, non-integer numeric inputs; it rejects integers and non-finite numbers.",
+	"useCase": "Validate user-provided numeric input where fractional values are required (e.g., prices, measurements, rates) and reject integers, `NaN`, and infinities."
+}

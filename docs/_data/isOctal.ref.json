@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Provides a strict type guard: returns `true` only when the input is a string that matches an octal literal format.",
+		"Rejects empty strings and strings with leading/trailing whitespace (ASCII control/space), reducing accidental matches.",
+		"Supports optional sign and is case-insensitive for the `0o`/`0O` prefix.",
+		"Lenient for non-string inputs by returning `false` instead of throwing."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "Determines whether a value is a valid octal literal string (e.g. `0o755`).",
+	"typeScriptFunctionUsageExample": "import { isOctal } from \"@type-check/guards\";\n\nconst a: unknown = \"0o123\";\nconst b: unknown = \"+0O755\";\nconst c: unknown = \"0o128\";\nconst d: unknown = 0o123;\n\nconsole.log(isOctal(a)); // true\nconsole.log(isOctal(b)); // true\nconsole.log(isOctal(c)); // false\nconsole.log(isOctal(d)); // false\n\nif (isOctal(a)) {\n  // a is string here\n  const normalized = a.toLowerCase();\n  console.log(normalized);\n}",
+	"typeScriptHint": "`isOctal` is a type guard (`value is string`). After a `true` result, TypeScript narrows the checked variable to `string`.",
+	"useCase": "Validate user input or configuration values that must be expressed as an octal literal string (for example, file permission modes like `0o644`) before parsing or converting them."
+}

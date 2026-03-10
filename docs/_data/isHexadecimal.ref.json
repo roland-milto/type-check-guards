@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Validates that a value is a string and matches a strict hexadecimal literal format (requires the `0x`/`0X` prefix).",
+		"Rejects strings with leading or trailing whitespace, helping avoid accidental acceptance of padded input.",
+		"Supports optional sign and is case-insensitive for the prefix and digits, returning `true`/`false` predictably."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "`isHexadecimal` checks whether a given value is a hexadecimal string literal with a mandatory `0x`/`0X` prefix.",
+	"typeScriptFunctionUsageExample": "import { isHexadecimal } from \"@type-check/guards\";\n\nisHexadecimal(\"0x1A2B\"); // true\nisHexadecimal(\"-0Xff\"); // true\nisHexadecimal(\"1A2B\"); // false (missing prefix)\nisHexadecimal(\" 0x1A2B\"); // false (leading whitespace)\nisHexadecimal(0x1a2b); // false (not a string)",
+	"typeScriptHint": "Use `isHexadecimal` when you need to validate user input or serialized data as a strict hexadecimal literal string (including the `0x`/`0X` prefix) before parsing or converting it.",
+	"useCase": "Use `isHexadecimal` to validate configuration values, API payload fields, or CLI arguments that must be provided as hexadecimal string literals (e.g., IDs, masks, or addresses) and must not contain surrounding whitespace."
+}

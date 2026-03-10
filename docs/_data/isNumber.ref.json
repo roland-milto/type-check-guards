@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Returns `true` only for real JavaScript numbers (type check plus `NaN` and infinity rejection).",
+		"Prevents common validation bugs where `NaN`, `Infinity`, or `-Infinity` accidentally pass as numbers.",
+		"Works well as a runtime guard for unknown input (e.g., JSON, user input, external APIs).",
+		"Simple, fast, and side-effect free."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check."
+	},
+	"shortDescription": "`isNumber` checks whether a value is a finite, non-`NaN` number.",
+	"typeScriptFunctionUsageExample": "import { isNumber } from \"@type-check/guards\";\n\nconst input: unknown = 42;\n\nif (isNumber(input)) {\n  // input is a valid finite number\n  const doubled = input * 2;\n  console.log(doubled);\n} else {\n  console.log(\"Not a valid number\");\n}\n\nconsole.log(isNumber(NaN));\nconsole.log(isNumber(Infinity));\nconsole.log(isNumber(\"42\"));",
+	"typeScriptHint": "Use `isNumber` to validate `unknown` values before doing arithmetic; it rejects `NaN`, `Infinity`, and `-Infinity`.",
+	"useCase": "Validate numeric input from untrusted sources (forms, query params, JSON payloads) before calculations, storage, or range checks, ensuring only finite numbers pass (`true`) and everything else returns `false`."
+}

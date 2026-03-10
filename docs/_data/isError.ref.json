@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Provides a simple runtime check for whether a value is an `Error` instance.",
+		"Helps narrow unknown inputs before accessing `Error` properties like `message` or `stack`.",
+		"Reduces the risk of runtime exceptions when handling values from `catch`, external APIs, or untyped sources."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check against the `Error` type."
+	},
+	"shortDescription": "Checks whether a given `value` is an instance of `Error`.",
+	"typeScriptFunctionUsageExample": "import { isError } from \"@type-check/guards\";\n\nfunction formatFailure(value: unknown): string {\n  if (isError(value)) {\n    return `Error: ${value.message}`;\n  }\n  return \"Unknown failure\";\n}\n\nconsole.log(formatFailure(new Error(\"Boom\")));\nconsole.log(formatFailure(\"Boom\"));",
+	"typeScriptHint": "Use `isError` to guard `unknown` values (e.g., from `catch`) before treating them as an `Error`.",
+	"useCase": "Use `isError` when you receive an `unknown` value (such as from a `catch` block, a callback, or an external library) and you need to safely determine whether it is an `Error` before reading `message`, `name`, or `stack`."
+}

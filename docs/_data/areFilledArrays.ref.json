@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Validates that the outer array is non-empty and that every inner array is also non-empty, returning `true` only when both conditions are met.",
+		"Works with any element types inside the subarrays (e.g., numbers, strings, objects, nested arrays) because it only checks array “filled” status, not element content.",
+		"Provides a simple boolean result (`true`/`false`) suitable for guards before processing two-dimensional data."
+	],
+	"parameterDescriptions": {
+		"array": "The two-dimensional array to check."
+	},
+	"shortDescription": "`areFilledArrays` checks whether a two-dimensional array is non-empty and all of its subarrays are non-empty.",
+	"typeScriptFunctionUsageExample": "import { areFilledArrays } from \"@type-check/guards\";\n\nconst a: unknown[][] = [[1]];\nconst b: unknown[][] = [[\"a\", \"b\"], [1, 2, 3]];\nconst c: unknown[][] = [[{}, []], [\"string\"]];\nconst d: unknown[][] = [[]];\nconst e: unknown[][] = [[], [1, 2, 3]];\nconst f: unknown[][] = [];\n\nconsole.log(areFilledArrays(a)); // true\nconsole.log(areFilledArrays(b)); // true\nconsole.log(areFilledArrays(c)); // true\nconsole.log(areFilledArrays(d)); // false\nconsole.log(areFilledArrays(e)); // false\nconsole.log(areFilledArrays(f)); // false\n",
+	"typeScriptHint": "Use `areFilledArrays` when you need to ensure a 2D array has at least one row and every row has at least one element before iterating or indexing into it.",
+	"useCase": "Use `areFilledArrays` to validate tabular or matrix-like input (e.g., CSV rows, grid data, grouped results) so you can safely assume there is at least one subarray and none of the subarrays are empty."
+}

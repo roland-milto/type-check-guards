@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when every element is a primitive value, making it a strict guard for “no objects/functions” arrays.",
+		"Fails fast: returns `false` as soon as a non-primitive element is found.",
+		"Also returns `false` for non-arrays and empty arrays (via the filled-array check), preventing accidental acceptance of invalid input."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for elements of primitive type."
+	},
+	"shortDescription": "`arePrimitives` evaluates whether all elements in a provided, non-empty array are primitive types.",
+	"typeScriptFunctionUsageExample": "import { arePrimitives } from \"@type-check/guards\";\n\nconst a: unknown[] = [1, \"string\", true];\nconst b: unknown[] = [null, undefined, Symbol(\"x\")];\nconst c: unknown[] = [1, {}, false];\n\nconst r1 = arePrimitives(a); // true\nconst r2 = arePrimitives(b); // true\nconst r3 = arePrimitives(c); // false",
+	"typeScriptHint": "Use `arePrimitives` when you need to ensure an `unknown[]` contains only primitive values (string, number, bigint, boolean, symbol, undefined, or null) before further processing.",
+	"useCase": "Validate that incoming data (e.g., query parameters, CSV row values, or a list of IDs/tags) contains only primitive values before serializing, hashing, logging, or passing it to APIs that must not receive objects."
+}

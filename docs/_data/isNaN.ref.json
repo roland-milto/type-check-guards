@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Checks whether a value is `NaN` without coercing non-numbers (e.g. strings) into numbers.",
+		"Returns `true` only for values that are both of type `number` and `NaN`.",
+		"Safe for `unknown` inputs and avoids false positives from implicit conversions."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked if it is a `NaN` of type `number`."
+	},
+	"shortDescription": "Determines whether the provided `value` is a `NaN` of type `number` without converting strings.",
+	"typeScriptFunctionUsageExample": "import { isNaN } from \"@type-check/guards\";\n\nconst a: unknown = NaN;\nconst b: unknown = \"NaN\";\nconst c: unknown = 123;\n\nconsole.log(isNaN(a)); // true\nconsole.log(isNaN(b)); // false\nconsole.log(isNaN(c)); // false\n\nif (isNaN(a)) {\n  // a is a number and specifically NaN\n}",
+	"typeScriptHint": "Use `isNaN` when you need to detect the special numeric value `NaN` while ensuring the input is actually a `number` (no string-to-number conversion).",
+	"useCase": "Validate untrusted or loosely typed input (e.g. API payloads, form values, parsed JSON) to detect the special `NaN` value and handle it explicitly, while treating non-number inputs as not `NaN`."
+}

@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Validates that every element is a hexadecimal string and returns `true` only when all items match.",
+		"Rejects empty arrays by design, returning `false` for missing input data.",
+		"Provides a simple boolean result (`true`/`false`) suitable for guards and early-return validation."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for hexadecimal string elements."
+	},
+	"shortDescription": "Checks whether all elements in an array are hexadecimal strings, returning `true` only for non-empty arrays where every item is valid.",
+	"typeScriptFunctionUsageExample": "import { areHexadecimals } from \"@type-check/guards\";\n\nconst a = areHexadecimals([\"1A\", \"3F\", \"B2\"]);\nconst b = areHexadecimals([\"1A\", \"3G\", \"B2\"]);\nconst c = areHexadecimals([10 as unknown as string, \"3F\", \"B2\"] as unknown[]);\nconst d = areHexadecimals([]);\n\nconsole.log(a, b, c, d);",
+	"typeScriptHint": "Use `areHexadecimals` to validate unknown input before parsing or converting values (for example, before `parseInt(value, 16)` or BigInt conversions).",
+	"useCase": "Use `areHexadecimals` to validate user input or external data (e.g., IDs, checksums, color codes without a leading '#') before performing hexadecimal parsing or further processing."
+}

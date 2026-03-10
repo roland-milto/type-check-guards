@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Provides a quick runtime check for whether a value is a `Map`.",
+		"Helps prevent type errors by guarding code paths that require `Map` methods like `get`, `set`, and `has`.",
+		" It works well as a lightweight validation step when handling `unknown` inputs."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check."
+	},
+	"shortDescription": "Checks whether the given `value` is a `Map`, returning `true` if it is and `false` otherwise.",
+	"typeScriptFunctionUsageExample": "import { isMap } from \"@type-check/guards\";\n\nconst input: unknown = new Map<string, number>([[\"a\", 1]]);\n\nif (isMap(input)) {\n  input.set(\"b\", 2);\n  const a = input.get(\"a\");\n  console.log(a);\n} else {\n  console.log(\"Not a Map\");\n}\n",
+	"typeScriptHint": "`isMap` is a runtime guard that returns `true` when the value is a `Map` and `false` otherwise; use it to narrow `unknown` before calling `Map` APIs.",
+	"useCase": "Use `isMap` when you receive an `unknown` value (e.g., from JSON parsing, external APIs, or user input) and need to ensure it is a `Map` before performing `Map` operations."
+}

@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when the input is a non-empty array and every element is a `Set` instance.",
+		"Prevents false positives for empty arrays by returning `false` when the array has no elements.",
+		"Useful as a runtime guard before performing `Set`-specific operations on each element."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for `Set` instances."
+	},
+	"shortDescription": "Checks whether a given non-empty array contains only `Set` instances, returning `true` if it does and `false` otherwise.",
+	"typeScriptFunctionUsageExample": "import { areSets } from \"@type-check/guards\";\n\nconst a = [new Set(), new Set([1, 2]), new Set()];\nconst b = [new Set(), {}, new Set([1, 2])];\nconst c: unknown[] = [];\n\nif (areSets(a)) {\n  // a is an array of Set instances at runtime\n  for (const s of a) {\n    console.log(s.size);\n  }\n}\n\nconsole.log(areSets(b)); // false\nconsole.log(areSets(c)); // false",
+	"typeScriptHint": "Use `areSets` to validate unknown input before iterating and calling `Set` APIs (e.g., `.size`, `.has`, `.add`) on each element.",
+	"useCase": "Validate that a value (e.g., from user input, JSON parsing, or external APIs) is a non-empty array of `Set` objects before processing each set."
+}

@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Provides a simple, reliable check for whether a value is a plain object (i.e., `Object` / `{}`), returning `true` or `false`.",
+		"Helps distinguish plain objects from arrays, functions, `null`, and other non-plain object types.",
+		"Useful as a type guard in TypeScript to narrow `unknown` values before accessing object properties."
+	],
+	"parameterDescriptions": {
+		"value": "The value to test for plain object status."
+	},
+	"shortDescription": "Checks whether a given `value` is a plain object and returns `true` if it is, otherwise `false`.",
+	"typeScriptFunctionUsageExample": "import { isPlainObject } from \"@type-check/guards\";\n\nconst input: unknown = JSON.parse('{\"a\":1}');\n\nif (isPlainObject(input)) {\n  // input is a plain object here\n  console.log(Object.keys(input));\n} else {\n  console.log(\"Not a plain object\");\n}\n\nconsole.log(isPlainObject({})); // true\nconsole.log(isPlainObject([])); // false\nconsole.log(isPlainObject(null)); // false",
+	"typeScriptHint": "`isPlainObject` is useful for narrowing `unknown` before treating it as a record-like object; it returns `true` only for values whose internal tag is `[object Object]`.",
+	"typeScriptObjectUsageExample": "import { isPlainObject } from \"@type-check/guards\";\n\ntype Config = { debug?: boolean };\n\nfunction readConfig(value: unknown): Config {\n  if (isPlainObject(value)) {\n    const v = value as Record<string, unknown>;\n    return {\n      debug: typeof v.debug === \"boolean\" ? v.debug : undefined\n    };\n  }\n  return {};\n}\n\nconsole.log(readConfig({ debug: true }));\nconsole.log(readConfig([\"debug\"]));",
+	"useCase": "Validate that an `unknown` input (e.g., parsed JSON, external data, or function arguments) is a plain object before reading keys or mapping it into a typed configuration object."
+}

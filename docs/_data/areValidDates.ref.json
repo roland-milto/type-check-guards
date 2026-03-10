@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when every element is a valid `Date` instance (no invalid dates like `new Date('invalid')`).",
+		"Rejects empty input by returning `false`, ensuring you only accept meaningful, non-empty date lists.",
+		"Provides a simple boolean guard-style check that is easy to compose with other validations."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check, potentially containing `Date` objects."
+	},
+	"shortDescription": "Determines whether an array is non-empty and consists entirely of valid `Date` objects.",
+	"typeScriptFunctionUsageExample": "import { areValidDates } from \"@type-check/guards\";\n\nconst a = [new Date(), new Date(\"2025-12-17\")];\nconst b = [new Date(), \"not a date\"] as unknown[];\nconst c: unknown[] = [];\nconst d = [new Date(\"invalid date\")] as unknown[];\n\nconsole.log(areValidDates(a)); // true\nconsole.log(areValidDates(b)); // false\nconsole.log(areValidDates(c)); // false\nconsole.log(areValidDates(d)); // false\n",
+	"typeScriptHint": "`areValidDates` returns `false` for an empty array; ensure the array is intended to be non-empty before relying on it as a validation step.",
+	"useCase": "Use `areValidDates` to validate user-provided or API-provided arrays before performing date-based operations (sorting, range checks, formatting), ensuring all entries are real, valid `Date` objects and that the list is not empty."
+}

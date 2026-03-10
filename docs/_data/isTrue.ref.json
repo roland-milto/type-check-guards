@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Provides a strict check for the boolean literal `true` (no coercion).",
+		"Helps distinguish `true` from truthy values like `1`, `\"true\"`, or `{}`.",
+		"Simple, predictable behavior suitable for guards and validation pipelines."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check."
+	},
+	"shortDescription": "`isTrue` determines whether a given value is strictly equal to `true`.",
+	"typeScriptFunctionUsageExample": "import { isTrue } from \"@type-check/guards\";\n\nconst a = isTrue(true);      // true\nconst b = isTrue(1);         // false\nconst c = isTrue(\"true\");   // false\n\nif (isTrue(a)) {\n  // a is true here\n}",
+	"typeScriptHint": "Use `isTrue` when you need to accept only the boolean literal `true`, not merely truthy values.",
+	"useCase": "Use `isTrue` to validate flags, feature toggles, or configuration values where only the literal `true` should be accepted and everything else must be treated as `false`."
+}

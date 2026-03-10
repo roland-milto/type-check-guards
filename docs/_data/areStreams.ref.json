@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Ensures an input is a filled array where every element is a `Stream`.",
+		"Provides a simple `true`/`false` guard for validating stream collections before processing.",
+		"Fails fast: returns `false` as soon as a non-`Stream` element is found.",
+		"Helps prevent runtime errors when code assumes all items are `Stream` instances."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for Stream objects."
+	},
+	"shortDescription": "`areStreams` determines whether a value is a filled array in which every element is a `Stream`.",
+	"typeScriptFunctionUsageExample": "import fs from \"node:fs\";\nimport { areStreams } from \"@type-check/guards\";\n\nconst stream1 = fs.createReadStream(\"file1.txt\");\nconst stream2 = fs.createReadStream(\"file2.txt\");\n\nconst input: unknown = [stream1, stream2];\n\nif (areStreams(input)) {\n  // input is a filled array of Stream objects\n  for (const s of input) {\n    s.resume();\n  }\n} else {\n  throw new TypeError(\"Expected a filled array of Stream objects\");\n}\n",
+	"typeScriptHint": "Use `areStreams` to validate unknown input before treating it as `Stream[]`; it returns `true` only when the value is a non-empty array and every element is a `Stream`.",
+	"useCase": "Validate user-provided or dynamically built collections (e.g., multiple file read streams) before piping, resuming, or otherwise operating on them as a group."
+}

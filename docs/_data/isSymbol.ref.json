@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Provides a simple, reliable runtime check for the JavaScript `symbol` primitive type.",
+		"Helps narrow `unknown` values before using symbol-specific APIs or storing them as keys.",
+		"Avoids false positives by using `typeof`, which is the canonical way to detect `symbol` values."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "`isSymbol` determines whether a given value is of type `symbol`, returning `true` for symbols and `false` otherwise.",
+	"typeScriptFunctionUsageExample": "import { isSymbol } from \"@type-check/guards\";\n\nconst input: unknown = Symbol(\"key\");\n\nif (isSymbol(input)) {\n  // input is a symbol here\n  const registryKey = Symbol.keyFor(input);\n  console.log(registryKey);\n} else {\n  console.log(\"Not a symbol\");\n}\n",
+	"typeScriptHint": "Use `isSymbol` to narrow `unknown` to `symbol` before calling symbol-related functions or using it as a computed property key.",
+	"useCase": "Validate that an `unknown` value is a `symbol` before using it as a unique identifier, a registry key, or a computed property key in objects and maps."
+}

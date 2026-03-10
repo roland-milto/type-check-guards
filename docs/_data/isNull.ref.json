@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Provides a precise check for `null` without conflating it with `undefined`.",
+		"Works reliably for any input type because it accepts `unknown`.",
+		"Simple, fast, and side-effect free; returns only `true` or `false`."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check for `null`."
+	},
+	"shortDescription": "Determines whether the provided `value` is `null`.",
+	"typeScriptFunctionUsageExample": "import { isNull } from \"@type-check/guards\";\n\nconst a: unknown = null;\nconst b: unknown = undefined;\n\nconsole.log(isNull(a)); // true\nconsole.log(isNull(b)); // false\n\nif (isNull(a)) {\n  // a is null here\n}",
+	"typeScriptHint": "Use `isNull` when you need to distinguish `null` from `undefined` and other falsy values; it returns `true` only for `null`.",
+	"useCase": "Use `isNull` to validate inputs or API payload fields where `null` is a meaningful sentinel value and must be handled differently than `undefined` or other values."
+}

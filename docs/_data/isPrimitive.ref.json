@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Fast, allocation-free check for whether a value is a JavaScript primitive.",
+		"Correctly treats `null` as primitive (even though `typeof null` is `\"object\"`).",
+		"Helps narrow `unknown` values before performing object-only operations."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check for primitive type."
+	},
+	"shortDescription": "`isPrimitive` determines whether a given value is a primitive (`null`, `undefined`, `boolean`, `number`, `string`, `bigint`, `symbol`).",
+	"typeScriptFunctionUsageExample": "import { isPrimitive } from \"@type-check/guards\";\n\nfunction format(value: unknown): string {\n  if (isPrimitive(value)) {\n    return String(value);\n  }\n  return \"[non-primitive]\";\n}\n\nconsole.log(isPrimitive(null));\nconsole.log(isPrimitive(42));\nconsole.log(isPrimitive(\"hello\"));\nconsole.log(isPrimitive({}));\nconsole.log(isPrimitive(() => {}));",
+	"typeScriptHint": "Use `isPrimitive` to guard `unknown` inputs before treating them as objects or functions; it returns `true` for primitives and `false` for objects and functions.",
+	"useCase": "Validate inputs at runtime (e.g., API payload fields, configuration values, or user-provided data) to ensure a value is a primitive before serializing, logging, or applying primitive-only operations."
+}

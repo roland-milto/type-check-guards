@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Provides a simple runtime check for whether a value is a `Promise`.",
+		"Helps guard code paths that require a real `Promise` instance, returning `true` or `false` predictably.",
+		"Avoids false positives from “thenable” objects (e.g., `{ then() {} }`) by requiring an actual `Promise` instance."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "Determines whether a given value is a `Promise`.",
+	"typeScriptFunctionUsageExample": "import { isPromise } from \"@type-check/guards\";\n\nconst a: unknown = Promise.resolve(123);\nconst b: unknown = { then() {} };\n\nif (isPromise(a)) {\n  a.then((v) => console.log(\"resolved:\", v));\n}\n\nconsole.log(isPromise(a)); // true\nconsole.log(isPromise(b)); // false\nconsole.log(isPromise(123)); // false\nconsole.log(isPromise(null)); // false\n",
+	"typeScriptHint": "`isPromise` checks via `instanceof Promise`, so it only returns `true` for real `Promise` instances (not generic thenables).",
+	"useCase": "Use `isPromise` to validate unknown inputs before treating them as a `Promise`, such as when handling values returned from plugins, dynamic imports, or loosely-typed APIs."
+}

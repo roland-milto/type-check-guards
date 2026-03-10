@@ -1,0 +1,16 @@
+{
+	"advantages": [
+		"Provides a TypeScript type guard: when it returns `true`, the input is narrowed to `Array<DataTypeOf<T>>`.",
+		"Validates every element against the requested runtime type, preventing mixed-type arrays from passing.",
+		"Fails fast: returns `false` as soon as a non-matching element is found.",
+		"Rejects non-arrays and empty arrays by design (depends on `isFilledArray`)."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check.",
+		"type": "The type to check against each element in the array."
+	},
+	"shortDescription": "Checks whether all elements in the given `array` are of the specified `type`.",
+	"typeScriptFunctionUsageExample": "import { areOfType } from \"@type-check/guards\";\n\nconst values: unknown[] = [1, 2, 3];\n\nif (areOfType(values, \"number\")) {\n  // values is now number[]\n  const sum = values.reduce((a, b) => a + b, 0);\n  console.log(sum);\n}\n\nconst mixed: unknown[] = [1, \"2\", 3];\nconst allNumbers = areOfType(mixed, \"number\"); // false\n",
+	"typeScriptHint": "Because `areOfType` is a type guard, TypeScript narrows the array inside an `if (areOfType(...)) {}` block to `Array<DataTypeOf<T>>`.",
+	"useCase": "Use `areOfType` to validate unknown input (e.g., parsed JSON, API payloads, user input) before performing type-specific operations on every element of an array."
+}

@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Validates that the input is a non-empty two-dimensional array where every element is an array.",
+		"Returns a simple boolean result (`true`/`false`) suitable for guards and early exits.",
+		"Helps prevent runtime errors when later code assumes nested array operations (e.g., mapping rows)."
+	],
+	"parameterDescriptions": {
+		"array": "The input to be checked."
+	},
+	"shortDescription": "`areArrays` determines whether a value is a filled two-dimensional array whose items are all arrays.",
+	"typeScriptFunctionUsageExample": "import { areArrays } from \"@type-check/guards\";\n\nconst value: unknown = [[1, 2], [3, 4]];\n\nif (areArrays(value as unknown[][])) {\n  // value is a 2D array with arrays as elements\n  const lengths = value.map(row => row.length);\n  console.log(lengths);\n} else {\n  console.log(\"Not a 2D array of arrays\");\n}\n",
+	"typeScriptHint": "Use `areArrays` when you need to ensure a value is a non-empty 2D array and that each row is an array before iterating or indexing into nested arrays.",
+	"useCase": "Use `areArrays` to validate tabular or matrix-like inputs (e.g., CSV rows, grid data, or grouped lists) before performing row/column operations; it returns `false` if the input is not an array, is empty, or contains any non-array element."
+}

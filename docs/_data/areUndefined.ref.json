@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `false` for non-arrays and empty arrays by requiring a filled array via `isFilledArray`.",
+		"Ensures every element is `undefined`, not just some, making the intent explicit.",
+		"Useful as a guard-style predicate when validating unknown input collections."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check for `undefined` elements."
+	},
+	"shortDescription": "`areUndefined` checks whether every element in a provided array is `undefined`.",
+	"typeScriptFunctionUsageExample": "import { areUndefined } from \"@type-check/guards\";\n\nconst a: unknown[] = [undefined, undefined];\nconst b: unknown[] = [undefined, null];\nconst c: unknown[] = [undefined, 0, undefined];\n\nconst r1 = areUndefined(a); // true\nconst r2 = areUndefined(b); // false\nconst r3 = areUndefined(c); // false\n\n// Note: returns false for empty arrays\nconst r4 = areUndefined([]); // false",
+	"typeScriptHint": "Use `areUndefined` when you need to assert that an `unknown[]` contains only `undefined` values; it returns `false` for empty arrays and non-array/invalid inputs due to the internal `isFilledArray` check.",
+	"useCase": "Validate that a list of optional results contains no actual values (only `undefined`), e.g., after mapping lookups where missing entries are represented as `undefined`, and you want to confirm that all lookups failed."
+}

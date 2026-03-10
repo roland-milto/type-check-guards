@@ -1,0 +1,67 @@
+# areJson
+
+## 说明
+
+检查一个数组里向所有元素是不是 JSON 字符串：只有数组有内容并且每一项都是有效 JSON 个辰光才返回 `true`；否则返回 `false`。
+
+### 使用场景
+
+验证传入数据（比方讲来自 query params、environment variables 或者外部 APIs），当侬预期拿到个是一个由 JSON
+编码字符串组成个数组，并且想要拒绝空数组或者任何非 JSON 项。
+
+> **给 TypeScript 用户的提示：**
+>
+> 当侬需要先验证一个 `unknown[]` 里向只包含 JSON 字符串，再去解析（比方讲用 `JSON.parse`）个辰光，用 `areJson`。
+
+### 优势
+
+- 只有当每个元素都是有效个 JSON 字符串个辰光才会返回 `true`；否则返回 `false`。
+- 快速失败：一旦发现有非 JSON 个元素就立刻停止检查。
+- 按设计拒绝空数组，对没填内容个输入返回 `false`。
+
+## 用法
+
+### 语法
+
+函数：
+
+- `areJson(array)`
+
+参数：
+
+- `array`: 要检查个数组，里向元素要是 JSON 字符串。
+
+### 本地函数导入
+
+```ts
+import { areJson } from "@type-check/guards";
+
+const ok = areJson(["{\"a\":1}", "{\"b\":2}"]); // 真
+const mixed = areJson(["{\"a\":1}", 123 as unknown]); // 假
+const empty = areJson([]); // 假
+
+```
+
+### 全局对象导入
+
+如需将函数作为全局对象方法导入，请使用：
+
+```ts
+import "@type-check/guards/register-global-object.mjs";
+```
+
+随后以下方法可全局使用：
+
+- `Type.areJson(array)`
+
+## 函数分析
+
+此处记录了当向函数传入不同参数时产生的输出的表格分析： [areJson](../_analysis/areJson.md)
+
+<br>
+
+---
+
+<small>该文件于 30 January 2026 at 16:15:21 (UTC) 使用 *
+*[markdown-documentation-generator](https://github.com/roland-milto/markdown-documentation-generator)** 由 *
+*[Roland Milto](https://roland-milto.de/)** 生成。</small>

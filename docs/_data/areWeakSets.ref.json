@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Ensures every element in the input array is a `WeakSet`.",
+		"Returns `false` for empty arrays, preventing accidental “all valid” results on missing data.",
+		"Fails safely by returning `false` when the input is not a filled array (including `null`).",
+		"Useful as a guard before performing operations that require `WeakSet` instances."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for `WeakSet` objects."
+	},
+	"shortDescription": "Checks whether an input is a non-empty array where every element is a `WeakSet`, returning `true` only in that case.",
+	"typeScriptFunctionUsageExample": "import { areWeakSets } from \"@type-check/guards\";\n\nconst a: unknown = [new WeakSet<object>(), new WeakSet<object>()];\nconst b: unknown = [new WeakSet<object>(), {}];\nconst c: unknown = [];\n\nif (areWeakSets(a)) {\n  // a is a non-empty array of WeakSet instances\n}\n\nconsole.log(areWeakSets(a)); // true\nconsole.log(areWeakSets(b)); // false\nconsole.log(areWeakSets(c)); // false\nconsole.log(areWeakSets(null as unknown)); // false",
+	"typeScriptHint": "Use `areWeakSets` to validate unknown input before treating it as `WeakSet[]`. It returns `false` for empty arrays and non-arrays.",
+	"useCase": "Validate runtime input (e.g., from APIs, configuration, or user-provided data) to ensure you have a non-empty list of `WeakSet` instances before proceeding with logic that depends on `WeakSet` behavior."
+}

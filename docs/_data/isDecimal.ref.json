@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Strictly validates that the input is a string and matches a decimal-literal pattern.",
+		"Rejects leading and trailing whitespace (including control characters) to avoid ambiguous parsing.",
+		"Fast pre-checks (type check and first/last character) before running the regex.",
+		"Returns a simple boolean result (`true`/`false`) suitable for guards and input validation."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check for a decimal string format."
+	},
+	"shortDescription": "`isDecimal` checks whether a value is a decimal string representation with no leading/trailing whitespace and a valid decimal format.",
+	"typeScriptFunctionUsageExample": "import { isDecimal } from \"@type-check/guards\";\n\nconst inputs: unknown[] = [\"123.45\", \"0.99\", \"-42.0\", 123.45, \" 123.45\", \"123.45 \"];\n\nfor (const v of inputs) {\n  if (isDecimal(v)) {\n    // v is a string here (runtime-validated)\n    console.log(\"decimal:\", v);\n  } else {\n    console.log(\"not decimal:\", v);\n  }\n}\n",
+	"typeScriptHint": "Use `isDecimal` to validate user input before converting it (e.g., with `Number(value)`), especially when whitespace must be rejected.",
+	"useCase": "Validate form fields, API payloads, or configuration values that must be provided as a decimal string (optionally signed) without any surrounding whitespace, before parsing or storing them."
+}

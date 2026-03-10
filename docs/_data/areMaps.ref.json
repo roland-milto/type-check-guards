@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures every element is a `Map` instance, returning `true` only when the entire array passes the check.",
+		"Rejects empty arrays by design, preventing accidental acceptance of “no data” as valid input.",
+		"Useful as a guard before performing `Map`-specific operations (e.g., `.get()`, `.set()`, iteration) across a collection."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check."
+	},
+	"shortDescription": "`areMaps` determines whether a given array is non-empty and all of its elements are `Map` instances.",
+	"typeScriptFunctionUsageExample": "import { areMaps } from \"@type-check/guards\";\n\nconst items: unknown[] = [new Map<string, number>([[\"a\", 1]]), new Map<string, number>()];\n\nif (areMaps(items)) {\n  // items is guaranteed to be a non-empty array of Map instances at runtime\n  for (const m of items) {\n    m.set(\"x\", 42);\n  }\n} else {\n  // false for: empty arrays, or arrays containing any non-Map value\n}\n",
+	"typeScriptHint": "Returns `false` for an empty array; it only returns `true` when the array is filled and every element is a `Map`.",
+	"useCase": "Validate unknown input (e.g., from JSON parsing, external APIs, or dynamic sources) before treating it as a non-empty list of `Map` objects."
+}

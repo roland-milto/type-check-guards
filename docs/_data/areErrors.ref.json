@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures every element is an `Error` instance, enabling safe error handling and logging.",
+		"Rejects empty arrays, preventing accidental “no errors” states from being treated as valid error lists.",
+		"Works well as a runtime guard when dealing with `unknown[]` inputs (e.g., from APIs or `catch` blocks)."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check for `Error` objects."
+	},
+	"shortDescription": "Checks whether an array is non-empty and contains only `Error` objects, returning `true` or `false`.",
+	"typeScriptFunctionUsageExample": "import { areErrors } from \"@type-check/guards\";\n\nconst value: unknown = [new Error(\"error1\"), new TypeError(\"error2\")];\n\nif (Array.isArray(value) && areErrors(value)) {\n  // value is a non-empty array of Error objects\n  for (const err of value) {\n    console.error(err.name, err.message);\n  }\n} else {\n  console.log(\"Not a non-empty Error[]\");\n}\n",
+	"typeScriptHint": "`areErrors` returns `true` only for a filled array where every item is an `Error`; it returns `false` for an empty array or if any element is not an `Error`.",
+	"useCase": "Validate that a runtime-provided `unknown[]` (e.g., aggregated failures, validation results, or deserialized data) is a non-empty list of `Error` objects before iterating, logging, or rethrowing."
+}

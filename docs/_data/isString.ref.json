@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Simple and fast check using `typeof`.",
+		"Returns a predictable boolean result: `true` for strings, otherwise `false`.",
+		"Works for both empty and non-empty strings.",
+		"Useful as a lightweight runtime guard before performing string-specific operations."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be tested for string type."
+	},
+	"shortDescription": "`isString` determines whether a given value is a string.",
+	"typeScriptFunctionUsageExample": "import { isString } from \"@type-check/guards\";\n\nconst input: unknown = \"Hello World\";\n\nif (isString(input)) {\n  // input is a string here\n  console.log(input.toUpperCase());\n} else {\n  console.log(\"Not a string\");\n}\n",
+	"typeScriptHint": "Use `isString` to validate `unknown` or loosely typed values before calling string methods; it returns `true` only when `typeof value === \"string\"`.",
+	"useCase": "Validate user input, API payload fields, or configuration values at runtime to ensure a value is a string before applying string operations (e.g., trimming, splitting, case conversion)."
+}

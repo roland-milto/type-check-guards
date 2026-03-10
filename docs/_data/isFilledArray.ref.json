@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Simple, fast check for a non-empty array using `Array.isArray` and a length check.",
+		"Helps avoid runtime errors when code assumes an array has at least one element.",
+		"Clear boolean result: returns `true` for non-empty arrays and `false` otherwise."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check if it is a non-empty array."
+	},
+	"shortDescription": "Checks whether `value` is an array with at least one element, returning `true` or `false`.",
+	"typeScriptFunctionUsageExample": "import { isFilledArray } from \"@type-check/guards\";\n\nconst input: unknown = [1, 2, 3];\n\nif (Array.isArray(input) && isFilledArray(input)) {\n  // input is a non-empty array at runtime\n  console.log(input[0]);\n} else {\n  console.log(\"Not a non-empty array\");\n}\n",
+	"typeScriptHint": "`isFilledArray` is a runtime guard that returns a boolean; it does not narrow element types beyond confirming the array is non-empty.",
+	"useCase": "Use `isFilledArray` to validate incoming data (e.g., API payloads, form values, configuration) before iterating, accessing the first element, or applying logic that requires at least one item."
+}

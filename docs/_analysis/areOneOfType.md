@@ -1,0 +1,116 @@
+# Behavior of `areOneOfType`
+
+## Expected parameters
+
+| Parameter | Data type          | Description                                                       |
+|:----------|:-------------------|:------------------------------------------------------------------|
+| array     | unknown[]          | An array of elements to verify against the provided types.        |
+| types     | DataTypeAsString[] | An array of strings representing the data types to check against. |
+
+Expected return type: `boolean`
+
+## Specific tests
+
+| Parameter <br> `array`             | Parameter <br> `types`          | Function <br> `areOneOfType` | Description                                                                                                                                                                                                                                                                                                                                                                                          |
+|:-----------------------------------|:--------------------------------|:-----------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `[1,2,3]`                          | `["number"]`                    | true                         | All numbers. `unknown` expected for *array[0]*, but `integer` given. `unknown` expected for *array[1]*, but `integer` given. `unknown` expected for *array[2]*, but `integer` given. `DataTypeAsString` expected for *types[0]*, but `string` given                                                                                                                                                  |
+| `["a","b","c"]`                    | `["string"]`                    | true                         | All strings. `unknown` expected for *array[0]*, but `string` given. `unknown` expected for *array[1]*, but `string` given. `unknown` expected for *array[2]*, but `string` given. `DataTypeAsString` expected for *types[0]*, but `string` given                                                                                                                                                     |
+| `[1,"a",true]`                     | `["number","string","boolean"]` | true                         | Mixed values allowed by types. `unknown` expected for *array[0]*, but `integer` given. `unknown` expected for *array[1]*, but `string` given. `unknown` expected for *array[2]*, but `boolean` given. `DataTypeAsString` expected for *types[0]*, but `string` given. `DataTypeAsString` expected for *types[1]*, but `string` given. `DataTypeAsString` expected for *types[2]*, but `string` given |
+| `[]`                               | `["number"]`                    | false                        | Empty array (not filled). `DataTypeAsString` expected for *types[0]*, but `string` given                                                                                                                                                                                                                                                                                                             |
+| `[1,"a",{}]`                       | `["number","string"]`           | false                        | Contains object not in allowed types. `unknown` expected for *array[0]*, but `integer` given. `unknown` expected for *array[1]*, but `string` given. `unknown` expected for *array[2]*, but `object` given. `DataTypeAsString` expected for *types[0]*, but `string` given. `DataTypeAsString` expected for *types[1]*, but `string` given                                                           |
+| `[1,"a",{}]`                       | `[]`                            | false                        | Empty types array (not filled). `unknown` expected for *array[0]*, but `integer` given. `unknown` expected for *array[1]*, but `string` given. `unknown` expected for *array[2]*, but `object` given                                                                                                                                                                                                 |
+| `["2026-02-06T12:31:27.016Z",{}]`  | `["date","regexp"]`             | true                         | All complex types allowed. `unknown` expected for *array[0]*, but `date` given. `unknown` expected for *array[1]*, but `regExp` given. `DataTypeAsString` expected for *types[0]*, but `string` given. `DataTypeAsString` expected for *types[1]*, but `string` given                                                                                                                                |
+| `["2026-02-06T12:31:27.016Z","x"]` | `["date"]`                      | false                        | Contains string not allowed (only date). `unknown` expected for *array[0]*, but `date` given. `unknown` expected for *array[1]*, but `string` given. `DataTypeAsString` expected for *types[0]*, but `string` given                                                                                                                                                                                  |
+
+## Default tests
+
+| Parameter <br> `array`         | Parameter <br> `types`         | Function <br> `areOneOfType` | Description                                                                                                     |
+|:-------------------------------|:-------------------------------|:-----------------------------|:----------------------------------------------------------------------------------------------------------------|
+| ""                             | `["number"]`                   | false                        | Empty string. `unknown[]` expected for *array*, but `string` given                                              |
+| `[1,2,3]`                      | ""                             | false                        | Empty string. `DataTypeAsString[]` expected for *types*, but `string` given                                     |
+| " "                            | `["number"]`                   | false                        | Only space string. `unknown[]` expected for *array*, but `string` given                                         |
+| `[1,2,3]`                      | " "                            | false                        | Only space string. `DataTypeAsString[]` expected for *types*, but `string` given                                |
+| "\r"                           | `["number"]`                   | false                        | Carriage return. `unknown[]` expected for *array*, but `string` given                                           |
+| `[1,2,3]`                      | "\r"                           | false                        | Carriage return. `DataTypeAsString[]` expected for *types*, but `string` given                                  |
+| "integer"                      | `["number"]`                   | false                        | Data type returned by `getTypeOf()`. `unknown[]` expected for *array*, but `string` given                       |
+| `[1,2,3]`                      | "integer"                      | false                        | Data type returned by `getTypeOf()`. `DataTypeAsString[]` expected for *types*, but `string` given              |
+| "Roland Milto"                 | `["number"]`                   | false                        | Two word string. `unknown[]` expected for *array*, but `string` given                                           |
+| `[1,2,3]`                      | "Roland Milto"                 | false                        | Two word string. `DataTypeAsString[]` expected for *types*, but `string` given                                  |
+| "äöüß"                         | `["number"]`                   | false                        | Non-ASCII (German umlauts). `unknown[]` expected for *array*, but `string` given                                |
+| `[1,2,3]`                      | "äöüß"                         | false                        | Non-ASCII (German umlauts). `DataTypeAsString[]` expected for *types*, but `string` given                       |
+| "你好"                           | `["number"]`                   | false                        | Non-Latin characters. `unknown[]` expected for *array*, but `string` given                                      |
+| `[1,2,3]`                      | "你好"                           | false                        | Non-Latin characters. `DataTypeAsString[]` expected for *types*, but `string` given                             |
+| "🙂"                           | `["number"]`                   | false                        | Emoji string. `unknown[]` expected for *array*, but `string` given                                              |
+| `[1,2,3]`                      | "🙂"                           | false                        | Emoji string. `DataTypeAsString[]` expected for *types*, but `string` given                                     |
+| 42                             | `["number"]`                   | false                        | Positive number. `unknown[]` expected for *array*, but `integer` given                                          |
+| `[1,2,3]`                      | 42                             | false                        | Positive number. `DataTypeAsString[]` expected for *types*, but `integer` given                                 |
+| -273                           | `["number"]`                   | false                        | Negative number (0 Kelvin). `unknown[]` expected for *array*, but `integer` given                               |
+| `[1,2,3]`                      | -273                           | false                        | Negative number (0 Kelvin). `DataTypeAsString[]` expected for *types*, but `integer` given                      |
+| NaN                            | `["number"]`                   | false                        | `NaN` (Not a Number). `unknown[]` expected for *array*, but `nan` given                                         |
+| `[1,2,3]`                      | NaN                            | false                        | `NaN` (Not a Number). `DataTypeAsString[]` expected for *types*, but `nan` given                                |
+| Infinity                       | `["number"]`                   | false                        | Positive Infinity. `unknown[]` expected for *array*, but `number` given                                         |
+| `[1,2,3]`                      | Infinity                       | false                        | Positive Infinity. `DataTypeAsString[]` expected for *types*, but `number` given                                |
+| -Infinity                      | `["number"]`                   | false                        | Negative Infinity. `unknown[]` expected for *array*, but `number` given                                         |
+| `[1,2,3]`                      | -Infinity                      | false                        | Negative Infinity. `DataTypeAsString[]` expected for *types*, but `number` given                                |
+| 0                              | `["number"]`                   | false                        | BigInt zero `0n`. `unknown[]` expected for *array*, but `bigint` given                                          |
+| `[1,2,3]`                      | 0                              | false                        | BigInt zero `0n`. `DataTypeAsString[]` expected for *types*, but `bigint` given                                 |
+| 42                             | `["number"]`                   | false                        | BigInt `42n`. `unknown[]` expected for *array*, but `bigint` given                                              |
+| `[1,2,3]`                      | 42                             | false                        | BigInt `42n`. `DataTypeAsString[]` expected for *types*, but `bigint` given                                     |
+| true                           | `["number"]`                   | false                        | Boolean. `unknown[]` expected for *array*, but `boolean` given                                                  |
+| `[1,2,3]`                      | true                           | false                        | Boolean. `DataTypeAsString[]` expected for *types*, but `boolean` given                                         |
+| true                           | `["number"]`                   | false                        | Boolean object `Boolean(true)`. `unknown[]` expected for *array*, but `boolean` given                           |
+| `[1,2,3]`                      | true                           | false                        | Boolean object `Boolean(true)`. `DataTypeAsString[]` expected for *types*, but `boolean` given                  |
+| null                           | `["number"]`                   | false                        | Null. `unknown[]` expected for *array*, but `null` given                                                        |
+| `[1,2,3]`                      | null                           | false                        | Null. `DataTypeAsString[]` expected for *types*, but `null` given                                               |
+| undefined                      | `["number"]`                   | false                        | Undefined. `unknown[]` expected for *array*, but `undefined` given                                              |
+| `[1,2,3]`                      | undefined                      | false                        | Undefined. `DataTypeAsString[]` expected for *types*, but `undefined` given                                     |
+| Symbol()                       | `["number"]`                   | false                        | Symbol. `unknown[]` expected for *array*, but `symbol` given                                                    |
+| `[1,2,3]`                      | Symbol()                       | false                        | Symbol. `DataTypeAsString[]` expected for *types*, but `symbol` given                                           |
+| /./                            | `["number"]`                   | false                        | RegExp. `unknown[]` expected for *array*, but `regExp` given                                                    |
+| `[1,2,3]`                      | /./                            | false                        | RegExp. `DataTypeAsString[]` expected for *types*, but `regExp` given                                           |
+| /^Roland$/i                    | `["number"]`                   | false                        | RegExp with flags. `unknown[]` expected for *array*, but `regExp` given                                         |
+| `[1,2,3]`                      | /^Roland$/i                    | false                        | RegExp with flags. `DataTypeAsString[]` expected for *types*, but `regExp` given                                |
+| `{}`                           | `["number"]`                   | false                        | Empty plain object. `unknown[]` expected for *array*, but `object` given                                        |
+| `[1,2,3]`                      | `{}`                           | false                        | Empty plain object. `DataTypeAsString[]` expected for *types*, but `object` given                               |
+| `{"dev":"Roland Milto"}`       | `["number"]`                   | false                        | Non-empty plain object. `unknown[]` expected for *array*, but `object` given                                    |
+| `[1,2,3]`                      | `{"dev":"Roland Milto"}`       | false                        | Non-empty plain object. `DataTypeAsString[]` expected for *types*, but `object` given                           |
+| Date(2026-02-06T12:31:27.013Z) | `["number"]`                   | false                        | `new Date()` object. `unknown[]` expected for *array*, but `date` given                                         |
+| `[1,2,3]`                      | Date(2026-02-06T12:31:27.013Z) | false                        | `new Date()` object. `DataTypeAsString[]` expected for *types*, but `date` given                                |
+| Date(Invalid)                  | `["number"]`                   | false                        | Invalid Date object. `unknown[]` expected for *array*, but `date` given                                         |
+| `[1,2,3]`                      | Date(Invalid)                  | false                        | Invalid Date object. `DataTypeAsString[]` expected for *types*, but `date` given                                |
+| Error                          | `["number"]`                   | false                        | `new Error()` object. `unknown[]` expected for *array*, but `error` given                                       |
+| `[1,2,3]`                      | Error                          | false                        | `new Error()` object. `DataTypeAsString[]` expected for *types*, but `error` given                              |
+| new Map()                      | `["number"]`                   | false                        | Empty map `new Map()`. `unknown[]` expected for *array*, but `map` given                                        |
+| `[1,2,3]`                      | new Map()                      | false                        | Empty map `new Map()`. `DataTypeAsString[]` expected for *types*, but `map` given                               |
+| new Set()                      | `["number"]`                   | false                        | Empty set `new Set()`. `unknown[]` expected for *array*, but `set` given                                        |
+| `[1,2,3]`                      | new Set()                      | false                        | Empty set `new Set()`. `DataTypeAsString[]` expected for *types*, but `set` given                               |
+| new Map([["k", "v"]])          | `["number"]`                   | false                        | Non-empty map `new Map([['k', 'v']])`. `unknown[]` expected for *array*, but `map` given                        |
+| `[1,2,3]`                      | new Map([["k", "v"]])          | false                        | Non-empty map `new Map([['k', 'v']])`. `DataTypeAsString[]` expected for *types*, but `map` given               |
+| new Set([1, 2, 3])             | `["number"]`                   | false                        | Non-empty set `new Set([1, 2, 3])`. `unknown[]` expected for *array*, but `set` given                           |
+| `[1,2,3]`                      | new Set([1, 2, 3])             | false                        | Non-empty set `new Set([1, 2, 3])`. `DataTypeAsString[]` expected for *types*, but `set` given                  |
+| [Object: null prototype] {}    | `["number"]`                   | false                        | Object without prototype (Object.create(null)). `unknown[]` expected for *array*, but `object` given            |
+| `[1,2,3]`                      | [Object: null prototype] {}    | false                        | Object without prototype (Object.create(null)). `DataTypeAsString[]` expected for *types*, but `object` given   |
+| `[]`                           | `["number"]`                   | false                        | Empty array. `unknown[]` expected for *array*, but `array` given                                                |
+| `[1,2,3]`                      | `[]`                           | false                        | Empty array. `DataTypeAsString[]` expected for *types*, but `array` given                                       |
+| `[null]`                       | `["number"]`                   | false                        | Array with `undefined` (but returning `[null]`). `unknown[]` expected for *array*, but `array` given            |
+| `[1,2,3]`                      | `[null]`                       | false                        | Array with `undefined` (but returning `[null]`). `DataTypeAsString[]` expected for *types*, but `array` given   |
+| `[null,null,null]`             | `["number"]`                   | false                        | Sparse array (length 3, empty slots). `unknown[]` expected for *array*, but `array` given                       |
+| `[1,2,3]`                      | `[null,null,null]`             | false                        | Sparse array (length 3, empty slots). `DataTypeAsString[]` expected for *types*, but `array` given              |
+| `[["nested"]]`                 | `["number"]`                   | false                        | Nested array. `unknown[]` expected for *array*, but `array` given                                               |
+| `[1,2,3]`                      | `[["nested"]]`                 | false                        | Nested array. `DataTypeAsString[]` expected for *types*, but `array` given                                      |
+| `["Birthday",18,8,1990]`       | `["number"]`                   | false                        | Mixed array. `unknown[]` expected for *array*, but `array` given                                                |
+| `[1,2,3]`                      | `["Birthday",18,8,1990]`       | false                        | Mixed array. `DataTypeAsString[]` expected for *types*, but `array` given                                       |
+| ()=>{}                         | `["number"]`                   | false                        | Function `() => {}`. `unknown[]` expected for *array*, but `function` given                                     |
+| `[1,2,3]`                      | ()=>{}                         | false                        | Function `() => {}`. `DataTypeAsString[]` expected for *types*, but `function` given                            |
+| async()=>{}                    | `["number"]`                   | false                        | Async function `async () => {}`. `unknown[]` expected for *array*, but `function` given                         |
+| `[1,2,3]`                      | async()=>{}                    | false                        | Async function `async () => {}`. `DataTypeAsString[]` expected for *types*, but `function` given                |
+| function*(){yield 1;}          | `["number"]`                   | false                        | Generator function `function* () { yield 1; }`. `unknown[]` expected for *array*, but `function` given          |
+| `[1,2,3]`                      | function*(){yield 1;}          | false                        | Generator function `function* () { yield 1; }`. `DataTypeAsString[]` expected for *types*, but `function` given |
+
+<br>
+
+---
+
+<small>The file was generated on 6 February 2026 at 12:31:27 (UTC) with the use of *
+*[markdown-documentation-generator](https://github.com/roland-milto/markdown-documentation-generator)** by *
+*[Roland Milto](https://roland-milto.de/)**.</small>

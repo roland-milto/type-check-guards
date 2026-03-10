@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures every element is a `Promise` before you proceed with promise-specific logic.",
+		"Returns `false` for non-filled arrays, preventing ambiguous results for empty inputs.",
+		"Useful as a runtime guard when working with `unknown[]` from external sources."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check for Promise instances."
+	},
+	"shortDescription": "`arePromises` determines whether all elements in an array are `Promise` instances.",
+	"typeScriptFunctionUsageExample": "import { arePromises } from \"@type-check/guards\";\n\nconst values: unknown[] = [Promise.resolve(1), new Promise<void>(() => {})];\n\nif (arePromises(values)) {\n  // values is an array of Promise instances at runtime\n  Promise.all(values).then((results) => {\n    console.log(results);\n  });\n} else {\n  console.log(\"Not all items are promises\");\n}\n",
+	"typeScriptHint": "Use `arePromises` to validate `unknown[]` before calling `Promise.all` or other promise-only operations; it returns `false` for empty arrays.",
+	"useCase": "Validate that a dynamically built or externally provided list contains only promises before aggregating them (e.g., with `Promise.all`)."
+}

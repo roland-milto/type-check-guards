@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures an array is non-empty before validating its contents, preventing `true` for empty inputs.",
+		"Verifies every element is a `Date` instance, returning `false` immediately on the first mismatch.",
+		"Useful as a guard-style check before performing date-specific operations on array items."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for `Date` objects."
+	},
+	"shortDescription": "`areDates` determines whether a given array is filled and contains only `Date` objects, returning `true` only when all elements are valid dates.",
+	"typeScriptFunctionUsageExample": "import { areDates } from \"@type-check/guards\";\n\nconst a: unknown[] = [new Date(), new Date(\"2021-01-01\")];\nconst b: unknown[] = [];\nconst c: unknown[] = [new Date(), \"not a date\"];\n\nconsole.log(areDates(a)); // true\nconsole.log(areDates(b)); // false\nconsole.log(areDates(c)); // false\n\nif (areDates(a)) {\n  const timestamps = a.map(d => d.getTime());\n  console.log(timestamps);\n}",
+	"typeScriptHint": "Returns `true` only for non-empty arrays where every element is a `Date`; empty arrays yield `false`.",
+	"useCase": "Use `areDates` to validate unknown input (e.g., parsed JSON, form data, API payloads) before running date-specific logic like sorting by time, formatting, or computing ranges."
+}

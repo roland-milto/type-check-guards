@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when every element is a valid JSON string; otherwise returns `false`.",
+		"Fails fast: stops checking as soon as a non-JSON element is found.",
+		"Rejects empty arrays by design, returning `false` for non-filled input."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for JSON string elements."
+	},
+	"shortDescription": "Checks whether all elements of an array are JSON strings, returning `true` only if the array is filled and every item is valid JSON; otherwise returns `false`.",
+	"typeScriptFunctionUsageExample": "import { areJson } from \"@type-check/guards\";\n\nconst ok = areJson([\"{\\\"a\\\":1}\", \"{\\\"b\\\":2}\"]); // true\nconst mixed = areJson([\"{\\\"a\\\":1}\", 123 as unknown]); // false\nconst empty = areJson([]); // false\n",
+	"typeScriptHint": "Use `areJson` when you need to validate that an `unknown[]` contains only JSON strings before parsing them (e.g., with `JSON.parse`).",
+	"useCase": "Validate incoming data (e.g., from query params, environment variables, or external APIs) where you expect an array of JSON-encoded strings and want to reject empty arrays or any non-JSON entries."
+}

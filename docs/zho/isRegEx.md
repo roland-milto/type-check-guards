@@ -1,0 +1,73 @@
+# isRegEx
+
+## 说明
+
+判断提供的值是否为 `RegExp` 实例。
+
+### 使用场景
+
+在将用户提供或动态的值（例如配置、API 载荷、插件输入）当作正则表达式处理之前先进行验证。
+
+> **给 TypeScript 用户的提示：**
+>
+> 使用 `isRegEx` 在使用 RegExp 特有的属性或方法之前，将 `unknown`（或联合类型）值收窄；它仅在值是 `RegExp` 的实例时才返回
+`true`。
+
+### 优势
+
+- 提供一个简单的运行时类型守卫，用于检查某个值是否为 `RegExp`。
+- 当代码期望得到正则表达式时（例如在调用 `test`、`exec` 或读取 `source` 之前），有助于防止错误。
+- 同时适用于正则字面量以及通过 `new RegExp(...)` 创建的实例。
+- 对非正则输入不会抛出异常，而是返回清晰的布尔结果（`true`/`false`）。
+
+## 用法
+
+### 语法
+
+函数：
+
+- `isRegEx(value)`
+
+参数：
+
+- `value`: 要检查的值。
+
+### 本地函数导入
+
+```ts
+import { isRegEx } from "@type-check/guards";
+
+const input: unknown = /abc/i;
+
+if (isRegEx(input)) {
+  // 此处的 input 是一个 RegExp
+  console.log(input.test("ABC"));
+} else {
+  console.log("Not a RegExp");
+}
+
+```
+
+### 全局对象导入
+
+如需将函数作为全局对象方法导入，请使用：
+
+```ts
+import "@type-check/guards/register-global-object.mjs";
+```
+
+随后以下方法可全局使用：
+
+- `Type.isRegEx(value)`
+
+## 函数分析
+
+此处记录了当向函数传入不同参数时产生的输出的表格分析： [isRegEx](../_analysis/isRegEx.md)
+
+<br>
+
+---
+
+<small>该文件于 2026年1月30日 23:31:45 (UTC) 使用 *
+*[markdown-documentation-generator](https://github.com/roland-milto/markdown-documentation-generator)** 由 *
+*[Roland Milto](https://roland-milto.de/)** 生成。</small>

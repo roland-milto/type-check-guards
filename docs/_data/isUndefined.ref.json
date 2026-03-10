@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Provides a clear, explicit check for `undefined` using `typeof`, avoiding edge cases with undeclared variables.",
+		"Returns a simple boolean result (`true`/`false`) suitable for guards, branching, and validation logic.",
+		"Helps distinguish `undefined` from other “empty” values like `null`, `0`, `\"\"`, or `NaN`."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "Checks whether a given value is `undefined`.",
+	"typeScriptFunctionUsageExample": "import { isUndefined } from \"@type-check/guards\";\n\nlet x: unknown;\n\nif (isUndefined(x)) {\n  // x is undefined here\n} else {\n  // x is not undefined here\n}\n\nconst a = isUndefined(undefined); // true\nconst b = isUndefined(null);      // false",
+	"typeScriptHint": "Use `isUndefined` when you specifically need to detect `undefined` (not `null`). It is safe because it relies on `typeof value === \"undefined\"`.",
+	"useCase": "Use `isUndefined` to guard optional inputs, detect missing properties, or differentiate between “not provided” (`undefined`) and “explicitly empty” (`null`)."
+}

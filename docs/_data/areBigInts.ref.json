@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures every element is a `bigint`, returning `true` only when the entire array matches.",
+		"Rejects non-arrays and empty arrays by design (via `isFilledArray`), preventing accidental acceptance of invalid inputs.",
+		"Fast fail: returns `false` as soon as a non-`bigint` element is found."
+	],
+	"parameterDescriptions": {
+		"array": "The value to check."
+	},
+	"shortDescription": "`areBigInts` determines whether a value is a non-empty array containing only `bigint` values.",
+	"typeScriptFunctionUsageExample": "import { areBigInts } from \"@type-check/guards\";\n\nconst a: unknown = [10n, 20n];\nconst b: unknown = [10n, 20];\nconst c: unknown = [];\n\nconsole.log(areBigInts(a)); // true\nconsole.log(areBigInts(b)); // false\nconsole.log(areBigInts(c)); // false",
+	"typeScriptHint": "Use `areBigInts` as a runtime guard before performing `bigint`-only operations (e.g., arithmetic, comparisons) on unknown input.",
+	"useCase": "Validate unknown input (e.g., parsed JSON-like data, API payloads, or function parameters typed as `unknown`) to ensure it is a non-empty array of `bigint` values before processing; returns `true` only when all elements are `bigint`, otherwise `false`."
+}

@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Uses the built-in `Array.isArray` for reliable array detection across realms (e.g., iframes).",
+		"Returns a simple boolean result (`true`/`false`) suitable for guards and branching logic.",
+		"Works with any input type because the parameter is `unknown`."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "`isArray` checks whether a given value is an array and returns `true` if it is, otherwise `false`.",
+	"typeScriptFunctionUsageExample": "import { isArray } from \"@type-check/guards\";\n\nconst input: unknown = [1, 2, 3];\n\nif (isArray(input)) {\n  // input is an array at runtime\n  console.log(input.length);\n} else {\n  console.log(\"Not an array\");\n}\n",
+	"typeScriptHint": "Use `isArray` when you need a runtime check for arrays; it returns a boolean and is safe to call with `unknown` values.",
+	"useCase": "Validate unknown data (e.g., parsed JSON or API responses) to ensure a value is an array before iterating, indexing, or accessing `.length`."
+}

@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Provides a clear, reusable guard for detecting `null` and `undefined` in one place.",
+		"Returns a simple boolean (`true`/`false`) that is easy to compose in conditions and validations.",
+		"Helps avoid common runtime errors by checking for missing values before accessing properties or calling methods."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked for `null` or `undefined`."
+	},
+	"shortDescription": "Checks whether a given value is `null` or `undefined`.",
+	"typeScriptFunctionUsageExample": "import { isNullOrUndefined } from \"@type-check/guards\";\n\nconst a: unknown = null;\nconst b: unknown = undefined;\nconst c: unknown = 0;\n\nif (isNullOrUndefined(a)) {\n  // handle missing value\n}\n\nconsole.log(isNullOrUndefined(b)); // true\nconsole.log(isNullOrUndefined(c)); // false\n",
+	"typeScriptHint": "Use `isNullOrUndefined` to guard against missing values before accessing properties or calling methods; it returns `true` only for `null` and `undefined`.",
+	"useCase": "Use `isNullOrUndefined` when you need to treat both `null` and `undefined` as “no value”, such as validating optional inputs, normalizing API payloads, or guarding code paths before dereferencing a potentially missing value."
+}

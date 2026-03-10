@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures a value is a non-empty array where every element is a `RegExp` instance.",
+		"Provides a simple boolean guard (`true`/`false`) for validating user input or configuration.",
+		"Helps prevent runtime errors when later code assumes all items support regular-expression operations."
+	],
+	"parameterDescriptions": {
+		"array": "The value to be checked."
+	},
+	"shortDescription": "`areRegExes` checks whether a value is a filled array containing only `RegExp` objects.",
+	"typeScriptFunctionUsageExample": "import { areRegExes } from \"@type-check/guards\";\n\nconst patterns: unknown = [/[a-z]/, /[0-9]/];\n\nif (areRegExes(patterns)) {\n  // patterns is an array of RegExp here\n  const combined = new RegExp(patterns.map(r => r.source).join(\"|\"));\n  console.log(combined.test(\"abc123\"));\n} else {\n  throw new TypeError(\"Expected a non-empty array of RegExp\");\n}\n",
+	"typeScriptHint": "Use `areRegExes` to narrow `unknown` to `RegExp[]` before iterating or composing patterns.",
+	"useCase": "Validate that a configuration option (e.g., a list of allow/deny patterns) is a non-empty array of regular expressions before using it for matching."
+}

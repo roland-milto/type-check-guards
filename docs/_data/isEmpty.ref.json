@@ -1,0 +1,16 @@
+{
+	"advantages": [
+		"Treats `null` and `undefined` as `true` for emptiness checks.",
+		"Considers whitespace-only strings empty by trimming before checking length.",
+		"Supports common container types (arrays, `Map`, `Set`) and plain objects with no own enumerable properties.",
+		"Avoids counting inherited properties by using `hasOwnProperty` checks.",
+		"Returns a simple boolean result (`true`/`false`) suitable for guards and validation."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check for emptiness."
+	},
+	"shortDescription": "Determines whether a given value is empty, returning `true` for `null`, `undefined`, empty/whitespace strings, empty arrays, empty `Map`/`Set`, or objects with no own enumerable properties.",
+	"typeScriptFunctionUsageExample": "import { isEmpty } from \"@type-check/guards\";\n\nconst values: unknown[] = [\n  null,\n  undefined,\n  \"   \",\n  \"Hello\",\n  [],\n  [1],\n  new Map(),\n  new Set([\"x\"]),\n  {},\n  { a: undefined }\n];\n\nconst results = values.map(v => ({ value: v, empty: isEmpty(v) }));\nconsole.log(results);\n",
+	"typeScriptHint": "`isEmpty` is a boolean-returning utility (not a TypeScript type predicate), so it does not narrow types by itself; use it for validation/branching rather than compile-time narrowing.",
+	"useCase": "Use `isEmpty` to validate inputs and detect missing/blank values across multiple data types (e.g., form fields, API payloads, configuration objects) where `null`, `undefined`, whitespace strings, empty collections, and property-less objects should be treated as empty."
+}

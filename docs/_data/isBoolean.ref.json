@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Simple and fast runtime check using `typeof`.",
+		"Helps validate unknown input before boolean-specific logic.",
+		"Returns a predictable `boolean` result (`true`/`false`)."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "Determines whether a given value is a `boolean`.",
+	"typeScriptFunctionUsageExample": "import { isBoolean } from \"@type-check/guards\";\n\nconst input: unknown = Math.random() > 0.5 ? true : \"true\";\n\nif (isBoolean(input)) {\n  // input is boolean here\n  const toggled = !input;\n  console.log(toggled);\n} else {\n  console.log(\"Not a boolean:\", input);\n}\n",
+	"typeScriptHint": "Use `isBoolean` to narrow `unknown` to `boolean` before applying boolean operations.",
+	"useCase": "Validate external or untyped data (e.g., environment variables, JSON payloads, query parameters) to ensure a value is a `boolean` before using it in conditional logic."
+}

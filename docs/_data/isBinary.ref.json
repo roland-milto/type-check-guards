@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Accepts binary strings with or without the `0b`/`0B` prefix.",
+		"Rejects empty strings and strings with leading/trailing whitespace (ASCII ≤ 32).",
+		"Returns `true`/`false` without throwing, making it safe for unknown inputs."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "`isBinary` determines whether a value is a binary string (optionally prefixed with `0b`/`0B`) and returns `true` or `false`.",
+	"typeScriptFunctionUsageExample": "import { isBinary } from \"@type-check/guards\";\n\nconst a = isBinary(\"0b1010\"); // true\nconst b = isBinary(\"1010\");   // true\nconst c = isBinary(\"0b1020\"); // false\nconst d = isBinary(0b1010);     // false\n",
+	"typeScriptHint": "Use `isBinary` as a type guard before parsing or converting a string to `BigInt`/`Number` to avoid invalid input.",
+	"useCase": "Validate user-provided strings (e.g., form fields, CLI args, config values) to ensure they represent binary digits only, optionally with a `0b`/`0B` prefix, before further processing."
+}

@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when every element is strictly `true` and the array is non-empty.",
+		"Fails fast: returns `false` as soon as a non-`true` value is found.",
+		"Rejects invalid inputs (non-arrays or empty arrays) by returning `false`."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check for all `true` values."
+	},
+	"shortDescription": "Checks whether a non-empty array contains only the boolean `true` values.",
+	"typeScriptFunctionUsageExample": "import { areTrue } from \"@type-check/guards\";\n\nconst a = areTrue([true, true, true]);\nconst b = areTrue([true, false, true]);\nconst c = areTrue([]);\nconst d = areTrue([true, \"string\" as unknown, true]);\n\nconsole.log(a, b, c, d);",
+	"typeScriptHint": "`areTrue` returns `false` for an empty array and for arrays containing any value that is not strictly `true`.",
+	"useCase": "Use `areTrue` to validate that a set of preconditions or feature flags are all enabled (all values are `true`) before continuing, while treating empty or malformed inputs as not satisfied (`false`)."
+}

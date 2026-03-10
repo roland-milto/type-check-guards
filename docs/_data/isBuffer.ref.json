@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Safely detects Node.js `Buffer` instances using `Buffer.isBuffer`.",
+		"Returns `false` in environments where `Buffer` is unavailable, avoiding runtime errors.",
+		"Works with `unknown` input, making it suitable for runtime validation and type narrowing."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be tested."
+	},
+	"shortDescription": "Checks whether a value is a Node.js `Buffer` and returns `true` or `false`.",
+	"typeScriptFunctionUsageExample": "import { isBuffer } from \"@type-check/guards\";\n\nconst a: unknown = Buffer.from(\"hello\");\nconst b: unknown = \"hello\";\n\nconsole.log(isBuffer(a)); // true\nconsole.log(isBuffer(b)); // false\n\nif (isBuffer(a)) {\n  // a is a Buffer here\n  console.log(a.toString(\"utf8\"));\n}",
+	"typeScriptHint": "Use `isBuffer` to narrow `unknown` values to `Buffer` before calling Buffer-specific methods.",
+	"useCase": "Validate inputs at runtime (e.g., API payloads, file data, or message buffers) to ensure a value is a `Buffer` before processing it, and reliably get `false` when running outside Node.js where `Buffer` may not exist."
+}

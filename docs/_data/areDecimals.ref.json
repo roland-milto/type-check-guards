@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures the input is a filled array before validating items, preventing accidental acceptance of empty lists.",
+		"Validates every element with `isDecimal`, so mixed or invalid values cause an immediate `false` result.",
+		"Provides a simple boolean outcome (`true`/`false`) suitable for guards and early-return validation flows."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked."
+	},
+	"shortDescription": "Checks whether all elements in an array are decimal numbers and the array is filled, returning `true` or `false`.",
+	"typeScriptFunctionUsageExample": "import { areDecimals } from \"@type-check/guards\";\n\nconst a: unknown[] = [\"1.0\", \"2.5\", \"3.14\"];\nconst b: unknown[] = [\"1.0\", \"abc\", \"3.14\"];\nconst c: unknown[] = [];\n\nconsole.log(areDecimals(a)); // true\nconsole.log(areDecimals(b)); // false\nconsole.log(areDecimals(c)); // false",
+	"typeScriptHint": "Use `areDecimals` when you need a quick boolean check that an `unknown[]` is non-empty and every element is a decimal representation.",
+	"useCase": "Validate user-provided lists (e.g., CSV columns or form inputs) to ensure the array is not empty and every entry is a decimal value before parsing or calculations."
+}

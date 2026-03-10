@@ -1,0 +1,86 @@
+# Behavior of `isBinary`
+
+## Expected parameters
+
+| Parameter | Data type | Description              |
+|:----------|:----------|:-------------------------|
+| value     | binary    | The value to be checked. |
+
+Expected return type: `boolean`
+
+## Specific tests
+
+| Parameter <br> `value` | Function <br> `isBinary` | Description                                                                              |
+|:-----------------------|:-------------------------|:-----------------------------------------------------------------------------------------|
+| "0"                    | true                     | Single digit 0 (no prefix)                                                               |
+| "1"                    | true                     | Single digit 1 (no prefix)                                                               |
+| "1010"                 | true                     | Binary digits (no prefix)                                                                |
+| "0b1010"               | true                     | Binary with 0b prefix                                                                    |
+| "0B1010"               | true                     | Binary with 0B prefix                                                                    |
+| "000101"               | true                     | Leading zeros (valid)                                                                    |
+| ""                     | false                    | Empty string (invalid). `binary` expected for *value*, but `string` given                |
+| "0b"                   | false                    | Prefix without digits (invalid). `binary` expected for *value*, but `string` given       |
+| "0B"                   | false                    | Prefix without digits (invalid). `binary` expected for *value*, but `string` given       |
+| "0b1020"               | false                    | Contains invalid digit 2. `binary` expected for *value*, but `string` given              |
+| "1020"                 | false                    | Contains invalid digit 2 (no prefix). `binary` expected for *value*, but `decimal` given |
+| "0b10_10"              | false                    | Underscore separators (invalid). `binary` expected for *value*, but `string` given       |
+| "0b10.10"              | false                    | Dot not allowed (invalid). `binary` expected for *value*, but `string` given             |
+| "-1010"                | false                    | Sign not supported (invalid). `binary` expected for *value*, but `decimal` given         |
+| "+0b1"                 | false                    | Sign not supported (invalid). `binary` expected for *value*, but `string` given          |
+| " 1010"                | false                    | Leading whitespace (invalid). `binary` expected for *value*, but `string` given          |
+| "1010 "                | false                    | Trailing whitespace (invalid). `binary` expected for *value*, but `string` given         |
+| "\t0b1010"             | false                    | Leading tab (invalid). `binary` expected for *value*, but `string` given                 |
+| "0b1010\n"             | false                    | Trailing newline (invalid). `binary` expected for *value*, but `string` given            |
+
+## Default tests
+
+| Parameter <br> `value`         | Function <br> `isBinary` | Description                                                                                         |
+|:-------------------------------|:-------------------------|:----------------------------------------------------------------------------------------------------|
+| ""                             | false                    | Empty string. `binary` expected for *value*, but `string` given                                     |
+| " "                            | false                    | Only space string. `binary` expected for *value*, but `string` given                                |
+| "\r"                           | false                    | Carriage return. `binary` expected for *value*, but `string` given                                  |
+| "integer"                      | false                    | Data type returned by `getTypeOf()`. `binary` expected for *value*, but `string` given              |
+| "Roland Milto"                 | false                    | Two word string. `binary` expected for *value*, but `string` given                                  |
+| "äöüß"                         | false                    | Non-ASCII (German umlauts). `binary` expected for *value*, but `string` given                       |
+| "你好"                           | false                    | Non-Latin characters. `binary` expected for *value*, but `string` given                             |
+| "🙂"                           | false                    | Emoji string. `binary` expected for *value*, but `string` given                                     |
+| 42                             | false                    | Positive number. `binary` expected for *value*, but `integer` given                                 |
+| -273                           | false                    | Negative number (0 Kelvin). `binary` expected for *value*, but `integer` given                      |
+| NaN                            | false                    | `NaN` (Not a Number). `binary` expected for *value*, but `nan` given                                |
+| Infinity                       | false                    | Positive Infinity. `binary` expected for *value*, but `number` given                                |
+| -Infinity                      | false                    | Negative Infinity. `binary` expected for *value*, but `number` given                                |
+| 0                              | false                    | BigInt zero `0n`. `binary` expected for *value*, but `bigint` given                                 |
+| 42                             | false                    | BigInt `42n`. `binary` expected for *value*, but `bigint` given                                     |
+| true                           | false                    | Boolean. `binary` expected for *value*, but `boolean` given                                         |
+| true                           | false                    | Boolean object `Boolean(true)`. `binary` expected for *value*, but `boolean` given                  |
+| null                           | false                    | Null. `binary` expected for *value*, but `null` given                                               |
+| undefined                      | false                    | Undefined. `binary` expected for *value*, but `undefined` given                                     |
+| Symbol()                       | false                    | Symbol. `binary` expected for *value*, but `symbol` given                                           |
+| /./                            | false                    | RegExp. `binary` expected for *value*, but `regExp` given                                           |
+| /^Roland$/i                    | false                    | RegExp with flags. `binary` expected for *value*, but `regExp` given                                |
+| `{}`                           | false                    | Empty plain object. `binary` expected for *value*, but `object` given                               |
+| `{"dev":"Roland Milto"}`       | false                    | Non-empty plain object. `binary` expected for *value*, but `object` given                           |
+| Date(2026-01-31T23:08:53.825Z) | false                    | `new Date()` object. `binary` expected for *value*, but `date` given                                |
+| Date(Invalid)                  | false                    | Invalid Date object. `binary` expected for *value*, but `date` given                                |
+| Error                          | false                    | `new Error()` object. `binary` expected for *value*, but `error` given                              |
+| new Map()                      | false                    | Empty map `new Map()`. `binary` expected for *value*, but `map` given                               |
+| new Set()                      | false                    | Empty set `new Set()`. `binary` expected for *value*, but `set` given                               |
+| new Map([["k", "v"]])          | false                    | Non-empty map `new Map([['k', 'v']])`. `binary` expected for *value*, but `map` given               |
+| new Set([1, 2, 3])             | false                    | Non-empty set `new Set([1, 2, 3])`. `binary` expected for *value*, but `set` given                  |
+| [Object: null prototype] {}    | false                    | Object without prototype (Object.create(null)). `binary` expected for *value*, but `object` given   |
+| `[]`                           | false                    | Empty array. `binary` expected for *value*, but `array` given                                       |
+| `[null]`                       | false                    | Array with `undefined` (but returning `[null]`). `binary` expected for *value*, but `array` given   |
+| `[null,null,null]`             | false                    | Sparse array (length 3, empty slots). `binary` expected for *value*, but `array` given              |
+| `[["nested"]]`                 | false                    | Nested array. `binary` expected for *value*, but `array` given                                      |
+| `["Birthday",18,8,1990]`       | false                    | Mixed array. `binary` expected for *value*, but `array` given                                       |
+| ()=>{}                         | false                    | Function `() => {}`. `binary` expected for *value*, but `function` given                            |
+| async()=>{}                    | false                    | Async function `async () => {}`. `binary` expected for *value*, but `function` given                |
+| function*(){yield 1;}          | false                    | Generator function `function* () { yield 1; }`. `binary` expected for *value*, but `function` given |
+
+<br>
+
+---
+
+<small>The file was generated on 31 January 2026 at 23:08:53 (UTC) with the use of *
+*[markdown-documentation-generator](https://github.com/roland-milto/markdown-documentation-generator)** by *
+*[Roland Milto](https://roland-milto.de/)**.</small>

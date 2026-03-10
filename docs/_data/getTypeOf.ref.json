@@ -1,0 +1,16 @@
+{
+	"advantages": [
+		"Returns a more granular type string than JavaScript’s `typeof`, including numeric subtypes like `integer`, `float`, and `nan`.",
+		"Distinguishes `null` and `undefined` explicitly as `null` and `undefined`.",
+		"It detects common numeric string formats and reports them as `binary`, `octal`, `decimal`, or `hexadecimal` instead of plain `string`.",
+		"Also identifies arrays as `array` and uses `Object.prototype.toString` to provide specific object type names (e.g., `date`, `regexp`, `map`, `set`).",
+		"It is very useful for validation, logging, and debugging where consistent, human-readable type labels are needed."
+	],
+	"parameterDescriptions": {
+		"value": "The value for which to determine the data type."
+	},
+	"shortDescription": "`getTypeOf` returns a detailed, human-readable type label for a given value, including refined numeric types and specific object kinds.",
+	"typeScriptFunctionUsageExample": "import { getTypeOf } from \"@type-check/guards\";\n\nconst samples: unknown[] = [\n  42,\n  3.14,\n  NaN,\n  \"3.14\",\n  \"0xff\",\n  \"0b1010\",\n  \"0o77\",\n  \"hello\",\n  null,\n  undefined,\n  [1, 2, 3],\n  new Date(),\n  /abc/i,\n  new Map(),\n  { a: 1 }\n];\n\nconst results = samples.map((v) => ({ value: v, type: getTypeOf(v) }));\nconsole.log(results);\n\n// Example checks\nif (getTypeOf(42) === \"integer\") {\n  console.log(\"Got an integer\");\n}\n\nif (getTypeOf(\"3.14\") === \"decimal\") {\n  console.log(\"Got a decimal string\");\n}",
+	"typeScriptHint": "The return type is `DataTypeAsString | string`. Treat it as a descriptive label; compare against known literals like `integer`, `float`, `nan`, `array`, `null`, and `undefined` when branching.",
+	"useCase": "Use `getTypeOf` to normalize type detection in input validation and diagnostics—for example, to reject `nan`, accept only `integer` IDs, treat numeric strings like `decimal` differently from plain `string`, or to log precise object kinds such as `date` and `regexp`."
+}

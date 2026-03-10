@@ -1,0 +1,17 @@
+{
+	"advantages": [
+		"Checks primitives via direct `typeof` for speed and clarity.",
+		"Correctly handles `null` and `undefined`, which `typeof` alone cannot distinguish as intended.",
+		"It supports complex or custom type strings via a fallback comparison using `getTypeOf`.",
+		"It returns a simple boolean result (`true`/`false`) suitable for guards and branching."
+	],
+	"parameterDescriptions": {
+		"value": "The value to test against the `type`.",
+		"type": "The string representation of the type to check against."
+	},
+	"shortDescription": "Determines whether a given `value` matches a specified type string, using `typeof` for primitives and a fallback for complex types.",
+	"typeScriptFunctionUsageExample": "import { isOfType } from \"@type-check/guards\";\n\nconst input: unknown = Math.random() > 0.5 ? 123 : \"hello\";\n\nif (isOfType(input, \"number\")) {\n  // input is a number here\n  const doubled = input * 2;\n  console.log(doubled);\n} else if (isOfType(input, \"string\")) {\n  // input is a string here\n  console.log(input.toUpperCase());\n}\n\nconsole.log(isOfType(null, \"null\"));\nconsole.log(isOfType(undefined, \"undefined\"));",
+	"typeScriptHint": "Use `isOfType` to branch on runtime types when working with `unknown` values; it returns `true`/`false` and treats `null` and `undefined` explicitly.",
+	"typeScriptObjectUsageExample": "import { isOfType } from \"@type-check/guards\";\n\ntype Payload = { id: unknown; meta: unknown };\n\nfunction normalize(payload: Payload) {\n  const id = isOfType(payload.id, \"string\") ? payload.id : \"\";\n  const metaIsObject = isOfType(payload.meta, \"object\");\n\n  return {\n    id,\n    hasMetaObject: metaIsObject\n  };\n}\n\nconsole.log(normalize({ id: 42, meta: { source: \"api\" } }));",
+	"useCase": "Validate and narrow `unknown` inputs (e.g., API responses, user input, parsed JSON) by checking whether a value is of an expected type string before performing type-specific operations."
+}

@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Validates that a value is a non-empty array where every element is a valid binary string.",
+		"Returns a simple boolean result (`true`/`false`) suitable for guards, early returns, and input validation.",
+		"Prevents downstream parsing errors by rejecting arrays that contain any non-binary entry."
+	],
+	"parameterDescriptions": {
+		"array": "The value to be checked."
+	},
+	"shortDescription": "Checks whether the provided value is a non-empty array of valid binary strings and returns `true` only if all items pass validation.",
+	"typeScriptFunctionUsageExample": "import { areBinaries } from \"@type-check/guards\";\n\nconst a = [\"0b1010\", \"1101\"];\nconst b = [\"1010\", \"1020\"];\n\nconsole.log(areBinaries(a)); // true\nconsole.log(areBinaries(b)); // false\nconsole.log(areBinaries([])); // false",
+	"typeScriptHint": "Use `areBinaries` to validate unknown input before converting binary strings to numbers/BigInts; it ensures the array is non-empty and every element is a valid binary string.",
+	"useCase": "Use `areBinaries` when you receive an unknown list (e.g., from JSON, forms, or APIs) and need to ensure it is a non-empty array of binary strings before parsing or processing it."
+}

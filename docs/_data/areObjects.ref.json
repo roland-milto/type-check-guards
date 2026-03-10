@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when the input is a filled array and every element is an object.",
+		"Stops early and returns `false` as soon as a non-object element is found.",
+		"Helps validate unknown input before performing object-specific operations."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for object elements."
+	},
+	"shortDescription": "`areObjects` checks whether a provided filled array contains only objects.",
+	"typeScriptFunctionUsageExample": "import { areObjects } from \"@type-check/guards\";\n\nconst value: unknown = [{}, { a: 1 }, new Date()];\n\nif (Array.isArray(value) && areObjects(value)) {\n  // value is a filled array of objects\n  console.log(\"All items are objects:\", value.length);\n} else {\n  console.log(\"Not a filled array of objects\");\n}\n",
+	"typeScriptHint": "Use `areObjects` to validate `unknown[]` before treating items as objects; it returns `false` for empty arrays.",
+	"useCase": "Use `areObjects` when you receive an unknown array (e.g., from JSON parsing or external APIs) and need to ensure it is non-empty and that every element is an object before iterating and accessing object properties."
+}

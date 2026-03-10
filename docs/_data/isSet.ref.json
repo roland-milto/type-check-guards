@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Provides a simple runtime check to confirm whether a value is a `Set`.",
+		"Helps prevent type errors by allowing early branching when a value is not a `Set`.",
+		"Works with any `Set` contents (empty or populated) and returns `true`/`false` consistently."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check."
+	},
+	"shortDescription": "Determines whether a given value is a `Set`.",
+	"typeScriptFunctionUsageExample": "import { isSet } from \"@type-check/guards\";\n\nconst a: unknown = new Set([1, 2, 3]);\nconst b: unknown = [1, 2, 3];\n\nif (isSet(a)) {\n  // a is a Set at runtime\n  console.log(a.size);\n}\n\nconsole.log(isSet(b)); // false",
+	"typeScriptHint": "Use `isSet` to narrow `unknown` values before calling `Set`-specific APIs like `.add`, `.has`, or `.size`.",
+	"useCase": "Validate inputs from external sources (e.g., JSON parsing, user input, or third-party APIs) to ensure a value is a `Set` before performing `Set` operations."
+}

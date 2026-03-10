@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Validates that a value is a non-empty array where every element is an octal string, returning `true` only when all items pass.",
+		"Fails fast: returns `false` as soon as a non-octal element is found.",
+		"Useful as a guard before parsing or converting octal strings to avoid runtime errors and inconsistent input handling."
+	],
+	"parameterDescriptions": {
+		"array": "The value to be checked."
+	},
+	"shortDescription": "`areOctals` determines whether the provided value is a non-empty array of valid octal strings.",
+	"typeScriptFunctionUsageExample": "import { areOctals } from \"@type-check/guards\";\n\nconst value: unknown = [\"0o123\", \"+0O755\"];\n\nif (Array.isArray(value) && areOctals(value)) {\n  // value is a non-empty array of octal strings\n  const parsed = value.map(v => Number(v));\n  console.log(parsed);\n} else {\n  console.log(\"Not an array of octal strings\");\n}\n",
+	"typeScriptHint": "Use `areOctals` to ensure you have a non-empty `unknown[]` where each entry is a valid octal string before converting (e.g., via `Number(...)` or custom parsing).",
+	"useCase": "Use `areOctals` when validating user input, configuration values, or API payloads that must contain octal literals (e.g., file permission modes like `0o755`) and you want to reject empty arrays or any invalid entries by returning `false`."
+}

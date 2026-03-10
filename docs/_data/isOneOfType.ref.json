@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Checks a value against multiple allowed types in a single call, returning `true` on the first match.",
+		"It provides a simple boolean result that composes well with conditional logic and early returns.",
+		"It works with `unknown` inputs, making it useful at runtime boundaries (e.g., external data, user input)."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked against the specified types.",
+		"types": "An array of type strings representing the potential types of the value."
+	},
+	"shortDescription": "`isOneOfType` determines whether a given `value` matches at least one of the provided type strings, returning `true` if any match is found and `false` otherwise.",
+	"typeScriptFunctionUsageExample": "import { isOneOfType } from \"@type-check/guards\";\n\nconst input: unknown = JSON.parse('{\"count\": 3}');\n\nif (isOneOfType(input, [\"object\"])) {\n  // input is an object at runtime\n}\n\nconsole.log(isOneOfType(3, [\"number\", \"string\"])); // true\nconsole.log(isOneOfType(\"hello\", [\"number\", \"boolean\"])); // false\n",
+	"typeScriptHint": "Use `isOneOfType` when you want a runtime check that a value matches any of several allowed types; it returns `true` if at least one type matches, otherwise `false`.",
+	"useCase": "Validate loosely-typed or external data (e.g., parsed JSON, query parameters) by allowing multiple acceptable runtime types (such as `number` or `string`) before proceeding with further logic."
+}

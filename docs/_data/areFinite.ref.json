@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when the input is a non-empty array and every element is a finite number.",
+		"Rejects `Infinity`, `-Infinity`, and `NaN` by relying on `isFinite` checks for each element.",
+		"Provides a simple boolean result (`true`/`false`) suitable for guards and validation flows."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for finiteness of all its elements."
+	},
+	"shortDescription": "`areFinite` checks whether a value is a non-empty array whose elements are all finite numbers, returning `true` if so and `false` otherwise.",
+	"typeScriptFunctionUsageExample": "import { areFinite } from \"@type-check/guards\";\n\nconst a: unknown[] = [1, 2, 3];\nconst b: unknown[] = [1, Infinity, 3];\nconst c: unknown[] = [true, false, null];\n\nconsole.log(areFinite(a)); // true\nconsole.log(areFinite(b)); // false\nconsole.log(areFinite(c)); // false\n\nfunction sumIfFinite(values: unknown[]): number | null {\n  if (!areFinite(values)) return null;\n  return values.reduce((acc, n) => acc + n, 0);\n}\n\nconsole.log(sumIfFinite([10, 20, 30])); // 60\nconsole.log(sumIfFinite([10, NaN, 30])); // null",
+	"typeScriptHint": "Use `areFinite` when you need to ensure an array is non-empty and contains only finite numbers; it returns `false` for empty arrays and for arrays containing `NaN` or infinities.",
+	"useCase": "Validate numeric input arrays (e.g., chart series, coordinate lists, measurement samples) before performing calculations, ensuring the result is `true` only when all values are finite numbers."
+}

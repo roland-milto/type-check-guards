@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when the input is a non-empty array and every element is a symbol.",
+		"Prevents false positives by rejecting non-arrays and empty arrays via the internal filled-array check.",
+		"Useful as a runtime type guard for validating symbol-only lists before further processing."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for symbol elements."
+	},
+	"shortDescription": "Checks whether an input is a filled array whose elements are all symbols, returning `true` or `false`.",
+	"typeScriptFunctionUsageExample": "import { areSymbols } from \"@type-check/guards\";\n\nconst a = [Symbol(\"a\"), Symbol(\"b\")];\nconst b = [Symbol(\"a\"), \"b\"] as unknown[];\n\nif (areSymbols(a)) {\n  // a is a symbol-only array at runtime\n  const first = a[0];\n  console.log(typeof first); // \"symbol\"\n}\n\nconsole.log(areSymbols(b)); // false",
+	"typeScriptHint": "Use `areSymbols` to validate unknown input before treating it as `symbol[]`; it returns `false` for non-arrays and empty arrays.",
+	"useCase": "Validate that a configuration field (e.g., a list of unique keys represented as symbols) is a non-empty array containing only symbols before using it in APIs that require `symbol[]`."
+}

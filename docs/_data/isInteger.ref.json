@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Checks both type and numeric safety: returns `true` only when the input is a number and a safe integer.",
+		"Prevents common pitfalls with numeric coercion: strings like \"5\" correctly return `false`.",
+		"Rejects non-integers and unsafe integers, making it suitable for IDs, counters, and array indexing."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check for integer status."
+	},
+	"shortDescription": "Determines whether a given `value` is a safe integer number.",
+	"typeScriptFunctionUsageExample": "import { isInteger } from \"@type-check/guards\";\n\nconst a = isInteger(5);      // true\nconst b = isInteger(-100);   // true\nconst c = isInteger(\"5\");    // false\nconst d = isInteger(5.5);    // false\nconst e = isInteger(null);   // false\n",
+	"typeScriptHint": "Use `isInteger` to validate unknown input before treating it as a numeric integer; it returns `true` only for values where `typeof value === \"number\"` and `Number.isSafeInteger(value)`.",
+	"useCase": "Validate untrusted input (e.g., query params, JSON payloads, environment variables) before using it as an integer for array indices, pagination, counters, or database IDs."
+}

@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when the input is a non-empty array and every element is numeric.",
+		"Fails fast: stops checking as soon as a non-numeric element is found, returning `false`.",
+		"Helps validate unknown input safely before performing numeric operations."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check for numeric elements."
+	},
+	"shortDescription": "`areNumerics` checks whether a value is a non-empty array where all elements are numeric.",
+	"typeScriptFunctionUsageExample": "import { areNumerics } from \"@type-check/guards\";\n\nconst a: unknown = [1, 2, 3];\nconst b: unknown = [-3.14, 0, 42];\nconst c: unknown = [1, \"two\", 3];\nconst d: unknown = \"string\";\nconst e: unknown = [];\n\nconsole.log(areNumerics(a)); // true\nconsole.log(areNumerics(b)); // true\nconsole.log(areNumerics(c)); // false\nconsole.log(areNumerics(d)); // false\nconsole.log(areNumerics(e)); // false\n\nfunction sumUnknown(values: unknown): number | null {\n  if (!areNumerics(values)) return null;\n  return values.reduce((acc, n) => acc + n, 0);\n}\n\nconsole.log(sumUnknown([10, 20, 30])); // 60\nconsole.log(sumUnknown([10, \"20\", 30])); // null",
+	"typeScriptHint": "Use `areNumerics` to guard `unknown` input before treating it as a numeric array; it returns `false` for non-arrays and empty arrays.",
+	"useCase": "Use `areNumerics` to validate external or untyped data (e.g., JSON payloads, query parameters, form input) before calculating sums, averages, or other numeric operations, ensuring the input is a non-empty numeric array and returning `false` otherwise."
+}

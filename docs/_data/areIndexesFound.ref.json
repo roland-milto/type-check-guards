@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"It returns `true` only when the input is a filled array and every element is a valid index.",
+		"Fails fast: returns `false` as soon as a non-index element is encountered.",
+		"Useful as a guard before using values as array positions or offsets."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for index compliance."
+	},
+	"shortDescription": "`areIndexesFound` checks whether a value is a non-empty array whose elements are all valid indexes, returning `true` if they are and `false` otherwise.",
+	"typeScriptFunctionUsageExample": "import { areIndexesFound } from \"@type-check/guards\";\n\nconst a: unknown[] = [0, 1, 2];\nconst b: unknown[] = [0, \"a\", 2];\nconst c: unknown[] = [];\n\nconsole.log(areIndexesFound(a)); // true\nconsole.log(areIndexesFound(b)); // false\nconsole.log(areIndexesFound(c)); // false\n\nif (areIndexesFound(a)) {\n  // Here, `a` is confirmed to be a filled array of indexes.\n  const firstIndex = a[0];\n  console.log(firstIndex);\n}",
+	"typeScriptHint": "Use `areIndexesFound` to validate unknown input before treating its elements as array indexes; it returns `false` for empty arrays and for arrays containing non-index values.",
+	"useCase": "Validate user-provided or external data (e.g., parsed JSON) that is expected to be a list of indexes before using it to access or slice arrays."
+}

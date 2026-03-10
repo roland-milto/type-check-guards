@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures every element in the input array is a plain object, returning `true` only when all items match.",
+		"Rejects invalid inputs early (non-arrays or empty arrays) by returning `false`.",
+		" Treats both object-literal objects and `Object.create(null)` objects as valid plain objects."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for plain object elements."
+	},
+	"shortDescription": "Checks whether all elements of an array are plain objects, returning `true` only if every element qualifies.",
+	"typeScriptFunctionUsageExample": "import { arePlainObjects } from \"@type-check/guards\";\n\nconst a = arePlainObjects([{ a: 1 }, { b: 2 }]); // true\nconst b = arePlainObjects([{}, Object.create(null)]); // true\nconst c = arePlainObjects([{ a: 1 }, 2 as unknown]); // false\nconst d = arePlainObjects([] as unknown[]); // false",
+	"typeScriptHint": "Use `arePlainObjects` to validate unknown input before treating it as `Record<string, unknown>[]` (or a stricter object shape) in TypeScript.",
+	"useCase": "Validate external or untyped data (e.g., parsed JSON, API payloads, form submissions) to ensure you received a non-empty array where every entry is a plain object before iterating and reading properties."
+}

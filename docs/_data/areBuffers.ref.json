@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures every element in the input is a Node.js `Buffer` instance, returning `true` only when the entire array matches.",
+		"Rejects invalid inputs early by requiring a non-empty, filled array; returns `false` for empty arrays or non-arrays.",
+		"Useful as a guard before performing buffer-only operations (e.g., concatenation, hashing, binary protocols)."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for buffer instances."
+	},
+	"shortDescription": "`areBuffers` checks whether the provided value is a non-empty, filled array where every element is a `Buffer`, returning `true` if so and `false` otherwise.",
+	"typeScriptFunctionUsageExample": "import { areBuffers } from \"@type-check/guards\";\n\nconst chunks: unknown[] = [Buffer.from(\"test\"), Buffer.from(\"123\")];\n\nif (areBuffers(chunks)) {\n  const combined = Buffer.concat(chunks);\n  console.log(combined.toString(\"utf8\"));\n} else {\n  throw new TypeError(\"Expected a non-empty array of Buffer instances\");\n}\n",
+	"typeScriptHint": "Use `areBuffers` to validate `unknown[]` before calling Buffer-specific APIs like `Buffer.concat`, ensuring the function returns `true` only when every element is a `Buffer`.",
+	"useCase": "Validate incoming chunk arrays (e.g., from streams, file uploads, or network packets) to ensure all parts are `Buffer` instances before concatenating, decoding, or passing them to cryptographic or binary-processing functions."
+}

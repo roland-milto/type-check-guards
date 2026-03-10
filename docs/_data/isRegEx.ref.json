@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Provides a simple runtime type guard to check whether a value is a `RegExp`.",
+		"Helps prevent errors when code expects a regular expression (e.g., before calling `test`, `exec`, or reading `source`).",
+		"Works with both regex literals and instances created via `new RegExp(...)`.",
+		"Returns a clear boolean result (`true`/`false`) without throwing for non-regex inputs."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "Determines whether a provided value is a `RegExp` instance.",
+	"typeScriptFunctionUsageExample": "import { isRegEx } from \"@type-check/guards\";\n\nconst input: unknown = /abc/i;\n\nif (isRegEx(input)) {\n  // input is a RegExp here\n  console.log(input.test(\"ABC\"));\n} else {\n  console.log(\"Not a RegExp\");\n}\n",
+	"typeScriptHint": "Use `isRegEx` to narrow `unknown` (or union) values before using RegExp-specific properties or methods; it returns `true` only for values that are instances of `RegExp`.",
+	"useCase": "Validate user-provided or dynamic values (e.g., configuration, API payloads, plugin inputs) before treating them as a regular expression."
+}
