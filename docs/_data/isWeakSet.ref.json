@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Provides a simple runtime check for whether a value is a `WeakSet`.",
+		"Helps prevent type errors by ensuring only `WeakSet` instances are treated as such.",
+		"Works with any `unknown` input and returns a clear boolean result (`true`/`false`)."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "Determines whether the given `value` is a `WeakSet` of objects.",
+	"typeScriptFunctionUsageExample": "import { isWeakSet } from \"@type-check/guards\";\n\nconst a: unknown = new WeakSet<object>();\nconst b: unknown = new Set();\n\nconsole.log(isWeakSet(a)); // true\nconsole.log(isWeakSet(b)); // false\n\nif (isWeakSet(a)) {\n  // a is a WeakSet at runtime\n}",
+	"typeScriptHint": "Use `isWeakSet` to narrow an `unknown` value to `WeakSet<object>` at runtime; note that `WeakSet` can only contain object references.",
+	"useCase": "Use `isWeakSet` when accepting untyped input (e.g., from external APIs, dynamic configuration, or `unknown` values) and you need to verify it is a `WeakSet` before using `WeakSet`-specific operations."
+}

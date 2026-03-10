@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Ensures a value is a `Date` instance and not just a date-like string or number.",
+		"Rejects invalid dates (e.g., `new Date(\"invalid\")`) by checking for `NaN` time values.",
+		" Simple boolean guard that is easy to use in conditionals and validation pipelines.",
+		" Helps prevent runtime errors when calling date methods by verifying the input first."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked."
+	},
+	"shortDescription": "`isValidDate` checks whether a given value is a valid `Date` object and returns `true` only for real, non-invalid dates.",
+	"typeScriptFunctionUsageExample": "import { isValidDate } from \"@type-check/guards\";\n\nconst input: unknown = new Date();\n\nif (isValidDate(input)) {\n  // input is a valid Date instance\n  const iso = input.toISOString();\n  console.log(iso);\n} else {\n  console.log(\"Not a valid Date\");\n}\n\nconsole.log(isValidDate(new Date(\"invalid\"))); // false\nconsole.log(isValidDate(\"2025-12-22\")); // false",
+	"typeScriptHint": "Use `isValidDate` before calling `Date` methods (e.g., `toISOString`, `getTime`) on values typed as `unknown` to ensure they are valid `Date` objects.",
+	"useCase": "Validate user input or API data that may contain dates, ensuring the value is a real `Date` instance and not an invalid date before performing date calculations, formatting, or comparisons."
+}

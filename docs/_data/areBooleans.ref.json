@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when every element is a boolean and the input is a non-empty array.",
+		"Prevents false positives by rejecting empty arrays (returns `false`).",
+		"Works well as a runtime guard before boolean-only operations (e.g., `every`, `some`, logical reductions)."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for boolean elements."
+	},
+	"shortDescription": "`areBooleans` checks whether a given non-empty array contains only boolean values, returning `true` if it does and `false` otherwise.",
+	"typeScriptFunctionUsageExample": "import { areBooleans } from \"@type-check/guards\";\n\nconst values1: unknown[] = [true, false, true];\nif (areBooleans(values1)) {\n  const allTrue = values1.every(v => v);\n  console.log(allTrue);\n}\n\nconst values2: unknown[] = [];\nconsole.log(areBooleans(values2));\n\nconst values3: unknown[] = [true, 1, false];\nconsole.log(areBooleans(values3));",
+	"typeScriptHint": "Use `areBooleans` to validate `unknown[]` before treating it as `boolean[]`; it returns `false` for empty arrays, so handle that case explicitly if an empty list should be allowed.",
+	"useCase": "Validate user-provided or external data (e.g., JSON payloads, query params, config arrays) to ensure a non-empty list contains only booleans before applying boolean logic or passing it to APIs that expect `boolean[]`."
+}

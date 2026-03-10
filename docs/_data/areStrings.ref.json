@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures every element is a string and rejects mixed-type arrays by returning `false`.",
+		"Rejects empty arrays, so `true` only indicates a non-empty list of strings.",
+		"Useful as a quick runtime guard before performing string-only operations (e.g., `trim`, `toLowerCase`)."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check, containing elements of unknown types."
+	},
+	"shortDescription": "`areStrings` checks whether an array is non-empty and all its elements are strings, returning `true` only in that case.",
+	"typeScriptFunctionUsageExample": "import { areStrings } from \"@type-check/guards\";\n\nconst input: unknown = [\"hello\", \"world\"];\n\nif (Array.isArray(input) && areStrings(input)) {\n  // input is a non-empty string[] at runtime\n  const upper = input.map((s) => s.toUpperCase());\n  console.log(upper);\n} else {\n  console.log(\"Not a non-empty array of strings\");\n}\n",
+	"typeScriptHint": "Use `areStrings` to validate unknown arrays before applying string-only logic; it returns `false` for empty arrays.",
+	"useCase": "Validate external or user-provided data (e.g., query params, JSON payloads, CSV fields) to ensure you have a non-empty list of strings before processing."
+}

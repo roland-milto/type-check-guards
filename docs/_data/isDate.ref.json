@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"It provides a simple runtime guard to verify whether a value is a `Date`.",
+		"It helps to prevent type errors by ensuring only `Date` instances pass validation.",
+		"It is useful for validating unknown inputs (e.g., API payloads) before using date-specific methods."
+	],
+	"parameterDescriptions": {
+		"value": "The value to be checked for `Date` type."
+	},
+	"shortDescription": "`isDate` determines whether a provided value is a `Date`, returning `true` for `Date` instances and `false` otherwise.",
+	"typeScriptFunctionUsageExample": "import { isDate } from \"@type-check/guards\";\n\nconst input: unknown = new Date();\n\nif (isDate(input)) {\n  // input is a Date here\n  const iso = input.toISOString();\n  console.log(iso);\n} else {\n  console.log(\"Not a Date\");\n}\n",
+	"typeScriptHint": "Use `isDate` to narrow `unknown` to `Date` at runtime; it returns `true` only for actual `Date` instances (not date strings).",
+	"useCase": "Validate and narrow unknown values (e.g., request data, config values, or parsed JSON) before performing `Date` operations such as formatting, comparisons, or calling `toISOString()`."
+}

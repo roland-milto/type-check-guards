@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Ensures every element is strictly `false` (no truthy/falsey coercion).",
+		"Returns `false` for non-arrays or empty arrays by requiring a filled array via `isFilledArray`.",
+		"Stops early on the first non-`false` element for efficiency."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check, containing elements of any type."
+	},
+	"shortDescription": "`areFalse` checks whether all elements in a provided array are strictly the boolean `false`.",
+	"typeScriptFunctionUsageExample": "import { areFalse } from \"@type-check/guards\";\n\nconst a = areFalse([false, false, false]); // true\nconst b = areFalse([false, true, false]);  // false\nconst c = areFalse([false, \"false\", false]); // false\nconst d = areFalse([]); // false",
+	"typeScriptHint": "Use `areFalse` when you need a strict validation that an array is non-empty and contains only the boolean value `false`.",
+	"useCase": "Validate that a list of feature flags, checks, or guard results are all `false` before proceeding (e.g., confirm that no blocking conditions are present)."
+}

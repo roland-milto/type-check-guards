@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Returns `true` only when every element matches the expected value; otherwise returns `false`.",
+		"Fails fast: stops checking as soon as a non-matching element is found.",
+		"Guards against invalid input by returning `false` when the input is not a filled array."
+	],
+	"parameterDescriptions": {
+		"value": "The array to be checked.",
+		"expected": "The element to compare each array item against."
+	},
+	"shortDescription": "`areEqual` checks whether all elements in an array are equal to a given expected value, returning `true` only for non-empty arrays where every item matches.",
+	"typeScriptFunctionUsageExample": "import { areEqual } from \"@type-check/guards\";\n\nconst allOnes = areEqual([1, 1, 1], 1);\nconst allTests = areEqual([\"test\", \"test\"], \"test\");\nconst notAllTwos = areEqual([2, 3, 2], 2);\nconst emptyIsFalse = areEqual([], 5);\n\nconsole.log(allOnes, allTests, notAllTwos, emptyIsFalse);",
+	"typeScriptHint": "Use `areEqual` when you need a strict all-items check; it returns `false` for empty arrays and for any non-array or non-filled input.",
+	"useCase": "Validate that a list contains only a single allowed value (e.g., all status flags are `true`, all roles are `\"admin\"`, or all numeric entries equal a required constant) while treating empty input as invalid (`false`)."
+}

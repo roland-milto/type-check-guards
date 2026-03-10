@@ -1,0 +1,15 @@
+{
+	"advantages": [
+		"Ensures every element in an array matches at least one allowed runtime type, returning `true` only when the whole array passes.",
+		"Rejects invalid inputs early: returns `false` when `array` or `types` is empty or not a filled array.",
+		"Useful for validating mixed-type collections (e.g., numbers and strings) with a single call to `areOneOfType`."
+	],
+	"parameterDescriptions": {
+		"array": "An array of elements to verify against the provided types.",
+		"types": "An array of strings representing the data types to check against."
+	},
+	"shortDescription": "`areOneOfType` checks whether all elements in a non-empty array are of one of the specified runtime types.",
+	"typeScriptFunctionUsageExample": "import { areOneOfType } from \"@type-check/guards\";\n\nconst values1: unknown[] = [1, \"a\", true];\nconst ok1 = areOneOfType(values1, [\"number\", \"string\", \"boolean\"]);\n\nconst values2: unknown[] = [1, \"a\", {}];\nconst ok2 = areOneOfType(values2, [\"number\", \"string\"]);\n\nconst values3: unknown[] = [];\nconst ok3 = areOneOfType(values3, [\"number\"]);\n\nconsole.log({ ok1, ok2, ok3 });",
+	"typeScriptHint": "This function returns a boolean and does not narrow the array element types at compile time; use it as a runtime validation step before further processing.",
+	"useCase": "Validate incoming data (e.g., parsed JSON) where a field must be a non-empty array whose items are restricted to a known set of primitive types; return `false` when the array is empty or contains any disallowed type."
+}

@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Simple runtime check for whether a value is a `WeakMap`.",
+		"Helps prevent misuse of APIs that require a `WeakMap` by returning `true`/`false` instead of throwing.",
+		"Works with `unknown` inputs, making it convenient at module boundaries (e.g., parsing, external data, or untyped code)."
+	],
+	"parameterDescriptions": {
+		"value": "The value to check."
+	},
+	"shortDescription": "Determines whether a given `value` is a `WeakMap` instance.",
+	"typeScriptFunctionUsageExample": "import { isWeakMap } from \"@type-check/guards\";\n\nconst a: unknown = new WeakMap<object, number>();\nconst b: unknown = new Map();\n\nif (isWeakMap(a)) {\n  // a is a WeakMap at runtime\n}\n\nconsole.log(isWeakMap(a)); // true\nconsole.log(isWeakMap(b)); // false",
+	"typeScriptHint": "`isWeakMap` performs an `instanceof WeakMap` check; it is a runtime guard that returns `true` only for actual `WeakMap` instances.",
+	"useCase": "Use `isWeakMap` when you accept an `unknown` value (e.g., from a public API, plugin system, or dynamic configuration) and need to verify it is a `WeakMap` before using `WeakMap`-specific behavior."
+}

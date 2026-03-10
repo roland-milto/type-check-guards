@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when every element is `NaN` (strict all-elements check).",
+		"Does not coerce strings to numbers; values like \"NaN\" remain non-`NaN` and make the result `false`.",
+		"Returns `false` for non-filled arrays, preventing accidental `true` on empty input."
+	],
+	"parameterDescriptions": {
+		"array": "The array to check for `NaN` values."
+	},
+	"shortDescription": "`areNaNs` checks whether all elements in an array are `NaN` and returns `true` only if every element is `NaN`.",
+	"typeScriptFunctionUsageExample": "import { areNaNs } from \"@type-check/guards\";\n\nconst a = areNaNs([NaN, NaN]); // true\nconst b = areNaNs([NaN, 1, NaN]); // false\nconst c = areNaNs([NaN, \"NaN\", NaN]); // false\nconst d = areNaNs([NaN, null, NaN]); // false\nconst e = areNaNs([] as unknown[]); // false",
+	"typeScriptHint": "Use `areNaNs` when you need to validate that an array contains only the numeric `NaN` value (without string-to-number coercion).",
+	"useCase": "Validate incoming data where `NaN` is used as a sentinel value and you must ensure the entire array consists exclusively of `NaN` (e.g., detecting an all-missing numeric series)."
+}

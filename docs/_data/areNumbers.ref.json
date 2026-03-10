@@ -1,0 +1,14 @@
+{
+	"advantages": [
+		"Returns `true` only when the input is a non-empty array and every element is a number.",
+		"Prevents false positives by rejecting empty arrays and non-array inputs.",
+		"Useful as a guard before numeric operations (e.g., summing, averaging) to avoid runtime errors."
+	],
+	"parameterDescriptions": {
+		"array": "The array to be checked for number elements."
+	},
+	"shortDescription": "`areNumbers` checks whether a value is a non-empty array where all elements are numbers.",
+	"typeScriptFunctionUsageExample": "import { areNumbers } from \"@type-check/guards\";\n\nconst input: unknown = [1, 2, 3];\n\nif (Array.isArray(input) && areNumbers(input)) {\n  const total = input.reduce((sum, n) => sum + n, 0);\n  console.log(total);\n} else {\n  console.log(\"Not a non-empty number array\");\n}\n",
+	"typeScriptHint": "Use `areNumbers` to validate unknown arrays before performing numeric calculations; it returns `false` for empty arrays and for arrays containing any non-number value.",
+	"useCase": "Validate user-provided or API-provided data to ensure it is a non-empty array of numbers before computing totals, averages, or other numeric aggregations."
+}
