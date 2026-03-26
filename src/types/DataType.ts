@@ -1,6 +1,6 @@
 // Import: interfaces and types.
-import type {PrimitiveType, PrimitiveTypeAsString, PrimitiveTypeOf} from "./primitive.js";
-import type {NonPrimitiveType, NonPrimitiveTypeAsString, NonPrimitiveTypeOf} from "./nonPrimitive.js";
+import type {PrimitiveType, PrimitiveTypeAsString, PrimitiveTypeOf} from "./Primitive.js";
+import type {NonPrimitiveType, NonPrimitiveTypeAsString, NonPrimitiveTypeOf} from "./NonPrimitive.js";
 
 /**
  * Represents all supported runtime type identifiers.

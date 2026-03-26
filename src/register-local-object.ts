@@ -1,5 +1,5 @@
 // Import: interfaces and types.
-import type {TypeGuards} from "./types/typeGuards.js";
+import type {TypeGuards} from "./types/TypeGuards.js";
 
 // Import: All exported guards and utilities from the main entry point.
 import * as guards from "./index.js";

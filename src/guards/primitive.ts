@@ -1,5 +1,5 @@
 // Import: interfaces and types.
-import type {PrimitiveType} from "../types/primitive.js";
+import type {PrimitiveType} from "../types/Primitive.js";
 
 // Import: local functions.
 import {isFilledArray} from "./filledArray.js";

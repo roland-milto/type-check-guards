@@ -1,5 +1,5 @@
 // Import: interfaces and types.
-import type {DataTypeAsString} from "../types/dataType.js";
+import type {DataTypeAsString} from "../types/DataType.js";
 
 // Import: local functions.
 import {isBinary} from "../guards/binary.js";

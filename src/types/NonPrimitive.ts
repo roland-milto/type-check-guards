@@ -1,5 +1,5 @@
 // Import: interfaces and types.
-import type {EnumLike} from "./enumLike.js";
+import type {EnumLike} from "./EnumLike.js";
 
 /**
  * The `_NonPrimitive` type defines a structured collection of non-primitive data types including arrays,

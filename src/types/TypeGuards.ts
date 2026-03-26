@@ -1,7 +1,7 @@
 // Import: interfaces and types.
 import type {Stream} from 'node:stream';
-import type {PrimitiveType} from "./primitive.js";
-import type {DataTypeAsString, DataTypeOf} from "./dataType.js";
+import type {PrimitiveType} from "./Primitive.js";
+import type {DataTypeAsString, DataTypeOf} from "./DataType.js";
 
 /**
  * Interface for returning the `type` object methods.

@@ -1,5 +1,5 @@
 // Import: Interfaces and types.
-import type {EnumLike} from "../types/enumLike.js";
+import type {EnumLike} from "../types/EnumLike.js";
 
 // Import: local functions.
 import {isNumber} from "./number.js";

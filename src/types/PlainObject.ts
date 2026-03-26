@@ -15,7 +15,5 @@ type PlainObject = Record<string, unknown> & {
   readonly [key: string]: unknown;
 };
 
-// @todo write documentation for PlainObject type
-
 // Export type.
 export type {PlainObject};

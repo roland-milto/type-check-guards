@@ -1,5 +1,5 @@
 // Import: interfaces and types.
-import type {DataTypeAsString, DataTypeOf} from "../types/dataType.js";
+import type {DataTypeAsString, DataTypeOf} from "../types/DataType.js";
 
 // Import: local functions.
 import {isOfType} from "./ofType.js";

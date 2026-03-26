@@ -1,5 +1,5 @@
 // Import: local variables.
-import {NUMERIC_TYPE_STRINGS} from "../constants/NUMERIC_TYPE_STRINGS.js";
+import {NUMERIC_TYPE_STRINGS} from "../data/constants/NUMERIC_TYPE_STRINGS.js";
 
 /**
  * The `NumericTypeAsString` type represents a string from the `NUMERIC_TYPE_STRINGS` array.
