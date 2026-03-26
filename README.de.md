@@ -50,9 +50,11 @@ isFloat(1337); // false
     - [Nummerische Prüfungen](#numerische-prüfungen)
     - [Objekte und Kollektionen](#objekte-und-kollektionen)
     - [Spezialisierte Instanzen und Logik](#spezialisierte-instanzen-und-logik)
-- [**@type-check** Ökosystem](#das-type-check-ökosystem)
-- [**@js-augment** Ökosystem](#das-js-augment-ökosystem)
-- [Mitwirken & Unterstützung](#unterstützen-oder-fehler-melden)
+- [Das **@js-augment** Ökosystem](https://github.com/roland-milto/open-source#the-js-augment-ecosystem)
+- [Das **@type-check** Ökosystem](https://github.com/roland-milto/open-source#the-type-check-ecosystem)
+- [weitere hilfreiche Tools](https://github.com/roland-milto/open-source#other-helpful-tools)
+- [Support & Fehlermeldungen](https://github.com/roland-milto/open-source#support-or-report-an-error)
+- [Unterstützung](https://github.com/roland-milto/open-source#contributing)
 
 </details>
 
@@ -178,6 +180,10 @@ Version verwendet wird:
 	}
 }
 ```
+
+Du kannst den Asterisk (*) lassen, damit die neueste Version installiert wird.
+Es wird jedoch empfohlen, eine genaue Version anzugeben, da sich mögliche Fehler in der Bibliothek direkt auf dein
+Projekt auswirken können.
 
 ### tsconfig.json
 
@@ -475,71 +481,3 @@ während die Spalte **Array-Elemente überprüfen** prüft, ob jedes Element im 
 | [isRegEx(value)](docs/deu/isRegEx.md)                | [areRegExes(array)](docs/deu/areRegExes.md)            | Prüft auf `RegExp`.                  |
 | [isStream(value)](docs/deu/isStream.md)              | [areStreams(array)](docs/deu/areStreams.md)            | Prüft auf Stream.                    |
 | [isValidDate(value)](docs/deu/isValidDate.md)        | [areValidDates(array)](docs/deu/areValidDates.md)      | Prüft, ob `Date` gültig ist.         |
-
-<br>
-
-## Das *@type-check* Ökosystem
-
-`@type-check/guards` bildet das Fundament eines modularen Ökosystems, das darauf ausgelegt ist, Typsicherheit in jeder
-Phase Deiner Anwendung zu gewährleisten.
-Durch die strikte Trennung der Module lädst Du nur die Logik, die Du tatsächlich benötigst.
-
-### Verfügbare Module:
-
-- **[@type-check/assertions](https://www.npmjs.com/package/@type-check/assertions)**:
-  Baut auf den Guards auf und stellt Funktionen bereit, die sofort Fehler werfen (`throw`), wenn eine Validierung
-  fehlschlägt.
-  Ideal für saubere Validierungslogik am Anfang von Funktionen.
-
-  Das Besondere: Das Modul liefert **mehrsprachige, konfigurierbare Fehlermeldungen** mit,
-  die direkt in der Anwendung (z.&nbsp;B. für API-Antworten oder UI-Feedback) genutzt werden können.
-
-
-- **[@type-check/constraints](https://www.npmjs.com/package/@type-check/constraints)**:
-  Ermöglicht die Definition komplexer Regeln und Bedingungen (z.&nbsp;B. Mindestlänge von Strings, Wertebereiche von
-  Zahlen),
-  die über einfache Typ-Prüfungen hinausgehen.
-
-### Warum die strikte Trennung?
-
-- **Optimale Performance:**
-  Sollen nur Typen geprüft werden, muss nicht der Code für komplexe Assertions oder Constraints mitgeladen werden. Das
-  hält das Bundle extrem klein.
-
-
-- **Klare Zuständigkeiten:**
-  Jedes Modul hat eine spezifische Aufgabe. Dies führt zu besser wartbarem Code und verhindert eine Überladung der API.
-
-
-- **Flexibilität:**
-  Du entscheidest selbst, wie strikt Deine Anwendung sein soll – von einfachen booleschen Prüfungen bis hin zu harten
-  Assertionen, die den Programmfluss bei Fehlern stoppen.
-
-<br>
-
-## Das *@js-augment* Ökosystem
-
-`@js-augment` ist als Erweiterung von `@type-check/guards` gedacht, die einzelne Typen noch detaillierter prüft.
-
-Bibliotheken, die auf `@type-check/guards` im Namespace `@js-augment` basieren:
-
-* [@js-augment/array](https://github.com/roland-milto/js-augment-array)
-* [@js-augment/bigint](https://github.com/roland-milto/js-augment-bigint)
-* [@js-augment/bigints](https://github.com/roland-milto/js-augment-bigints)
-* [@js-augment/number](https://github.com/roland-milto/js-augment-number)
-* [@js-augment/numbers](https://github.com/roland-milto/js-augment-numbers)
-* [@js-augment/object](https://github.com/roland-milto/js-augment-object)
-* [@js-augment/string](https://github.com/roland-milto/js-augment-string)
-
-<br>
-
-## Unterstützen oder Fehler melden
-
-Wenn Du ebenfalls einen Beitrag zur Bibliothek leisten möchtest (z.&nbsp;B. Übersetzungen), bist Du herzlich dazu
-eingeladen.
-Informationen dazu findest Du unter [CONTRIBUTING.md](CONTRIBUTING.md).
-Du wirst auch in der Datei [AUTHORS.md](AUTHORS.md) erwähnt.
-
-Bei Fehlern oder Ideen zu sinnvollen Erweiterungen kannst Du Dich direkt
-auf [GitHub](https://github.com/roland-milto/type-check-guards/issues) beteiligen.
-

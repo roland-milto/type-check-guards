@@ -2,8 +2,8 @@
 
 # [`@type-check/guards`](https://www.npmjs.com/package/@type-check/guards)
 
-![NPM version](https://img.shields.io/npm/v/@type-check/guards?color=blue)
 ![Typescript project](https://img.shields.io/badge/Typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)
+![NPM version](https://img.shields.io/npm/v/@type-check/guards?color=blue)
 ![Browser supported](https://img.shields.io/badge/Browser-supported-brightgreen)
 ![ESM supported](https://img.shields.io/badge/ESM-supported-brightgreen)
 ![Tree shaking](https://img.shields.io/badge/Tree--shaking-supported-brightgreen)
@@ -50,9 +50,11 @@ isFloat(1337); // false
     - [Numeric checks](#numeric-checks)
     - [Objects and collections](#objects-and-collections)
     - [Specialized instances and logic](#specialized-instances-and-logic)
-- [**@type-check** ecosystem](#the-type-check-ecosystem)
-- [**@js-augment** ecosystem](#the-js-augment-ecosystem)
-- [Contributing & Support](#support-or-report-an-error)
+- [The **@js-augment** ecosystem](https://github.com/roland-milto/open-source#the-js-augment-ecosystem)
+- [The **@type-check** ecosystem](https://github.com/roland-milto/open-source#the-type-check-ecosystem)
+- [Other helpful tools](https://github.com/roland-milto/open-source#other-helpful-tools)
+- [Support & Error Reporting](https://github.com/roland-milto/open-source#support-or-report-an-error)
+- [Contributing](https://github.com/roland-milto/open-source#contributing)
 
 </details>
 
@@ -173,6 +175,10 @@ Ensure that `@type-check/guards` is included in your `package.json` dependencies
 	}
 }
 ```
+
+You can leave the asterisk (*) to ensure that the latest version is installed.
+However, it is recommended that you specify an exact version, as any errors in the library could directly affect your
+project.
 
 ### tsconfig.json
 
@@ -469,66 +475,3 @@ Array Elements** column ensures that every element in the provided array meets t
 | [isRegEx(value)](docs/eng/isRegEx.md)                | [areRegExes(array)](docs/eng/areRegExes.md)            | Checks for `RegExp`.               |
 | [isStream(value)](docs/eng/isStream.md)              | [areStreams(array)](docs/eng/areStreams.md)            | Checks for stream.                 |
 | [isValidDate(value)](docs/eng/isValidDate.md)        | [areValidDates(array)](docs/eng/areValidDates.md)      | Checks whether `Date` is valid.    |
-
-<br>
-
-## The *@type-check* ecosystem
-
-`@type-check/guards` forms the foundation of a modular ecosystem, designed to ensure type safety at every stage of your
-application. Due to the strict separation of modules, you only load the logic you actually need.
-
-### Available modules:
-
-- **[@type-check/assertions](https://www.npmjs.com/package/@type-check/assertions)**:
-  Builds upon the guards and provides functions that immediately `throw` an error if validation fails. Perfect for clean
-  validation logic at the beginning of functions.
-
-  Special feature: The module provides **multilingual, configurable error messages** that can be used directly in your
-  application (e.g., for API responses or UI feedback). This eliminates the need to create your own error message texts.
-
-
-- **[@type-check/constraints](https://www.npmjs.com/package/@type-check/constraints)**:
-  Enables the definition of complex rules and conditions (e.g., minimum string length, value ranges for numbers) that go
-  beyond simple type checks.
-
-### Why strict separation?
-
-- **Optimal performance:**
-  If you only need to check types, there is no need to load the code for complex assertions or constraints.
-  This keeps the bundle tiny (CPU and RAM efficient).
-
-
-- **Clear responsibilities:**
-  Each module has a specific task. This leads to more maintainable code and prevents API overload.
-
-
-- **Maximum flexibility:**
-  You decide how strict your application should be – from simple boolean checks to hard assertions that stop the program
-  flow upon errors.
-
-<br>
-
-## The *@js-augment* ecosystem
-
-`@js-augment` is intended as an extension of `@type-check/guards`, which checks individual types in even greater detail.
-
-Libraries based on `@type-check/guards` in the `@js-augment` namespace:
-
-* [@js-augment/array](https://github.com/roland-milto/js-augment-array)
-* [@js-augment/bigint](https://github.com/roland-milto/js-augment-bigint)
-* [@js-augment/bigints](https://github.com/roland-milto/js-augment-bigints)
-* [@js-augment/number](https://github.com/roland-milto/js-augment-number)
-* [@js-augment/numbers](https://github.com/roland-milto/js-augment-numbers)
-* [@js-augment/object](https://github.com/roland-milto/js-augment-object)
-* [@js-augment/string](https://github.com/roland-milto/js-augment-string)
-
-<br>
-
-## Support or report an error
-
-If you would also like to contribute to the library (e.g., translations), you are cordially invited to do so.
-Information can be found in [CONTRIBUTING.md](CONTRIBUTING.md).
-You will also be mentioned in the [AUTHORS.md](AUTHORS.md) file.
-
-If you find any errors or have ideas for useful enhancements, you can contribute directly
-on [GitHub](https://github.com/roland-milto/type-check-guards/issues).
