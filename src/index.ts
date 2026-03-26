@@ -51,8 +51,10 @@ export {areValidDates, isValidDate} from "./guards/validDate.js";
 export {areWeakMaps, isWeakMap} from "./guards/weakMap.js";
 export {areWeakSets, isWeakSet} from "./guards/weakSet.js";
 
-// Export: Interfaces and types:
-export type {DataType, DataTypeAsString, DataTypeOf} from "./types/dataType.js";
-export type {PrimitiveType, PrimitiveTypeAsString, PrimitiveTypeOf} from "./types/primitive.js";
-export type {NumericType, NumericTypeAsString, NumericTypeOf} from "./types/numericType.js";
-export type {NonPrimitiveType, NonPrimitiveTypeAsString, NonPrimitiveTypeOf} from "./types/nonPrimitive.js";
+// Export: interfaces and types:
+export type {DataType, DataTypeAsString, DataTypeOf} from "./types/DataType.js";
+export type {EnumLike} from "./types/EnumLike.js";
+export type {NonPrimitiveType, NonPrimitiveTypeAsString, NonPrimitiveTypeOf} from "./types/NonPrimitive.js";
+export type {NumericType, NumericTypeAsString, NumericTypeOf} from "./types/NumericType.js";
+export type {PlainObject} from "./types/PlainObject.js";
+export type {PrimitiveType, PrimitiveTypeAsString, PrimitiveTypeOf} from "./types/Primitive.js";
